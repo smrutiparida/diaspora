@@ -192,4 +192,4 @@ function($){
         }
     };
 
-}(jQuery);
+})(jQuery);
