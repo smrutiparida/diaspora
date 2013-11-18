@@ -37,7 +37,7 @@
     = jquery_include_tag
 
     - unless @landing_page
-      = javascript_include_tag :main, :templates
+      = javascript_include_tag :main, :templates, :debug, :jSlots
       = load_javascript_locales
 
     = set_asset_host

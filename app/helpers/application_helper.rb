@@ -71,3 +71,5 @@ module ApplicationHelper
     buf.join("\n").html_safe
   end
 end
+
+      
