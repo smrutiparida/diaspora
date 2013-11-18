@@ -79,6 +79,8 @@ module Diaspora
       publisher.js
       templates.js
       validation.js
+      debug.js
+      jSlots.js
 
       blueprint.css
       bootstrap.css
