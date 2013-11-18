@@ -16,6 +16,25 @@
 				background-repeat: no-repeat;
 			}
 
+			#navbar-top{
+				background: rgba(0,0,0,0.65);
+				border-bottom: 1px solid #585858;
+				
+			}
+
+			#homepage-header {
+				/* Hack to hide the header */
+				-webkit-box-shadow:none;
+				-moz-box-shadow:none;
+				box-shadow:none;
+				border:none;
+				background:none;
+				-webkit-font-smoothing: antialiased;
+				margin: 0px auto;
+				left: 0px;
+				padding: 15px 0px;
+			}
+
 			.btn{
 				margin-top: 50px;
 			}
@@ -43,21 +62,7 @@
 				line-height: 110%;
 				font-weight: normal;
 			}	
-			#header {
-				/* Hack to hide the header */
-				-webkit-box-shadow:none;
-				-moz-box-shadow:none;
-				box-shadow:none;
-				border:none;
-				background:none;
-				-webkit-font-smoothing: antialiased;
-				margin: 0px auto;
-				left: 0px;
-				padding: 15px 0px;
-				
-				
-			}
-
+		
 			
 			#name-logo {
 				font-size: 40px;
@@ -125,11 +130,7 @@
 				text-decoration: none;
 			}
 		
-			#navbar-top{
-				background: rgba(0,0,0,0.65);
-				border-bottom: 1px solid #585858;
-				
-			}
+			
 			
 
 			.static-text{
@@ -279,7 +280,7 @@
 	            if (desired_width != $('#page').width()) {
 	                $('#page').width(desired_width);
 	            }
-	            $('#header').width(desired_width);
+	            $('#homepage-header').width(desired_width);
 	            $('#banner').height(desired_height * 0.90);
 	            
 	        }
@@ -297,7 +298,7 @@
 	</head>
 	<body>	
 		<div id="navbar-top">
-			<header id="header">
+			<header id="homepage-header">
 				<ul id="top-bar">
 					<li class="top-navbar-list">					
 						<a href="login">What</a>
