@@ -7,7 +7,7 @@
  * Requires: jQuery v1.4.1 or later
  */
 
-(function($){
+function($){
 
     $.jSlots = function(el, options){
 
@@ -192,4 +192,4 @@
         }
     };
 
-})(jQuery);
+}(jQuery);
