@@ -1,158 +1,382 @@
-	<style type="text/css">
-		body {
-			margin-top: 50px;
-			background-color: white;
-			background-image : none;
-		}
+<html>
+	<head>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
+    	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js"></script>
+    	<script src="../public/javascripts/debug.js"></script>
+    	<script src="../public/javascripts/jSlots.js"></script>  	
+    	<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    	<link type="text/css" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">    	
+		<style type="text/css">
+			body {
+				margin-top: 0px;
+				margin-left: 0px;
+				margin-right: 0px;
+				background-color: white;
+				background-image: url('../public/home.jpg');
+				background-size: cover;
+				background-position: center center;
+				background-size: cover;
+				-webkit-background-size: cover;
+				padding: 0px;
+				font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+				font-size: 14px;
+				background-repeat: no-repeat;
+			}
 
-		li {
-			list-style: none;
-		}
+			.btn{
+				margin-top: 50px;
+			}
 
-		footer h3 {
-			margin-bottom: 25px;
-			text-align: center;
-		}
+			.top-navbar-list{
+				list-style: none;
+				float: left;
+			}
 
-		footer {
-			margin-bottom: 12px;
-			padding: 42px;
-			border-top: 1px solid #ccc;
-			border-bottom: 1px solid #ccc;
-		}
+			footer h3 {
+				margin-bottom: 25px;
+				text-align: center;
+			}
 
-		#header {
-			/* Hack to hide the header */
-			-webkit-box-shadow:none;
-			-moz-box-shadow:none;
-			box-shadow:none;
-			border:none;
-			background:none;
+			footer {
+				margin-bottom: 12px;
+				padding: 42px;
+				border-top: 1px solid #ccc;
+				border-bottom: 1px solid #ccc;
+				display: none;
+			}
 
-			left: 0px;
-			padding: 15px 0px;
-		}
+			.banner h2 {
+				font-size: 34 px;
+				line-height: 110%;
+				font-weight: normal;
+			}	
+			#header {
+				/* Hack to hide the header */
+				-webkit-box-shadow:none;
+				-moz-box-shadow:none;
+				box-shadow:none;
+				border:none;
+				background:none;
+				-webkit-font-smoothing: antialiased;
+				margin: 0px auto;
+				left: 0px;
+				padding: 15px 0px;
+				
+				
+			}
 
-		#header img {
-			margin-left: 15px;
-		}
+			
+			#name-logo {
+				font-size: 40px;
+				font-weight: bold;
+				text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+				margin-left: 10px;
+				color: white;
+				text-decoration: none;
+			}
 
-		#login-link {
-			float: right;
-			margin-right: 15px;
-		}
+			
 
-		#steps {
-			text-align: center;
-		}
+			
+			
 
-		#banner {
-			border-bottom : 1px solid #ccc;
-			border-top : 1px solid #eee;
-			padding : 30px;
-			margin-top: 20px;
-			text-align: center;
+			#banner {
+				
+			}
 
-			-webkit-box-shadow : 0 9px 15px -10px rgba(0,0,0,0.7);
-			-moz-box-shadow : 0 9px 15px -10px rgba(0,0,0,0.7);
-			-khtml-box-shadow : 0 9px 15px -10px rgba(0,0,0,0.7);
-			-o-box-shadow : 0 9px 15px -10px rgba(0,0,0,0.7);
-			-ms-box-shadow : 0 9px 15px -10px rgba(0,0,0,0.7);
-			box-shadow : 0 9px 15px -10px rgba(0,0,0,0.7);
-		}
+			#top-bar{				
+				list-style: none;
+				text-align: right;
+				float: right;
+			}
 
-		#links {
-			margin: 0;
-			padding: 0;
-			text-align: center;
-		}
+			#page {
+	            width: 900px;
+	            max-width: 1200px;
+				margin: 0 auto;
+			}
 
-		#links .section {
-			margin: 0;
-			padding: 0;
-			display: inline-block;
-			vertical-align: top;
-			width: 24%;
-			max-width: 24%;
-		}
+			#links {
+				margin: 0;
+				padding: 0;
+				text-align: center;
+			}
 
-		#change-page {
-			color: #999;
-			text-align: center;
-			font-style: italic;
-		}
+			#links .section {
+				margin: 0;
+				padding: 0;
+				display: inline-block;
+				vertical-align: top;
+				width: 24%;
+				max-width: 24%;
+			}
 
-		.helpful {
-			cursor: help;
-		}
+			#change-page {
+				color: #999;
+				text-align: center;
+				font-style: italic;
+			}
 
-		.row {
-			margin-bottom: 60px;
-		}
-	</style>
+			.helpful {
+				cursor: help;
+			}
 
-	<div id="page" class="container">
-		<header id="header">
-			<a id="login-link" href="login" class="btn">Log In</a>
-			<img src="assets/branding/logo_caps.png" />
-		</header>
+			
 
-		<div id="banner" class="row">
-			<h1>Welcome, friend.</h1>
-			<h3>You're about to change the Internet. Let's get you set up, shall we?</h3>
+			.top-navbar-list > a {
+				color: #ffffff;
+				margin: 0;
+				text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+				float: none;
+				padding: 10px 15px 10px;
+				text-decoration: none;
+			}
+		
+			#navbar-top{
+				background: rgba(0,0,0,0.65);
+				border-bottom: 1px solid #585858;
+				
+			}
+			
+
+			.static-text{
+				float: left;
+			}
+
+			#video-player {
+				float: right;
+				margin: 50px auto;
+				position: relative;
+				top: 125px;
+				z-index: 1;
+				display: inline;
+				border: 5px solid #fff;
+				-moz-border-radius: 3px;
+				-webkit-border-radius: 3px;
+				border-radius: 3px;
+				-moz-box-shadow: 1px 1px 3px #000;
+				-webkit-box-shadow: 1px 1px 3px #000;
+				box-shadow: 1px 1px 3px #000;
+				
+
+			}
+
+			#left-content{
+				color: white;	
+				float: left;	
+				width: 43%;
+				position: relative;
+				top: 110px;
+			}
+
+			#left-content h2 {
+				font-size: 34px;	
+			}
+
+			#steps{
+
+				font-size: 60px;
+				line-height: 72px;
+				font-weight: 300;
+				color: #1a1a1a;
+				height: 66px;
+				overflow: hidden;
+				display: inline-block;
+				position: relative;
+				margin-bottom: 0px;
+				padding: 0px 10px 12px;
+				background: rgba(255, 255, 255, 0.75);
+				margin-top: 60px;
+			}
+
+			#steps .jSlots-wrapper{
+				float: left;				
+			}
+
+			
+			.empower {
+				padding-top: 27px;
+				display: inline-block;
+				float: left;
+				list-style: none;
+				margin: 0 0 0 10px;
+			}
+
+			li {
+				list-style: none;
+				display: inline;
+				line-height: 20px;
+			}
+      
+      		
+			.empower li.text-orange{
+				color: #d45559;				
+			}
+
+			.empower li.text-green{
+				color: #83c99c;				
+			}
+
+			.empower li.text-blue{
+				color: #8eccdb;				
+			}
+
+			.empower > li > span{
+				height: 75px;
+				display: block;
+				word-wrap:normal;
+				padding-bottom: 6px;
+				margin-bottom: 0px;
+			}
+
+
+			#empower1 li:nth-child(1) span{
+				width: 180px;
+				
+			}
+
+			#empower1 li:nth-child(2) span{
+				width: 220px;
+			}
+
+			#empower1 li:nth-child(3) span{
+				width: 250px;
+			}
+			#empower1 li:nth-child(4) span{
+				width: 180px;
+			}
+
+
+		</style>
+
+		<script type="text/javascript">
+			min_width = 800;
+			max_width = 1200;
+			function adjust_content_size(min_width, max_width, aspect_ratio, net_width, net_height) {
+			    debug.log(net_width, net_height, min_width, max_width);
+			    net_width = net_width > min_width ? net_width : min_width;
+			    net_width = net_width < max_width ? net_width : max_width;
+			    debug.log(net_width, net_height);
+			    var desired_height = (net_width * aspect_ratio[1]) / aspect_ratio[0];
+			    var desired_width = (net_height * aspect_ratio[0]) / aspect_ratio[1];
+			    debug.log(desired_width, desired_height);
+			    if (desired_height <= net_height) {
+			        desired_width = net_width;
+			    }
+			    else if (desired_width < min_width) {
+			        desired_width = min_width;
+			        desired_height = (min_width * aspect_ratio[1])/ aspect_ratio[0];
+			    }
+			    else if (desired_width > max_width) {
+			        desired_width = max_width;
+			        desired_height = (max_width * aspect_ratio[1])/ aspect_ratio[0];
+			    }
+			    else {
+			        desired_height = net_height;
+			    }
+
+			    return [desired_width, desired_height];
+			}
+
+			function set_width_height() {
+	            var desired = adjust_content_size(min_width, max_width, aspect_ratio, $(window).width() * 0.80, $(window).height() - 125);
+	            var desired_width = desired[0];
+	            var desired_height = desired[1];
+
+	            if (desired_width != $('#page').width()) {
+	                $('#page').width(desired_width);
+	            }
+	            $('#header').width(desired_width);
+	            $('#banner').height(desired_height * 0.90);
+	            
+	        }
+
+	        aspect_ratio = [1.932, 1];
+			
+			$(document).ready(function() {
+				$(window).resize(set_width_height);
+				set_width_height();
+				$('#empower1').jSlots({time:10000, loops:3});
+				
+			});
+			
+		</script>
+	</head>
+	<body>	
+		<div id="navbar-top">
+			<header id="header" style="width: 1024px;">
+				<ul id="top-bar">
+					<li class="top-navbar-list">					
+						<a href="login">What</a>
+					</li>
+					<li class="top-navbar-list">
+						<a href="/jobs/">Why</a>
+					</li>
+					<li class="top-navbar-list">
+						<a href="http://blog.nextdoor.com/">How</a>
+					</li>
+					<li class="top-navbar-list">
+						<a href="http://blog.nextdoor.com/">Features</a>
+					</li>
+					<li class="top-navbar-list">
+						<a href="/press/">Contact Us</a>
+					</li>          
+        		</ul>
+				
+				<a id="name-logo" href="home">groupify</a>
+			</header>
 		</div>
+		<div id="page" class="container" style="width: 1024px;">			
+			
+			<div id="banner" style="height: 477.0186335403727px;">
 
-		<div id="steps" class="row">
-			<div class="span4">
-				<h2>Configure your <abbr class="helpful" title="A Diaspora installation">pod</abbr></h2>
-				<img src="assets/icons/cog.png" />
+				<div id="left-content">
+					<h2>A classroom communication channel between students and teacher.</h2>
+					<p>Collborate assignements, teaching lessons, doubt clearing over secure network. No data is transferred outside the school.</p>						
+					<a href="#" class="btn btn-info pull-right btn-large">Request a Demo</a>
+				</div>	
+				<div id="video-player">
+					<iframe src="http://player.vimeo.com/video/12888604?title=0&amp;byline=0&amp;portrait=0&amp;color=dddddd" width="500" height="281" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe> 					
+				</div>
+			</div>		
+			
+			<div id="steps">			
+			    <div class="static-text">Happy Customers </div>
+				<div class="jSlots-wrapper"><ul class="empower" id="empower1" style="position: relative; top: -243px; width: 180px;">
+					<li class="text-orange" style=""><span>KIIT</span></li>
+					<li class="text-green"><span>IIT-kgp</span></li>
+					<li class="text-blue"><span>Stanford</span></li>
+					<li class="text-orange"><span>IIMB</span></li>
+				
+					
+				<li class="text-orange" style=""><span>KIIT</span></li></ul></div>		
 
-				<p>Look at
-				<code class="helpful" title='General pod configuration (location to upload photos, SSL certs, etc.)'>
-				config/diaspora.yml.example</code> and <code class="helpful" title="mySQL username/password">
-				config/database.yml.example</code> for help.</p>
-			</div>
-
-			<div class="span4">
-				<h2>Try it out</h2>
-				<img src="assets/icons/smiley_laughing.png" />
-
-				<p>Start by <a href="users/sign_up">creating an account</a>.</p>
-			</div>
-
-			<div class="span4">
-				<h2>Make a contribution!</h2>
-				<img src="assets/icons/pen_write.png" />
-
-				<p>Make Diaspora even better! Fork the project on
-					<a href="http://github.com/diaspora/diaspora/" title="github">github</a>,
-					make some changes, and submit a pull request.</p>
-			</div>
+			</div>	
 		</div>
-
+			
 		<footer>
-			<h3>Useful Resources</h3>
+			<h3></h3>
 			<ul id="links">
 				<ul class="section">
-					<li><a href="http://github.com/diaspora/diaspora/" title="Git repository">Codebase</a></li>
-					<li><a href="http://wiki.diasporafoundation.org" title="Wiki on github">Documentation</a></li>
+					<li><a href="http://github.com/diaspora/diaspora/" title="Git repository"></a></li>
+					<li><a href="http://wiki.diasporafoundation.org" title="Wiki on github"></a></li>
 				</ul>
 				<ul class="section">
-					<li><a href="http://webchat.freenode.net/?channels=diaspora" title="#diaspora">IRC - General</a></li>
-					<li><a href="http://webchat.freenode.net/?channels=diaspora-dev" title="#diaspora-dev">IRC - Development</a></li>
+					<li><a href="http://webchat.freenode.net/?channels=diaspora" title="#diaspora"></a></li>
+					<li><a href="http://webchat.freenode.net/?channels=diaspora-dev" title="#diaspora-dev"></a></li>
 				</ul>
 				<ul class="section">
-					<li><a href="http://groups.google.com/group/diaspora-discuss" title="General discussion mailing list">Discussion - General</a></li>
-					<li><a href="http://groups.google.com/group/diaspora-dev" title="Dev mailing list">Discussion - Development</a></li>
+					<li><a href="http://groups.google.com/group/diaspora-discuss" title="General discussion mailing list"></a></li>
+					<li><a href="http://groups.google.com/group/diaspora-dev" title="Dev mailing list"></a></li>
 				</ul>
 				<ul class="section">
-					<li><a href="https://github.com/diaspora/diaspora/issues" title="Bug tracker">Find & Report bugs</a></li>
-					<li><a href="http://guides.rubyonrails.org/">Learn more about Ruby On Rails!</a></li>
+					<li><a href="https://github.com/diaspora/diaspora/issues" title="Bug tracker"></a></li>
+					<li><a href="http://guides.rubyonrails.org/"></a></li>
 				</ul>
 			</ul>
 		</footer>
 
-		<div id="change-page">
-			This page can be changed to a custom landing page by creating <code>app/views/home/_show.html.haml</code>
-		</div>
-	</div>
+			
+		
+		
+</body></html>
