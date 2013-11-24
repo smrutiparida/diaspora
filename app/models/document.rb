@@ -41,7 +41,7 @@ class Document < ActiveRecord::Base
   end
 
   def clear_empty_status_message
-    if self.status_message_guid && self.status_message.text_and_photos_blank?
+    if self.status_message_guid && self.status_message.text_and_documents_blank?
       self.status_message.destroy
     else
       true
@@ -62,7 +62,7 @@ class Document < ActiveRecord::Base
     document.author = params[:author]
     document.public = params[:public] if params[:public]
     document.pending = params[:pending] if params[:pending]
-    document.diaspora_handle = photo.author.diaspora_handle
+    document.diaspora_handle = document.author.diaspora_handle
 
     document.random_string = SecureRandom.hex(10)
 
