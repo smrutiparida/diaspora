@@ -276,6 +276,28 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
 
   add_index "photos", ["status_message_guid"], :name => "index_photos_on_status_message_guid"
 
+  create_table "documents", force => true do |t|
+    t.integer  "tmp_old_id"
+    t.integer  "author_id",                              :null => false     
+    t.boolean  "public",              :default => false, :null => false
+    t.string   "diaspora_handle"
+    t.string   "guid",                                   :null => false
+    t.boolean  "pending",             :default => false, :null => false
+    t.text     "text"
+    t.text     "remote_path"
+    t.string   "remote_name"
+    t.string   "random_string"
+    t.string   "processed_doc"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "unprocessed_doc"
+    t.string   "status_message_guid"
+    t.integer  "comment_count"
+    t.integer  "size"
+  end
+
+  add_index "documents", ["status_message_guid"], :name => "index_documents_on_status_message_guid"
+
   create_table "pods", :force => true do |t|
     t.string   "host"
     t.boolean  "ssl"
