@@ -1,4 +1,4 @@
-#   Copyright (c) 2010-2011, Diaspora Inc.  This file is
+f#   Copyright (c) 2010-2011, Diaspora Inc.  This file is
 #   licensed under the Affero General Public License version 3 or later.  See
 #   the COPYRIGHT file.
 
@@ -64,6 +64,8 @@ Diaspora::Application.routes.draw do
   resources :photos, :except => [:index, :show] do
     put :make_profile_photo
   end
+
+  resources :documents, :except => [:index, :show]
 
 	#Search
 	get 'search' => "search#search"
