@@ -33,6 +33,7 @@ app.views.Publisher = Backbone.View.extend({
     this.el_submit = this.$('input[type=submit]');
     this.el_preview = this.$('button.post_preview_button');
     this.el_photozone = this.$('#photodropzone');
+    this.el_documentzone = this.$('#documentdropzone');
 
     // init mentions plugin
     Mentions.initialize(this.el_input);
@@ -95,6 +96,13 @@ app.views.Publisher = Backbone.View.extend({
     });
     this.view_uploader.on('change', this.checkSubmitAvailability, this);
 
+
+    this.view_doc_uploader = new app.views.DocumentUploader({
+      el: this.$('#document-upload'),
+      publisher: this
+    });
+    this.view_doc_uploader.on('change', this.checkSubmitAvailability, this);
+
   },
 
   // set the selected aspects in the dropdown by their ids
@@ -124,6 +132,7 @@ app.views.Publisher = Backbone.View.extend({
       },
       "aspect_ids" : serializedForm["aspect_ids[]"],
       "photos" : serializedForm["photos[]"],
+      "documents" : serializedForm["documents[]"],
       "services" : serializedForm["services[]"],
       "location_address" : $("#location_address").val(),
       "location_coords" : serializedForm["location[coords]"]
@@ -190,6 +199,8 @@ app.views.Publisher = Backbone.View.extend({
       );
     });
 
+    var documents = new Array();
+    
     var mentioned_people = new Array();
     var regexp = new RegExp("@{\(\[\^\;\]\+\); \(\[\^\}\]\+\)}", "g");
     while(user=regexp.exec(serializedForm["status_message[text]"])){
@@ -217,6 +228,7 @@ app.views.Publisher = Backbone.View.extend({
       "author" : app.currentUser ? app.currentUser.attributes : {},
       "mentioned_people" : mentioned_people,
       "photos" : photos,
+      "documents": documents,
       "frame_name" : "status",
       "title" : serializedForm["status_message[text]"],
       "address" : $("#location_address").val(),
@@ -269,11 +281,18 @@ app.views.Publisher = Backbone.View.extend({
     // remove photos
     this.el_photozone.find('li').remove();
     this.$("input[name='photos[]']").remove();
-    this.el_wrapper.removeClass("with_attachments");
+    
 
     // empty upload-photo
     this.$('#fileInfo').empty();
 
+    this.el_documentzone.find('li').remove();
+    this.$("input[name='documents[]']").remove();
+    this.el_wrapper.removeClass("with_attachments");
+    
+    // empty upload-photo
+    this.$('#documentInfo').empty();
+    
     // close publishing area (CSS)
     this.close();
 
@@ -333,8 +352,9 @@ app.views.Publisher = Backbone.View.extend({
   _submittable: function() {
     var onlyWhitespaces = ($.trim(this.el_input.val()) === ''),
         isPhotoAttached = (this.el_photozone.children().length > 0);
+        isDocumentAttached = (this.el_documentzone.children().length > 0);
 
-    return (!onlyWhitespaces || isPhotoAttached);
+    return (!onlyWhitespaces || isPhotoAttached || isDocumentAttached);
   },
 
   handleTextchange: function() {

@@ -32,6 +32,7 @@ class PostPresenter
         :open_graph_cache => @post.open_graph_cache.try(:as_api_response, :backbone),
         :mentioned_people => @post.mentioned_people.as_api_response(:backbone),
         :photos => @post.photos.map {|p| p.as_api_response(:backbone)},
+        :documents => @post.documents.map {|p| p.as_api_response(:backbone)},
         :frame_name => @post.frame_name || template_name,
         :root => root,
         :title => title,

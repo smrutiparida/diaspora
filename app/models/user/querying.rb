@@ -139,6 +139,10 @@ module User::Querying
     ::EvilQuery::ShareablesFromPerson.new(self, Photo, person).make_relation!
   end
 
+  def documents_from(person)
+    ::EvilQuery::ShareablesFromPerson.new(self, Document, person).make_relation!
+  end  
+
   protected
 
   # @return [Hash]

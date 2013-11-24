@@ -3,11 +3,13 @@ app.forms.Post = app.views.Base.extend({
   className : "post-form",
 
   subviews : {
-    ".new_picture" : "pictureForm"
+    ".new_picture" : "pictureForm",
+    ".new_document" : "documentForm"
    },
 
   initialize : function() {
     this.pictureForm = new app.forms.Picture({model: this.model});
+    this.documentForm = new app.forms.Document({model:this.model});
   },
 
   postRenderTemplate : function() {
