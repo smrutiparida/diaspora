@@ -56,7 +56,8 @@ class DocumentsController < ApplicationController
           respond_with @document, :location => documents_path, :error => message
         end
       else
-        legacy_create      
+        legacy_create    
+      end  
     end
   end
 
