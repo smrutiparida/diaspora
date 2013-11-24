@@ -1,0 +1,15 @@
+-#   Copyright (c) 2010-2011, Diaspora Inc.  This file is
+-#   licensed under the Affero General Public License version 3 or later.  See
+-#   the COPYRIGHT file.
+
+%h2= "#{t('.editing')} #{@photo.processed_image}"
+
+%div{:id => @document.id}
+  #show_photo
+    = anchor_tag @document.url(:scaled_full)
+
+  = form_for @document do |document|
+    = document.label :text
+    = document.text_field :text, :value => @document.text
+    = document.submit
+

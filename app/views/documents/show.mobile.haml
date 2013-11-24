@@ -1,0 +1,19 @@
+-#   Copyright (c) 2010-2011, Diaspora Inc.  This file is
+-#   licensed under the Affero General Public License version 3 or later.  See
+-#   the COPYRIGHT file.
+
+:css
+  footer{display: none;}
+
+#show_content.photos
+  .photo
+    = anchor_tag document.url(:scaled_full)
+  .stream_element{:class => "photo_mobile"}
+    .content
+      .from
+        = person_document_link(document.author, :size => :thumb_small)
+        = person_link(document.author)
+        .info
+          %span.time{:integer => document.created_at.to_i}
+            = link_to(t('ago', :time => time_ago_in_words(document.created_at)), post_path(document))
+
