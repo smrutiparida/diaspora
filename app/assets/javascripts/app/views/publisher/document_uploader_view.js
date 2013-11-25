@@ -62,6 +62,7 @@ app.views.DocumentUploader = Backbone.View.extend({
   uploadCompleteHandler: function(id, fileName, response) {
     this.el_info.text(Diaspora.I18n.t('document_uploader.completed', {file: fileName})).fadeTo(2000, 0);
 
+    
     var id  = response.data.document.id,
         url = response.data.document.unprocessed_doc.url;
 

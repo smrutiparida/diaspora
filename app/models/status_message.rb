@@ -19,9 +19,11 @@ class StatusMessage < Post
   xml_name :status_message
   xml_attr :raw_message
   xml_attr :photos, :as => [Photo]
+  xml_attr :documents, :as => [Document]
   xml_attr :location, :as => Location
 
-  has_many :photos, :dependent => :destroy, :foreign_key => :status_message_guid, :primary_key => :guid
+
+  has_many :photos, :documents, :dependent => :destroy, :foreign_key => :status_message_guid, :primary_key => :guid
 
   has_one :location
 
@@ -71,6 +73,11 @@ class StatusMessage < Post
   def attach_photos_by_ids(photo_ids)
     return [] unless photo_ids.present?
     self.photos << Photo.where(:id => photo_ids, :author_id => self.author_id).all
+  end
+
+  def attach_documents_by_ids(document_ids)
+    return [] unless document_ids.present?
+    self.documents << Document.where(:id => document_ids, :author_id => self.author_id).all
   end
 
   def nsfw
@@ -141,8 +148,8 @@ class StatusMessage < Post
     photos.first.url(*args)
   end
 
-  def text_and_photos_blank?
-    self.text.blank? && self.photos.blank?
+  def text_and_photos_and_documents_blank?
+    self.text.blank? && self.photos.blank? && self.documents.blank?
   end
 
   def queue_gather_oembed_data
@@ -169,13 +176,13 @@ class StatusMessage < Post
 
   protected
   def presence_of_content
-    if text_and_photos_blank?
+    if text_and_photos_and_documents_blank?
       errors[:base] << "Cannot create a StatusMessage without content"
     end
   end
 
   def absence_of_content
-    unless text_and_photos_blank?
+    unless text_and_photos_and_documents_blank?
       errors[:base] << "Cannot destory a StatusMessage with text and/or photos present"
     end
   end
