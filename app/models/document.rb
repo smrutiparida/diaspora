@@ -17,7 +17,8 @@ class Document < ActiveRecord::Base
     t.add :size    
   end
 
-  
+  mount_uploader :unprocessed_doc, UnprocessedDocument
+
   xml_attr :remote_path
   xml_attr :remote_name
 
@@ -65,13 +66,13 @@ class Document < ActiveRecord::Base
     document.diaspora_handle = document.author.diaspora_handle
 
     document.random_string = SecureRandom.hex(10)
-
-    if params[:user_file]
+        
+    if params[:user_file]      
       doc_file = params.delete(:user_file)
       document.unprocessed_doc.store! doc_file
 
     elsif params[:doc_url]
-      document.remote_unprocessed_doc_url = params[:doc_url]
+      document.unprocessed_doc_url = params[:doc_url]
       document.unprocessed_doc.store!
     end
 
@@ -81,7 +82,7 @@ class Document < ActiveRecord::Base
   end
 
   def processed?
-    processed_doc.path.present?
+    #processed_doc.path.present?
   end
 
   def update_path
@@ -101,7 +102,9 @@ class Document < ActiveRecord::Base
       name = name.to_s + '_' if name
       remote_path + name.to_s + remote_name
     elsif processed?
-      processed_doc.url(name)
+      #there is no processed doc as of now
+      #processed_doc.url(name)
+      unprocessed_doc.url(name)
     else
       unprocessed_doc.url(name)
     end
