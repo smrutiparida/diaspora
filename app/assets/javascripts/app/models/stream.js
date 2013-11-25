@@ -1,5 +1,6 @@
 //= require ../collections/posts
 //= require ../collections/photos
+//= require ../collections/documents
 app.models.Stream = Backbone.Collection.extend({
   initialize : function(models, options){
     var collectionClass = options && options.collection || app.collections.Posts;
