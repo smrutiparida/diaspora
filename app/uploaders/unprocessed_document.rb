@@ -17,6 +17,6 @@ class UnprocessedDocument < CarrierWave::Uploader::Base
     model.random_string + File.extname(@filename) if @filename
   end
 
-  process :set_content_type
+  
   
 end
