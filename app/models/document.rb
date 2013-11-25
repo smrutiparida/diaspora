@@ -37,9 +37,10 @@ class Document < ActiveRecord::Base
   before_destroy :ensure_user_document
   after_destroy :clear_empty_status_message
 
-  after_create do
-    queue_processing_job if self.author.local?
-  end
+  #Not required for documents at this point.
+  #after_create do
+  #  queue_processing_job if self.author.local?
+  #end
 
   def clear_empty_status_message
     if self.status_message_guid && self.status_message.text_and_documents_blank?
