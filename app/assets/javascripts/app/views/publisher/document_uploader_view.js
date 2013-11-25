@@ -53,7 +53,7 @@ app.views.DocumentUploader = Backbone.View.extend({
 
     publisher.el_wrapper.addClass('with_attachments');
     publisher.el_documentzone.append(
-      '<li class="publisher_photo loading" style="position:relative;">' +
+      '<li class="publisher_document loading" style="position:relative;">' +
       '  <img src="'+Handlebars.helpers.imageUrl('ajax-loader2.gif')+'" alt="" />'+
       '</li>'
     );
@@ -63,7 +63,7 @@ app.views.DocumentUploader = Backbone.View.extend({
     this.el_info.text(Diaspora.I18n.t('document_uploader.completed', {file: fileName})).fadeTo(2000, 0);
 
     var id  = response.data.document.id,
-        url = response.data.document.unprocessed_document.url;
+        url = response.data.document.unprocessed_doc.url;
 
     this._addFinishedDocument(id, url);
     this.trigger('change');
@@ -87,7 +87,7 @@ app.views.DocumentUploader = Backbone.View.extend({
         '<div class="x">X</div>'+
         '<div class="circle"></div>'
        )
-      .find('img').attr({'src': url, 'data-id': id});
+      .find('img').attr({'src': '/apple-touch-icon.png', 'data-id': id});
 
     // no more placeholders? enable buttons
     if( publisher.el_documentzone.find('li.loading').length == 0 ) {
