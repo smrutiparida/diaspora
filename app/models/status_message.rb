@@ -23,7 +23,9 @@ class StatusMessage < Post
   xml_attr :location, :as => Location
 
 
-  has_many :photos, :documents, :dependent => :destroy, :foreign_key => :status_message_guid, :primary_key => :guid
+  has_many :photos, :dependent => :destroy, :foreign_key => :status_message_guid, :primary_key => :guid
+
+  has_many :documents, :dependent => :destroy, :foreign_key => :status_message_guid, :primary_key => :guid  
 
   has_one :location
 
