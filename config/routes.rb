@@ -65,6 +65,8 @@ Diaspora::Application.routes.draw do
     put :make_profile_photo
   end
 
+  get 'moodle' => "moodle#assignments"   
+  
   resources :documents, :except => [:index, :show]
 
 	#Search

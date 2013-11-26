@@ -8,7 +8,7 @@
     .title
       .icons-plus
       %h5.title-header
-        = t('shared.invitations.invite_your_friends')
+        = t('people.person.profile_sidebar.assignments')
     .content
       = render "shared/invitations"
 
@@ -16,7 +16,7 @@
   .title
     .icons-heart
     %h5.title-header
-      = t('aspects.index.new_here.title')
+      = t('people.person.profile_sidebar.quizzes')
   .content
     != t('aspects.index.new_here.follow', :link => link_to("#"+t('shared.publisher.new_user_prefill.newhere'), tag_path(:name => t('shared.publisher.new_user_prefill.newhere'))))
     %br
