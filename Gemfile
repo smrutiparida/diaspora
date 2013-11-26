@@ -90,6 +90,7 @@ gem 'addressable',        '2.3.5', :require => 'addressable/uri'
 gem 'faraday',            '0.8.8'
 gem 'faraday_middleware', '0.9.0'
 gem 'typhoeus',           '0.6.3'
+gem 'hpricot',            '0.8.6'  
 
 # Views
 
