@@ -1,5 +1,5 @@
 module MoodleHelper
-  @url = "http://moodle.lmnop.in/?"
+  
  
   def get_assignments(user_id,aspect_id)
     get_data(user_id,aspect_id,"assignment")
@@ -13,10 +13,11 @@ module MoodleHelper
   def get_data(user_id,aspect_id,request_type)    
     require 'hpricot'
     require 'open-uri'
-   
+    
+    url = "http://moodle.lmnop.in/?" 
     path = "mod/" + request_type + "/index.php?id="
     assignments = []
-    doc = Hpricot(open(@url + path + user_id))
+    doc = Hpricot(open(url + path + user_id))
     (doc/ "#content/table/tr").each do |tablerow|
          temprow = []
         (tablerow/"td").each do |tabledata|
