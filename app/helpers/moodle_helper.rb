@@ -14,7 +14,7 @@ module MoodleHelper
     require 'hpricot'
     require 'open-uri'
     
-    url = "http://moodle.lmnop.in/?" 
+    url = "http://moodle.lmnop.in/" 
     path = "mod/" + request_type + "/index.php?id="
     assignments = []
     doc = Hpricot(open(url + path + user_id))
