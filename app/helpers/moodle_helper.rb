@@ -16,7 +16,7 @@ module MoodleHelper
    
     path = "mod/" + request_type + "/index.php?id="
     assignments = []
-    doc = Hpricot(open(url + path + user_id))
+    doc = Hpricot(open(@url + path + user_id))
     (doc/ "#content/table/tr").each do |tablerow|
          temprow = []
         (tablerow/"td").each do |tabledata|
