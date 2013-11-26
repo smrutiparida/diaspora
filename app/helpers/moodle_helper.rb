@@ -1,5 +1,6 @@
 module MoodleHelper
   @url = "http://moodle.lmnop.in/?"
+ 
   def get_assignments(user_id,aspect_id)
     get_data(user_id,aspect_id,"assignment")
   end
@@ -9,7 +10,7 @@ module MoodleHelper
   end
 
   private
-  get_data(user_id,aspect_id,request_type)
+  def get_data(user_id,aspect_id,request_type)    
     require 'hpricot'
     require 'open-uri'
    
