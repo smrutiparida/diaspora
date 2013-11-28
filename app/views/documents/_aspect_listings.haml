@@ -9,7 +9,7 @@
 
     %ul.sub_nav#aspects_list
       - all_aspects.each do |aspect|
-        %li.hoverable{:data => {:aspect_id => aspect.id}, :class => ("active" if params["a_id"].to_i == aspect.id)}
+        %li.hoverable.selectable{:data => {:aspect_id => aspect.id}, :class => ("active" if params["a_id"].to_i == aspect.id)}
           
           %a{:href => documents_path(:a_id => aspect.id)}
             = aspect
