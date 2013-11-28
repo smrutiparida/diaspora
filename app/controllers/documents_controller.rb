@@ -130,7 +130,7 @@ class DocumentsController < ApplicationController
       # get file content type
       att_content_type = (request.content_type.to_s == "") ? "application/octet-stream" : request.content_type.to_s
       #get file content length
-      att_content_length = (request.content_length.to_i == 0) ? 0 : request.content_length.to_integer
+      att_content_length = (request.content_length.to_i == 0) ? 0 : request.content_length.to_i
       # create tempora##l file
       file = Tempfile.new(file_name, {:encoding =>  'BINARY'})
       # put data into this file from raw post request
