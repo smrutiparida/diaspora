@@ -69,7 +69,7 @@ class Document < ActiveRecord::Base
     document.pending = params[:pending] if params[:pending]
     document.diaspora_handle = document.author.diaspora_handle
     document.processed_doc = params[:user_file].original_filename()
-    document.size = File.extname(@filename) if @filename
+    document.size = params[:user_file].content_length()
 
     document.random_string = SecureRandom.hex(10)
         

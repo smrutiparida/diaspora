@@ -129,6 +129,8 @@ class DocumentsController < ApplicationController
       file_name = params[:qqfile]
       # get file content type
       att_content_type = (request.content_type.to_s == "") ? "application/octet-stream" : request.content_type.to_s
+      #get file content length
+      att_content_length = (request.content_length.to_i == 0) ? 0 : request.content_length.to_integer
       # create tempora##l file
       file = Tempfile.new(file_name, {:encoding =>  'BINARY'})
       # put data into this file from raw post request
@@ -137,6 +139,7 @@ class DocumentsController < ApplicationController
       # create several required methods for this temporal file
       Tempfile.send(:define_method, "content_type") {return att_content_type}
       Tempfile.send(:define_method, "original_filename") {return file_name}
+      Tempfile.send(:define_method, "content_length") {return att_content_length}
       file
     end
   end
