@@ -25,6 +25,8 @@
       .section.contact_pictures
         - for document in @documents
           %div{:style => "overflow:hidden;width:142px;height:142 px;border:1 px solid #dfe4e8; float:left"}
-            - temp_val = document.processed_doc ? document.processed_doc.slice(document.processed_doc.index('.')+1,document.processed_doc.length) : "broken"
-            = link_to image_tag('/assets/facebox/' + temp_val +'.png',:class => 'thumb_medium'), document.unprocessed_doc.url
-            = link_to document.processed_doc, document.unprocessed_doc.url
+            %div
+              - temp_val = document.processed_doc ? document.processed_doc.slice(document.processed_doc.index('.')+1,document.processed_doc.length) : "broken"
+              = link_to image_tag('/assets/facebox/' + temp_val +'.png',:class => 'thumb_medium'), document.unprocessed_doc.url
+            %p  
+              = link_to document.processed_doc, document.unprocessed_doc.url
