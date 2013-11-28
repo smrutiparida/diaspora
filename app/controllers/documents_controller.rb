@@ -18,12 +18,12 @@ class DocumentsController < ApplicationController
   end
 
   def index
-    
     respond_to do |format|
-      format.all { @documents = Documents.where(:diaspora_handle => current_user.diaspora_handle)
-                   @documents_count = @documents.length
-                  }
-      format.json{ render_for_api :backbone, :json => @posts, :root => :documents }
+      format.all { 
+        @documents = Documents.where(:diaspora_handle => current_user.diaspora_handle)
+        @documents_count = @documents.length                  }
+      format.json{ render_for_api :backbone, :json => @posts, :root => :documents 
+      }
     end
   end
 
