@@ -17,7 +17,7 @@
 
 .span-18.last
   #people_stream.stream.contacts
-    - if @documents_size > 0
+    - if @documents.length > 0
       - for document in @documents
         .stream_element{:id => document.guid}
          .media

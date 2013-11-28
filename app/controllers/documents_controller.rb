@@ -19,7 +19,7 @@ class DocumentsController < ApplicationController
 
   def index
     respond_to do |format|
-      format.all { get_document_info }
+      format.all { @documents = Documents.where(:diaspora_handle => current_user.diaspora_handle) }
       format.json{ render_for_api :backbone, :json => @posts, :root => :documents 
       }
     end
@@ -95,10 +95,6 @@ class DocumentsController < ApplicationController
 
   private
 
-  def get_document_info
-    @documents = Documents.where(:diaspora_handle => current_user.diaspora_handle)
-    @documents_count = @documents.length                  
-  end
   def document_params
     params.require(:document).permit(:public, :text, :pending, :user_file, :document_url, :aspect_ids)
   end
