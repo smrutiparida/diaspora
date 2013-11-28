@@ -803,6 +803,9 @@ en:
     add_contact:
       invited_by: "you were invited by"
 
+  documents:
+    create:
+      add_a_file: "Add a File"
   photos:
     show:
       delete_photo: "Delete Photo"
