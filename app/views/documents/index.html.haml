@@ -20,9 +20,9 @@
     - if @documents.length > 0
       - for document in @documents
         .stream_element{:id => document.guid}
-         .media
-           .bd
-             = document_link(document.remote_path + document.remote_name)
-             .info
-               = document.processed_doc
+          .media
+            .bd
+              = document_link(document.remote_path + document.remote_name)
+              .info
+                = document.processed_doc
       
