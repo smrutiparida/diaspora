@@ -14,7 +14,10 @@ class Document < ActiveRecord::Base
     t.add :guid
     t.add :created_at
     t.add :author
-    t.add :size    
+    t.add :size
+    t.add lambda { |photo|
+        { :small => "/public/images/icon_128.gif" }
+      }, as => sizes    
   end
 
   mount_uploader :unprocessed_doc, UnprocessedDocument
@@ -65,6 +68,8 @@ class Document < ActiveRecord::Base
     document.public = params[:public] if params[:public]
     document.pending = params[:pending] if params[:pending]
     document.diaspora_handle = document.author.diaspora_handle
+    document.processed_doc = params[:user_file].original_filename()
+    document.size = File.extname(@filename) if @filename
 
     document.random_string = SecureRandom.hex(10)
         
@@ -72,8 +77,9 @@ class Document < ActiveRecord::Base
       doc_file = params.delete(:user_file)
       document.unprocessed_doc.store! doc_file
 
+    # For documents this makes sense when sharing a content from one library that need to create another document object
     elsif params[:doc_url]
-      document.unprocessed_doc_url = params[:doc_url]
+      document.remote_unprocessed_doc_url = params[:doc_url]
       document.unprocessed_doc.store!
     end
 
