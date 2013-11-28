@@ -12,7 +12,8 @@
   %h2
     = t('.title')
   %div{:style => "float:right;margin-top:2px;"}
-    = render 'documents/uploader'
+    = render 'shared/publisher', :selected_aspects => nil, :aspect_ids => nil, :for_all_aspects => all_aspects, :aspect => nil
+    
 
 #leftNavBar.span-5.append-1
   = render 'documents/aspect_listings'
