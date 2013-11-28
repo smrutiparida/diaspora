@@ -6,9 +6,10 @@
   %li.all_aspects{:class => "active"}
     %a.home_selector.hoverable{:href => documents_path, :class => ("sub_selected" if params["a_id"])}
       = t('people.profile_sidebar.library')
-      
 
     %ul.sub_nav#aspects_list
       - all_aspects.each do |aspect|
         %li.hoverable{:data => {:aspect_id => aspect.id}, :class => ("active" if params["a_id"].to_i == aspect.id)}
-        
+          
+          %a{:href => documents_path(:a_id => aspect.id)}
+            = aspect
