@@ -2,7 +2,9 @@
 -#   licensed under the Affero General Public License version 3 or later.  See
 -#   the COPYRIGHT file.
 
-
+- content_for :head do
+  = javascript_include_tag :profile
+  
 - content_for :head do
   :javascript
     function createUploader(){
@@ -44,7 +46,7 @@
           var url = responseJSON.data.unprocessed_image.url;
 
           alert(id);
-          
+
           $('#people_stream');.prepend('<div class="stream_element" id="' + responseJSON.data.document.guid + '><div class="media"><div class="bd"><a href="' + responseJSON.data.document.remote_path + document.remote_name + '">' + responseJSON.data.document.processed_doc + '</a></div></div></div>');
 
          }
