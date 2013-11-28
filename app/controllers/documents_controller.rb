@@ -135,7 +135,7 @@ class DocumentsController < ApplicationController
     if @document.save
       aspects = current_user.aspects_from_ids(params[:document][:aspect_ids])
 
-      unless @document.pending
+      unless @document.pending and !@document.public
         current_user.add_to_streams(@document, aspects)
         current_user.dispatch_post(@document, :to => params[:document][:aspect_ids])
       end
