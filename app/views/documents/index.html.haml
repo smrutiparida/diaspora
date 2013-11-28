@@ -12,9 +12,7 @@
   %h2
     = t('.title')
   %div{:style => "float:right;margin-top:2px;"}
-    = render :partial => 'people/relationship_action',
-           :locals => { :person => person, :contact => contact,
-                        :current_user => current_user }
+    = render 'documets/uploader'
 
 #leftNavBar.span-5.append-1
   = render 'documents/aspect_listings'
