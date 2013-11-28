@@ -181,7 +181,7 @@ en:
       select_all: "Select all"
       deselect_all: "Deselect all"
       edit_aspect: "Edit %{name}"
-      add_an_aspect: "+ Add an aspect"
+      add_an_aspect: "+ Create Group"
     selected_contacts:
       view_all_community_spotlight: "See all community spotlight"
       view_all_contacts: "View all contacts"

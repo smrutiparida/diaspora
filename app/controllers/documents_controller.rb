@@ -18,29 +18,12 @@ class DocumentsController < ApplicationController
   end
 
   def index
-    @post_type = :documents
-    @person = Person.find_by_guid(params[:person_id])
-
-    if @person
-      @contact = current_user.contact_for(@person)
-
-      if @contact
-        @contacts_of_contact = @contact.contacts
-        @contacts_of_contact_count = @contact.contacts.count
-      else
-        @contact = Contact.new
-      end
-
-      @posts = current_user.documents_from(@person)
-
-      respond_to do |format|
-        format.all { render 'people/show' }
-        format.json{ render_for_api :backbone, :json => @posts, :root => :documents }
-      end
-
-    else
-      flash[:error] = I18n.t 'people.show.does_not_exist'
-      redirect_to people_path
+    
+    respond_to do |format|
+      format.all { @documents = Documents.where(:diaspora_handle => current_user.diaspora_handle)
+                   @documents_count = @documents.length
+                  }
+      format.json{ render_for_api :backbone, :json => @posts, :root => :documents }
     end
   end
 
