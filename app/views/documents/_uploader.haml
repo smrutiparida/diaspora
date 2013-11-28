@@ -2,16 +2,14 @@
 -#   licensed under the Affero General Public License version 3 or later.  See
 -#   the COPYRIGHT file.
 
-- content_for :head do
-  = javascript_include_tag :profile
-  
+
 - content_for :head do
   :javascript
     function createUploader(){
      var uploader = new qq.FileUploaderBasic({
          element: document.getElementById('file-upload'),
-         params: {'document' : {'pending' : false, 'aspect_ids' : "all"}},
-         allowedExtensions: ['pdf', 'txt', docx', 'doc'],
+         params: {'document' : {'pending' : false, 'aspect_ids' : "all", 'public' : false}},
+         allowedExtensions: ['pdf', 'doc', 'txt'],
          action: "#{documents_path}",
          button: document.getElementById('file-upload'),
          sizeLimit: 4194304,
@@ -38,16 +36,13 @@
           $('#fileInfo').text(fileName + ' completed').fadeOut(2000);
           $('#file-upload').removeClass("loading");
 
-          /* flash message prompt */
-          var message = Diaspora.I18n.t("photo_uploader.looking_good");
-          Diaspora.page.flashMessages.render({success: true, notice: message});
 
           var id = responseJSON.data.document.id;
-          var url = responseJSON.data.unprocessed_image.url;
+          var url = responseJSON.data.document.unprocessed_doc.url;
+          var fname = responseJSON.data.document.processed_doc;
+          var temp_string = '<div class=\"stream_element\" id=\"' + id + '\"><div class=\"media\"><div class=\"bd\"><a href=\"' + url + '\">' + fname + '</a></div></div></div>';
 
-          alert(id);
-
-          $('#people_stream');.prepend('<div class="stream_element" id="' + responseJSON.data.document.guid + '><div class="media"><div class="bd"><a href="' + responseJSON.data.document.remote_path + document.remote_name + '">' + responseJSON.data.document.processed_doc + '</a></div></div></div>');
+          $('#people_stream').prepend(temp_string);
 
          }
      });
@@ -55,7 +50,7 @@
     window.onload = createUploader;
 
 #profile_photo_upload
-  
+  = image_tag('mobile-spinner.gif', :class => 'hidden')
 
   #file-upload.button
     =t('.upload')
@@ -66,9 +61,4 @@
     #fileInfo
 
   #publisher_photo_upload
-
- 
-
-
-
 
