@@ -12,7 +12,8 @@
   %h2
     = t('.title')
   %div{:style => "float:right;margin-top:2px;"}
-    = render 'documents/uploader'
+    = render 'photos/new_profile_photo', :person => current_user.person
+
     
 
 #leftNavBar.span-5.append-1
