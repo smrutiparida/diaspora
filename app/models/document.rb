@@ -17,7 +17,7 @@ class Document < ActiveRecord::Base
     t.add :size
     t.add lambda { |photo|
         { :small => "/public/images/icon_128.gif" }
-      }, as => sizes    
+      }, :as => :sizes    
   end
 
   mount_uploader :unprocessed_doc, UnprocessedDocument
