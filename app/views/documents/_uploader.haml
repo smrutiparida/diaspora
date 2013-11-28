@@ -9,7 +9,7 @@
      var uploader = new qq.FileUploaderBasic({
          element: document.getElementById('file-upload'),
          params: {'document' : {'pending' : false, 'aspect_ids' : "all", 'public' : false}},
-         allowedExtensions: ['pdf', 'doc', 'txt'],
+         allowedExtensions: ['pdf', 'doc', 'docx', 'ppt', 'pptx', 'pps', 'ppsx', 'odt', 'xls', 'xlsx', 'rtf', 'txt', 'csv', 'tsv', 'xml', 'html'],
          action: "#{documents_path}",
          button: document.getElementById('file-upload'),
          sizeLimit: 4194304,
@@ -42,14 +42,15 @@
           var fname = responseJSON.data.document.processed_doc;
           var temp_string = '<div class=\"stream_element\" id=\"' + id + '\"><div class=\"media\"><div class=\"bd\"><a href=\"' + url + '\">' + fname + '</a></div></div></div>';
 
-          $('#people_stream').prepend(temp_string);
+          $('#people_stream').prepend(temp_string).fadeIn('slow');
 
          }
      });
     }
     window.onload = createUploader;
+    $('#file-upload').addClass("creation");
 
-#profile_photo_upload
+#profile_photo_upload{:style => "margin-right:137px;"}
   = image_tag('mobile-spinner.gif', :class => 'hidden')
 
   #file-upload.button
