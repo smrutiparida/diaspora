@@ -67,7 +67,7 @@ Diaspora::Application.routes.draw do
 
   get 'moodle' => "moodle#assignments"   
   
-  resources :documents, :except => [:index, :show]
+  resources :documents
 
 	#Search
 	get 'search' => "search#search"
