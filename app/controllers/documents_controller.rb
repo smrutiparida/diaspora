@@ -18,11 +18,7 @@ class DocumentsController < ApplicationController
   end
 
   def index
-    respond_to do |format|
-      format.all { @documents = Documents.where(:diaspora_handle => current_user.diaspora_handle) }
-      format.json{ render_for_api :backbone, :json => @posts, :root => :documents 
-      }
-    end
+    @documents = Document.where(:diaspora_handle => current_user.diaspora_handle) }    
   end
 
   def create
