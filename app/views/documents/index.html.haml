@@ -24,9 +24,9 @@
     %li.image_list
       .section.contact_pictures
         - for document in @documents
-          %div.hoverable{:style => "overflow:hidden;width:142px;height:142px;border:1px solid #dfe4e8;float:left;text-align:center"}
+          %div.hoverable{:style => "overflow:hidden;width:142px;height:142px;border:1px solid #dfe4e8;float:left;text-align:center;margin:0em 2em 1em 0em;"}
             %div.selected{:style => "height:18px;width:18px;backgroup:url('icons/deletelabel.png')no-repeat;float-right;visibility:hidden"}
-            %div
+            %div{:style => "padding:5px;"}
               - temp_val = document.processed_doc ? document.processed_doc.slice(document.processed_doc.index('.')+1,document.processed_doc.length) : "broken"
               = link_to image_tag('/assets/facebox/' + temp_val +'.png',:class => 'thumb_medium'), document.unprocessed_doc.url
             %p  
