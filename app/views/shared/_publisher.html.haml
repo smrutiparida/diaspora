@@ -31,28 +31,28 @@
             
             
 
-            #publisher-icons
-              %span
-                - "Add a:"
-              #locator.btn{:title => t('.get_location')}
-                = image_tag 'icons/marker.png', :alt => t('.get_location').titleize, :class => 'publisher_image'
-              #file-upload.btn{:title => t('.upload_photos')}
-                = image_tag 'icons/camera.png', :alt => t('.upload_photos').titleize, :class => 'publisher_image'
-                %span
-                  = "Photo"
-              #document-upload.btn{:title => t('.upload_documents')}
-                = image_tag 'icons/marker.png', :alt => t('.upload_documents').titleize, :class => 'publisher_image'
-                %span
-                  = "File"
-              #library-file.btn{:title => t('.upload_documents')}
-                = image_tag 'icons/plus.png', :alt => t('.upload_documents').titleize, :class => 'publisher_image'
-                %span
-                  = "My Library"              
-              #assignment-upload.btn{:title => t('.upload_documents')}
-                = image_tag 'icons/bookmark.png', :alt => t('.upload_documents').titleize, :class => 'publisher_image'
-                %span
-                  = "Assignment"    
-            = hidden_field :location, :coords
+      #publisher-icons
+        %span
+          - "Add a:"
+        #locator.btn{:title => t('.get_location')}
+          = image_tag 'icons/marker.png', :alt => t('.get_location').titleize, :class => 'publisher_image'
+        #file-upload.btn{:title => t('.upload_photos')}
+          = image_tag 'icons/camera.png', :alt => t('.upload_photos').titleize, :class => 'publisher_image'
+          %span
+            = "Photo"
+        #document-upload.btn{:title => t('.upload_documents')}
+          = image_tag 'icons/marker.png', :alt => t('.upload_documents').titleize, :class => 'publisher_image'
+          %span
+            = "File"
+        #library-file.btn{:title => t('.upload_documents')}
+          = image_tag 'icons/plus.png', :alt => t('.upload_documents').titleize, :class => 'publisher_image'
+          %span
+            = "My Library"              
+        #assignment-upload.btn{:title => t('.upload_documents')}
+          = image_tag 'icons/bookmark.png', :alt => t('.upload_documents').titleize, :class => 'publisher_image'
+          %span
+            = "Assignment"    
+        = hidden_field :location, :coords
             
 
       - if publisher_public
