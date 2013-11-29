@@ -112,7 +112,7 @@
     display: inline-block;
     margin: 0;
     cursor: pointer;
-    width: 90px;    
+    width: 80px;    
     position: relative;
     overflow: hidden;
     direction: ltr;
@@ -123,9 +123,13 @@
       vertical-align: center;
     }
   }
-  
+
+  #library-file{
+    width: 100px !important;
+  }
+
   #assignment-upload{
-    width: 90px !important;
+    width: 100px !important;
   }
   
   
@@ -329,7 +333,7 @@
   }
   .btn {
     height: 19px;
-    width: 19px;
+    width: 19px;asd
   }
   background: #dddddd;
   height: 25px;
