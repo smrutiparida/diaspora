@@ -2227,3 +2227,19 @@ body
     :-khtml-opacity 1
     :opacity 1
     :cursor pointer
+.docthumbnail
+  :overflow hidden
+  :width 120px
+  :height 120px
+  :border 1px solid #dfe4e8
+  :float left
+  :text-align center
+  :margin 0em 2em 1em 0em
+.docthumbnail:hover + .docthumbselected
+  :visibility visible
+.docthumbselected
+  :height 18px
+  :width 18px
+  :background url('/icons/deletelabel.png')no-repeat
+  :float right
+  :visibility hidden
