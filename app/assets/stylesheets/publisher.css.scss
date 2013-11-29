@@ -112,33 +112,31 @@
     display: inline-block;
     margin: 0;
     cursor: pointer;
-    width: 90px;
-    padding: .3em .3em 3px;
+    width: 90px;    
     position: relative;
     overflow: hidden;
     direction: ltr;
-  }
-  #assignment-upload{
-    span {
-      vertical-align: baseline;
+    height:100%;
+
+    img {
+      @include opacity(0.4);
+      vertical-align: center;
     }
+  }
+  
+  #assignment-upload{
     width: 90px !important;
   }
-  #library-file {
-    span {
-      vertical-align: top;
-    }
-  }
+  
   
   #file-upload {
     bottom: 1px !important;
     display: inline-block;
-    margin: 0;
-    padding: .3em .3em 3px;
-    //position: absolute !important;
-    right: 6px;
+    margin: 0;    
+    //position: absolute !important;    
     cursor: pointer;
     width: 80px !important;
+    height:100%;
 
     input[type='file'] {
       cursor: pointer;
@@ -151,7 +149,7 @@
     }
 
     span {
-      margin-left: 2px;
+      margin-left: 2px;      
     }
     img {
       @include opacity(0.4);
@@ -338,7 +336,7 @@
   padding-top: 3px;
   span {
     color: #33acff;
-    vertical-align:top;
+    vertical-align:baseline;
     margin-left: 5px;
     padding:0.3em 0.3em 13px;
     line-height: 1.75em;
