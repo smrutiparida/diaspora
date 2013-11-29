@@ -53,6 +53,7 @@
       text-align: right;
       .dropdown {
         text-align: left;
+        float: left;
       }
 
       .icons-monotone_wrench_settings {
@@ -64,9 +65,15 @@
       a.question_mark {
         text-decoration: none;
       }
+      .publisher > span {
+        color: #33acff;
+        margin: 5px;
+        line-height: 1.75em;
+      }
     }
 
     #publisher_service_icons {
+      display: none;
       position: relative;
       top: 3px;
       margin-right: 10px;
@@ -99,14 +106,47 @@
     margin-top: 1em;
   }
 
+  #document-upload,#library-file,#assignment-upload {
+    bottom: 1px !important;
+    display: inline-block;
+    margin: 0;
+    cursor: pointer;
+  }
+  #assignment-upload{
+    span {
+      vertical-align: baseline;
+    }
+    left: 144px;
+    top: -44px;
+    width: 90px !important;
+  }
+  #library-file {
+    span {
+      vertical-align: top;
+    }
+    left:160px;
+    top: -43px;
+  }
+  #document-upload {
+    left: 38px;
+    top: -19px;
+  }
+
+  #file-upload {
+    left: 50px;
+    top: -20px;    
+  }
+
+  
   #file-upload {
     bottom: 1px !important;
     display: inline-block;
     margin: 0;
     padding: .3em .3em 3px;
-    position: absolute !important;
+    //position: absolute !important;
     right: 6px;
     cursor: pointer;
+    width: 80px !important;
 
     input[type='file'] {
       cursor: pointer;
@@ -118,9 +158,12 @@
       }
     }
 
+    span {
+      margin-left: 2px;
+    }
     img {
       @include opacity(0.4);
-      vertical-align: bottom;
+      vertical-align: center;
     }
 
     &:hover {
@@ -192,7 +235,7 @@
     padding-bottom: 38px;
   }
 
-  #photodropzone {
+  #photodropzone,#documentdropzone {
     z-index: 3;
     position: absolute;
     bottom: 0;
@@ -278,6 +321,7 @@
 
 #publisher-images {
   #locator {
+    display: none;
     bottom: 1px !important;
     display: inline-block;
     margin: 0;
@@ -299,5 +343,13 @@
   .btn {
     height: 19px;
     width: 19px;
+  }
+  background: #dddddd;
+  height: 25px;
+  padding-top: 3px;
+  span {
+    color: #33acff;
+    margin: 5px;
+    line-height: 1.75em;
   }
 }
