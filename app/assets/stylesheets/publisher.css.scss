@@ -11,7 +11,7 @@
   form {
     textarea {
       resize: none;
-      height: 50px;
+      height: 70px;
       margin: 0;
     }
   }
@@ -34,7 +34,7 @@
 
   &:not(.closed) {
     textarea {
-      margin-bottom: 30px;
+      margin-bottom: 9px;
     }
   }
 
@@ -100,6 +100,7 @@
 
   #status_message_fake_text {
     min-height: 20px;
+    border:1px solid #999999;
   }
 
   .content_creation {
@@ -211,15 +212,13 @@
 
   @include border-radius(2px);
 
-  border: 1px solid #ccc;
+  
   background: #fff;
 
-  &.active {
-    border: 1px solid $border-dark-grey;
-  }
+  
 
   position: relative;
-  padding-right: 10px;
+  
 
   textarea {
     z-index: 2;
