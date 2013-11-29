@@ -21,7 +21,8 @@ app.Router = Backbone.Router.extend({
     "people/:id/photos": "photos",
 
     "people/:id": "stream",
-    "u/:name": "stream"
+    "u/:name": "stream",
+    "documents": "documents"
   },
 
   singlePost : function(id) {
@@ -63,6 +64,12 @@ app.Router = Backbone.Router.extend({
   photos : function() {
     app.photos = new app.models.Stream([], {collection: app.collections.Photos});
     app.page = new app.views.Photos({model : app.photos});
+    $("#main_stream").html(app.page.render().el);
+  },
+
+  documents : function() {
+    app.documents = new app.models.Stream([], {collection: app.collections.Documents});
+    app.page = new app.views.Documents({model : app.documents});
     $("#main_stream").html(app.page.render().el);
   },
 
