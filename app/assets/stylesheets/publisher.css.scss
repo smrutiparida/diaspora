@@ -114,6 +114,9 @@
     cursor: pointer;
     width: 90px;
     padding: .3em .3em 3px;
+    position: relative;
+    overflow: hidden;
+    direction: ltr;
   }
   #assignment-upload{
     span {
@@ -335,7 +338,9 @@
   padding-top: 3px;
   span {
     color: #33acff;
-    margin: 5px;
+    vertical-align:top;
+    margin-left: 5px;
+    padding:0.3em 0.3em 13px
     line-height: 1.75em;
   }
 }
