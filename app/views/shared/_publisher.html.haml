@@ -49,10 +49,11 @@
           %span
             = "My Library"              
         #assignment-upload.btn{:title => t('.upload_documents'), :rel => 'facebox'}
-          = link_to new_user_invitation_path, :title => t('.invite_someone'), :rel => 'facebox'
+          <% link_to new_user_invitation_path, :title => t('.invite_someone'), :rel => 'facebox' %>
             = image_tag 'icons/bookmark.png', :alt => t('.upload_documents').titleize, :class => 'publisher_image'
             %span
               = "Assignment"    
+          <% end %>    
         = hidden_field :location, :coords
             
 
@@ -111,7 +112,7 @@
           .facebox_content
             #question_mark_pane
               = render 'shared/public_explain'
-    
+    = link_to '', contacts_path(:aspect_ids => aspect_ids), :class => 'selected_contacts_link hidden'
 
 
     #publisher_photo_upload
