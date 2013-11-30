@@ -49,7 +49,7 @@
           %span
             = "My Library"              
         #assignment-upload.btn{:title => t('.upload_documents'), :rel => 'facebox'}
-          = link_to new_user_invitation_path, :title => t('.invite_someone'), :rel => 'facebox' do
+          = link_to new_user_invitation_path, :rel => 'facebox' do
             = image_tag 'icons/bookmark.png', :alt => t('.upload_documents').titleize, :class => 'publisher_image'
             %span
               = "Assignment"              
