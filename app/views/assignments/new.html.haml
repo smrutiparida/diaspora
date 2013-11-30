@@ -20,8 +20,7 @@
         %h4
           = t('email')
         = text_field_tag 'email_inviter[emails]', @invalid_emails, :title => t('.comma_separated_plz'), :placeholder => 'foo@bar.com, max@foo.com...'
-        %p
-          = t('invitations.create.note_already_sent', :emails => @valid_emails) unless @valid_emails.empty?
+        
         %br
 
         %h4
