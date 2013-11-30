@@ -1,42 +1,34 @@
 .span-15.last
   .span-3
-    .icons-cog
+    .icons-monotone_email_letter_round
 
   .span-12.last
-    %h3
-      = "Create Assignment"
+    %h2
+      = t('.invite_someone_to_join')
       %br
-  .span-10.append-1.last
-    
-    
+  .span-7.append-1.last
+    %b= t('.paste_link')
     %br
-    
-    #create_assignment
+    %br
+    = invite_link(@invite_code)
+    = t('.codes_left', :count => @invite_code.count)
+    %br
+    %br
+    #email_invitation
 
-      = form_tag "assignments/new"  do
-        
-          
-        = text_field_tag 'assignment_info[name]', "Assignment title..", :placeholder => 'Assignment title..', :size => '20'
-        
+      = form_tag new_user_invitation_path  do
+        %h4
+          = t('email')
+        = text_field_tag 'email_inviter[emails]', @invalid_emails, :title => t('.comma_separated_plz'), :placeholder => 'foo@bar.com, max@foo.com...'
+        %p
+          = t('invitations.create.note_already_sent', :emails => @valid_emails) unless @valid_emails.empty?
         %br
 
         %h4
-          = "Description"  
-        = text_area_tag 'assignment_info[description]', "What students need to do..", :rows => '2', :placeholder => "What students need to do.."
-
-        %h4
-          = "Due date"
-        = text_field_tag 'assignment_info[duedate]', 'Due date...', :placeholder => "Due Date..", :class => 'jquery-ui-date', :size => '10'       
-        = check_box_tag 'assignment_info[islocked]', 'islocked', true
-        = "Students will upload a file as part of submission"
-          
-        
+          = t('.language')
+        = select_tag('email_inviter[locale]',  options_from_collection_for_select(available_language_options, "second", "first", :selected => current_user.language))
 
         %br
 
         %p
-          = submit_tag "Create Assignment", :disable_with => "In Progress.."
-
-:javascript
-  $(".jquery-ui-date").datepicker();
-
+          = submit_tag t('.send_an_invitation'), :disable_with => t('.sending_invitation')
