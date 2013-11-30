@@ -8,7 +8,7 @@
       %br
   .span-10.append-1.last
     
-    %br
+    
     %br
     
     #create_assignment
@@ -16,22 +16,19 @@
       = form_tag "assignments/new"  do
         
           
-        = text_field_tag 'assignment_info[name]', 'title' , :placeholder => 'Assignment title..', :size => '30'
+        = text_field_tag 'assignment_info[name]', "Assignment title..", :placeholder => 'Assignment title..', :size => '20'
         
         %br
 
         %h4
           = "Description"  
-        = text_area_tag 'assignment_info[description]', 'description', :rows => '2', :placeholder => "What students need to do.."
+        = text_area_tag 'assignment_info[description]', "What students need to do..", :rows => '2', :placeholder => "What students need to do.."
 
         %h4
           = "Due date"
-        = text_field_tag 'assignment_info[duedate]', 'duedate', :placeholder => "Due Date..", :class => 'jquery-ui-date', :size => '10'       
-         
-        
-        %p
-          = check_box_tag 'assignment_info[islocked]', 'islocked', true
-          %b= "Students will upload a file as part of submission"
+        = text_field_tag 'assignment_info[duedate]', 'Due date...', :placeholder => "Due Date..", :class => 'jquery-ui-date', :size => '10'       
+        = check_box_tag 'assignment_info[islocked]', 'islocked', true
+        = "Students will upload a file as part of submission"
           
         
 
