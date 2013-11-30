@@ -1,0 +1,36 @@
+.span-15.last
+  .span-3
+    .icons-cog
+
+  .span-12.last
+    %h3
+      = "Create Assignment"
+      %br
+  .span-7.append-1.last
+    %b= "All students need to upload thier copies as part of submission"
+    %br
+    %br
+    
+    #create_assignment
+
+      = form_tag "assignments/new"  do
+        %h4
+          
+        = text_field_tag 'assignment_info[name]', nil , :title => t('.comma_separated_plz'), :placeholder => 'Title of assignment..'
+        
+        %br
+
+        %h4
+          
+        = text_area_tag 'assignment_info[description]', nil, :rows=> 5, :placeholder => "What students need to do.."
+
+        %h4
+          
+        = datetime_field_tag 'assignment_info[duedate]', , :placeholder => "Due Date.."        
+        %br
+        = check_box_tag 'assignment_info[islocked]', 'No submission after due data', true
+
+        %br
+
+        %p
+          = submit_tag "Create Assignment", :disable_with => "In Progress.."

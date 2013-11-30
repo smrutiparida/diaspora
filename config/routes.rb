@@ -81,6 +81,8 @@ Diaspora::Application.routes.draw do
   resources :notifications, :only => [:index, :update] do
   end
 
+  resources :assignments
+  
   resources :tags, :only => [:index]
 
   resources "tag_followings", :only => [:create, :destroy, :index]
