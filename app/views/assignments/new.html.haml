@@ -29,7 +29,7 @@
           
         = text_field_tag 'assignment_info[duedate]', nil, :placeholder => "Due Date..", :class => 'jquery-ui-date', :size => '10', :style => "width:25%"       
         %span
-          = check_box_tag 'assignment_info[islocked]', 'islocked', true, :class => 'inline'
+          = check_box_tag 'assignment_info[upload]', '1' , true, :class => 'inline'
           %b
             Students will upload a file as part of submission
           
@@ -41,6 +41,7 @@
         %p
           = submit_tag "Create Assignment", :disable_with => "In Progress.."
 
-:javascript
-  $(".jquery-ui-date").datepicker();
+- content_for :head do
+  :javascript
+    $(".jquery-ui-date").datepicker();
 
