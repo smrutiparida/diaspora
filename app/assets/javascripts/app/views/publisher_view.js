@@ -200,7 +200,19 @@ app.views.Publisher = Backbone.View.extend({
     });
 
     var documents = new Array();
-    
+    $('li.publisher_document span').each(function(){
+      var file = $(this).text();
+      var extensionIndex = file.lastIndexOf('.');
+      var extension = file.slice(extensionIndex+1);
+      documents.push(
+        {
+          "icon":"/images/facebox/" + extension + ".png",
+          "name": file
+        }
+      );
+    });
+
+       
     var mentioned_people = new Array();
     var regexp = new RegExp("@{\(\[\^\;\]\+\); \(\[\^\}\]\+\)}", "g");
     while(user=regexp.exec(serializedForm["status_message[text]"])){
@@ -288,7 +300,7 @@ app.views.Publisher = Backbone.View.extend({
 
     this.el_documentzone.find('li').remove();
     this.$("input[name='documents[]']").remove();
-    this.el_wrapper.removeClass("with_attachments");
+    this.el_wrapper.removeClass("with_doc_attachments");
     
     // empty upload-photo
     this.$('#documentInfo').empty();

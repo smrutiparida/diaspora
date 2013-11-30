@@ -38,7 +38,7 @@ app.forms.Document = app.forms.DocumentBase.extend({
   postRenderTemplate : function(){
     this.$("input[name=authenticity_token]").val($("meta[name=csrf-token]").attr("content"))
     this.$("input[name=document_ids]").val(this.documents.pluck("id"))
-    //this.renderPhotos();
+    this.renderDocuments();
   },
 
   onSubmit : function (){
@@ -50,7 +50,7 @@ app.forms.Document = app.forms.DocumentBase.extend({
   },
 
   renderPhotos : function(){
-    var photoContainer = this.$(".photos")
+    var photoContainer = this.$(".documents")
     this.photos.each(function(photo){
       var photoView = new app.views.Photo({model : photo}).render().el
       photoContainer.append(photoView)

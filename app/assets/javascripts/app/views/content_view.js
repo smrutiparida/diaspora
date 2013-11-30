@@ -25,6 +25,11 @@ app.views.Content = app.views.Base.extend({
     return photos.slice(1,8)
   },
 
+  documents : function() {
+    var documents = this.model.get("documents")
+    if(!documents) { return }
+    return documents.slice(1,4)
+  },
 
   expandPost: function(evt) {
     var el = $(this.el).find('.collapsible');

@@ -51,10 +51,10 @@ app.views.DocumentUploader = Backbone.View.extend({
     var publisher = this.options.publisher;
     publisher.setButtonsEnabled(false);
 
-    publisher.el_wrapper.addClass('with_attachments');
+    publisher.el_wrapper.addClass('with_doc_attachments');
     publisher.el_documentzone.append(
       '<li class="publisher_document loading" style="position:relative;">' +
-      '  <img src="'+Handlebars.helpers.imageUrl('ajax-loader2.gif')+'" alt="" />'+
+      '  <img src="'+Handlebars.helpers.imageUrl('ajax-loader.gif')+'" alt="" />'+
       '</li>'
     );
   },
@@ -63,8 +63,8 @@ app.views.DocumentUploader = Backbone.View.extend({
     this.el_info.text(Diaspora.I18n.t('document_uploader.completed', {file: fileName})).fadeTo(2000, 0);
 
     
-    var id  = response.data.document.id,
-        url = response.data.document.unprocessed_doc.url;
+    var id  = response.data.document.id;
+    var url = response.data.document.processed_doc;
 
     this._addFinishedDocument(id, url);
     this.trigger('change');
@@ -85,10 +85,17 @@ app.views.DocumentUploader = Backbone.View.extend({
     placeholder
       .removeClass('loading')
       .append(
+        '<span data-id="' + 
+        id +
+        '">' + 
+        url +
+        '</span>'
+        )
+      .append(
         '<div class="x">X</div>'+
         '<div class="circle"></div>'
        )
-      .find('img').attr({'src': '/apple-touch-icon.png', 'data-id': id});
+      .find('img').remove();
 
     // no more placeholders? enable buttons
     if( publisher.el_documentzone.find('li.loading').length == 0 ) {
@@ -100,21 +107,21 @@ app.views.DocumentUploader = Backbone.View.extend({
   // remove an already uploaded photo
   _removeDocument: function(evt) {
     var self  = this;
-    var photo = $(evt.target).parents('.publisher_photo')
-    var img   = photo.find('img');
+    var doc = $(evt.target).parents('.publisher_document')
+    var span   = doc.find('span');
 
     document.addClass('dim');
     $.ajax({
-      url: '/documents/'+img.attr('data-id'),
+      url: '/documents/'+span.attr('data-id'),
       dataType: 'json',
       type: 'DELETE',
       success: function() {
-        $.when(photo.fadeOut(400)).then(function(){
-          photo.remove();
+        $.when(span.fadeOut(400)).then(function(){
+          doc.remove();
 
-          if( self.options.publisher.$('.publisher_photo').length == 0 ) {
+          if( self.options.publisher.$('.publisher_document').length == 0 ) {
             // no more photos left...
-            self.options.publisher.el_wrapper.removeClass('with_attachments');
+            self.options.publisher.el_wrapper.removeClass('with_doc_attachments');
           }
 
           self.trigger('change');

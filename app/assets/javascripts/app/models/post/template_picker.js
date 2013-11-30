@@ -24,7 +24,7 @@ _.extend(app.models.Post.TemplatePicker.prototype, {
   },
 
   isWallpaper : function(){
-    return (this.model.get("photos").length == 1) || (this.model.get("documents").length == 1)
+    return (this.model.get("photos").length == 1)
   },
 
   applicableTemplates : function(){
