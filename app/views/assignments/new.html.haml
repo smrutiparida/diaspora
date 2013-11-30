@@ -16,7 +16,7 @@
     %br
     #email_invitation
 
-      = form_tag new_user_invitation_path  do
+      = form_tag "/assignments/new"  do
         %h4
           = t('email')
         = text_field_tag 'email_inviter[emails]', @invalid_emails, :title => t('.comma_separated_plz'), :placeholder => 'foo@bar.com, max@foo.com...'
