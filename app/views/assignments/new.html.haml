@@ -3,26 +3,43 @@
     .icons-cog
 
   .span-12.last
-    %h2
+    %h3
       = "Create Assignment"
       %br
   .span-10.append-1.last
     
+    
     %br
-    #email_invitation
+    
+    #create_assignment
 
-      = form_tag "/assignments/new"  do
+      = form_tag "assignments/new"  do
+        
         %h4
-          = "Title"
-        = text_field_tag 'assignment_info[name]', nil, :title => "abc", :placeholder => 'Assignment tit'
+          = "Title"    
+        = text_field_tag 'assignment_info[name]', nil, :placeholder => 'Assignment title..', :size => '20'
         
         %br
 
         %h4
-          = t('.language')
-        = select_tag('email_inviter[locale]',  options_from_collection_for_select(available_language_options, "second", "first", :selected => current_user.language))
+          = "Description"  
+        = text_area_tag 'assignment_info[description]', nil, :rows => '2', :placeholder => "What students need to do.."
 
+        %h4
+          = "Due date"
+        = text_field_tag 'assignment_info[duedate]', nil, :placeholder => "Due Date..", :class => 'jquery-ui-date', :size => '10'       
+        %span
+          = check_box_tag 'assignment_info[islocked]', 'islocked', true
+          %b"Students will upload a file as part of submission"
+          
+        
+
+        %br
         %br
 
         %p
-          = submit_tag t('.send_an_invitation'), :disable_with => t('.sending_invitation')
+          = submit_tag "Create Assignment", :disable_with => "In Progress.."
+
+:javascript
+  $(".jquery-ui-date").datepicker();
+
