@@ -1,25 +1,20 @@
 .span-15.last
   .span-3
-    .icons-monotone_email_letter_round
+    .icons-cog
 
   .span-12.last
     %h2
-      = t('.invite_someone_to_join')
+      = "Create Assignment"
       %br
-  .span-7.append-1.last
-    %b= t('.paste_link')
-    %br
-    %br
+  .span-10.append-1.last
     
-    
-    %br
     %br
     #email_invitation
 
       = form_tag "/assignments/new"  do
         %h4
-          = t('email')
-        = text_field_tag 'email_inviter[emails]', @invalid_emails, :title => t('.comma_separated_plz'), :placeholder => 'foo@bar.com, max@foo.com...'
+          = "Title"
+        = text_field_tag 'email_inviter[emails]', "Assignment title...", :title => t('.comma_separated_plz'), :placeholder => 'Assignment title...'
         
         %br
 
