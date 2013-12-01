@@ -8,8 +8,9 @@ app.views.Content = app.views.Base.extend({
       text : app.helpers.textFormatter(this.model.get("text"), this.model),
       largePhoto : this.largePhoto(),
       smallPhotos : this.smallPhotos(),
-      location: this.location(),
-      documents: this.documents()
+      location: this.location()
+      //,
+      //documents: this.documents()
     });
   },
 
@@ -28,10 +29,7 @@ app.views.Content = app.views.Base.extend({
 
   documents : function() {
     var documents = this.model.get("documents")
-    if(!documents) { return }
-    alert('documents list.');
-    alert(documents);
-    alert(documents[0].icon) ; 
+    if(!documents) { return }    
     return documents.slice(1,4)
   },
 
