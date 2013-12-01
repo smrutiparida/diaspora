@@ -8,9 +8,8 @@ app.views.Content = app.views.Base.extend({
       text : app.helpers.textFormatter(this.model.get("text"), this.model),
       largePhoto : this.largePhoto(),
       smallPhotos : this.smallPhotos(),
-      location: this.location()
-      //,
-      //documents: this.documents()
+      location: this.location(),
+      documents: this.documents()
     });
   },
 
