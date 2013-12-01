@@ -27,7 +27,7 @@ app.views.StreamPost = app.views.Post.extend({
 
   initialize : function(){
     this.model.bind('remove', this.remove, this);
-
+    alert("came to single post view");
     //subviews
     this.commentStreamView = new app.views.CommentStream({model : this.model});
     this.oEmbedView = new app.views.OEmbed({model : this.model});

@@ -49,11 +49,12 @@ app.forms.Document = app.forms.DocumentBase.extend({
     this.documents.add(new Backbone.Model(resp.data))
   },
 
-  renderPhotos : function(){
-    var photoContainer = this.$(".documents")
-    this.photos.each(function(photo){
-      var photoView = new app.views.Photo({model : photo}).render().el
-      photoContainer.append(photoView)
+  renderDocuments : function(){
+    alert("document_form presence felt!")
+    var docContainer = this.$(".documents")
+    this.documents.each(function(document){
+      var docView = new app.views.Document({model : document}).render().el
+      docContainer.append(docView)
     })
   }
 });
