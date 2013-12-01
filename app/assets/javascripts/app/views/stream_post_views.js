@@ -28,7 +28,7 @@ app.views.StreamPost = app.views.Post.extend({
 
   initialize : function(){
     this.model.bind('remove', this.remove, this);
-    alert("app.views.StreamPost");
+    alert("app.views.StreamPost:initialize");
     //subviews
     this.commentStreamView = new app.views.CommentStream({model : this.model});
     this.oEmbedView = new app.views.OEmbed({model : this.model});
@@ -49,6 +49,7 @@ app.views.StreamPost = app.views.Post.extend({
   },
 
   postContentView: function(){
+    alert("app.views.StreamPost:postContentView");
     var normalizedClass = this.model.get("post_type").replace(/::/, "__")
       , postClass = app.views[normalizedClass] || app.views.StatusMessage;
 

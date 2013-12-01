@@ -6,7 +6,7 @@ app.models.Post.Interactions = Backbone.Model.extend({
   },
 
   initialize : function(options){
-    alert("app.models.Post.Interactions");
+    alert("app.models.Post.Interactions:initialize");
     this.post = options.post
     this.comments = new app.collections.Comments(this.get("comments"), {post : this.post})
     this.likes = new app.collections.Likes(this.get("likes"), {post : this.post});
@@ -14,6 +14,7 @@ app.models.Post.Interactions = Backbone.Model.extend({
   },
 
   parse : function(resp){
+    alert("app.models.Post.Interactions:parse");
     this.comments.reset(resp.comments)
     this.likes.reset(resp.likes)
     this.reshares.reset(resp.reshares)
@@ -52,6 +53,7 @@ app.models.Post.Interactions = Backbone.Model.extend({
   },
 
   toggleLike : function() {
+    alert("app.models.Post.Interactions:toggleLike");
     if(this.userLike()) {
       this.unlike()
     } else {
@@ -125,6 +127,7 @@ app.models.Post.Interactions = Backbone.Model.extend({
   },
 
   userCanReshare : function(){
+    alert("app.models.Post.Interactions:userCanReshare");
     var isReshare = this.post.get("post_type") == "Reshare"
       , rootExists = (isReshare ? this.post.get("root") : true)
       , publicPost = this.post.get("public")

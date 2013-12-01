@@ -1,14 +1,17 @@
 app.views.Base = Backbone.View.extend({
 
   initialize : function(options) {
+    alert("app.views.Base:initialize");
     this.setupRenderEvents();
   },
 
   presenter : function(){
+    alert("app.views.Base:presenter");
     return this.defaultPresenter()
   },
 
   setupRenderEvents : function(){
+    alert("app.views.Base:setupRenderEvents");
     if(this.model) {
       //this should be in streamobjects view
       this.model.bind('remove', this.remove, this);
@@ -21,6 +24,7 @@ app.views.Base = Backbone.View.extend({
   },
 
   defaultPresenter : function(){
+    alert("app.views.Base:defaultPresenter");
     var modelJson = this.model && this.model.attributes ? _.clone(this.model.attributes) : {}
 
     return _.extend(modelJson, {
@@ -30,6 +34,7 @@ app.views.Base = Backbone.View.extend({
   },
 
   render : function() {
+    alert("app.views.Base:render");
     this.renderTemplate()
     this.renderSubviews()
     this.renderPluginWidgets()
@@ -39,7 +44,7 @@ app.views.Base = Backbone.View.extend({
   },
 
   renderTemplate : function(){
-    alert("app.views.Base");
+    alert("app.views.Base:renderTemplate");
     var presenter = _.isFunction(this.presenter) ? this.presenter() : this.presenter
     this.template = JST[this.templateName+"_tpl"]
     if(!this.template) {
@@ -55,6 +60,7 @@ app.views.Base = Backbone.View.extend({
   postRenderTemplate : $.noop, //hella callbax yo
 
   renderSubviews : function(){
+    alert("app.views.Base:renderSubviews");
     var self = this;
     _.each(this.subviews, function(property, selector){
       var view = _.isFunction(self[property]) ? self[property]() : self[property]
@@ -66,6 +72,7 @@ app.views.Base = Backbone.View.extend({
   },
 
   renderPluginWidgets : function() {
+    alert("app.views.Base:renderPluginWidgets");
     this.$(this.tooltipSelector).tooltip();
     this.$("time").timeago();
   },

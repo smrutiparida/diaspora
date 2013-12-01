@@ -23,18 +23,21 @@ app.views.Content = app.views.Base.extend({
   },
 
   smallPhotos : function() {
+    alert("app.views.Content:Presenter:smallPhotos");
     var photos = this.model.get("photos")
     if(!photos || photos.length < 2) { return }
     return photos.slice(1,8)
   },
 
   documents : function() {
+    alert("app.views.Content:Presenter:documents");
     var documents = this.model.get("documents")
     if(!documents) { return }    
     return documents.slice(1,4)
   },
 
   expandPost: function(evt) {
+    alert("app.views.Content:Presenter:expandPost");
     var el = $(this.el).find('.collapsible');
     el.removeClass('collapsed').addClass('opened');
     el.animate({'height':el.data('orig-height')}, 550, function() {
@@ -44,11 +47,13 @@ app.views.Content = app.views.Base.extend({
   },
 
   location: function(){
+    alert("app.views.Content:Presenter:location");
     var address = this.model.get('address')? this.model.get('address') : '';
     return address;
   },
 
   collapseOversized : function() {
+    alert("app.views.Content:Presenter:collapseOversized");
     var collHeight = 200
       , elem = this.$(".collapsible")
       , oembed = elem.find(".oembed")
@@ -76,6 +81,7 @@ app.views.Content = app.views.Base.extend({
   },
 
   postRenderTemplate : function(){
+    alert("app.views.Content:Presenter:postRenderTemplate");
     _.defer(_.bind(this.collapseOversized, this))
   }
 });
