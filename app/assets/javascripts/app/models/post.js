@@ -76,6 +76,11 @@ app.models.Post = Backbone.Model.extend(_.extend({}, app.models.formatDateMixin,
     return this.get("photos") && this.get("photos").length > 0
   },
 
+  hasDocuments : function(){
+    alert("app.models.Post:hasDocuments");
+    return this.get("documents") && this.get("documents").length > 0
+  },
+
   hasText : function(){
     alert("app.models.Post:hasText");
     return $.trim(this.get("text")) !== ""
