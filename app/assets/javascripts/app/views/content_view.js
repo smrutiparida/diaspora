@@ -31,9 +31,10 @@ app.views.Content = app.views.Base.extend({
 
   documents : function() {
     alert("app.views.Content:Presenter:documents");
-    var documents = this.model.get("documents")
+    var documents = this.model.get("documents")    
     if(!documents) { return }    
-    return documents.slice(1,4)
+    alert(documents[0].icon);  
+    return documents.slice(0,4)
   },
 
   expandPost: function(evt) {

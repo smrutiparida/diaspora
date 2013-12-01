@@ -26,7 +26,7 @@ app.views.Base = Backbone.View.extend({
   defaultPresenter : function(){
     alert("app.views.Base:defaultPresenter");
     var modelJson = this.model && this.model.attributes ? _.clone(this.model.attributes) : {}
-
+    alert(modelJson);
     return _.extend(modelJson, {
       current_user : app.currentUser.attributes,
       loggedIn : app.currentUser.authenticated()
