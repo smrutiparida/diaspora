@@ -96,7 +96,7 @@ app.views.DocumentUploader = Backbone.View.extend({
         '<div class="circle"></div>'
        )
       .find('img').remove();
-
+      alert("i am here");
     // no more placeholders? enable buttons
     if( publisher.el_documentzone.find('li.loading').length == 0 ) {
       this.$el.removeClass('loading');
