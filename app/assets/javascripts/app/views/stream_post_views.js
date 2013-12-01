@@ -9,8 +9,9 @@ app.views.StreamPost = app.views.Post.extend({
     ".post-content" : "postContentView",
     ".oembed" : "oEmbedView",
     ".opengraph" : "openGraphView",
-    ".status-message-location" : "postLocationStreamView",
-    ".document" : "documentView"
+    ".status-message-location" : "postLocationStreamView"
+    //,
+    //".document" : "documentView"
   },
 
   events: {
@@ -33,10 +34,10 @@ app.views.StreamPost = app.views.Post.extend({
     this.oEmbedView = new app.views.OEmbed({model : this.model});
     this.openGraphView = new app.views.OpenGraph({model : this.model});
   },
-
-  documentView : function(){
-    return new app.views.Document({model : this.model});
-  },
+  
+  //documentView : function(){
+  //  return new app.views.Document({model : this.model});
+  //},
 
   likesInfoView : function(){
     return new app.views.LikesInfo({model : this.model});
