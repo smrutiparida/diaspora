@@ -6,6 +6,7 @@ app.models.Post.Interactions = Backbone.Model.extend({
   },
 
   initialize : function(options){
+    alert("app.models.Post.Interactions");
     this.post = options.post
     this.comments = new app.collections.Comments(this.get("comments"), {post : this.post})
     this.likes = new app.collections.Likes(this.get("likes"), {post : this.post});

@@ -11,6 +11,7 @@ app.pages.Stream = app.views.Base.extend({
   },
 
   initialize : function(){
+    alert("app.pages.Stream");
     this.stream = this.model = new app.models.Stream()
     this.stream.preloadOrFetch()
 

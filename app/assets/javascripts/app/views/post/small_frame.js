@@ -15,6 +15,7 @@ app.views.Post.SmallFrame = app.views.Post.extend({
   },
 
   initialize : function(options) {
+    alert("app.views.Post.SmallFrame");
     this.stream = options.stream;
     this.addStylingClasses()
   },

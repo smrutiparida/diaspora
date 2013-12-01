@@ -31,6 +31,7 @@ app.forms.Picture = app.forms.PictureBase.extend({
   templateName : "picture-form",
 
   initialize : function() {
+    alert("app.forms.Picture");
     this.photos = this.model.photos || new Backbone.Collection()
     this.photos.bind("add", this.render, this)
   },

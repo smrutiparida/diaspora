@@ -8,6 +8,7 @@ app.forms.Post = app.views.Base.extend({
    },
 
   initialize : function() {
+    alert("app.forms.Post");
     this.pictureForm = new app.forms.Picture({model: this.model});
     //this.documentForm = new app.forms.Document({model:this.model});
   },

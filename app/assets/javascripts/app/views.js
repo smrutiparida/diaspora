@@ -39,6 +39,7 @@ app.views.Base = Backbone.View.extend({
   },
 
   renderTemplate : function(){
+    alert("app.views.Base");
     var presenter = _.isFunction(this.presenter) ? this.presenter() : this.presenter
     this.template = JST[this.templateName+"_tpl"]
     if(!this.template) {

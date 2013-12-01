@@ -2,6 +2,7 @@ app.models.Post = Backbone.Model.extend(_.extend({}, app.models.formatDateMixin,
   urlRoot : "/posts",
 
   initialize : function() {
+    alert("app.models.Post");
     this.interactions = new app.models.Post.Interactions(_.extend({post : this}, this.get("interactions")))
     this.delegateToInteractions()
   },

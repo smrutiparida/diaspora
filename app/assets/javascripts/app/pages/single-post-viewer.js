@@ -7,7 +7,7 @@ app.pages.SinglePostViewer = app.views.Base.extend({
   },
 
   initialize : function(options) {
-    alert("inside app->pages->single post viewer");
+    alert("app.pages.SinglePostViewer");
     this.model = new app.models.Post({ id : options.id });
     this.model.preloadOrFetch().done(_.bind(this.initViews, this));
     this.model.interactions.fetch() //async, yo, might want to throttle this later.

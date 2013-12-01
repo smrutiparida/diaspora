@@ -1,5 +1,6 @@
 app.views.Documents = app.views.InfScroll.extend({
   initialize : function(options) {
+    alert("app.views.Documents");
     this.stream = this.model;
     this.collection = this.stream.items;
 

@@ -3,6 +3,7 @@
 //= require ../collections/documents
 app.models.Stream = Backbone.Collection.extend({
   initialize : function(models, options){
+    alert("app.models.Stream");
     var collectionClass = options && options.collection || app.collections.Posts;
     this.items = new collectionClass([], this.collectionOptions());
   },

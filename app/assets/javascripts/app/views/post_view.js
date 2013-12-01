@@ -1,5 +1,6 @@
 app.views.Post = app.views.Base.extend({
   presenter : function() {
+    alert("app.views.Post");
     return _.extend(this.defaultPresenter(), {
       authorIsCurrentUser : this.authorIsCurrentUser(),
       showPost : this.showPost(),

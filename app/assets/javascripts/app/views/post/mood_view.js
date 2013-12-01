@@ -6,6 +6,7 @@ app.views.Post.Mood = app.views.Post.extend({
   subviews : { "section.photo_viewer" : "photoViewer" },
 
   initialize : function(){
+    alert("app.views.Post.Mood");
     $(this.el).addClass(this.mood)
   },
 

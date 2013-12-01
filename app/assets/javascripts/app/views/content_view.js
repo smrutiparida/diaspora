@@ -4,6 +4,7 @@ app.views.Content = app.views.Base.extend({
   },
 
   presenter : function(){
+    alert("app.views.Content:Presenter");
     return _.extend(this.defaultPresenter(), {
       text : app.helpers.textFormatter(this.model.get("text"), this.model),
       largePhoto : this.largePhoto(),
@@ -15,6 +16,7 @@ app.views.Content = app.views.Base.extend({
 
 
   largePhoto : function() {
+    alert("app.views.Content:largePhoto");
     var photos = this.model.get("photos")
     if(!photos || photos.length == 0) { return }
     return photos[0]

@@ -31,6 +31,7 @@ app.forms.Document = app.forms.DocumentBase.extend({
   templateName : "document-form",
 
   initialize : function() {
+    alert("app.forms.Document");
     this.documents = this.model.documents || new Backbone.Collection()
     this.documents.bind("add", this.render, this)
   },
