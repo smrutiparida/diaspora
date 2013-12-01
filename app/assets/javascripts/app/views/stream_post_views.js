@@ -52,7 +52,7 @@ app.views.StreamPost = app.views.Post.extend({
     alert("app.views.StreamPost:postContentView");
     var normalizedClass = this.model.get("post_type").replace(/::/, "__")
       , postClass = app.views[normalizedClass] || app.views.StatusMessage;
-
+    alert(normalizedClass);    
     return new postClass({ model : this.model })
   },
 

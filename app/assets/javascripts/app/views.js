@@ -50,11 +50,13 @@ app.views.Base = Backbone.View.extend({
     if(!this.template) {
       console.log(this.templateName ? ("no template for " + this.templateName) : "no templateName specified")
     }
-
+    alert(this.templateName);  
     this.$el
       .html(this.template(presenter))
       .attr("data-template", _.last(this.templateName.split("/")));
+    alert(this.$el.html());  
     this.postRenderTemplate();
+    alert("Exit:app.views.Base:renderTemplate");
   },
 
   postRenderTemplate : $.noop, //hella callbax yo
