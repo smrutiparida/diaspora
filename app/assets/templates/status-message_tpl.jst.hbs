@@ -3,8 +3,7 @@
     <a href="#" class="stream-photo-link">
       {{#with largePhoto}}
         <img src="{{sizes.large}}" class="stream-photo big_stream_photo" data-small-photo="{{sizes.small}}" data-full-photo="{{sizes.large}}" rel="lightbox">
-      {{/with}}
-      <span>{{documents[0].icon}}</span>
+      {{/with}}      
     </a>
 
     {{#each smallPhotos}}
@@ -14,7 +13,14 @@
     {{/each}}
   </div>
 {{/if}}
-
+<div>
+  {{#each documents}}
+    <a href="#" class="stream-photo-link">
+      <img src="{{icon}}" class="stream-photo thumb_small" rel="lightbox">
+      <span>{{name}}</span>
+    </a>
+  {{/each}}
+</div>
 <div class="collapsible">
   {{{text}}}
   <div class="oembed"></div>
