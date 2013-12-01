@@ -26,7 +26,6 @@ app.views.Post = app.views.Base.extend({
     //translate obsolete template names to the new Moods, should be removed when template picker comes client side.
     var map = {
       'status-with-photo-backdrop' : 'Wallpaper', //equivalent
-      'status' : 'Day', //equivalent
       'note' : 'Newspaper', //equivalent
       'photo-backdrop' : 'Day' //that theme was bad
     }
