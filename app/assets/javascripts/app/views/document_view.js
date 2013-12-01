@@ -19,6 +19,7 @@ app.views.Document = app.views.Base.extend({
     app.router.aspects_stream();
   },
   initialize : function() {
+    alert("came to find document");
     $(this.el).attr("id", this.model.get("guid"));
     this.model.bind('remove', this.remove, this);
     return this;

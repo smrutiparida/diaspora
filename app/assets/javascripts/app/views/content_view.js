@@ -9,7 +9,7 @@ app.views.Content = app.views.Base.extend({
       largePhoto : this.largePhoto(),
       smallPhotos : this.smallPhotos(),
       location: this.location(),
-      documents: this.documents();
+      documents: this.documents()
     });
   },
 
