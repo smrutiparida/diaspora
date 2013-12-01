@@ -29,6 +29,9 @@ app.views.Content = app.views.Base.extend({
   documents : function() {
     var documents = this.model.get("documents")
     if(!documents) { return }
+    alert('documents list.');
+    alert(documents);
+    alert(documents[0].icon) ; 
     return documents.slice(1,4)
   },
 

@@ -14,19 +14,19 @@
   </div>
 {{/if}}
 
-{{#if documents}}
-  <div class="photo_attachments">
-    {{#each documents}}
-      <a href="#" class="stream-photo-link">
-        <img src="{{icon}}" class="stream-photo thumb_small" rel="lightbox">
-        {{name}}
-      </a>
-    {{/each}}
-  </div>
-{{/if}}
-
 <div class="collapsible">
   {{{text}}}
   <div class="oembed"></div>
   <div class="opengraph"></div>
 </div>
+
+{{#if documents}}
+  <div class="photo_attachments">
+    {{#each documents}}
+      <a href="#" class="stream-photo-link">
+        <img src="{{icon}}" class="stream-photo thumb_small" rel="lightbox">
+        <span>{{name}}</span>
+      </a>
+    {{/each}}
+  </div>
+{{/if}}
