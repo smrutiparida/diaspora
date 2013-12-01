@@ -26,7 +26,7 @@ app.views.Base = Backbone.View.extend({
   defaultPresenter : function(){
     alert("app.views.Base:defaultPresenter");
     var modelJson = this.model && this.model.attributes ? _.clone(this.model.attributes) : {}
-    alert(modelJson);
+    alert(modelJson.toSource());
     return _.extend(modelJson, {
       current_user : app.currentUser.attributes,
       loggedIn : app.currentUser.authenticated()
@@ -46,6 +46,7 @@ app.views.Base = Backbone.View.extend({
   renderTemplate : function(){
     alert("app.views.Base:renderTemplate");
     var presenter = _.isFunction(this.presenter) ? this.presenter() : this.presenter
+    alert(presenter.toSource());
     this.template = JST[this.templateName+"_tpl"]
     if(!this.template) {
       console.log(this.templateName ? ("no template for " + this.templateName) : "no templateName specified")
