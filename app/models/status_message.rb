@@ -20,12 +20,15 @@ class StatusMessage < Post
   xml_attr :raw_message
   xml_attr :photos, :as => [Photo]
   xml_attr :documents, :as => [Document]
+  xml_attr :assignments, :as => [Assignment]
   xml_attr :location, :as => Location
 
 
   has_many :photos, :dependent => :destroy, :foreign_key => :status_message_guid, :primary_key => :guid
 
   has_many :documents, :dependent => :destroy, :foreign_key => :status_message_guid, :primary_key => :guid  
+
+  has_many :assignments, :dependent => :destroy, :foreign_key => :status_message_guid, :primary_key => :guid  
 
   has_one :location
 
@@ -80,6 +83,11 @@ class StatusMessage < Post
   def attach_documents_by_ids(document_ids)
     return [] unless document_ids.present?
     self.documents << Document.where(:id => document_ids, :author_id => self.author_id).all
+  end
+
+  def get_assignments_by_ids(assignment_ids)
+    return [] unless assignment_ids.present?
+    self.assignments << Assignment.where(:id => document_ids, :author_id => self.author_id).all
   end
 
   def nsfw
@@ -150,8 +158,8 @@ class StatusMessage < Post
     photos.first.url(*args)
   end
 
-  def text_and_photos_and_documents_blank?
-    self.text.blank? && self.photos.blank? && self.documents.blank?
+  def text_and_photos_and_documents_blank_and_assignments_blank?
+    self.text.blank? && self.photos.blank? && self.documents.blank && self.assignments.blank?
   end
 
   def queue_gather_oembed_data
@@ -178,14 +186,14 @@ class StatusMessage < Post
 
   protected
   def presence_of_content
-    if text_and_photos_and_documents_blank?
+    if text_and_photos_and_documents_blank_and_assignments_blank?
       errors[:base] << "Cannot create a StatusMessage without content"
     end
   end
 
   def absence_of_content
-    unless text_and_photos_and_documents_blank?
-      errors[:base] << "Cannot destory a StatusMessage with text and/or photos present"
+    unless text_and_photos_and_documents_blank_and_assignments_blank?
+      errors[:base] << "Cannot destory a StatusMessage with text and/or photos present and/or assignment present"
     end
   end
 

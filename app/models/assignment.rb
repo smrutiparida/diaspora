@@ -20,7 +20,7 @@ class Assignment < ActiveRecord::Base
   xml_attr :description
   xml_attr :status_message_guid
 
-  belongs_to :status_message, :foreign_key => :status_message_guid  , :primary_key => :id
+  belongs_to :status_message, :foreign_key => :status_message_guid  , :primary_key => :guid
   validates_associated :status_message
   delegate :author_name, to: :status_message, prefix: true
 
