@@ -20,7 +20,8 @@ class AssignmentsController < ApplicationController
       @response[:success] = true
       @response[:message] = "Assignment created successfully."
       respond_to do |format|
-      format.js
+        format.js
+      end  
     
   #    respond_to do |format|
   #      format.json { render :json => {"success" => true, "data" => @assignment.as_api_response(:backbone)} }        
