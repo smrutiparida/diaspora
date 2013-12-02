@@ -16,7 +16,9 @@ class Document < ActiveRecord::Base
     t.add :author
     t.add :size
     t.add :processed_doc, :as  => :name
-    t.add lambda { "/assets/facebox/" + processed_doc.slice(processed_doc.rindex('.')+1,processed_doc.length) + ".png" }, :as => :icon
+    t.add lambda { |document|
+             document.icon(:processed_doc)
+          }, :as => :icon    
   end
 
   mount_uploader :unprocessed_doc, UnprocessedDocument
@@ -116,7 +118,10 @@ class Document < ActiveRecord::Base
     end
   end
 
- 
+  def icon(name = nil)
+    "/assets/facebox/" + name.slice(name.rindex('.')+1,name.length) + ".png"
+  end
+
   def mutable?
     true
   end
