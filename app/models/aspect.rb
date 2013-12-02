@@ -12,6 +12,7 @@ class Aspect < ActiveRecord::Base
   has_many :posts, :through => :aspect_visibilities, :source => :shareable, :source_type => 'Post'
   has_many :photos, :through => :aspect_visibilities, :source => :shareable, :source_type => 'Photo'
   has_many :documents, :through => :aspect_visibilities, :source => :shareable, :source_type => 'Document'
+  has_many :assignments, :through => :aspect_visibilities, :source => :shareable, :source_type => 'Assignment'
 
   validates :name, :presence => true, :length => { :maximum => 20 }
 
@@ -33,6 +34,8 @@ class Aspect < ActiveRecord::Base
         self.photos << shareable
       when Document
         self.documents << shareable
+      when Assignment
+        self.assignments << shareable  
       else
         raise "Unknown shareable type '#{shareable.class.base_class.to_s}'"
     end
