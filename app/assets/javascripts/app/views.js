@@ -55,7 +55,7 @@ app.views.Base = Backbone.View.extend({
     this.$el
       .html(this.template(presenter))
       .attr("data-template", _.last(this.templateName.split("/")));
-    alert(this.$el.html());  
+    //alert(this.$el.html());  
     this.postRenderTemplate();
     //alert("Exit:app.views.Base:renderTemplate");
   },

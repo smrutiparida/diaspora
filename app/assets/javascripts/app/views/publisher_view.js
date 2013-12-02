@@ -206,7 +206,7 @@ app.views.Publisher = Backbone.View.extend({
       var extension = file.slice(extensionIndex+1);
       documents.push(
         {
-          "icon":"/images/facebox/" + extension + ".png",
+          "icon":"/assets/facebox/" + extension + ".png",
           "name": file
         }
       );

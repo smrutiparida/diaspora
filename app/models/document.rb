@@ -15,9 +15,8 @@ class Document < ActiveRecord::Base
     t.add :created_at
     t.add :author
     t.add :size
-    t.add lambda { |photo|
-        { :small => "/public/images/icon_128.gif" }
-      }, :as => :sizes    
+    t.add :processed_doc, :as  => :name
+    t.add lambda { "/assets/facebox/" + processed_doc.slice(processed_doc.rindex('.')+1,processed_doc.length) + ".png" }, :as => :icon
   end
 
   mount_uploader :unprocessed_doc, UnprocessedDocument
