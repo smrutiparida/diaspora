@@ -119,7 +119,7 @@ class Document < ActiveRecord::Base
   end
 
   def icon(name = nil)
-    extension = "broken"
+    extension = "bro"
     if name
       temp = name.to_s.rindex('.') 
       extension = temp ? name.to_s.slice(temp+1,name.to_s.length) : "broken"      
