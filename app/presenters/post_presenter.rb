@@ -5,8 +5,7 @@ class PostPresenter
   attr_accessor :post, :current_user
 
   def initialize(post, current_user = nil)
-    @post = post
-    FEDERATION_LOGGER.info("user:#{post.assignments[0].name}")
+    @post = post    
     @current_user = current_user
   end
 

@@ -318,6 +318,9 @@ app.views.Publisher = Backbone.View.extend({
     // empty upload-photo
     this.$('#documentInfo').empty();
     
+    $('#assignmentdropzone').find('li').remove();
+    this.$("input[name='documents[]']").remove();
+
     // close publishing area (CSS)
     this.close();
 
