@@ -3,7 +3,7 @@ app.collections.Documents = Backbone.Collection.extend({
 
   model: function(attrs, options) {
   	alert("app.collections.Documents");
-    var modelClass = app.models.Documents
+    var modelClass = app.models.Document
     return new modelClass(attrs, options);
   },
 

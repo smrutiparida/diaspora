@@ -9,8 +9,9 @@ app.views.StreamPost = app.views.Post.extend({
     ".post-content" : "postContentView",
     ".oembed" : "oEmbedView",
     ".opengraph" : "openGraphView",
-    ".status-message-location" : "postLocationStreamView",
-    ".documents" : "documentsView"
+    ".status-message-location" : "postLocationStreamView"
+    //,
+    //".documents" : "documentsView"
   },
 
   events: {
@@ -27,16 +28,16 @@ app.views.StreamPost = app.views.Post.extend({
 
   initialize : function(){
     this.model.bind('remove', this.remove, this);
-    alert("app.views.StreamPost:initialize");
+    //alert("app.views.StreamPost:initialize");
     //subviews
     this.commentStreamView = new app.views.CommentStream({model : this.model});
     this.oEmbedView = new app.views.OEmbed({model : this.model});
     this.openGraphView = new app.views.OpenGraph({model : this.model});
   },
   
-  documentsView : function(){
-    return new app.views.Documents({model : this.model});
-  },
+  //documentsView : function(){
+  //  return new app.views.Documents({model : this.model});
+  //},
 
   likesInfoView : function(){
     return new app.views.LikesInfo({model : this.model});
@@ -48,10 +49,10 @@ app.views.StreamPost = app.views.Post.extend({
   },
 
   postContentView: function(){
-    alert("app.views.StreamPost:postContentView");
+    //alert("app.views.StreamPost:postContentView");
     var normalizedClass = this.model.get("post_type").replace(/::/, "__")
       , postClass = app.views[normalizedClass] || app.views.StatusMessage;
-    alert(normalizedClass);    
+    //alert(normalizedClass);    
     return new postClass({ model : this.model })
   },
 

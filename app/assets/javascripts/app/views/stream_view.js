@@ -4,7 +4,7 @@ app.views.Stream = app.views.InfScroll.extend(_.extend(
   app.views.StreamShortcuts, {
   	
   initialize: function(options) {
-    alert("app.views.Stream");
+    //alert("app.views.Stream");
     this.stream = this.model
     this.collection = this.stream.items
 

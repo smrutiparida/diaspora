@@ -10,7 +10,7 @@ app.views.SinglePostContent = app.views.Base.extend({
   },
 
   initialize : function() {
-    alert("app.views.SinglePostContent");
+    //alert("app.views.SinglePostContent");
     this.singlePostActionsView = new app.views.SinglePostActions({model: this.model});
     this.oEmbedView = new app.views.OEmbed({model : this.model});
     this.openGraphView = new app.views.OpenGraph({model : this.model});

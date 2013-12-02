@@ -4,7 +4,7 @@ app.views.Content = app.views.Base.extend({
   },
 
   presenter : function(){
-    alert("app.views.Content:Presenter");
+    //alert("app.views.Content:Presenter");
     return _.extend(this.defaultPresenter(), {
       text : app.helpers.textFormatter(this.model.get("text"), this.model),
       largePhoto : this.largePhoto(),
@@ -16,29 +16,29 @@ app.views.Content = app.views.Base.extend({
 
 
   largePhoto : function() {
-    alert("app.views.Content:largePhoto");
+    //alert("app.views.Content:largePhoto");
     var photos = this.model.get("photos")
     if(!photos || photos.length == 0) { return }
     return photos[0]
   },
 
   smallPhotos : function() {
-    alert("app.views.Content:Presenter:smallPhotos");
+    //alert("app.views.Content:Presenter:smallPhotos");
     var photos = this.model.get("photos")
     if(!photos || photos.length < 2) { return }
     return photos.slice(1,8)
   },
 
   documents : function() {
-    alert("app.views.Content:Presenter:documents");
+    //alert("app.views.Content:Presenter:documents");
     var documents = this.model.get("documents")    
     if(!documents) { return }    
-    alert(documents[0].icon);  
-    return documents[0].name;
+    //alert(documents[0].icon);  
+    return documents;
   },
 
   expandPost: function(evt) {
-    alert("app.views.Content:Presenter:expandPost");
+    //alert("app.views.Content:Presenter:expandPost");
     var el = $(this.el).find('.collapsible');
     el.removeClass('collapsed').addClass('opened');
     el.animate({'height':el.data('orig-height')}, 550, function() {
@@ -48,13 +48,13 @@ app.views.Content = app.views.Base.extend({
   },
 
   location: function(){
-    alert("app.views.Content:Presenter:location");
+    //alert("app.views.Content:Presenter:location");
     var address = this.model.get('address')? this.model.get('address') : '';
     return address;
   },
 
   collapseOversized : function() {
-    alert("app.views.Content:Presenter:collapseOversized");
+    //alert("app.views.Content:Presenter:collapseOversized");
     var collHeight = 200
       , elem = this.$(".collapsible")
       , oembed = elem.find(".oembed")
@@ -82,7 +82,7 @@ app.views.Content = app.views.Base.extend({
   },
 
   postRenderTemplate : function(){
-    alert("app.views.Content:Presenter:postRenderTemplate");
+    //alert("app.views.Content:Presenter:postRenderTemplate");
     _.defer(_.bind(this.collapseOversized, this))
   }
 });

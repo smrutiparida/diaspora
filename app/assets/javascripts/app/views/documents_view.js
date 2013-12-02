@@ -2,7 +2,7 @@ app.views.Documents = app.views.InfScroll.extend({
   initialize : function(options) {
     alert("app.views.Documents");
     this.stream = this.model;
-    this.collection = this.stream.documents;
+    this.collection = this.stream.items;
 
     // viable for extraction
     this.stream.fetch();
