@@ -554,4 +554,5 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
 
   add_foreign_key "share_visibilities", "contacts", :name => "post_visibilities_contact_id_fk", :dependent => :delete
 
+#CREATE TABLE assignments (author_id INTEGER(11), public tinyint NOT NULL default 0, diaspora_handle VARCHAR(255), pending tinyint(1) NOT NULL default 0, name VARCHAR(255), description TEXT, file_upload tinyint(1) NOT NULL default 1, submission_date datetime, created_at datetime, updated_at DATETIME, status_message_guid varchar(255), comments_count INTEGER, id integer(11) not null auto_increment PRIMARY KEY);
 end
