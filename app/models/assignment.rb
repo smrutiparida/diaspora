@@ -47,8 +47,10 @@ class Assignment < ActiveRecord::Base
   end
 
   def self.diaspora_initialize(params = {})
-    assignment = self.new params.to_hash.slice(:name, :description, :submission_date)
-    assignment.file_upload = params[:file_upload] if params[:file_upload]
+    assignment = self.new #params.to_hash.slice(:name, :description, :submission_date)
+    assignment.name = params[:name]
+    assignment.description = params[:description]
+    assignment.file_upload = false unless params[:file_upload]
     assignment.author = params[:author]
     assignment.public = params[:public] if params[:public]
     assignment.pending = params[:pending] if params[:pending]
