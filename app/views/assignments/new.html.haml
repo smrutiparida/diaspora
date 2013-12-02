@@ -46,18 +46,18 @@
           = assignment.submit "Create Assignment", 'data-disable-with' => "In Progress..", :class => 'button creation'
 
 %div.span-15
-  %h3
+  %h4
     Use your previous assignments
     %br
   
   .section
     - for assignment in @assignments
-      %div.hoverable.docthumbnail        
-        %div{:style => "padding:5px;"}          
-          = link_to assignment.name, '#', :onClick => '$("#new_assignment.assignment_name").val(' + assignment.name + '); $("#new_assignment.assignment_description").val(' + assignment.description+ ')'          
-        %p  
+      %div{:style => "padding:3px;"}          
+        %span.selectable
+          = link_to assignment.name, '#', :onClick => '$("#new_assignment.assignment_name").val("' + assignment.name + '"); $("#new_assignment.assignment_description").val("' + assignment.description + '")'          
+        %span
           Last assigned on
-          = time_ago_in_words(assignment.created_at)
+          = date_select(assignment.created_at, order: [:day, :month, :year])
 
 
       
