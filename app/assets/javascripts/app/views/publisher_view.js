@@ -135,7 +135,8 @@ app.views.Publisher = Backbone.View.extend({
       "documents" : serializedForm["documents[]"],
       "services" : serializedForm["services[]"],
       "location_address" : $("#location_address").val(),
-      "location_coords" : serializedForm["location[coords]"]
+      "location_coords" : serializedForm["location[coords]"],
+      "assignments": serializedForm["assignments[]"]
     }, {
       url : "/status_messages",
       success : function() {
@@ -212,6 +213,17 @@ app.views.Publisher = Backbone.View.extend({
       );
     });
 
+    var assignments = new Array();
+    $('li.publisher_assignment span').each(function(){
+      var assign_name = $(this).text();      
+      assignments.push(
+        {
+          "icon":"/assets/facebox/xml.png",
+          "name": assign_name
+        }
+      );
+    });
+
        
     var mentioned_people = new Array();
     var regexp = new RegExp("@{\(\[\^\;\]\+\); \(\[\^\}\]\+\)}", "g");
@@ -241,6 +253,7 @@ app.views.Publisher = Backbone.View.extend({
       "mentioned_people" : mentioned_people,
       "photos" : photos,
       "documents": documents,
+      "assignments" : assignments,
       "frame_name" : "status",
       "title" : serializedForm["status_message[text]"],
       "address" : $("#location_address").val(),

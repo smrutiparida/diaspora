@@ -37,6 +37,14 @@ app.views.Content = app.views.Base.extend({
     return documents;
   },
 
+  assignments : function() {
+    //alert("app.views.Content:Presenter:documents");
+    var assignments = this.model.get("assignments")    
+    if(!assignments) { return }    
+    //alert(documents[0].icon);  
+    return assignments;
+  },
+
   expandPost: function(evt) {
     //alert("app.views.Content:Presenter:expandPost");
     var el = $(this.el).find('.collapsible');
