@@ -47,14 +47,14 @@ class Assignment < ActiveRecord::Base
   end
 
   def self.diaspora_initialize(params = {})
-    assignment = self.new params.to_hash.slice(:name, :description)
+    assignment = self.new params.to_hash.slice(:name, :description, :submission_date)
     assignment.file_upload = params[:file_upload] if params[:file_upload]
     assignment.author = params[:author]
     assignment.public = params[:public] if params[:public]
     assignment.pending = params[:pending] if params[:pending]
     assignment.diaspora_handle = assignment.author.diaspora_handle
     
-    assignment.submission_date = DateTime.strptime(params.assignment[:submission_date],'%d-%m-%Y %I:%M:%S %p')
+    assignment.submission_date = DateTime.strptime(assignment.submission_date,'%d-%m-%Y %I:%M:%S %p')
         
     assignment
   end
