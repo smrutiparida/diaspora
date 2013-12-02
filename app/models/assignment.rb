@@ -55,7 +55,8 @@ class Assignment < ActiveRecord::Base
     assignment.diaspora_handle = assignment.author.diaspora_handle
     
     #submission_date is turning out to be null.. need fixing
-    assignment.submission_date = DateTime.strptime(params[:submission_date],'%d-%m-%Y %I:%M:%S %p')
+    #assignment.submission_date = DateTime.strptime(params[:submission_date],'%d/%m/%Y %I:%M:%S %p')
+    assignment.submission_date = DateTime.strptime(params[:submission_date],'%d/%m/%Y')
         
     assignment
   end
