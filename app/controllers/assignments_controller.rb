@@ -27,4 +27,8 @@ class AssignmentsController < ApplicationController
       end  
     end
   end  
+
+  def assignment_params
+    params.require(:assignment).permit(:public, :pending, :aspect_ids)
+  end
 end

@@ -276,6 +276,25 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
 
   add_index "photos", ["status_message_guid"], :name => "index_photos_on_status_message_guid"
 
+  create_table "assignments", :force => true do |t|    
+    t.integer  "author_id",                              :null => false
+    t.boolean  "public",              :default => false, :null => false
+    t.string   "diaspora_handle"
+    t.string   "guid",                                   :null => false
+    t.boolean  "pending",             :default => false, :null => false
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "file_upload"          :default => true, :null => false        
+    t.datetime "submission_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"    
+    t.string   "status_message_guid"
+    t.integer  "comments_count"
+    
+  end
+
+  add_index "assignments", ["status_message_guid"], :name => "index_assignments_on_status_message_guid"
+
   create_table "documents", force => true do |t|
     t.integer  "tmp_old_id"
     t.integer  "author_id",                              :null => false     
