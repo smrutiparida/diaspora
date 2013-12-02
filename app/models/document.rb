@@ -122,7 +122,7 @@ class Document < ActiveRecord::Base
     extension = "broken"
     if name
       temp = name.to_s.rindex('.') 
-      extension = (temp > 0) ? name.to_s.slice(temp+1,name.to_s.length) : "broken"      
+      extension = temp ? name.to_s.slice(temp+1,name.to_s.length) : "broken"      
     end
 
     "/assets/facebox/" + extension + ".png"      
