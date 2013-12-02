@@ -54,7 +54,8 @@ class Assignment < ActiveRecord::Base
     assignment.pending = params[:pending] if params[:pending]
     assignment.diaspora_handle = assignment.author.diaspora_handle
     
-    assignment.submission_date = DateTime.strptime(assignment.submission_date,'%d-%m-%Y %I:%M:%S %p')
+    #submission_date is turning out to be null.. need fixing
+    #assignment.submission_date = DateTime.strptime(assignment.submission_date,'%d-%m-%Y %I:%M:%S %p')
         
     assignment
   end
