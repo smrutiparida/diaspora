@@ -119,10 +119,13 @@ class Document < ActiveRecord::Base
   end
 
   def icon(name = nil)
-    url = name.to_s if name
-    if url
-      "/assets/facebox/" + url.slice(url.rindex('.')+1,url.length) + ".png"
-    end  
+    extension = "broken"
+    if name
+      temp = name.to_s.rindex('.') 
+      extension = (temp > 0) ? name.to_s.slice(temp+1,name.to_s.length) : "broken"      
+    end
+
+    "/assets/facebox/" + extension + ".png"      
   end
 
   def mutable?
