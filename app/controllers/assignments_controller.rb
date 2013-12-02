@@ -30,6 +30,7 @@ class AssignmentsController < ApplicationController
    
     respond_to do |format|
       format.js
+    end  
   end  
 
   def assignment_params
