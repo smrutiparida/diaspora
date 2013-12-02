@@ -119,7 +119,10 @@ class Document < ActiveRecord::Base
   end
 
   def icon(name = nil)
-    "/assets/facebox/" + name.slice(name.rindex('.')+1,name.length) + ".png"
+    url = name.to_s if name
+    if url
+      "/assets/facebox/" + url.slice(url.rindex('.')+1,url.length) + ".png"
+    end  
   end
 
   def mutable?
