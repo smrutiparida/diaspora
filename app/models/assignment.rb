@@ -17,7 +17,7 @@ class Assignment < ActiveRecord::Base
   end
 
   xml_attr :text
-  xml_attr :description
+  xml_attr :name
   xml_attr :status_message_guid
 
   belongs_to :status_message, :foreign_key => :status_message_guid  , :primary_key => :guid
