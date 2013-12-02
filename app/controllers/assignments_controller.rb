@@ -29,6 +29,6 @@ class AssignmentsController < ApplicationController
   end  
 
   def assignment_params
-    params.require(:assignment).permit(:public, :pending, :aspect_ids)
+    params.require(:assignment).permit(:name, :description,:submission_date,:file_upload,:public, :pending, :aspect_ids)
   end
 end
