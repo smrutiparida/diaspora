@@ -143,6 +143,10 @@ module User::Querying
     ::EvilQuery::ShareablesFromPerson.new(self, Document, person).make_relation!
   end  
 
+  def assignments_from(person)
+    ::EvilQuery::ShareablesFromPerson.new(self, Assignment, person).make_relation!
+  end  
+
   protected
 
   # @return [Hash]

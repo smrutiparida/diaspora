@@ -6,6 +6,7 @@ class PostPresenter
 
   def initialize(post, current_user = nil)
     @post = post
+    FEDERATION_LOGGER.info("user:#{post.assignments[0].name}")
     @current_user = current_user
   end
 
