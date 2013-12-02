@@ -54,7 +54,7 @@ class Assignment < ActiveRecord::Base
     assignment.pending = params[:pending] if params[:pending]
     assignment.diaspora_handle = assignment.author.diaspora_handle
     
-    assignment.submission_date = DateTime.strptime(params[:submission_date],'%d-%m-%Y %I:%M:%S %p')
+    assignment.submission_date = DateTime.strptime(params.assignment[:submission_date],'%d-%m-%Y %I:%M:%S %p')
         
     assignment
   end
