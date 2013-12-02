@@ -57,7 +57,7 @@
           = link_to assignment.name, '#', :onClick => '$("#new_assignment.assignment_name").val("' + assignment.name + '"); $("#new_assignment.assignment_description").val("' + assignment.description + '")'          
         %span
           Last assigned on
-          = date_select(assignment.created_at, order: [:day, :month, :year])
+          = time_tag assignment.created_at
 
 
       
