@@ -67,6 +67,7 @@ class Post < ActiveRecord::Base
   def mentioned_people; []; end
   def photos; []; end
   def documents; []; end
+  def assignments; []; end
 
   #prevents error when trying to access @post.address in a post different than Reshare and StatusMessage types;
   #check PostPresenter
