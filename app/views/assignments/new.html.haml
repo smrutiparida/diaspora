@@ -45,19 +45,19 @@
         %p
           = assignment.submit "Create Assignment", 'data-disable-with' => "In Progress..", :class => 'button creation'
 
-%div.span-15
-  %h4
-    Use your previous assignments
-    %br
-  
-  .section
-    - for assignment in @assignments
-      %div{:style => "padding:3px;"}          
-        %span.selectable
-          = link_to assignment.name, '#', :onClick => '$("#new_assignment.assignment_name").val("' + assignment.name + '"); $("#new_assignment.assignment_description").val("' + assignment.description + '")'          
-        %span
-          Last assigned on
-          = time_tag assignment.created_at
+  .span-12.last
+    %h3
+      Use your previous assignments
+      %br
+    
+    .section
+      - for assignment in @assignments
+        %div{:style => "padding:3px;"}          
+          %span.selectable
+            = link_to assignment.name, '#', :onClick => "$('#new_assignment.assignment_name').val('" + assignment.name + "'); $('#new_assignment.assignment_description').val('" + assignment.description + "')"          
+          //%span
+          //  Last assigned on
+          //  = time_tag assignment.created_at
 
 
       
