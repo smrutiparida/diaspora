@@ -54,7 +54,7 @@
       - for assignment in @assignments
         %div{:style => "padding:3px;"}          
           %span.selectable
-            = link_to assignment.name, '#', :onClick => "$('#assignment_name').val('" + assignment.name + "'); $('#assignment_description').val('" + assignment.description + "')"          
+            = link_to assignment.name, '#', :onClick => "$('#assignment_name').val(unescape('" + assignment.name.to_s.html_safe + "')); $('#assignment_description').val(unescape('" + assignment.description.to_s.html_safe + "'))"          
           //%span
           //  Last assigned on
           //  = time_tag assignment.created_at
