@@ -1,17 +1,21 @@
 class AssignmentsController < ApplicationController
 
-  before_filter :authenticate_user!, :only => [:new, :create]
+  before_filter :authenticate_user!, :only => [:new, :create, :index]
   respond_to :html, :json, :js
 
   def new
-    
+    @assignments = Assignment.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)   
     respond_to do |format|
       format.html do
         render :layout => false
       end
     end
   end
-
+  
+  def index
+    @assignments = Assignment.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
+  end
+  
   def create
     @assignment = current_user.build_post(:assignment, assignment_params)
     if @assignment.save      
@@ -19,21 +23,13 @@ class AssignmentsController < ApplicationController
       @response = @assignment.as_api_response(:backbone)
       @response[:success] = true
       @response[:message] = "Assignment created successfully."
-      respond_to do |format|
-        format.js
-      end  
-    
-  #    respond_to do |format|
-  #      format.json { render :json => {"success" => true, "data" => @assignment.as_api_response(:backbone)} }        
-  #    end
-  #  else
-  #    flash[:error] = "Assignment creation failed. Please try again!"
-  #    respond_to do |format|
-  #      format.html do
-  #        render :layout => false
-  #      end    
-  #    end  
-    end
+    else
+      @response[:success] = true
+      response[:message] = "Assignment creation failed. Please try again!"  
+    end  
+   
+    respond_to do |format|
+      format.js
   end  
 
   def assignment_params
