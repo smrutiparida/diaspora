@@ -1,0 +1,23 @@
+var response = <%= raw @response.to_json %>;
+<% if session[:mobile_view] %>
+  window.location.href = "<%= conversations_path(conversation_id: @conversation.id) %>";
+<% else %>
+  Diaspora.page.flashMessages.render({ 'success':response.success, 'notice':response.message });
+  if(response.success){
+    
+    $('.content_creation form').append('<input type="hidden", value="'+ response.id +'" name="assignments[]" />');
+    $('#assignmentdropzone').append('<span data-id="' + 
+        							response.id +
+        							'">' + 
+        							response.name +
+        							'</span>'
+        				   ).append('<div class="x">X</div>'+
+        							'<div class="circle"></div>');
+      
+    alert("i am here");
+    $.facebox.close();
+    
+  }
+<% end %> 
+    
+    

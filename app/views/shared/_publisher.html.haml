@@ -19,6 +19,7 @@
             
             %ul#photodropzone
             %ul#documentdropzone
+            %ul#assignmentdropzone
 
             - if current_user.getting_started?
               = status.text_area :fake_text, :rows => 2, :value => h(publisher_formatted_text), :tabindex => 1, :placeholder => "Type your note here...",
