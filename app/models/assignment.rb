@@ -52,7 +52,7 @@ class Assignment < ActiveRecord::Base
     assignment.author = params[:author]
     assignment.public = params[:public] if params[:public]
     assignment.pending = params[:pending] if params[:pending]
-    assignment.diaspora_handle = document.author.diaspora_handle
+    assignment.diaspora_handle = assignment.author.diaspora_handle
     
     assignment.submission_date = DateTime.strptime(params[:submission_date],'%d-%m-%Y %I:%M:%S %p')
         
