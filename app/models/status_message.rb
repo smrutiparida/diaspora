@@ -87,7 +87,7 @@ class StatusMessage < Post
 
   def get_assignments_by_ids(assignment_ids)
     return [] unless assignment_ids.present?
-    self.assignments << Assignment.where(:id => document_ids, :author_id => self.author_id).all
+    self.assignments << Assignment.where(:id => assignment_ids, :author_id => self.author_id).all
   end
 
   def nsfw
