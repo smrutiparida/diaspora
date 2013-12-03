@@ -34,10 +34,8 @@ class Question < ActiveRecord::Base
     question.description = params[:description]
     question.type = params[:type]
     question.answer = params[:answer]    
-    question.diaspora_handle = params[:author].diaspora_handle
-    
-        }
-     });
+    question.diaspora_handle = params[:author].diaspora_handle    
+        
     question.all_answers = case question.type
       when "true_false"
         question.all_answers = ""
