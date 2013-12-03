@@ -41,7 +41,6 @@ class QuestionsController < ApplicationController
   end  
 
   def question_params
-    params.permit_all_parameters = true
-    #params.require(:question).permit(:description,:type,:answer,:answer1, :answer2,:answer3,:answer4, :tags)
+    params.require(:question).permit(:description,:type,:answer,:answer1, :answer2,:answer3,:answer4, :tags)
   end
 end
