@@ -10,24 +10,24 @@
       = "Create a Quiz"
 
     //= form_for Quiz.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |quiz|  
-    #leftNavBar.span-10.append-1
-      %span.add_aspect
-        = link_to "Add question to bank", "/questions/new"
+#leftNavBar.span-10.append-1{:style => 'height:800px;'}
+  %span.add_aspect
+    = link_to "Add question to bank", "/questions/new", :rel => 'facebox'
 
-      %ul.sub_nav#questions_list
-        - @quizzes.each do |question|
-          %li.hoverable{:data => {:question_id => question.id}}
-            %a.action.modify_aspect{:href => "/questions/clone/#{question.id}", :rel => "facebox"}          
-            %a.selectable{:href => "#"}
-              = question.description
+  %ul.sub_nav#questions_list
+    - @quizzes.each do |question|
+      %li.hoverable{:data => {:question_id => question.id}}
+        %a.action.modify_aspect{:href => "/questions/clone/#{question.id}", :rel => "facebox"}          
+        %a.selectable{:href => "#"}
+          = question.description
 
-    .span-13.last
-      #people_stream.stream.contacts
-      %h3.no_contacts
-        = link_to "Add question", "#", :id=>"question_add", :class => 'button creation'
-        = "or Load from the Question bank"
-      #form_space    
-    .span-  
+.span-13.last
+  #people_stream.stream.contacts
+  %h3.no_contacts
+    = link_to "Add question", "#", :id=>"question_add", :class => 'button creation'
+    = "or Load from the Question bank"
+  #form_space    
+.span-  
 
   #hidden_form.hidden
     = render 'questions/new'
