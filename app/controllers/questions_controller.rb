@@ -4,8 +4,7 @@ class QuestionsController < ApplicationController
   respond_to :html, :json, :js
 
   def new
-    @question = Question.new unless @question
-    end    
+    @question = Question.new unless @question        
     respond_to do |format|
       format.html do
         render :layout => false
