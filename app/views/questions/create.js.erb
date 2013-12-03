@@ -10,7 +10,7 @@ if(response.success){
   var part_string = '';
     if(response.type == "multiple_choice"){
       var aset = response.all_answers;
-      part_string = '<input type="radio">' + aset.answer1 + '<input type="radio">' + aset.answer2 + '<input type="radio">' + aset.answer3 + '<input type="radio">' + aset.answer4;
+      part_string = '<input type="radio">' + aset["answer1"] + '<input type="radio">' + aset["answer2"] + '<input type="radio">' + aset["answer3"] + '<input type="radio">' + aset["answer4"];
       part_string += 'Answer at place ' + response.answer + ' is Correct.';
     }
     else if (response.type == "true_false"){
