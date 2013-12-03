@@ -41,6 +41,6 @@ class QuestionsController < ApplicationController
   end  
 
   def question_params
-    params.require(:question).permit(:description,:type,:correct_answer,:all_answers, :tags)
+    params.require(:question).permit(:description,:type,:answer,:all_answers, :tags)
   end
 end
