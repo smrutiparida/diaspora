@@ -25,7 +25,7 @@
   
 #create_question
 
-  = form_for @question, html: {class: "new_conversation form_do_not_clear"}, remote: true do |question|
+  = form_for Question.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |question|
     
     %h4
       %p Step 1: Question Type    
