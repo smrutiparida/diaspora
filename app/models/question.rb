@@ -6,10 +6,9 @@ class Question < ActiveRecord::Base
     t.add :id
     t.add :guid
     t.add :created_at  
-    t.add :author    
     t.add :description
     t.add :type
-    t.add :correct_answer
+    t.add :answer
     t.add :all_answers
   end
 

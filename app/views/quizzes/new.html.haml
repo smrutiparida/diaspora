@@ -1,7 +1,10 @@
 -#   Copyright (c) 2010-2011, Diaspora Inc.  This file is
 -#   licensed under the Affero General Public License version 3 or later.  See
 -#   the COPYRIGHT file.
-
+:javascript
+  $('#question_add').click(function(){
+    $('#form_space').append($('hidden_form').html());
+  });  
 - content_for :page_title do
   = "New Quiz"
 
@@ -12,7 +15,8 @@
   //= form_for Quiz.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |quiz|  
   #leftNavBar.span-5.append-1
     %span.add_aspect
-      = link_to "Add a question", "/questions/new", :rel => 'facebox'
+      = link_to "Add a question", "#", :id=>"question_add"
+      //, :rel => 'facebox'
 
     //%ul.sub_nav#aspects_list
     //  - @questions.each do |question|
@@ -26,3 +30,7 @@
       %h3.no_contacts
         = link_to "Add First Question", "/questions/new" ,:rel => 'facebox', :class => 'button creation' 
         = "or Load from the Question bank"
+    #form_space    
+
+#hidden_form.hidden
+  = render 'questions/new'
