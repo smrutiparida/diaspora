@@ -69,7 +69,7 @@ Diaspora::Application.routes.draw do
   
   resources :documents
 
-  resource :quizzes
+  resource :quizzes, :only => [:create, :show, :index]
 
   resource :questions
 
