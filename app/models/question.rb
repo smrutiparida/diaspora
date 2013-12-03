@@ -14,6 +14,11 @@ class Question < ActiveRecord::Base
 
   delegate :author_name, to: :current_user, prefix: true
 
+  belongs_to :user
+
+  belongs_to :person
+  validates :person, :presence => true
+
   before_destroy :ensure_user_question
   after_destroy :clear_empty_status_message
 
