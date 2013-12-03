@@ -35,14 +35,20 @@ class Question < ActiveRecord::Base
     question.type = params[:type]
     question.answer = params[:answer]    
     question.diaspora_handle = params[:author].diaspora_handle
-
+    
+        }
+     });
     question.all_answers = case question.type
       when "true_false"
         question.all_answers = ""
       when "fill_in_blanks"
         question.all_answers = ""
       when "multiple_choice"
-        question.all_answers = params[:all_answers]
+        question.all_answers = { 'answer1' => params[:answer1],
+                                 'answer2' => params[:answer2],
+                                 'answer3' => params[:answer3] ,
+                                 'answer4' => params[:answer4]
+                                }.to_json                                 
       else
         question.all_answers = ""        
     end  
