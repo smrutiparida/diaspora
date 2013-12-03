@@ -41,6 +41,21 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
   add_index "aspect_visibilities", ["shareable_id", "shareable_type", "aspect_id"], :name => "shareable_and_aspect_id"
   add_index "aspect_visibilities", ["shareable_id", "shareable_type"], :name => "index_aspect_visibilities_on_shareable_id_and_shareable_type"
 
+  create_table "questions", :force => true do |t|
+    t.string   "description",                        :null => false
+    t.string   "type",                               :null => false
+    t.string   "answer",                             :null => false
+    t.string   "all_answers",
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                         :null => false
+    t.string   "tags",    
+    t.string   "diaspora_handle"
+  end
+
+  add_index "aspects", ["user_id", "contacts_visible"], :name => "index_aspects_on_user_id_and_contacts_visible"
+  add_index "aspects", ["user_id"], :name => "index_aspects_on_user_id"
+
+
   create_table "aspects", :force => true do |t|
     t.string   "name",                               :null => false
     t.integer  "user_id",                            :null => false

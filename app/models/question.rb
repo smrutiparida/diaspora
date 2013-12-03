@@ -15,35 +15,34 @@ class Question < ActiveRecord::Base
 
   delegate :author_name, to: :current_user, prefix: true
 
-  before_destroy :ensure_user_assignment
+  before_destroy :ensure_user_question
   after_destroy :clear_empty_status_message
 
   def clear_empty_status_message
-    if self.status_message_guid && self.status_message.text_and_photos_and_documents_blank_and_assignments_blank?
-      self.status_message.destroy
-    else
+   
       true
-    end
+   
   end
 
   def self.diaspora_initialize(params = {})
-    assignment = self.new #params.to_hash.slice(:name, :description, :submission_date)
-    assignment.name = params[:name]
-    assignment.description = params[:description]
-    assignment.file_upload = false unless params[:file_upload]
-    assignment.author = params[:author]
-    assignment.public = params[:public] if params[:public]
-    assignment.pending = params[:pending] if params[:pending]
-    assignment.diaspora_handle = assignment.author.diaspora_handle
-    
-    #submission_date is turning out to be null.. need fixing
-    #assignment.submission_date = DateTime.strptime(params[:submission_date],'%d/%m/%Y %I:%M:%S %p')
-    assignment.submission_date = DateTime.strptime(params[:submission_date],'%d/%m/%Y')
-        
-    assignment
-  end
+    question = self.new
+    question.description = params[:description]
+    question.type = params[:type]
+    question.answer = params[:answer]    
+    question.diaspora_handle = question.author.diaspora_handle
 
-  scope :on_statuses, lambda { |post_guids|
-    where(:status_message_guid => post_guids)
-  }
+    question.all_answers = case question.type
+      when "true_false"
+        question.all_answers = ""
+      when "fill_in_blanks"
+        question.all_answers = ""
+      when "multiple_choice"
+        question.all_answers = params[:all_answers]
+      else
+        question.all_answers = ""        
+    end  
+
+    question
+  end
+ 
 end
