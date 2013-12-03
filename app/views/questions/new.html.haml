@@ -5,14 +5,14 @@
         $('#question_options').text('');
       }
       else if($('#question_type').val() == "true_false"){
-        $('#question_options').text('Student will be shown True and False options in the same order shown here.');
-        $('#question_answer').append('<input type="radio" name="question_answer" value="true">True<br><input type="radio" name="question_answer" value="false">False');
+        $('#question_options').empty().text('Student will be shown True and False options in the same order shown here.');
+        $('#question_answer').empty().append('<input type="radio" name="question_answer" value="true">True<br><input type="radio" name="question_answer" value="false">False');
         
       }
       else if($('#question_type').val() == "fill_in_the_blanks"){
-        $('#question_title').text("Step 2: What is the question. Use _____ (underscore) to create blank field.").fadeIn(2000);
-        $('#question_options').text('Student will be shown a blank box to fill the answer.');
-        $('#question_answer').append('<input type="text", value="" size="20" name="question_answer" />');
+        $('#question_title').empty().text("Step 2: What is the question. Use _____ (underscore) to create blank field.").fadeIn(2000);
+        $('#question_options').empty().text('Student will be shown a blank box to fill the answer.');
+        $('#question_answer').empty().append('<input type="text", value="" size="20" name="question_answer" />');
       }
     });
 
