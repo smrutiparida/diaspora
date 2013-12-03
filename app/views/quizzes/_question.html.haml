@@ -1,0 +1,5 @@
+%li.hoverable{:data => {:question_id => question.id}}
+%a.action.modify_aspect{:href => "/questions/clone/#{question.id}", :rel => "facebox"}          
+%a.selectable{:href => "#"}
+  = question.description
+

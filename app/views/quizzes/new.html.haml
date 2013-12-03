@@ -10,7 +10,13 @@
     = "Create a Quiz"
 
   //= form_for Quiz.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |quiz|  
-  = render 'quizzes/question_bank', :questions => @questions
+  #leftNavBar.span-5.append-1
+    %span.add_aspect
+      = link_to "Add a question", "questions/new", :rel => 'facebox'
+
+    %ul.sub_nav#aspects_list
+
+      = render @questions
 
   .span-18.last
     #people_stream.stream.contacts
