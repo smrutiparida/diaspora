@@ -1,4 +1,4 @@
-class Assignment < ActiveRecord::Base
+class Question < ActiveRecord::Base
   
   # NOTE API V1 to be extracted
   acts_as_api
