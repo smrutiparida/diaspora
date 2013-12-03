@@ -69,9 +69,9 @@ Diaspora::Application.routes.draw do
   
   resources :documents
 
-  resource :quizzes, :only => [:create, :show, :index]
+  resources :quizzes
 
-  resource :questions
+  resources :questions
 
   get 'questions/clone/:id' => 'questions#clone'
 

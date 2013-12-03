@@ -1,6 +1,6 @@
 class QuizzesController < ApplicationController
 
-  before_filter :authenticate_user!, :only => [:new, :create, :index]
+  before_filter :authenticate_user!, :only => [:create]
   respond_to :html, :json, :js
 
   def create
