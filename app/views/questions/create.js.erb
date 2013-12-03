@@ -1,38 +1,53 @@
 var response = <%= raw @response.to_json %>;
-
-Diaspora.page.flashMessages.render({ 'success':response.success, 'notice':response.message });
-if(response.success){
-  
-  $('#form_space').empty();
-  
-
-  var html_string = '<div><h3>' + response.description + '</h3>';
-  var part_string = '';
-    if(response.type == "multiple_choice"){
-      var aset = response.all_answers;
-      part_string = '<input type="radio">' + aset["answer1"] + '<input type="radio">' + aset["answer2"] + '<input type="radio">' + aset["answer3"] + '<input type="radio">' + aset["answer4"];
-      part_string += 'Answer at place ' + response.answer + ' is Correct.';
-    }
-    else if (response.type == "true_false"){
-      var place1 = place2 = '';
-      if(response.answer == 'true'){
-        place1 = 'Correct Answer';
-      }
-      else
-      {
-        place2 = 'Correct Answer';
-      }
-      part_string = '<input type="radio">True'+ place1 + '<input type="radio">False' + place2;
-    }
-    else if (response.type == "fill_in_the_blanks"){
-       part_string = '<input type="text", value="" style="width:50%;"/>';
-       part_string += response.answer;
-    }
-
-    html_string += part_string + '</div>';
-    //alert(html_string);    
-    $('#people_stream').append(html_string);
+<% if @question_bank %> 
+  Diaspora.page.flashMessages.render({ 'success':response.success, 'notice':response.message });
+  if(response.success){
     
+    
+    $('#questions_list').prepend('<li class="hoverable" data="{question_id:' +
+                               response.id +
+                              '}"><a class="action modify_aspect" href="/questions/clone/#' + 
+                              response.id
+                              '" rel="facebox">' + 
+                              response.description +
+                              '</a></li>');          
+    $.facebox.close();    
   }
+
+ <% else %>
+  Diaspora.page.flashMessages.render({ 'success':response.success, 'notice':response.message });
+  if(response.success){
     
+    $('#form_space').empty();
+    
+
+    var html_string = '<div><h3>' + response.description + '</h3>';
+    var part_string = '';
+      if(response.type == "multiple_choice"){
+        var aset = JSON.parse(response.all_answers);
+        part_string = '<input type="radio">' + aset.answer1 + '<input type="radio">' + aset.answer2 + '<input type="radio">' + aset.answer3 + '<input type="radio">' + aset.answer4;
+        part_string += 'Answer at place ' + response.answer + ' is Correct.';
+      }
+      else if (response.type == "true_false"){
+        var place1 = place2 = '';
+        if(response.answer == 'true'){
+          place1 = 'Correct Answer';
+        }
+        else
+        {
+          place2 = 'Correct Answer';
+        }
+        part_string = '<input type="radio">True'+ place1 + '<input type="radio">False' + place2;
+      }
+      else if (response.type == "fill_in_the_blanks"){
+         part_string = '<input type="text", value="" style="width:50%;"/>';
+         part_string += response.answer;
+      }
+
+      html_string += part_string + '</div>';
+      //alert(html_string);    
+      $('#people_stream').append(html_string);
+      
+    }
+<% end %>     
     
