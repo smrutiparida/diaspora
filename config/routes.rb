@@ -69,6 +69,12 @@ Diaspora::Application.routes.draw do
   
   resources :documents
 
+  resource :quizzes
+
+  resource :questions
+
+  get 'questions/clone/:id' => 'questions#clone'
+
 	#Search
 	get 'search' => "search#search"
 
