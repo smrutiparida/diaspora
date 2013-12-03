@@ -28,10 +28,10 @@
         %h4  
           %p#option_title Step 3: Options
           %span#question_options
-            = text_field_tag 'answer1', nil, :placeholder => 'First Answer..', :style => 'width:50%;'
-            = text_field_tag 'answer2', nil, :placeholder => 'Second Answer..', :style => 'width:50%;'
-            = text_field_tag 'answer3', nil, :placeholder => 'Third Answer..', :size => 'width:50%;'
-            = text_field_tag 'answer4', nil, :placeholder => 'Fourth Answer..', :size => 'width:50%;'
+            = text_field_tag 'question[answer1]', nil, :placeholder => 'First Answer..', :style => 'width:50%;'
+            = text_field_tag 'question[answer2]', nil, :placeholder => 'Second Answer..', :style => 'width:50%;'
+            = text_field_tag 'question[answer3]', nil, :placeholder => 'Third Answer..', :size => 'width:50%;'
+            = text_field_tag 'question[answer4]', nil, :placeholder => 'Fourth Answer..', :size => 'width:50%;'
 
         %h4  
           %p#answer_title Step 4: Correct Answer
