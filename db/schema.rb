@@ -50,12 +50,11 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
     t.datetime "updated_at",                         :null => false
     t.string   "tags",    
     t.string   "diaspora_handle"
+    t.string   "guid"
   end
 
-  add_index "aspects", ["user_id", "contacts_visible"], :name => "index_aspects_on_user_id_and_contacts_visible"
-  add_index "aspects", ["user_id"], :name => "index_aspects_on_user_id"
-
-
+  add_index "questions", ["description","diaspora_handle"], :name => "index_questions_on_description_and_diaspora_handle"
+  
   create_table "aspects", :force => true do |t|
     t.string   "name",                               :null => false
     t.integer  "user_id",                            :null => false
