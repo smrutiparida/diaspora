@@ -27,6 +27,6 @@ class QuizzesController < ApplicationController
   def get_question_bank
   	@questions = Question.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
 	  @questions = @questions.for_a_stream.paginate(:page => params[:page], :per_page => 100)
-    @questions_size = @questions.length
+    #@questions_size = @questions.length
   end	
 end  

@@ -20,7 +20,7 @@ class Question < ActiveRecord::Base
 
   scope :for_a_stream, lambda {
     includes(:questions).
-        order('question.updated_at DESC')
+        order('questions.updated_at DESC')
   }
 
   def clear_empty_status_message
