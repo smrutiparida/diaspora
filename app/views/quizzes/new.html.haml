@@ -15,7 +15,7 @@
         = link_to "Add question to bank", "/questions/new"
 
       %ul.sub_nav#questions_list
-        - @questions.each do |question|
+        - @quizzes.each do |question|
           %li.hoverable{:data => {:question_id => question.id}}
             %a.action.modify_aspect{:href => "/questions/clone/#{question.id}", :rel => "facebox"}          
             %a.selectable{:href => "#"}

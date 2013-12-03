@@ -4,7 +4,7 @@ class QuizzesController < ApplicationController
   respond_to :html, :json, :js
 
   def new
-  	@questions = get_question_bank
+  	@quizzes = get_question_bank
 
     respond_to do |format|
 
@@ -25,8 +25,8 @@ class QuizzesController < ApplicationController
   private 
 
   def get_question_bank
-  	@questions = Question.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
-	  @questions = @questions.for_a_stream.paginate(:page => params[:page], :per_page => 100)
+  	@quizzes = Question.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
+	  @quizzes = @quizzes.for_a_stream.paginate(:page => params[:page], :per_page => 100)
     #@questions_size = @questions.length
   end	
 end  
