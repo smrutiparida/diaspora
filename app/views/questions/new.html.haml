@@ -46,7 +46,7 @@
       = form_for @question, html: {class: "new_conversation form_do_not_clear"}, remote: true do |question|
         
         %h4
-          = Step 1: Question Type    
+          %p Step 1: Question Type    
           = select_tag "question[type]", "<option selected='selected' value='multiple_choice'>Multiple Choice</option><option value='fill_in_the_blanks'>Fill in the Blanks</option><option value='true_false'>True/False</option>".html_safe  
         
           
