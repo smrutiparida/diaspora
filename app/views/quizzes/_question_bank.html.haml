@@ -1,0 +1,15 @@
+-#   Copyright (c) 2010-2011, Diaspora Inc.  This file is
+-#   licensed under the Affero General Public License version 3 or later.  See
+-#   the COPYRIGHT file.
+
+#leftNavBar.span-5.append-1
+  %span.add_aspect
+    = link_to "Add a question", "questions/new", :rel => 'facebox'
+
+  %ul.sub_nav#aspects_list
+      - questions.each do |question|
+        %li.hoverable{:data => {:question_id => question.id}          
+          %a.action.modify_aspect{:href => "/questions/clone/#{question.id}", :rel => "facebox"}          
+          %a.selectable{:href => "#"}
+            = question.title
+

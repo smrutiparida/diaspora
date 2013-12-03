@@ -1,0 +1,40 @@
+.span-15.last
+  .span-3
+    .icons-cog
+
+  .span-12.last
+    %h3
+      = "Create a Question"
+      %br
+  .span-10.append-1.last
+    
+    
+    %br
+    
+    #create_question
+
+      = form_for @question, html: {class: "new_conversation form_do_not_clear"}, remote: true do |q|
+        
+          = "Question Type"    
+        select_tag "q[type]", "<option selected="selected">Multiple Choice</option><option>Fill in the Blanks</option><option>True/False</option>".html_safe  
+        
+
+        %h4
+          = "What is the question"    
+        = text_field_tag 'question[description]', q.description, :placeholder => 'Question..', :size => '20'
+        
+          
+        = text_field_tag 'assignment[submission_date]', nil, :placeholder => "Due Date..", :class => 'jquery-ui-date', :size => '10', :style => "width:25%"       
+        %span
+          = check_box_tag 'assignment[file_upload]', 'true' , true, :class => 'inline'
+          %b
+            Students will upload a file as part of submission
+
+        %br
+        %br
+
+        %p
+          = q.submit "Add", 'data-disable-with' => "In Progress..", :class => 'button creation'
+
+  
+
