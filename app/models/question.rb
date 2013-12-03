@@ -16,8 +16,10 @@ class Question < ActiveRecord::Base
 
   belongs_to :user
 
-  belongs_to :person
+  belongs_to :person  
   validates :person, :presence => true
+
+  belongs_to :quiz
 
   before_destroy :ensure_user_question
   after_destroy :clear_empty_status_message
