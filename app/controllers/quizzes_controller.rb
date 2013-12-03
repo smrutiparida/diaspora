@@ -4,14 +4,14 @@ class QuizzesController < ApplicationController
   respond_to :html, :json, :js
 
   def new
-  	
+  	@questions = get_question_bank
+
     respond_to do |format|
 
       # Used for normal requests to contacts#index and subsequent infinite scroll calls
-      format.html { get_question_bank }
-
+      format.html 
       # Used by the mobile site
-      format.mobile { set_question_bank }
+      format.mobile { get_question_bank }
 
       # Used to populate mentions in the publisher
       format.json {
