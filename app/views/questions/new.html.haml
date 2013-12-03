@@ -1,3 +1,26 @@
+:javascript
+
+  $('#question_qtype').change(function() {
+      
+      if($('#question_qtype').val() == "multiple_choice") {
+        $('#question_title').empty().text("Step 2: What is the question.");
+        $('#question_options').append('<input id="answer1" type="text" style="width:50%;" placeholder="First Answer..." name="question[answer1]"><input id="answer2" type="text" style="width:50%;" placeholder="Second Answer..." name="question[answer2]"><input id="answer3" type="text" style="width:50%;" placeholder="Third Answer..." name="question[answer3]"><input id="answer4" type="text" style="width:50%;" placeholder="Fourth Answer..." name="question[answer4]">');
+        $('#question_correct_answer').empty().append('<select name="question[answer]"><option selected="selected" value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>');
+        
+      }
+      else if($('#question_qtype').val() == "true_false"){
+        $('#question_title').empty().text("Step 2: What is the question.");
+        $('#question_options').text('Do Nothing! True and False options will be shown.');
+        $('#question_correct_answer').empty().append('<input type="radio" name="question[answer]" value="true">True<input type="radio" name="question[answer]" value="false">False');
+        
+      }
+      else if($('#question_qtype').val() == "fill_in_the_blanks"){
+        $('#question_title').empty().text("Step 2: What is the question. Use _____ (underscore) to show blank field.");
+        $('#question_options').empty().text('Do nothing! A blank box to shown for the answer.');
+        $('#question_correct_answer').empty().append('<input type="text", value="" style="width:50%;" name="question[answer]" />');
+      }
+    });
+
 .span-17.last
   .span-3
     .icons-cog
@@ -44,25 +67,3 @@
         %p
           = question.submit "Add", 'data-disable-with' => "In Progress..", :class => 'button creation'
 
-:javascript
-
-  $('#question_qtype').change(function() {
-      
-      if($('#question_qtype').val() == "multiple_choice") {
-        $('#question_title').empty().text("Step 2: What is the question.");
-        $('#question_options').append('<input id="answer1" type="text" style="width:50%;" placeholder="First Answer..." name="question[answer1]"><input id="answer2" type="text" style="width:50%;" placeholder="Second Answer..." name="question[answer2]"><input id="answer3" type="text" style="width:50%;" placeholder="Third Answer..." name="question[answer3]"><input id="answer4" type="text" style="width:50%;" placeholder="Fourth Answer..." name="question[answer4]">');
-        $('#question_correct_answer').empty().append('<select name="question[answer]"><option selected="selected" value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>');
-        
-      }
-      else if($('#question_qtype').val() == "true_false"){
-        $('#question_title').empty().text("Step 2: What is the question.");
-        $('#question_options').text('Do Nothing! True and False options will be shown.');
-        $('#question_correct_answer').empty().append('<input type="radio" name="question[answer]" value="true">True<input type="radio" name="question[answer]" value="false">False');
-        
-      }
-      else if($('#question_qtype').val() == "fill_in_the_blanks"){
-        $('#question_title').empty().text("Step 2: What is the question. Use _____ (underscore) to show blank field.");
-        $('#question_options').empty().text('Do nothing! A blank box to shown for the answer.');
-        $('#question_correct_answer').empty().append('<input type="text", value="" style="width:50%;" name="question[answer]" />');
-      }
-    });
