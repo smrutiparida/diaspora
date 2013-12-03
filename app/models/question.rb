@@ -18,6 +18,11 @@ class Question < ActiveRecord::Base
   before_destroy :ensure_user_question
   after_destroy :clear_empty_status_message
 
+  scope :for_a_stream, lambda {
+    includes(:questions).
+        order('question.updated_at DESC')
+  }
+
   def clear_empty_status_message
    
       true
