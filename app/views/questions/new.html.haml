@@ -1,3 +1,21 @@
+:javascript
+
+  $('#question_type').change(function() {
+      if($('#question_type').val() == "multiple_choice") {
+        $('#question_options').text('');
+      }
+      else if($('#question_type').val() == "true_false"){
+        $('#question_options').text('Student will be shown True and False options in the same order shown here.');
+        $('#question_answer').append('<input type="radio" name="question_answer" value="true">True<br><input type="radio" name="question_answer" value="false">False');
+        
+      }
+      else if($('#question_type').val() == "fill_in_the_blanks"){
+        $('#question_title').text("Step 2: What is the question. Use _____ (underscore) to create blank field.").fadeIn(2000);
+        $('#question_options').text('Student will be shown a blank box to fill the answer.');
+        $('#question_answer').append('<input type="text", value="" size="20" name="question_answer" />');
+      }
+    });
+
 .span-15.last
   .span-3
     .icons-cog
@@ -13,25 +31,28 @@
     
     #create_question
 
-      = form_for @question, html: {class: "new_conversation form_do_not_clear"}, remote: true do |q|
+      = form_for @question, html: {class: "new_conversation form_do_not_clear"}, remote: true do |question|
         
         %h4
-          = "Question Type"    
-        = select_tag "q[type]", "<option selected='selected'>Multiple Choice</option><option>Fill in the Blanks</option><option>True/False</option>".html_safe  
+          = "Step 1: Question Type"    
+          = select_tag "question[type]", "<option value='fill_in_the_blanks'>Fill in the Blanks</option><option value='true_false' selected='selected'>True/False</option>".html_safe  
         
 
-        %h4
-          = "What is the question"    
-        = text_field_tag 'q[description]', nil, :placeholder => 'Question..', :size => '20'
-        
+          %h4
+            %p#question_title "Step 2: What is the question"    
+            = text_field_tag 'question[description]', nil, :placeholder => 'Question..', :size => '20'
           
-        
+          %h4  
+            = "Step 3: Options"
+            %span#question_options
 
-        %br
-        %br
 
-        %p
-          = q.submit "Add", 'data-disable-with' => "In Progress..", :class => 'button creation'
+          %h4  
+            = "Step 3: Correct Answer"
+            %span#question_answer
+              
+          %br
+          %br
 
-  
-
+          %p
+            = question.submit "Add", 'data-disable-with' => "In Progress..", :class => 'button creation'
