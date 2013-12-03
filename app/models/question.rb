@@ -7,7 +7,7 @@ class Question < ActiveRecord::Base
     t.add :guid
     t.add :created_at  
     t.add :description
-    t.add :type
+    t.add :qtype
     t.add :answer
     t.add :all_answers
   end
@@ -38,11 +38,11 @@ class Question < ActiveRecord::Base
   def self.diaspora_initialize(params = {})
     question = self.new
     question.description = params[:description]
-    question.type = params[:type]
+    question.qtype = params[:qtype]
     question.answer = params[:answer]    
     question.diaspora_handle = params[:author].diaspora_handle    
         
-    question.all_answers = case question.type
+    question.all_answers = case question.qtype
       when "true_false"
         question.all_answers = ""
       when "fill_in_blanks"

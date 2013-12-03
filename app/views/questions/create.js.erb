@@ -23,12 +23,12 @@ var response = <%= raw @response.to_json %>;
 
     var html_string = '<div><h3>' + response.description + '</h3>';
     var part_string = '';
-      if(response.type == "multiple_choice"){
+      if(response.qtype == "multiple_choice"){
         var aset = JSON.parse(response.all_answers);
         part_string = '<input type="radio">' + aset.answer1 + '<input type="radio">' + aset.answer2 + '<input type="radio">' + aset.answer3 + '<input type="radio">' + aset.answer4;
         part_string += 'Answer at place ' + response.answer + ' is Correct.';
       }
-      else if (response.type == "true_false"){
+      else if (response.qtype == "true_false"){
         var place1 = place2 = '';
         if(response.answer == 'true'){
           place1 = 'Correct Answer';
@@ -39,7 +39,7 @@ var response = <%= raw @response.to_json %>;
         }
         part_string = '<input type="radio">True'+ place1 + '<input type="radio">False' + place2;
       }
-      else if (response.type == "fill_in_the_blanks"){
+      else if (response.qtype == "fill_in_the_blanks"){
          part_string = '<input type="text", value="" style="width:50%;"/>';
          part_string += response.answer;
       }
