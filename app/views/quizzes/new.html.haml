@@ -12,7 +12,7 @@
   //= form_for Quiz.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |quiz|  
   #leftNavBar.span-5.append-1
     %span.add_aspect
-      = link_to "Add a question", "questions/new", :rel => 'facebox'
+      = link_to "Add a question", "/questions/new", :rel => 'facebox'
 
     //%ul.sub_nav#aspects_list
     //  - @questions.each do |question|
@@ -24,5 +24,5 @@
   .span-18.last
     #people_stream.stream.contacts
       %h3.no_contacts
-        = link_to "Add First Question", "questions/new" ,:rel => 'facebox', :class => 'button creation' 
+        = link_to "Add First Question", "/questions/new" ,:rel => 'facebox', :class => 'button creation' 
         = "or Load from the Question bank"
