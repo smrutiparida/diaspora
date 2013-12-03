@@ -7,7 +7,7 @@
     = link_to "Add a question", "questions/new", :rel => 'facebox'
 
   %ul.sub_nav#aspects_list
-    - questions.each do |question|
+    - @questions.each do |question|
       %li.hoverable{:data => {:question_id => question.id}}
         %a.action.modify_aspect{:href => "/questions/clone/#{question.id}", :rel => "facebox"}          
         %a.selectable{:href => "#"}
