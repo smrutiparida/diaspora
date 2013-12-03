@@ -9,11 +9,11 @@
   %h2
     = "Create a Quiz"
 
-  = form_for Quiz.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |quiz|  
-    = render 'quiz/question_bank'
+  //= form_for Quiz.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |quiz|  
+  = render 'quiz/question_bank'
 
-    .span-18.last
-      #people_stream.stream.contacts
-        %h3.no_contacts
-          = link_to "Add First Question", "questions/new" ,:rel => 'facebox', :class => 'button creation' 
-          = "or Load from the Question bank"
+  .span-18.last
+    #people_stream.stream.contacts
+      %h3.no_contacts
+        = link_to "Add First Question", "questions/new" ,:rel => 'facebox', :class => 'button creation' 
+        = "or Load from the Question bank"
