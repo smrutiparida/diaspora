@@ -1,26 +1,37 @@
 :javascript
 
   $('#question_type').change(function() {
+      
       if($('#question_type').val() == "multiple_choice") {
-        $('#question_options').text('');
+        $('#question_title').empty().text("Step 2: What is the question.");
+        $('#question_options').text('<input id="answer1" type="text" style="width:50%;" placeholder="First Answer..." name="answer1"><input id="answer2" type="text" style="width:50%;" placeholder="Second Answer..." name="answer2"><input id="answer3" type="text" style="width:50%;" placeholder="Third Answer..." name="answer3"><input id="answer4" type="text" style="width:50%;" placeholder="Fourth Answer..." name="answer4">');
+        $('#question_correct_answer').empty().append('<select name="question[answer]"><option selected="selected" value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>');
+        
       }
       else if($('#question_type').val() == "true_false"){
-        $('#question_options').empty().text('Student will be shown True and False options in the same order shown here.');
-        $('#question_answer').empty().append('<input type="radio" name="question_answer" value="true">True<br><input type="radio" name="question_answer" value="false">False');
+        $('#question_title').empty().text("Step 2: What is the question.");
+        $('#question_options').text('Step 3: Do Nothing! True and False options will be shown.');
+        $('#question_correct_answer').append('<input type="radio" name="question[answer]" value="true">True<input type="radio" name="question[answer]" value="false">False');
         
       }
       else if($('#question_type').val() == "fill_in_the_blanks"){
-        $('#question_title').empty().text("Step 2: What is the question. Use _____ (underscore) to create blank field.").fadeIn(2000);
-        $('#question_options').empty().text('Student will be shown a blank box to fill the answer.');
-        $('#question_answer').empty().append('<input type="text", value="" size="20" name="question_answer" />');
+        $('#question_title').empty().text("Step 2: What is the question. Use _____ (underscore) to show blank field.");
+        $('#question_options').empty().text('Do nothing! A blank box to shown for the answer.');
+        $('#question_correct_answer').empty().append('<span<input type="text", value="" style="width:50%;" name="question[answer]" />');
       }
     });
 
-.span-15.last
+     $('#create_question.button').click(function(){
+        if($('#question_type').val() == "multiple_choice")
+        {
+
+        }
+     });
+.span-17.last
   .span-3
     .icons-cog
 
-  .span-12.last
+  .span-15.last
     %h3
       = "Create a Question"
       %br
@@ -35,24 +46,29 @@
         
         %h4
           = "Step 1: Question Type"    
-          = select_tag "question[type]", "<option value='fill_in_the_blanks'>Fill in the Blanks</option><option value='true_false' selected='selected'>True/False</option>".html_safe  
+          = select_tag "question[type]", "<option selected='selected' value='multiple_choice'>Multiple Choice</option><option value='fill_in_the_blanks'>Fill in the Blanks</option><option value='true_false'>True/False</option>".html_safe  
         
-
-          %h4
-            %p#question_title "Step 2: What is the question"    
-            = text_field_tag 'question[description]', nil, :placeholder => 'Question..', :size => '20'
           
-          %h4  
-            = "Step 3: Options"
-            %span#question_options
+        %h4
+          %p#question_title "Step 2: What is the question"    
+          = text_field_tag 'question[description]', nil, :placeholder => 'Question..', :size => '20'
 
+          
+        %h4  
+          %p#option_title"Step 3: Options"
+          %span#question_options
+            = text_field_tag 'answer1', nil, :placeholder => 'First Answer..', :style => 'width:50%;'
+            = text_field_tag 'answer2', nil, :placeholder => 'Second Answer..', :style => 'width:50%;'
+            = text_field_tag 'answer3', nil, :placeholder => 'Third Answer..', :size => 'width:50%;'
+            = text_field_tag 'answer4', nil, :placeholder => 'Fourth Answer..', :size => 'width:50%;'
 
-          %h4  
-            = "Step 3: Correct Answer"
-            %span#question_answer
-              
-          %br
-          %br
+        %h4  
+          %p#answer_title "Step 3: Correct Answer"
+          %span#question_correct_answer
+          = select_tag "question[answer]", "<option selected='selected' value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option>".html_safe 
+            
+        %br
+        %br
 
-          %p
-            = question.submit "Add", 'data-disable-with' => "In Progress..", :class => 'button creation'
+        %p
+          = question.submit "Add", 'data-disable-with' => "In Progress..", :class => 'button creation'
