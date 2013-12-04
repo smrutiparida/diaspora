@@ -31,6 +31,7 @@ class QuestionsController < ApplicationController
       @response[:success] = true
       @response[:message] = "Question created successfully."
     else
+      @response = {}
       @response[:success] = true
       @response[:message] = "Question creation failed. Please try again!"  
     end  
