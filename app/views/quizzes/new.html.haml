@@ -27,7 +27,7 @@
     = link_to "Add question", "#", :id=>"question_add", :class => 'button creation'
     = "or Load from the Question bank"
   #form_space    
-.span-  
+  
 
   #hidden_form.hidden
     = render 'questions/new'
@@ -40,7 +40,7 @@
   
   $('#question_add').click(function(){
     hidden_form_active = false;
-    if(!active){
+    if(!hidden_form_active){
       $('#form_space').append($('#hidden_form').html());
       hidden_form_active = true;
     }
