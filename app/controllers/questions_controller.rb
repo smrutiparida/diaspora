@@ -32,7 +32,7 @@ class QuestionsController < ApplicationController
       @response[:message] = "Question created successfully."
     else
       @response[:success] = true
-      response[:message] = "Question creation failed. Please try again!"  
+      @response[:message] = "Question creation failed. Please try again!"  
     end  
    
     respond_to do |format|
