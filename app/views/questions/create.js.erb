@@ -51,6 +51,7 @@ var response = <%= raw @response.to_json %>;
       $('#people_stream').append(html_string);
       //hidden_form_active = false;
       $('#questions_list').prepend('<li class="hoverable" data-question-id="' + response.id +'"><a class="action modify_aspect" href="/questions/clone/#' + response.id + '"></a><a class="selectable" href="#">' + response.description + '</a></li>');           
+      $("#question_add").removeAttr('disabled');
     }
 //<% end %>     
     
