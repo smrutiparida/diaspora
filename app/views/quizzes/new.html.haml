@@ -22,11 +22,12 @@
           = question.description
 
 .span-13.last
+  #quiz_accordion
   #people_stream.stream.contacts
     = link_to "Add question", "#", :id=>"question_add", :class => 'button creation', :style =>'float:right;margin:10px;'    
   %h3
     = "QUESTIONS"
-  #quiz_accordion
+  
   #form_space    
   
 
@@ -42,7 +43,7 @@
   });
   
   hidden_form_active = false;
-  $( "#quiz_accordion" ).accordion();  
+  $('#quiz_accordion').accordion();  
 
   $('#question_add').live('click', function(){
       
