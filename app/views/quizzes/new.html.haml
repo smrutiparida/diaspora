@@ -37,9 +37,11 @@
   //  $.facebox.close();
   });
   
-  $('#question_add').click(function(){
-      hidden_form_active = false;
-      if(hidden_form_active){
+  hidden_form_active = false;
+
+  $('#question_add').live('click', function(){
+      
+    if(hidden_form_active){
       Diaspora.page.flashMessages.render({ 'success':true, 'notice':'A question is already in process..' });
     }
     else {
