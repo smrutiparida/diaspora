@@ -39,6 +39,7 @@ class Question < ActiveRecord::Base
     question = self.new
     question.description = params[:description]
     question.type = params[:qtype]
+    Rails.logger.info(question.to_json)
     question.answer = params[:answer]    
     question.diaspora_handle = params[:author].diaspora_handle    
         
