@@ -12,5 +12,5 @@
 *= require vendor/autoSuggest
 *= require entypo-fonts
 *= require entypo
-*= require jquery-ui-1.9.2.custom
+*= require vendor/jquery-ui-1.9.2.custom
 */
