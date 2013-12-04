@@ -24,6 +24,9 @@
 .span-13.last
   #people_stream.stream.contacts
     = link_to "Add question", "#", :id=>"question_add", :class => 'button creation', :style =>'float:right;margin:10px;'    
+  %h3
+    = "QUESTIONS"
+  #quiz_accordion
   #form_space    
   
 
@@ -34,10 +37,12 @@
   $('#question_form_cancel').live('click', function(){
     hidden_form_active = false;
     $('#form_space').empty();
+    $("#question_add").addClass('creation');
   //  $.facebox.close();
   });
   
   hidden_form_active = false;
+  $( "#quiz_accordion" ).accordion();  
 
   $('#question_add').live('click', function(){
       
@@ -52,3 +57,4 @@
     
   //  return false;
   });  
+

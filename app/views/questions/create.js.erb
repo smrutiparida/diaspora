@@ -23,7 +23,7 @@ var response = <%= raw @response.to_json %>;
     $('#form_space').empty();
     
 
-    var html_string = '<div><h3>' + response.description + '</h3>';
+    var html_string = '<h3>' + response.description + '</h3><div>';
     var part_string = '';
       if(response.qtype == "multiple_choice"){
         var aset = JSON.parse(response.all_answers);
@@ -48,7 +48,7 @@ var response = <%= raw @response.to_json %>;
 
       html_string += part_string + '</div>';
       //alert(html_string);    
-      $('#people_stream').append(html_string);
+      $('#quiz_accordion').append(html_string);
       hidden_form_active = false;
       $('#questions_list').prepend('<li class="hoverable" data-question-id="' + response.id +'"><a class="action modify_aspect" href="/questions/clone/#' + response.id + '"></a><a class="selectable" href="#">' + response.description + '</a></li>');           
       
@@ -56,3 +56,5 @@ var response = <%= raw @response.to_json %>;
     }
 //<% end %>     
     
+
+
