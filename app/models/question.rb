@@ -12,17 +12,17 @@ class Question < ActiveRecord::Base
     t.add :all_answers
   end
 
-  delegate :author_name, to: :current_user, prefix: true
+  #delegate :author_name, to: :current_user, prefix: true
 
   belongs_to :user
 
   belongs_to :person  
   validates :person, :presence => true
 
-  belongs_to :quiz
+  #belongs_to :quiz
 
-  before_destroy :ensure_user_question
-  after_destroy :clear_empty_status_message
+  #before_destroy :ensure_user_question
+  #after_destroy :clear_empty_status_message
 
   scope :for_a_stream, lambda {
     includes(:questions).
