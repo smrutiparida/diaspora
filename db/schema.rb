@@ -331,6 +331,33 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
 
   add_index "documents", ["status_message_guid"], :name => "index_documents_on_status_message_guid"
 
+  create_table "quizzes", :force => true do |t|    
+    t.integer  "author_id",                              :null => false     
+    t.boolean  "public",              :default => false, :null => false
+    t.string   "diaspora_handle"
+    t.string   "guid",                                   :null => false    
+    t.string   "title"
+    t.integer  "total_marks"        
+    t.datetime "created_at"
+    t.datetime "updated_at"    
+    t.string   "status_message_guid"
+    t.integer  "comment_count"  
+    t.boolean  "randomize_questions"  
+  end
+
+  add_index "quizzes", ["status_message_guid"], :name => "index_quizzes_on_status_message_guid"  
+
+  create_table "quizquestions", :force => true do |t|
+    t.integer  "quiz_id",        :null => false
+    t.integer  "question_id",    :null => false
+    t.integer  "mark"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "quizquestions", ["quiz_id", "question_id"], :name => "index_quiz_questions_on_quiz_id_and_question_id", :unique => true
+  add_index "quizquestions", ["quiz_id"], :name => "index_quiz_questions_on_quiz_id"
+
   create_table "pods", :force => true do |t|
     t.string   "host"
     t.boolean  "ssl"

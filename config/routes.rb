@@ -88,6 +88,8 @@ Diaspora::Application.routes.draw do
   end
 
   resources :assignments
+
+  resources :quizzes
   
   resources :tags, :only => [:index]
 

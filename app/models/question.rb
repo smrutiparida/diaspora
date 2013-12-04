@@ -24,6 +24,8 @@ class Question < ActiveRecord::Base
   #before_destroy :ensure_user_question
   #after_destroy :clear_empty_status_message
 
+  has_many :quiz_question
+
   scope :for_a_stream, lambda {
     includes(:questions).
         order('questions.updated_at DESC')

@@ -10,7 +10,7 @@
       = "Create a Quiz"
 
     //= form_for Quiz.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |quiz|  
-#leftNavBar.span-10.append-1{:style => 'height:800px;'}
+#leftNavBar.span-7.append-1{:style => 'height:800px;'}
   %span.add_aspect
     
 
@@ -21,7 +21,7 @@
         %a.selectable{:href => "#"}
           = question.description
 
-.span-13.last
+.span-12.last
   
   #people_stream.stream.contacts
     = link_to "Add question", "#", :id=>"question_add", :class => 'button creation', :style =>'float:right;margin:10px;'    
@@ -34,6 +34,32 @@
 
   #hidden_form.hidden
     = render 'questions/new'
+
+#rightNavBar.span-5{:style => 'height:800px;'}
+  = form_for @quiz, html: {class: "new_conversation form_do_not_clear"}, remote: true do |quiz|
+    %h4
+      %p Title
+      = text_field_tag 'quiz[title]', nil, :placeholder => 'About the quiz..', :style => 'width:98%;'
+         
+    %span
+      = check_box_tag 'quiz[randomize_questions]', 'true' , true
+      = hidden_field_tag 'quiz[total_marks]', '0'    
+
+    %span
+      = fields_for @quiz.quizquestion do |qquestion|
+         = hidden_field_tag 'qquestion[mark]', '0', :placeholder => 'marks.', :style => 'width:98%;' 
+         = fields_for @quiz.quizquestion.question do |q|
+           = hidden_field_tag 'q[id]', '24'
+    %p
+      = quiz.submit "Save Quiz", 'data-disable-with' => "In Progress..", :class => 'button creation'
+    #questionlist  
+
+<%  patient_form.fields_for :appointments do |appointment_form| %>
+    <p>
+      <%= appointment_form.label :appointment_date, "Appointment Date" %>
+      <%= appointment_form.date_field :appointment_date %>
+    </p>
+ <% end %>
 
 :javascript
   $('#question_form_cancel').live('click', function(){

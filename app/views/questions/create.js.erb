@@ -49,10 +49,10 @@ var response = <%= raw @response.to_json %>;
       html_string += part_string + '</div>';
       //alert(html_string);    
       $('#quiz_accordion').append(html_string);
-      $('#quiz_accordion').accordion("refresh");
+      //$('#quiz_accordion').accordion("refresh");
       hidden_form_active = false;
       $('#questions_list').prepend('<li class="hoverable" data-question-id="' + response.id +'"><a class="action modify_aspect" href="/questions/clone/#' + response.id + '"></a><a class="selectable" href="#">' + response.description + '</a></li>');           
-      
+      $('#questionlist').append('<input type="hidden" value="' + response.id + '" name="quizquestions[questions[question_id]]"');
       $("#question_add").addClass('creation');
     }
 //<% end %>     
