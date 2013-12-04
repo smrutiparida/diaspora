@@ -1,35 +1,39 @@
-#create_question
+.span-13.append-1.last
 
-  = form_for Question.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |question|
-    
-    %h4
-      %p Step 1: Question Type    
-      = select_tag "question[qtype]", "<option selected='selected' value='multiple_choice'>Multiple Choice</option><option value='fill_in_the_blanks'>Fill in the Blanks</option><option value='true_false'>True/False</option>".html_safe  
-    
+  #create_question
+
+    = form_for Question.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |question|
       
-    %h4
-      %p#question_title Step 2: What is the question    
-      = text_field_tag 'question[description]', nil, :placeholder => 'Question..', :style => 'width:98%;'
-
+      %h4
+        %p Step 1: Question Type    
+        = select_tag "question[qtype]", "<option selected='selected' value='multiple_choice'>Multiple Choice</option><option value='fill_in_the_blanks'>Fill in the Blanks</option><option value='true_false'>True/False</option>".html_safe  
       
-    %h4  
-      %p#option_title Step 3: Options
-      %span#question_options
-        = text_field_tag 'question[answer1]', nil, :placeholder => 'First Answer..', :style => 'width:50%;'
-        = text_field_tag 'question[answer2]', nil, :placeholder => 'Second Answer..', :style => 'width:50%;'
-        = text_field_tag 'question[answer3]', nil, :placeholder => 'Third Answer..', :size => 'width:50%;'
-        = text_field_tag 'question[answer4]', nil, :placeholder => 'Fourth Answer..', :size => 'width:50%;'
-
-    %h4  
-      %p#answer_title Step 4: Correct Answer
-      %span#question_correct_answer
-        = select_tag "question[answer]", "<option selected='selected' value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option>".html_safe 
         
-    %br
-    %br
+      %h4
+        %p#question_title Step 2: What is the question    
+        = text_field_tag 'question[description]', nil, :placeholder => 'Question..', :style => 'width:98%;'
 
-    %p
-      = question.submit "Add", 'data-disable-with' => "In Progress..", :class => 'button creation'
+        
+      %h4  
+        %p#option_title Step 3: Options
+        %span#question_options
+          = text_field_tag 'question[answer1]', nil, :placeholder => 'First Answer..', :style => 'width:50%;'
+          = text_field_tag 'question[answer2]', nil, :placeholder => 'Second Answer..', :style => 'width:50%;'
+          = text_field_tag 'question[answer3]', nil, :placeholder => 'Third Answer..', :size => 'width:50%;'
+          = text_field_tag 'question[answer4]', nil, :placeholder => 'Fourth Answer..', :size => 'width:50%;'
+
+      %h4  
+        %p#answer_title Step 4: Correct Answer
+        %span#question_correct_answer
+          = select_tag "question[answer]", "<option selected='selected' value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option>".html_safe 
+          
+      %br
+      %br
+
+      %p
+        = question.cancel "Cancel", :id => 'question_form_cancel', :class => 'button'
+        = question.submit "Add", 'data-disable-with' => "In Progress..", :class => 'button creation'
+
 
 :javascript
 
