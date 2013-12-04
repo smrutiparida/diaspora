@@ -31,7 +31,7 @@
     = render 'questions/new'
 
 :javascript
-  $('#question_form_cancel').click(function(){
+  $('#question_form_cancel').live('click', function(){
   //  hidden_form_active = false;
     $('#form_space').empty();
   //  $.facebox.close();
