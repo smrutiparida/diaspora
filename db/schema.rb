@@ -43,10 +43,10 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
 
   create_table "questions", :force => true do |t|
     t.string   "description",                        :null => false
-    t.string   "qtype",                               :null => false
+    t.string   "qtype",                              :null => false
     t.string   "answer",                             :null => false
     t.string   "all_answers",
-    t.datetime "created_at",                          :null => false
+    t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
     t.string   "tags",    
     t.string   "diaspora_handle"
