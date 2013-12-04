@@ -1,5 +1,5 @@
 var response = <%= raw @response.to_json %>;
-<% if @question_bank %> 
+/*<% if @question_bank %> 
   Diaspora.page.flashMessages.render({ 'success':response.success, 'notice':response.message });
   if(response.success){
     
@@ -16,6 +16,7 @@ var response = <%= raw @response.to_json %>;
   }
 
  <% else %>
+ */
   Diaspora.page.flashMessages.render({ 'success':response.success, 'notice':response.message });
   if(response.success){
     
@@ -50,5 +51,5 @@ var response = <%= raw @response.to_json %>;
       $('#people_stream').append(html_string);
       //hidden_form_active = false;
     }
-<% end %>     
+//<% end %>     
     

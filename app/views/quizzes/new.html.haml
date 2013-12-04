@@ -12,7 +12,7 @@
     //= form_for Quiz.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |quiz|  
 #leftNavBar.span-10.append-1{:style => 'height:800px;'}
   %span.add_aspect
-    = link_to "Add question to bank", "#hidden_form", :rel => 'facebox'
+    
 
   %ul.sub_nav#questions_list
     - @quizzes.each do |question|
