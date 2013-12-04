@@ -25,7 +25,7 @@ class QuestionsController < ApplicationController
 
   def create
     @question = current_user.build_post(:question, question_params)
-    Rails.logger.info(@question)
+    Rails.logger.info(@question.to_json)
     if @question.save      
       #@response = {}
       @response = @question.as_api_response(:backbone)
