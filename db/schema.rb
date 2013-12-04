@@ -42,13 +42,13 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
   add_index "aspect_visibilities", ["shareable_id", "shareable_type"], :name => "index_aspect_visibilities_on_shareable_id_and_shareable_type"
 
   create_table "questions", :force => true do |t|
-    t.string   "description",                        :null => false
-    t.string   "qtype",                               :null => false
-    t.string   "answer",                             :null => false
-    t.string   "all_answers",
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
-    t.string   "tags",    
+    t.string   "description",  :default =>  "",                :null => false
+    t.string   "qtype",        :default => "true_false",       :null => false
+    t.string   "answer",       :default => "true",             :null => false
+    t.string   "all_answers"
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+    t.string   "tags"   
     t.string   "diaspora_handle"
     t.string   "guid"
   end
@@ -298,7 +298,7 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
     t.boolean  "pending",             :default => false, :null => false
     t.string   "name"
     t.text     "description"
-    t.boolean  "file_upload"          :default => true, :null => false        
+    t.boolean  "file_upload",          :default => true, :null => false        
     t.datetime "submission_date"
     t.datetime "created_at"
     t.datetime "updated_at"    
