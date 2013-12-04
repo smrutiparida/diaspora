@@ -37,10 +37,10 @@
     hidden_form_active = false;
     $.facebox.close();
   });
-  
+
   $('#question_add').click(function(){
     hidden_form_active = false;
-    if(!hidden_form_active){
+    if(hidden_form_active == false){
       $('#form_space').append($('#hidden_form').html());
       hidden_form_active = true;
     }
