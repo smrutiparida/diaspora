@@ -31,7 +31,7 @@
       %br
 
       %p
-        = question.cancel "Cancel", :id => 'question_form_cancel', :class => 'button'
+        = button_tag "Cancel", :type => 'button', :id => 'question_form_cancel', :class => 'button'        
         = question.submit "Add", 'data-disable-with' => "In Progress..", :class => 'button creation'
 
 
