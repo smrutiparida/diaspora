@@ -309,7 +309,7 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
 
   add_index "assignments", ["status_message_guid"], :name => "index_assignments_on_status_message_guid"
 
-  create_table "documents", force => true do |t|
+  create_table "documents", :force => true do |t|
     t.integer  "tmp_old_id"
     t.integer  "author_id",                              :null => false     
     t.boolean  "public",              :default => false, :null => false
