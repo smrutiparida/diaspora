@@ -38,15 +38,15 @@
   });
   
   $('#question_add').click(function(){
-  //  hidden_form_active = false;
-  //  if(hidden_form_active){
-  //    Diaspora.page.flashMessages.render({ 'success':true, 'notice':'A question is already in process..' });
-  //  }
-  //  else {
+      hidden_form_active = false;
+      if(hidden_form_active){
+      Diaspora.page.flashMessages.render({ 'success':true, 'notice':'A question is already in process..' });
+    }
+    else {
       $('#form_space').append($('#hidden_form').html());
-      $("#question_add").attr('disabled','disabled');
-  //    hidden_form_active = true;
-  //  }
+      $("#question_add").removeClass('creation');
+      hidden_form_active = true;
+    }
     
   //  return false;
   });  
