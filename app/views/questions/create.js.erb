@@ -50,6 +50,13 @@ var response = <%= raw @response.to_json %>;
       //alert(html_string);    
       $('#people_stream').append(html_string);
       //hidden_form_active = false;
+      $('#questions_list').prepend('<li class="hoverable" data="{question_id:' +
+                               response.id +
+                              '}"><a class="action modify_aspect" href="/questions/clone/#' + 
+                              response.id
+                              '" rel="facebox">' + 
+                              response.description +
+                              '</a></li>');          
     }
 //<% end %>     
     
