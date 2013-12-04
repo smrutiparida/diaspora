@@ -13,7 +13,6 @@
 //= require jquery.placeholder
 //= require timeago
 //= require facebox
-//= require jquery-ui-1.10.3.custom.min
 //= require jquery.events.input
 //= require jquery.elastic
 //= require jquery.mentionsInput
