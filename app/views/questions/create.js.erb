@@ -12,7 +12,7 @@ var response = <%= raw @response.to_json %>;
                               response.description +
                               '</a></li>');          
     $.facebox.close();    
-    hidden_form_active = false;
+    //hidden_form_active = false;
   }
 
  <% else %>
@@ -48,7 +48,7 @@ var response = <%= raw @response.to_json %>;
       html_string += part_string + '</div>';
       //alert(html_string);    
       $('#people_stream').append(html_string);
-      hidden_form_active = false;
+      //hidden_form_active = false;
     }
 <% end %>     
     

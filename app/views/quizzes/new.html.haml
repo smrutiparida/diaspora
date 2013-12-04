@@ -23,9 +23,7 @@
 
 .span-13.last
   #people_stream.stream.contacts
-  %h3.no_contacts
-    = link_to "Add question", "#", :id=>"question_add", :class => 'button creation'
-    = "or Load from the Question bank"
+    = link_to "Add question", "#", :id=>"question_add", :class => 'button creation', :style =>'float:right;margin:10px;'    
   #form_space    
   
 
@@ -33,21 +31,21 @@
     = render 'questions/new'
 
 :javascript
-  $('#question_form_cancel').click(function(){
-    hidden_form_active = false;
-    $('#form_space').empty();
-    $.facebox.close();
-  });
-
+  //$('#question_form_cancel').click(function(){
+  //  hidden_form_active = false;
+  //  $('#form_space').empty();
+  //  $.facebox.close();
+  //});
+  
   $('#question_add').click(function(){
-    hidden_form_active = false;
-    if(hidden_form_active){
-      Diaspora.page.flashMessages.render({ 'success':true, 'notice':'A question is already in process..' });
-    }
-    else {
+  //  hidden_form_active = false;
+  //  if(hidden_form_active){
+  //    Diaspora.page.flashMessages.render({ 'success':true, 'notice':'A question is already in process..' });
+  //  }
+  //  else {
       $('#form_space').append($('#hidden_form').html());
-      hidden_form_active = true;
-    }
+  //    hidden_form_active = true;
+  //  }
     
-    return false;
+  //  return false;
   });  
