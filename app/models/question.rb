@@ -14,10 +14,10 @@ class Question < ActiveRecord::Base
 
   #delegate :author_name, to: :current_user, prefix: true
 
-  belongs_to :user
+  #belongs_to :user
 
-  belongs_to :person  
-  validates :person, :presence => true
+  #belongs_to :person  
+  #validates :person, :presence => true
 
   #belongs_to :quiz
 
