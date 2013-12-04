@@ -7,7 +7,7 @@ class Question < ActiveRecord::Base
     t.add :guid
     t.add :created_at  
     t.add :description
-    t.add :type
+    t.add :qtype
     t.add :answer
     t.add :all_answers
   end
@@ -38,7 +38,7 @@ class Question < ActiveRecord::Base
   def self.diaspora_initialize(params = {})
     question = self.new
     question.description = params[:description]
-    question.type = params[:qtype]
+    question.qtype = params[:qtype]
     Rails.logger.info(question.to_json)
     question.answer = params[:answer]    
     question.diaspora_handle = params[:author].diaspora_handle    
