@@ -12,6 +12,8 @@
   %div
     = link_to 'Create a Quiz', '/quizzes/new', :class => 'button creation'
 
+  %div#display_quiz
+
 :javascript
   $(".selectable").hover(
     function() {$(this).find('button').removeClass('hidden');},
@@ -19,12 +21,14 @@
   );
 
   function showQuiz(quizid){    
+    ('#display_quiz').empty();
     $.ajax({
       url: '/quizzes/'+ quizid,
-      dataType: 'json',
+      dataType: 'html',
       type: 'GET',
       success: function(data) {
-        //link.attr("href", href + "/" + data["id"]);        
+
+         ('#display_quiz').html(data);
       }
     });
   }          
