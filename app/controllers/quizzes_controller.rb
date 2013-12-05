@@ -30,7 +30,6 @@ class QuizzesController < ApplicationController
     respond_with do |format|
       format.html {render :layout => false}
       format.json {render :json => @quizzes.to_json}
-      }
     end
   end  
 
