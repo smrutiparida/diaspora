@@ -36,6 +36,10 @@ class QuizzesController < ApplicationController
   def show
     @quiz = Quiz.where(:diaspora_handle => current_user.diaspora_handle, id: params[:id]).first
     
+    respond_with do |format|
+      format.html {render :layout => false}
+      format.json {render :json => @quiz.to_json}
+    end
     raise ActiveRecord::RecordNotFound unless @quiz
   end
 
