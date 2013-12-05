@@ -56,7 +56,7 @@ class QuizzesController < ApplicationController
   end  
 
   def quiz_params
-    params.require(:quiz).permit(:public, :text,:submission_date,:total_marks,:submission_date, quiz_question_attributes => [:marks,quiz_attributes => [:quiz_id]])
+    params.require(:quiz).permit(:public, :text,:submission_date,:total_marks,:submission_date, :quiz_question_attributes => [:marks, :quiz_attributes => [:quiz_id]])
   end
 
   private 
