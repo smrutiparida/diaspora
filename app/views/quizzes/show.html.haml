@@ -33,7 +33,7 @@
   %div.quiz-form-content   
     %h1.quiz-form-title
       %span
-        = quiz.title
+        = @quiz.title
     - count = 0    
     - for question in @quiz[:questions]
       - count = count + 1	
