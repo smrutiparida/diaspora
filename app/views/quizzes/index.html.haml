@@ -8,7 +8,7 @@
     %ul{:style => 'float:left;width:100px;overflow:elipsis;'}
       - for quiz in @quizzes
         %li.hoverable                    
-          = link_to quiz.title, '#', :class => 'quiz-selectable', :onClick => %Q/showQuiz(#{quiz.id.to_s}, #{quiz.title});/
+          = link_to quiz.title, '#', :class => 'quiz-selectable', :onClick => %Q/showQuiz(#{quiz.id.to_s}, '#{quiz.title}');/
 
     %div#display_quiz{:style => 'float:right;'}
 
