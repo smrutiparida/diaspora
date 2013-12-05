@@ -1,25 +1,23 @@
 .span-12.last
   %h3
-    Load a quiz
+    Load a quiz or 
+    %span
+      = link_to 'Create a Quiz', '/quizzes/new', :class => 'button creation'
   %br
   .section
-    - for quiz in @quizzes
-      %div{:style => "padding:3px;"}          
-        %span.selectable{:style => 'width:100px;'}
-          = link_to quiz.title, '#', :class => 'quiz-selectable'
-          = button_tag 'View Quiz', :type => 'button', :id => 'view-quiz-' + quiz.id.to_s, :class => 'button creation hidden', :onClick => "showQuiz(" + quiz.id.to_s + ");"
-
-  %div
-    = link_to 'Create a Quiz', '/quizzes/new', :class => 'button creation'
-
-  %div#display_quiz
+    %ul{:style => 'float:left;width:50px;overflow:elipsis;'}
+      - for quiz in @quizzes
+        %li.hoverable                    
+          = link_to quiz.title, '#', :class => 'quiz-selectable', :onClick => "showQuiz(" + quiz.id.to_s + ");"
+            
+    %div#display_quiz{:style => 'float:right;'}
 
 :javascript
-  $(".selectable").hover(
-    function() {$(this).find('button').removeClass('hidden');},
-    function() {$(this).find('button').addClass('hidden');}
-  );
-
+  //$(".selectable").hover(
+  //  function() {$(this).find('button').removeClass('hidden');},
+  //  function() {$(this).find('button').addClass('hidden');}
+  //);
+  
   function showQuiz(quizid){    
     $('#display_quiz').empty();
     $.ajax({
@@ -31,4 +29,5 @@
         $('#display_quiz').html(data);
       }
     });
+    return false;
   }          
