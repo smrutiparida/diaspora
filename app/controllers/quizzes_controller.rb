@@ -35,8 +35,8 @@ class QuizzesController < ApplicationController
 
   def show
     @quiz = Quiz.where(:diaspora_handle => current_user.diaspora_handle, id: params[:id]).first
-    @quiz.questions = Question.joins(:quiz_questions).where('quiz_questions.quiz_id' => @quiz.id)
-    Rails.logger.info(@quiz.questions.to_json)
+    @quiz[:questions] = Question.joins(:quiz_questions).where('quiz_questions.quiz_id' => @quiz.id)
+    Rails.logger.info(@quiz[:questions].to_json)
     Rails.logger.info(@quiz.to_json)
     respond_with do |format|
       format.html {render :layout => false}
