@@ -137,7 +137,7 @@ app.views.Publisher = Backbone.View.extend({
       "location_address" : $("#location_address").val(),
       "location_coords" : serializedForm["location[coords]"],
       "assignments": serializedForm["assignments[]"],
-      "quizzes":serializedForm["quizzes[]"],
+      "quizzes":serializedForm["quizzes[]"]
     }, {
       url : "/status_messages",
       success : function() {
