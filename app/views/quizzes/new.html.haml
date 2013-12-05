@@ -46,9 +46,9 @@
       = hidden_field_tag 'quiz[total_marks]', '0'    
 
     %span
-      = fields_for @quiz.quizquestion do |qquestion|
+      = fields_for @quiz.quiz_question do |qquestion|
          = hidden_field_tag 'qquestion[mark]', '0', :placeholder => 'marks.', :style => 'width:98%;' 
-         = fields_for @quiz.quizquestion.question do |q|
+         = fields_for @quiz.quiz_question.question do |q|
            = hidden_field_tag 'q[id]', '24'
     %p
       = quiz.submit "Save Quiz", 'data-disable-with' => "In Progress..", :class => 'button creation'

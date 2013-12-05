@@ -24,7 +24,7 @@ class Question < ActiveRecord::Base
   #before_destroy :ensure_user_question
   #after_destroy :clear_empty_status_message
 
-  has_many :quiz_question
+  has_many :quiz_questions
 
   scope :for_a_stream, lambda {
     includes(:questions).
