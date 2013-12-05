@@ -35,12 +35,12 @@
     - for question in @quiz[:questions]
       - count = count + 1	
       %div.quiz-form-question-set
-        - if question.qtype == "mutiple_choice" or question.qtype == "true_false"
+        - if question.qtype == "multiple_choice" or question.qtype == "true_false"
           %div.quiz-form-question.quiz-form-type-radio
             %div.quiz-form-question-title
               %span.quiz-form-question-number
-                count
-              question.title
+                = count
+              = question.title
             %div.quiz-form-question-option
               %ul.quiz-form-list
                 - if question.qtype == "true_false"
@@ -67,8 +67,8 @@
           %div.quiz-form-question.quiz-form-essay
             %div.quiz-form-question-title
               %span.quiz-form-question-number
-                count
-              question.title  
+                = count
+              = question.title  
             %div.quiz-form-question-option
               = text_field_tag 'answer', nil, :class=> 'quiz-form-essay'
 
