@@ -36,6 +36,17 @@
   </div>
 {{/if}}
 
+{{#if quizzes}}
+  <div class="photo_attachments">
+    {{#each quiz}}
+      <a href="#" class="stream-photo-link">
+        <img src="/assets/facebox/pdf.png" class="stream-photo thumb_small" rel="lightbox">
+        <span>{{name}}</span>
+      </a>
+    {{/each}}
+  </div>
+{{/if}}
+
 <div class="collapsible">
   {{{text}}}
   <div class="oembed"></div>

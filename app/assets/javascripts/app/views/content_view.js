@@ -10,7 +10,8 @@ app.views.Content = app.views.Base.extend({
       largePhoto : this.largePhoto(),
       smallPhotos : this.smallPhotos(),
       location: this.location(),
-      documents: this.documents()
+      documents: this.documents(),
+      quizzes : this.quizzes()
     });
   },
 
@@ -44,6 +45,15 @@ app.views.Content = app.views.Base.extend({
     //alert(documents[0].icon);  
     return assignments;
   },
+
+  quizzes : function() {
+    //alert("app.views.Content:Presenter:documents");
+    var quizzes = this.model.get("quizzes")    
+    if(!quizzes) { return }    
+    //alert(documents[0].icon);  
+    return quizzes;
+  },
+
 
   expandPost: function(evt) {
     //alert("app.views.Content:Presenter:expandPost");

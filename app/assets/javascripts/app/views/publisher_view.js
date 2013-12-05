@@ -136,7 +136,8 @@ app.views.Publisher = Backbone.View.extend({
       "services" : serializedForm["services[]"],
       "location_address" : $("#location_address").val(),
       "location_coords" : serializedForm["location[coords]"],
-      "assignments": serializedForm["assignments[]"]
+      "assignments": serializedForm["assignments[]"],
+      "quizzes":serializedForm["quizzes[]"],
     }, {
       url : "/status_messages",
       success : function() {
@@ -224,6 +225,17 @@ app.views.Publisher = Backbone.View.extend({
       );
     });
 
+    var quizzes = new Array();
+    $('li.publisher_quiz span').each(function(){
+      var quiz_name = $(this).text();      
+      quizzes.push(
+        {
+          "icon":"/assets/facebox/xml.png",
+          "name": quiz_name
+        }
+      );
+    });
+
        
     var mentioned_people = new Array();
     var regexp = new RegExp("@{\(\[\^\;\]\+\); \(\[\^\}\]\+\)}", "g");
@@ -254,6 +266,7 @@ app.views.Publisher = Backbone.View.extend({
       "photos" : photos,
       "documents": documents,
       "assignments" : assignments,
+      "quizzes": quizzes,
       "frame_name" : "status",
       "title" : serializedForm["status_message[text]"],
       "address" : $("#location_address").val(),
@@ -320,6 +333,9 @@ app.views.Publisher = Backbone.View.extend({
     
     $('#assignmentdropzone').find('li').remove();
     this.$("input[name='documents[]']").remove();
+
+    $('#quizdropzone').find('li').remove();
+    this.$("input[name='quizzes[]']").remove();
 
     // close publishing area (CSS)
     this.close();
