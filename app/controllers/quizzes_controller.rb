@@ -33,6 +33,7 @@ class QuizzesController < ApplicationController
         render :json => @quizzes.to_json
       }
     end
+  end  
 
   def show
     @quiz = if user_signed_in?
