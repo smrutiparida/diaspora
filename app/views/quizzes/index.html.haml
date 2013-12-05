@@ -21,14 +21,14 @@
   );
 
   function showQuiz(quizid){    
-    ('#display_quiz').empty();
+    $('#display_quiz').empty();
     $.ajax({
       url: '/quizzes/'+ quizid,
       dataType: 'html',
       type: 'GET',
       success: function(data) {
 
-         ('#display_quiz').html(data);
+        $('#display_quiz').html(data);
       }
     });
   }          
