@@ -50,7 +50,7 @@ app.views.Content = app.views.Base.extend({
     //alert("app.views.Content:Presenter:documents");
     var quizzes = this.model.get("quizzes")    
     if(!quizzes) { return }    
-    //alert(documents[0].icon);  
+    alert(quizzes[0].icon);  
     return quizzes;
   },
 
