@@ -1,0 +1,27 @@
+.span-12.last
+  %h3
+    Load a quiz
+  %br
+  .section
+    - for quiz in @quizzes
+      %div{:style => "padding:3px;"}          
+        %span.selectable
+          = link_to quiz.title, '#', , :class => 'quiz-selectable'
+          = button_tag 'View Quiz', :type => 'button', :id => 'view-quiz-' + quiz.id, :class => 'button creation hidden', :onClick => "showQuiz(" + quiz.id ");"
+
+:javascript
+  $(".quiz-selectable").hover(
+    function() {$(this).next().removeClass('hidden');)},
+    function() {$(this).next().addClass('hidden');)}
+  );
+
+  function showQuiz(quizid){    
+    $.ajax({
+      url: '/quizzes/'+ quizid + '/show'
+      dataType: 'json',
+      type: 'GET',
+      success: function(data) {
+        //link.attr("href", href + "/" + data["id"]);        
+      }
+    });
+  }          

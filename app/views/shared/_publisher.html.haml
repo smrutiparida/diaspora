@@ -53,7 +53,12 @@
           = link_to '/assignments/new', :rel => 'facebox' do
             = image_tag 'icons/bookmark.png', :alt => t('.upload_documents').titleize, :class => 'publisher_image'
             %span
-              = "Assignment"              
+              = "Assignment"
+        #quiz-upload.btn{:title => t('.upload_documents'), :rel => 'facebox'}
+          = link_to '/quizzes/', :rel => 'facebox' do
+            = image_tag 'icons/bookmark.png', :alt => t('.upload_documents').titleize, :class => 'publisher_image'
+            %span
+              = "Quiz"                    
         = hidden_field :location, :coords
             
 

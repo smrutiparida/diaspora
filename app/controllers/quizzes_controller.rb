@@ -26,7 +26,13 @@ class QuizzesController < ApplicationController
 
   def index
     @quizzes = Quiz.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
-  end
+    
+    respond_with do |format|
+      format.html
+      format.json {      
+        render :json => @quizzes.to_json
+      }
+    end
 
   def show
     @quiz = if user_signed_in?
