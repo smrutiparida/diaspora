@@ -7,7 +7,7 @@
       %div{:style => "padding:3px;"}          
         %span.selectable
           = link_to quiz.title, '#', :class => 'quiz-selectable'
-          = button_tag 'View Quiz', :type => 'button', :id => 'view-quiz-' + quiz.id, :class => 'button creation hidden', :onClick => "showQuiz(" + quiz.id + ");"
+          = button_tag 'View Quiz', :type => 'button', :id => 'view-quiz-' + quiz.id.to_s, :class => 'button creation hidden', :onClick => "showQuiz(" + quiz.id.to_s + ");"
 
   %div
     = link_to 'Create a Quiz', '/quizzes/new', :class => 'button creation'
