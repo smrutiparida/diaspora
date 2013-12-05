@@ -16,14 +16,15 @@ class Quiz < ActiveRecord::Base
     t.add :randomize_questions
   end
 
+  has_many :quiz_questions, :dependent => :destroy
   has_many :questions, :through => :quiz_questions
   accepts_nested_attributes_for :quiz_questions
 
-  belongs_to :status_message, :foreign_key => :status_message_guid  , :primary_key => :guid
-  validates_associated :status_message
-  delegate :author_name, to: :status_message, prefix: true
+  #belongs_to :status_message, :foreign_key => :status_message_guid  , :primary_key => :guid
+  #validates_associated :status_message
+  #delegate :author_name, to: :status_message, prefix: true
 
-  validate :ownership_of_status_message
+  #validate :ownership_of_status_message
 
   #before_destroy :ensure_user_assignment
   #after_destroy :clear_empty_status_message
