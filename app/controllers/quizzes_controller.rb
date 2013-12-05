@@ -40,7 +40,8 @@ class QuizzesController < ApplicationController
 
   def create
     @quiz = current_user.build_post(:quiz, quiz_params)
-    if @quiz.save      
+    Rails.logger.info(@quiz.to_json)
+    if @quiz.save!
       #@response = {}
       @response = @quiz.as_api_response(:backbone)
       @response[:success] = true
