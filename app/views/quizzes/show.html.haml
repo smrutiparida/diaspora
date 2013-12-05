@@ -45,23 +45,23 @@
               %ul.quiz-form-list
                 - if question.type == "true_false"
                   %li
-                    = radio_button 'True',:class=> 'quiz-form-radio'
+                    = radio_button_tag 'True', 'True', :class=> 'quiz-form-radio'
                     = label_tag 'True', 'True'
                   %li  
-                    = radio_button 'False',:class=> 'quiz-form-radio'
+                    = radio_button_tag 'False', 'False', :class=> 'quiz-form-radio'
                     = label_tag 'False', 'False'
                 - else 
                   %li
-                    = radio_button 'answer1',:class=> 'quiz-form-radio'
+                    = radio_button_tag 'answer1', 'answer1', :class=> 'quiz-form-radio'
                     = label_tag 'Answer1', question.all_answers["answer1"]
                   %li  
-                    = radio_button 'answer2,:class=> 'quiz-form-radio'
+                    = radio_button_tag 'answer2', 'answer2', :class=> 'quiz-form-radio'
                     = label_tag 'Answer2', question.all_answers["answer1"]
                   %li
-                    = radio_button 'answer3',:class=> 'quiz-form-radio'
+                    = radio_button_tag 'answer3', 'answer3', :class=> 'quiz-form-radio'
                     = label_tag 'Answer3', question.all_answers["answer1"]
                   %li  
-                    = radio_button 'answer4',:class=> 'quiz-form-radio'
+                    = radio_button_tag 'answer4', 'answer4', :class=> 'quiz-form-radio'
                     = label_tag 'Answer4', question.all_answers["answer1"]    
         - else
           %div.quiz-form-question.quiz-form-essay
