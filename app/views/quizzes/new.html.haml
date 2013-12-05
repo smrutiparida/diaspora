@@ -45,10 +45,10 @@
       = check_box_tag 'quiz[randomize_questions]', 'true' , true
       = hidden_field_tag 'quiz[total_marks]', '0'    
 
-    %span      
-      <% quiz.fields_for :quiz_questions do |quiz_question| %>
-        <%= quiz_question.input :mark, '0' %>
-        <%= quiz_question.input :question_id, '24', :as => :hidden %>
+    %span
+      - quiz.fields_for(:quiz_questions) do |quiz_question|
+        = quiz_question.input :mark, '0'
+        = quiz_question.input :question_id, '24'
     %p
       = quiz.submit "Save Quiz", 'data-disable-with' => "In Progress..", :class => 'button creation'
     #questionlist  
