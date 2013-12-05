@@ -1,15 +1,40 @@
--#   Copyright (c) 2010-2011, Diaspora Inc.  This file is
--#   licensed under the Affero General Public License version 3 or later.  See
--#   the COPYRIGHT file.
-
-#leftNavBar.span-5.append-1
-  %span.add_aspect
-    = link_to "Add a question", "questions/new", :rel => 'facebox'
-
-  %ul.sub_nav#aspects_list
-    - @questions.each do |question|
-      %li.hoverable{:data => {:question_id => question.id}}
-        %a.action.modify_aspect{:href => "/questions/clone/#{question.id}", :rel => "facebox"}          
-        %a.selectable{:href => "#"}
+- count = count + 1	
+  %div.quiz-form-question-set
+    - if question.qtype == "multiple_choice" or question.qtype == "true_false"
+      %div.quiz-form-question.quiz-form-type-radio
+        %div.quiz-form-question-title
+          %span.quiz-form-question-number
+            = count
           = question.description
+        %div.quiz-form-question-option
+          %ul.quiz-form-list
+            - if question.qtype == "true_false"
+              %li
+                = radio_button_tag 'True', 'True', :class=> 'quiz-form-radio'
+                = label_tag 'True', 'True'
+              %li  
+                = radio_button_tag 'False', 'False', :class=> 'quiz-form-radio'
+                = label_tag 'False', 'False'
+            - else 
+              - answer_options = JSON.parse(question.all_answers)
+              %li
+                = radio_button_tag 'answer1', 'answer1', :class=> 'quiz-form-radio'
+                = label_tag 'Answer1', answer_options["answer1"]
+              %li  
+                = radio_button_tag 'answer2', 'answer2', :class=> 'quiz-form-radio'
+                = label_tag 'Answer2', answer_options["answer2"]
+              %li
+                = radio_button_tag 'answer3', 'answer3', :class=> 'quiz-form-radio'
+                = label_tag 'Answer3', answer_options["answer3"]
+              %li  
+                = radio_button_tag 'answer4', 'answer4', :class=> 'quiz-form-radio'
+                = label_tag 'Answer4', answer_options["answer4"]
+    - else
+      %div.quiz-form-question.quiz-form-essay
+        %div.quiz-form-question-title
+          %span.quiz-form-question-number
+            = count
+          = question.description
+        %div.quiz-form-question-option
+          = text_field_tag 'answer', nil, :class=> 'quiz-form-essay'
 
