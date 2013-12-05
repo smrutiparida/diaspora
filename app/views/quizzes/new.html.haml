@@ -36,23 +36,31 @@
     = render 'questions/new'
 
 #rightNavBar.span-5{:style => 'height:800px;'}
-  = form_for @quiz, html: {class: "new_conversation form_do_not_clear"}, remote: true do |quiz|
-    %h4
-      %p Title
-      = text_field_tag 'quiz[title]', nil, :placeholder => 'About the quiz..', :style => 'width:98%;'
-         
-    %span
-      = check_box_tag 'quiz[randomize_questions]', 'true' , true
-      = hidden_field_tag 'quiz[total_marks]', '0'    
+  <% form_for @quiz, remote:true do |quiz_form| %>
 
-    %span
-      = hidden_field_tag 'quiz_questions[mark]', '0'
-      = hidden_field_tag 'quiz_questions[question_id]', '24'
-      = hidden_field_tag 'quiz_questions[mark]', '1'
-      = hidden_field_tag 'quiz_questions[question_id]', '28'
-    %p
-      = quiz.submit "Save Quiz", 'data-disable-with' => "In Progress..", :class => 'button creation'
-    #questionlist  
+    <%= quiz_form.label :Title %>
+    <%= quiz_form.text_field :title %>
+
+    <% quiz_form.fields_for :children do |child_form| %>
+
+      <%= child_form.label :mark %>
+      <%= child_form.text_field :mark %>
+
+
+      <%= child_form.label :question_id %>
+      <%= child_form.text_field :question_id %>
+
+      <% unless child_form.object.new_record? %>
+        <% # Don't forget to name both of these '_destroy' in Rails 3 %>
+        <%= child_form.check_box '_delete' %>
+        <%= child_form.label '_delete', 'Remove' %>
+      <% end %>
+
+    <% end %>
+
+    <%= submit_tag %>
+  <% end %>
+  
 
 :javascript
   $('#question_form_cancel').live('click', function(){
