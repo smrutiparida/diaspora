@@ -56,11 +56,12 @@ class Quiz < ActiveRecord::Base
     quiz
   end
 
-  def << (sharedobjects)    
-    Rails.logger.info(sharedobjects.to_json)
-    self.quiz_questions << sharedobjects
-  end
+  def add_to_streams(quiz, questions_to_insert)
+    inserted_question_ids = questions_to_insert.map{|x| x.id}
 
-
+    questions_to_insert.each do |question|
+      question << post
+    end
+  end  
 end  
   

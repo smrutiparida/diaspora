@@ -39,9 +39,13 @@ class QuizzesController < ApplicationController
   end
 
   def create
-    @quiz = current_user.build_post(:quiz, quiz_params)
+    @quiz = current_user.build_post(:quiz, params[:quiz])
+    Rails.logger.info(@quiz.to_json)
+    @quiz.quiz_question.build
     Rails.logger.info(@quiz.to_json)
     if @quiz.save!
+      #questions = questions_from_ids(params[:quiz_question])
+      #add_to_quizset(@quiz, questions)
       #@response = {}
       @response = @quiz.as_api_response(:backbone)
       @response[:success] = true
@@ -56,12 +60,16 @@ class QuizzesController < ApplicationController
     end  
   end  
 
-  def quiz_params
-    params.require(:quiz).permit(:public, :title,:randomize_questions,:submission_date,:total_marks,:quiz_question_attributes => [:marks], :question_attributes => [:id])
-  end
+  #def quiz_params
+  #  params.require(:quiz).permit(:public, :title,:randomize_questions,:submission_date,:total_marks,:quiz_question_attributes => [:marks], :question_attributes => [:id])
+  #end
 
   private 
 
+  #def questions_from_ids(questions)
+  #  Question.where(:id => aspect_ids)
+  #end
+  
   def get_question_bank
   	@quizzes = Question.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
 	  #@quizzes = @quizzes.for_a_stream.paginate(:page => params[:page], :per_page => 100)
