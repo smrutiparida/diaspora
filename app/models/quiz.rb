@@ -6,8 +6,7 @@ class Quiz < ActiveRecord::Base
   # NOTE API V1 to be extracted
   acts_as_api
   api_accessible :backbone do |t|
-    t.add :id
-    t.add :guid
+    t.add :id    
     t.add :created_at    
     t.add :author
     t.add :public
