@@ -342,6 +342,7 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
     t.string   "status_message_guid"
     t.integer  "comments_count"  
     t.boolean  "randomize_questions"  
+    t.string   "guid",                                   :null => false
   end
 
   add_index "quizzes", ["status_message_guid"], :name => "index_quizzes_on_status_message_guid"  
