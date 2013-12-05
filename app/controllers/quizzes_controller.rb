@@ -28,9 +28,8 @@ class QuizzesController < ApplicationController
     @quizzes = Quiz.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
     
     respond_with do |format|
-      format.html
-      format.json {      
-        render :json => @quizzes.to_json
+      format.html {render :layout => false}
+      format.json {render :json => @quizzes.to_json}
       }
     end
   end  
