@@ -47,19 +47,12 @@
 
     %span
       = fields_for @quiz.quiz_question do |qquestion|
-         = hidden_field_tag 'qquestion[mark]', '0', :placeholder => 'marks.', :style => 'width:98%;' 
-         = fields_for @quiz.quiz_question.question do |q|
-           = hidden_field_tag 'q[id]', '24'
+        = hidden_field_tag 'qquestion[mark]', '0', :placeholder => 'marks.', :style => 'width:98%;' 
+        = fields_for @quiz.quiz_question.question do |q|
+          = hidden_field_tag 'q[id]', '24'
     %p
       = quiz.submit "Save Quiz", 'data-disable-with' => "In Progress..", :class => 'button creation'
     #questionlist  
-
-<%  patient_form.fields_for :appointments do |appointment_form| %>
-    <p>
-      <%= appointment_form.label :appointment_date, "Appointment Date" %>
-      <%= appointment_form.date_field :appointment_date %>
-    </p>
- <% end %>
 
 :javascript
   $('#question_form_cancel').live('click', function(){
