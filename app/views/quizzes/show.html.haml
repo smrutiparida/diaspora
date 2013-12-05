@@ -57,16 +57,16 @@
                   - answer_options = question.all_answers.to_json
                   %li
                     = radio_button_tag 'answer1', 'answer1', :class=> 'quiz-form-radio'
-                    = label_tag 'Answer1', answer_options.answer1
+                    = label_tag 'Answer1', answer_options["answer1"]
                   %li  
                     = radio_button_tag 'answer2', 'answer2', :class=> 'quiz-form-radio'
-                    = label_tag 'Answer2', answer_options.answer2
+                    = label_tag 'Answer2', answer_options["answer2"]
                   %li
                     = radio_button_tag 'answer3', 'answer3', :class=> 'quiz-form-radio'
-                    = label_tag 'Answer3', answer_options.answer3
+                    = label_tag 'Answer3', answer_options["answer3"]
                   %li  
                     = radio_button_tag 'answer4', 'answer4', :class=> 'quiz-form-radio'
-                    = label_tag 'Answer4', answer_options.answer4
+                    = label_tag 'Answer4', answer_options["answer4"]
         - else
           %div.quiz-form-question.quiz-form-essay
             %div.quiz-form-question-title
