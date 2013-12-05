@@ -54,7 +54,7 @@
                     = radio_button_tag 'False', 'False', :class=> 'quiz-form-radio'
                     = label_tag 'False', 'False'
                 - else 
-                  - answer_options = question.all_answers.to_json
+                  - answer_options = JSON.parse(question.all_answers)
                   %li
                     = radio_button_tag 'answer1', 'answer1', :class=> 'quiz-form-radio'
                     = label_tag 'Answer1', answer_options["answer1"]
