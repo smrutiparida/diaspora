@@ -1,0 +1,74 @@
+:css
+  .quiz-form-content{margin:0;padding:0px 40px;}
+  .quiz-form-ie6 .quiz-form-content{margin-right:2px;}
+  .quiz-form-footer{min-height:60px;padding:15px 0;text-align:center;margin:0px;}
+  .quiz-form-header{background:#D39598;color:#FFFFFF;position:relative;}
+  .quiz-form-question-title{position:relative;font-weight:bold;color:#362F15;margin:0;}
+  .quiz-form-question-title{position:static;}
+  .quiz-form-question-number{}
+  .quiz-form-question{margin:20px 0;clear:both;position:relative;}
+  .quiz-form-question-set{margin:0 0 0 5px;}
+  .quiz-form-button{background:#fff ;font-size:120% !important;text-decoration:none;font-weight:normal;padding:8px 15px !important;margin:5px;border:1px solid rgba(255,255,255,.5) !important;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;-moz-box-shadow:0px 1px 2px #6e6e6e;-webkit-box-shadow:0px 1px 2px #6e6e6e;box-shadow:0px 1px 2px #6e6e6e;}
+  .ie .quiz-form-button{border:1px outset #000 !important;}.quiz-form-buttons, .quiz-form-button-bar input{display:inline;}.quiz-form-button:hover{background-position:0 -40px;}.quiz-form-button-bar{text-align:center;margin:0 0 10px 0;}
+
+  .quiz-form-wrapper h1, .quiz-form-wrapper h2, .quiz-form-wrapper h3, .quiz-form-wrapper h4, .quiz-form-wrapper h5, .quiz-form-wrapper h6{text-align:left;}
+  .quiz-form-wrapper h1{font-size:1.55em;margin:.5em 0;}
+  .quiz-form-wrapper h2{font-size:1.3em;}
+  .quiz-form-wrapper h3{font-size:1.15em;}
+  .quiz-form-wrapper h4{font-size:.95em;}
+  h1.quiz-form-title{color:#65769B;margin:0;padding:0 0 35px 0;font-weight:bold;text-align:center;font-size:2.6em;}
+  .quiz-form-wrapper, .quiz-form-wrapper p, .quiz-form-wrapper li, .quiz-form-wrapper td, .quiz-form-wrapper th, .quiz-form-wrapper select, .quiz-form-wrapper input, .quiz-form-wrapper textarea{font-family:'Lucida Grande',Tahoma,Verdana,Arial,sans-serif, sans-serif;font-size:small;}
+  .quiz-form-wrapper input:focus, .quiz-form-wrapper select:focus, .quiz-form-wrapper textarea:focus{background-color:#feffaf !important;}
+  .quiz-form-ie7 *{zoom:1;}
+  .quiz-form-ie7 .quiz-form-footer{padding:0px;margin-top:-10px;}
+  .quiz-form-ie6{background-image:none;}
+  ul.quiz-form-list{list-style:none outside none;margin:0pt;overflow:hidden;clear:left;}
+  .quiz-form-radio{left:0.1em;right:auto; }
+  
+
+%div.quiz-form-wrapper
+  %div.quiz-form-content   
+    %h1.quiz-form-title
+      %span
+        quiz.title
+    - count = 0    
+    - for question in @quiz[:questions]
+      - count = count + 1	
+      %div.quiz-form-question-set
+        - if question.type == "mutiple_choice" or question.type == "true_false"
+          %div.quiz-form-question.quiz-form-type-radio
+            %div.quiz-form-question-title
+              %span.quiz-form-question-number
+                count
+              question.title
+            %div.quiz-form-question-option
+              %ul.quiz-form-list
+                - if question.type == "true_false"
+                  %li
+                    = radio_button 'True',:class=> 'quiz-form-radio'
+                    = label_tag 'True', 'True'
+                  %li  
+                    = radio_button 'False',:class=> 'quiz-form-radio'
+                    = label_tag 'False', 'False'
+                - else 
+                  %li
+                    = radio_button 'answer1',:class=> 'quiz-form-radio'
+                    = label_tag 'Answer1', question.all_answers["answer1"]
+                  %li  
+                    = radio_button 'answer2,:class=> 'quiz-form-radio'
+                    = label_tag 'Answer2', question.all_answers["answer1"]
+                  %li
+                    = radio_button 'answer3',:class=> 'quiz-form-radio'
+                    = label_tag 'Answer3', question.all_answers["answer1"]
+                  %li  
+                    = radio_button 'answer4',:class=> 'quiz-form-radio'
+                    = label_tag 'Answer4', question.all_answers["answer1"]    
+        - else
+          %div.quiz-form-question.quiz-form-essay
+            %div.quiz-form-question-title
+              %span.quiz-form-question-number
+                count
+              question.title  
+            %div.quiz-form-question-option
+              = text_field_tag 'answer', nil, :class=> 'quiz-form-essay'
+
