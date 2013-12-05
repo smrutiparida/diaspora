@@ -40,7 +40,7 @@
             %div.quiz-form-question-title
               %span.quiz-form-question-number
                 = count
-              = question.title
+              = question.description
             %div.quiz-form-question-option
               %ul.quiz-form-list
                 - if question.qtype == "true_false"
@@ -68,7 +68,7 @@
             %div.quiz-form-question-title
               %span.quiz-form-question-number
                 = count
-              = question.title  
+              = question.description
             %div.quiz-form-question-option
               = text_field_tag 'answer', nil, :class=> 'quiz-form-essay'
 
