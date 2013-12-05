@@ -52,6 +52,7 @@ class Quiz < ActiveRecord::Base
     quiz.title = params[:title]
     quiz.total_marks = params[:total_marks]    
     quiz.randomize_questions = false unless params[:randomize_questions]
+    quiz.build_quiz_questions(params[:quiz_questions_attributes])
             
     quiz
   end
