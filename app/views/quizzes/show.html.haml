@@ -36,4 +36,5 @@
         = @quiz.title
     - count = 0    
     - for question in @quiz[:questions]
-      = render 'quizzes/question', :question => question
+      - count = count + 1	
+      = render 'quizzes/question', :question => question, :count => count
