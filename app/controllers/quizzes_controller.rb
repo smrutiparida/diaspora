@@ -34,12 +34,8 @@ class QuizzesController < ApplicationController
   end  
 
   def show
-    @quiz = if user_signed_in?
-      current_user.quizzes_from(Person.find_by_guid(params[:person_id])).where(id: params[:id]).first
-    else
-      Quiz.where(id: params[:id], public: true).first
-    end
-
+    @quiz = Quiz.where(:diaspora_handle => current_user.diaspora_handle, id: params[:id]).first
+    
     raise ActiveRecord::RecordNotFound unless @quiz
   end
 
