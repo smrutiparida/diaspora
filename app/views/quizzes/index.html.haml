@@ -20,7 +20,7 @@
 
   function showQuiz(quizid){    
     $.ajax({
-      url: '/quizzes/'+ quizid + '/show',
+      url: '/quizzes/'+ quizid,
       dataType: 'json',
       type: 'GET',
       success: function(data) {
