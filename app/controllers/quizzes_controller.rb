@@ -40,7 +40,7 @@ class QuizzesController < ApplicationController
 
   def create
     @quiz = current_user.build_post(:quiz, params[:quiz])
-    Rails.logger.info(@quiz.to_json)
+    Rails.logger.info(params.to_json)
     @quiz.quiz_question.build
     Rails.logger.info(@quiz.to_json)
     if @quiz.save!
