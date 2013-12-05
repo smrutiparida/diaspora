@@ -5,7 +5,7 @@
       = link_to 'Create a Quiz', '/quizzes/new', :class => 'button creation'
   %br
   .section
-    %ul{:style => 'float:left;width:50px;overflow:elipsis;'}
+    %ul{:style => 'float:left;width:100px;overflow:elipsis;'}
       - for quiz in @quizzes
         %li.hoverable                    
           = link_to quiz.title, '#', :class => 'quiz-selectable', :onClick => "showQuiz(" + quiz.id.to_s + ',' + quiz.title + ");"
@@ -27,7 +27,7 @@
       success: function(data) {
 
         $('#display_quiz').html(data);
-        $('#display_quiz').append('<a class="button creation" href="#" onClick="attachQuiz(' + quizid + ',' + quiztitle+ ');">Assign Quiz</a>');
+        $('#display_quiz').append('<a class="button creation" href="#" onClick="attachQuiz(' + quizid + ',\'' + quiztitle+ '\');">Assign Quiz</a>');
       }
     });
     return false;
