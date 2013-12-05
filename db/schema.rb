@@ -335,7 +335,7 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
     t.integer  "author_id",                              :null => false     
     t.boolean  "public",              :default => false, :null => false
     t.string   "diaspora_handle"
-    t.string   "guid",                                   :null => false    
+    #t.string   "guid",                                   :null => false    
     t.string   "title"
     t.integer  "total_marks"        
     t.datetime "created_at"
