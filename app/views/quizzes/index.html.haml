@@ -8,7 +8,7 @@
     %ul{:style => 'float:left;width:50px;overflow:elipsis;'}
       - for quiz in @quizzes
         %li.hoverable                    
-          = link_to quiz.title, '#', :class => 'quiz-selectable', :onClick => "showQuiz(" + quiz.id.to_s + ");"
+          = link_to quiz.title, '#', :class => 'quiz-selectable', :onClick => "showQuiz(" + quiz.id.to_s + ',' + quiz.title + ");"
             
     %div#display_quiz{:style => 'float:right;'}
 
@@ -18,7 +18,7 @@
   //  function() {$(this).find('button').addClass('hidden');}
   //);
   
-  function showQuiz(quizid){    
+  function showQuiz(quizid,quiztitle){    
     $('#display_quiz').empty();
     $.ajax({
       url: '/quizzes/'+ quizid,
@@ -27,7 +27,22 @@
       success: function(data) {
 
         $('#display_quiz').html(data);
+        $('#display_quiz').append('<a class="button creation" href="#" onClick="attachQuiz(' + quizid + ',' + quiztitle+ ');">Assign Quiz</a>');
       }
     });
     return false;
   }          
+
+  function attachQuiz(quizid, quiztitle){
+    Diaspora.page.flashMessages.render({ 'success':true, 'notice': 'Quiz added successfully' });
+    $('.content_creation form').append('<input type="hidden", value="'+ quizid +'" name="quizzes[]" />');
+    $('#quizdropzone').append('<li class="publisher_quiz" style="position:relative;"><span data-id="' + 
+        							quizid +
+        							'">' + 
+        							quiztitle +
+        							'</span><div class="x">X</div>'+
+        							'<div class="circle"></div></li>');
+      
+    $.facebox.close();
+    return false;
+  }
