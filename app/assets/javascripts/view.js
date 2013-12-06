@@ -87,6 +87,7 @@ var View = {
     });
   },
 
+/*
   search: {
     blur: function() {
       $(this).removeClass("active");
@@ -96,7 +97,7 @@ var View = {
     },
     selector: "#q"
   },
-
+*/
   dropdowns: {
     click: function(evt) {
       $(this).parent('.dropdown').toggleClass("active");
