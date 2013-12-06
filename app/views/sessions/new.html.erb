@@ -1,11 +1,25 @@
+<style type="text/css">  
+  body {
+        margin-top: 0px;
+        margin-left: 0px;
+        margin-right: 0px;
+        background-color: white;
+        background-image: url('<%= asset_path 'home.jpg' %>');
+        background-size: cover;
+        background-position: center center;
+        background-size: cover;
+        -webkit-background-size: cover;
+        padding: 0px;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        background-repeat: no-repeat;
+      }
+</style>
 <% content_for :page_title do %>
     <%= "#{AppConfig.settings.pod_name} / #{t('devise.sessions.new.sign_in')}" %>
 <% end %>
 
-<div id="login">
-  <h1 id="huge-text">
-    <%= AppConfig.settings.pod_name %>
-  </h1>
+<div id="login">  
 
   <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form-horizontal block-form"}, :autocomplete => 'off') do |f| %>
         <fieldset>
