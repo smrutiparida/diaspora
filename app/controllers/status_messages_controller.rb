@@ -50,6 +50,7 @@ class StatusMessagesController < ApplicationController
     @status_message.attach_photos_by_ids(params[:photos])
     @status_message.attach_documents_by_ids(params[:documents])
     @status_message.get_assignments_by_ids(params[:assignments])
+    @status_message.get_quizzes_by_ids(params[:quizzes])
 
     if @status_message.save
       aspects = current_user.aspects_from_ids(destination_aspect_ids)

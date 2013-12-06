@@ -34,6 +34,7 @@ class PostPresenter
         :photos => @post.photos.map {|p| p.as_api_response(:backbone)},
         :documents => @post.documents.map {|p| p.as_api_response(:backbone)},
         :assignments => @post.assignments.map {|p| p.as_api_response(:backbone)},
+        :quizzes => @post.quizzes.map {|p| p.as_api_response(:backbone)},
         :frame_name => @post.frame_name || template_name,
         :root => root,
         :title => title,

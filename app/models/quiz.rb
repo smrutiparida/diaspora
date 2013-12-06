@@ -19,31 +19,31 @@ class Quiz < ActiveRecord::Base
   has_many :questions, :through => :quiz_questions
   accepts_nested_attributes_for :quiz_questions
 
-  #belongs_to :status_message, :foreign_key => :status_message_guid  , :primary_key => :guid
-  #validates_associated :status_message
-  #delegate :author_name, to: :status_message, prefix: true
+  belongs_to :status_message, :foreign_key => :status_message_guid  , :primary_key => :guid
+  validates_associated :status_message
+  delegate :author_name, to: :status_message, prefix: true
 
-  #validate :ownership_of_status_message
+  validate :ownership_of_status_message
 
-  #before_destroy :ensure_user_assignment
-  #after_destroy :clear_empty_status_message
+  before_destroy :ensure_user_assignment
+  after_destroy :clear_empty_status_message
 
-  #def clear_empty_status_message
-  #  if self.status_message_guid && self.status_message.text_and_photos_and_documents_blank_and_assignments_blank?
-  #    self.status_message.destroy
-  #  else
-  #    true
-  #  end
-  #end
+  def clear_empty_status_message
+    if self.status_message_guid && self.text_and_photos_and_documents_blank_and_assignments_blank_and_quizzes_blank?
+      self.status_message.destroy
+    else
+      true
+    end
+  end
 
-  #def ownership_of_status_message
-  #  message = StatusMessage.find_by_guid(self.status_message_guid)
-  #  if self.status_message_guid && message
-  #    self.diaspora_handle == message.diaspora_handle
-  #  else
-  #    true
-  #  end
-  #end
+  def ownership_of_status_message
+    message = StatusMessage.find_by_guid(self.status_message_guid)
+    if self.status_message_guid && message
+      self.diaspora_handle == message.diaspora_handle
+    else
+      true
+    end
+  end
 
   def self.diaspora_initialize(params = {})
     quiz = self.new #params.to_hash.slice(:name, :description, :submission_date)
