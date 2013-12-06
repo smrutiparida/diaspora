@@ -37,10 +37,10 @@
         = render :partial => 'people/person', :locals => hash
 
       = will_paginate(@people)
-
-- if AppConfig.settings.invitations.open?
-  .span-8.last
-    %h4
-      = t('.couldnt_find_them_send_invite')
-    = render "shared/invitations"
+-#
+  - if AppConfig.settings.invitations.open?
+    .span-8.last
+      %h4
+        = t('.couldnt_find_them_send_invite')
+      = render "shared/invitations"
 

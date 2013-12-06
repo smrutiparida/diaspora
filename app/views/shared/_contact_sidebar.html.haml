@@ -5,9 +5,10 @@
 #leftNavBar.span-5.append-1
   = render 'contacts/aspect_listings'
 
-  - if AppConfig.settings.community_spotlight.enable?
-    %hr
+  -#
+    - if AppConfig.settings.community_spotlight.enable?
+      %hr
 
-    %ul.left_nav
-      %li{:class => ("active" if @spotlight)}
-        = link_to t('contacts.spotlight.community_spotlight'), community_spotlight_path, :class => "element_selector"
+      %ul.left_nav
+        %li{:class => ("active" if @spotlight)}
+          = link_to t('contacts.spotlight.community_spotlight'), community_spotlight_path, :class => "element_selector"
