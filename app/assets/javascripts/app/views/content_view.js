@@ -11,7 +11,7 @@ app.views.Content = app.views.Base.extend({
       smallPhotos : this.smallPhotos(),
       location: this.location(),
       documents: this.documents(),
-      quizzes : this.quizzes()
+      quiz : this.quiz()
     });
   },
 
