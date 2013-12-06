@@ -34,20 +34,20 @@
       });
     });
 
-%h3
-  = t('profiles.edit.your_public_profile')
+//%h3
+//  = t('profiles.edit.your_public_profile')
 
 = error_messages_for profile
 
-%h4
-  = t('profiles.edit.your_name')
-= label_tag 'profile[first_name]', t('profiles.edit.first_name')
-= text_field_tag 'profile[first_name]', profile.first_name
+//%h4
+//  = t('profiles.edit.your_name')
+//= label_tag 'profile[first_name]', t('profiles.edit.first_name')
+//= text_field_tag 'profile[first_name]', profile.first_name
 
-= label_tag 'profile[first_name]', t('profiles.edit.last_name')
-= text_field_tag 'profile[last_name]', profile.last_name
+//= label_tag 'profile[first_name]', t('profiles.edit.last_name')
+//= text_field_tag 'profile[last_name]', profile.last_name
 
-%br
+//%br
 
 %h4
   = t('profiles.edit.your_tags')
@@ -56,9 +56,9 @@
 
 %br
 
-%h4
-  = t('profiles.edit.your_photo')
+//%h4
+//  = t('profiles.edit.your_photo')
 
-= render 'photos/new_profile_photo', :aspect => aspect, :person => person
+//= render 'photos/new_profile_photo', :aspect => aspect, :person => person
 
-%br
+//%br

@@ -7,32 +7,32 @@
 
 #section_header
   %h2
-    = t('settings')
-  = render 'shared/settings_nav'
+    = "Change Password"
+  //= render 'shared/settings_nav'
 
 .span-12.prepend-5.last
-  .span-5.append-1
-    %h3
-      = t('.your_handle')
-    %p
-      %b= current_user.diaspora_handle
-  .span-5.last
-    %h3
-      = t('.your_email')
-    = form_for 'user', :url => user_path, :html => { :method => :put } do |f|
-      = f.error_messages
-      %p
-        = f.text_field :email, :value => @user.unconfirmed_email || @user.email
-        = f.submit t('.change_email'), :class => "button"
-    %br
-    - if @user.unconfirmed_email.present?
-      %p= t('.email_awaiting_confirmation', :email => @user.email, :unconfirmed_email => @user.unconfirmed_email)
-    %br
+//  .span-5.append-1
+//    %h3
+//      = t('.your_handle')
+//    %p
+//      %b= current_user.diaspora_handle
+//  .span-5.last
+//    %h3
+//      = t('.your_email')
+//    = form_for 'user', :url => user_path, :html => { :method => :put } do |f|
+//      = f.error_messages
+//      %p
+//        = f.text_field :email, :value => @user.unconfirmed_email || @user.email
+//        = f.submit t('.change_email'), :class => "button"
+//    %br
+//    - if @user.unconfirmed_email.present?
+//      %p= t('.email_awaiting_confirmation', :email => @user.email, :unconfirmed_email => @user.unconfirmed_email)
+//    %br
 
-  %br
-  %br
-  %hr
-  %br
+  //%br
+  //%br
+  //%hr
+  //%br
 
   %h3 
     = t('.change_password')

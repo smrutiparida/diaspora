@@ -114,7 +114,7 @@ Diaspora::Application.routes.draw do
   controller :users do
     get 'public/:username'          => :public,           :as => 'users_public'
     match 'getting_started'         => :getting_started,  :as => 'getting_started'
-    match 'privacy'                 => :privacy_settings, :as => 'privacy_settings'
+    #match 'privacy'                 => :privacy_settings, :as => 'privacy_settings'
     get 'getting_started_completed' => :getting_started_completed
     get 'confirm_email/:token'      => :confirm_email,    :as => 'confirm_email'
   end
@@ -193,17 +193,17 @@ Diaspora::Application.routes.draw do
 
   # External
 
-  resources :services, :only => [:index, :destroy]
-  controller :services do
-    scope "/auth", :as => "auth" do
-      match ':provider/callback' => :create
-      match :failure
-    end
-    scope 'services' do
-      match 'inviter/:provider' => :inviter, :as => 'service_inviter'
-      match 'finder/:provider'  => :finder,  :as => 'friend_finder'
-    end
-  end
+  #resources :services, :only => [:index, :destroy]
+  #controller :services do
+  #  scope "/auth", :as => "auth" do
+  #    match ':provider/callback' => :create
+  #    match :failure
+  #  end
+  #  scope 'services' do
+  #    match 'inviter/:provider' => :inviter, :as => 'service_inviter'
+  #    match 'finder/:provider'  => :finder,  :as => 'friend_finder'
+  #  end
+  #end
 
   scope 'api/v0', :controller => :apis do
     get :me
