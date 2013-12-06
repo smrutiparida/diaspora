@@ -36,12 +36,11 @@
   </div>
 {{/if}}
 
-{{#if quizzes}}
-  <div class="photo_attachments">
-    {{#each quiz}}
+{{#if quiz}}
+  <div class="photo_attachments quiz_display">
+    {{#with quiz}}
       <a href="#" class="stream-photo-link">
-        <img src="/assets/facebox/pdf.png" class="stream-photo thumb_small" rel="lightbox">
-        <span>{{name}}</span>
+        <img src="/assets/facebox/pdf.png" class="stream-photo thumb_small" rel="lightbox">        
       </a>
     {{/each}}
   </div>

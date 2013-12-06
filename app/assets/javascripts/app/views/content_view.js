@@ -46,12 +46,12 @@ app.views.Content = app.views.Base.extend({
     return assignments;
   },
 
-  quizzes : function() {
+  quiz : function() {
     //alert("app.views.Content:Presenter:documents");
     var quizzes = this.model.get("quizzes")    
-    if(!quizzes) { return }    
+    if(!quizzes || quizzes.length == 0) { return }    
     alert(quizzes[0].icon);  
-    return quizzes;
+    return quizzes[0];
   },
 
 
