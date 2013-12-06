@@ -202,12 +202,12 @@ configuration: ## Section
     ## Set this to false to prevent people from signing up for your pod
     ## without an invitation. Note that this needs to be true even for
     ## the first registration (you).
-    #enable_registrations: true
+    enable_registrations: false
     
     ## Users will automatically follow a specified account on creation
     ## Set this to false if you don't want your users to automatically
     ## follow an account upon creation.
-    #autofollow_on_join: true
+    autofollow_on_join: false
  
     ## The diasporahq account helps users start with some activity in
     ## their stream and get news about Diaspora, but if you don't want
@@ -219,7 +219,7 @@ configuration: ## Section
     invitations: ## Section
       
       ## Set this to true if you want users to be able to send invites.
-      #open: true
+      open: false
       
       ## The default amount of invitiations an invite link has.
       ## Every user has such a link. Default count is 25, uncomment to set
@@ -242,7 +242,7 @@ configuration: ## Section
     ## could be interesting Diasporas community. To add a person
     ## to the spotlight add the 'spotlight' role to it.
     community_spotlight: ## Section
-      #enable: false
+      enable: false
       ## E-Mail address users can make suggestions about who should be
       ## in the spotlight to.
       #suggest_email: 'admin@example.org'
