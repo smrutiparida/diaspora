@@ -12,12 +12,12 @@ var View = {
     $("input, textarea").placeholder();
 
     /* "Toggling" the search input */
-    $(this.search.selector)
-      .blur(this.search.blur)
-      .focus(this.search.focus)
+    //$(this.search.selector)
+    //  .blur(this.search.blur)
+    //  .focus(this.search.focus)
 
     /* Submit the form when the user hits enter */
-      .keypress(this.search.keyPress);
+    //  .keypress(this.search.keyPress);
 
     /* Dropdowns */
     $(this.dropdowns.selector)

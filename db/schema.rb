@@ -62,6 +62,8 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
     t.datetime "updated_at",                         :null => false
     t.boolean  "contacts_visible", :default => true, :null => false
     t.integer  "order_id"
+    t.string   "folder"
+    t.integer  "admin_id"
   end
 
   add_index "aspects", ["user_id", "contacts_visible"], :name => "index_aspects_on_user_id_and_contacts_visible"
