@@ -45,7 +45,7 @@
     %h4
       = t('search')
 
-   %p{:class=>"checkbox_select"}
+    %p{:class=>"checkbox_select"}
       = label_tag 'profile[searchable]', t('profiles.edit.allow_search')
       = check_box_tag 'profile[searchable]', true, profile.searchable
     %br
