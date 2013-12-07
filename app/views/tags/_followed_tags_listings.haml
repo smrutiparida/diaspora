@@ -2,5 +2,8 @@
 -#   licensed under the Affero General Public License version 3 or later.  See
 -#   the COPYRIGHT file.
 
-= link_to t('streams.followed_tag.title'), followed_tags_stream_path, :class => 'hoverable', :data => {:stream => 'followed_tags'}
+= link_to "My Hobbies", followed_tags_stream_path, :class => 'hoverable', :data => {:stream => 'followed_tags'}
 %ul#tags_list  
+
+= link_to "I am a fan of", followed_tags_stream_path, :class => 'hoverable', :data => {:stream => 'followed_tags'}
+%ul#tags_list2  
