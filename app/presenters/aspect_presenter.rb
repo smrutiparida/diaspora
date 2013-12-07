@@ -6,8 +6,8 @@ class AspectPresenter < BasePresenter
   def as_json
     { :id => @aspect.id,
       :name => @aspect.name,
-      :folder => @folder,
-      :admin_id => @admin_id,
+      :folder => @aspect.folder,
+      :admin_id => @aspect.admin_id,
     }
   end
 
