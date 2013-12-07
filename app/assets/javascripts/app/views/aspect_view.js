@@ -11,8 +11,9 @@ app.views.Aspect = app.views.Base.extend({
 
   toggleAspect: function(evt) {
     if (evt) { evt.preventDefault(); };
-    this.model.toggleSelected();
-    this.$el.find('.icons-check_yes_ok').toggleClass('selected');
+    this.model.toggleSelected();    
+    $('.all_aspects').find('.icons-check_yes_ok').removeClass('selected');
+    this.$el.find('.icons-check_yes_ok').addClass('selected');
     app.router.aspects_stream();
   },
 
