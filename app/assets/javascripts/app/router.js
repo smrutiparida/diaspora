@@ -1,4 +1,4 @@
-ap0p.Router = Backbone.Router.extend({
+app.Router = Backbone.Router.extend({
   routes: {
     //new hotness
     "posts/:id": "singlePost",

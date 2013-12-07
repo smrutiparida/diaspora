@@ -20,17 +20,17 @@ app.views.AspectsList = app.views.Base.extend({
   },
 
   appendAspect: function(aspect) {
-    if(aspect.folder == "Classroom"){
+    //if(aspect.folder == "Classroom"){
       $("#aspects_list > *:last").before(new app.views.Aspect({
         model: aspect, attributes: {'data-aspect_id': aspect.get('id')}
       }).render().el);  
-    }
+    /*}
     else
     {
       $("#personal_aspects_list > *:last").before(new app.views.Aspect({
         model: aspect, attributes: {'data-aspect_id': aspect.get('id')}
       }).render().el);  
-    }
+    }*/
     
   },
 
