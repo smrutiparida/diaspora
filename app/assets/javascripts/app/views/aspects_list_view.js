@@ -2,11 +2,11 @@ app.views.AspectsList = app.views.Base.extend({
   templateName: 'aspects-list',
 
   el: '#aspects_list',
-/*
+
   events: {
     'click .toggle_selector' : 'toggleAll'
   },
-*/
+
   initialize: function() {
     this.collection.on('change', this.toggleSelector, this);
     this.collection.on('change', this.updateStreamTitle, this);
