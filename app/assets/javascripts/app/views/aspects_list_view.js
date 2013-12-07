@@ -21,7 +21,7 @@ app.views.AspectsList = app.views.Base.extend({
 
   appendAspect: function(aspect) {
     alert(aspect.folder);    
-    if(aspect.folder && aspect.folder == "Classroom"){
+    if(aspect.get('folder') && aspect.get('folder') == "Classroom"){
       $("#aspects_list > *:last").before(new app.views.Aspect({
         model: aspect, attributes: {'data-aspect_id': aspect.get('id')}
       }).render().el);  
