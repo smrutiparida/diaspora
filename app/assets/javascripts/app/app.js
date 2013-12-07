@@ -96,7 +96,7 @@ var app = {
       $(".stream_title").text(link.text())
       app.router.navigate(link.attr("href").substring(1) ,true)
     });
-    $("a[rel=backbone]").click();
+    $('#mandatory_groups').click();
   },
 
   setupGlobalViews: function() {
