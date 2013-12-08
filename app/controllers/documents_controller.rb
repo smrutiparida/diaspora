@@ -18,7 +18,7 @@ class DocumentsController < ApplicationController
   end
 
   def index
-    @documents = Document.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
+    redirect_to '/library'    
   end
 
   def create

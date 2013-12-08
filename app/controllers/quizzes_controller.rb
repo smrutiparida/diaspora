@@ -25,12 +25,7 @@ class QuizzesController < ApplicationController
   end
 
   def index
-    @quizzes = Quiz.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
-    
-    respond_with do |format|
-      format.html {render :layout => false}
-      format.json {render :json => @quizzes.to_json}
-    end
+    redirect_to '/library'
   end  
 
   def show

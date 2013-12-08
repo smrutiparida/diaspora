@@ -13,7 +13,7 @@ class AssignmentsController < ApplicationController
   end
   
   def index
-    @assignments = Assignment.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
+    redirect_to '/library'    
   end
   
   def create
