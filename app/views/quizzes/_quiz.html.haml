@@ -1,0 +1,18 @@
+%li.comment{:data=>{:guid=>quiz.id}}
+  .content
+    .remove_comment
+      .right
+        - if user_signed_in? && quiz.author == current_user.person
+          = link_to(image_tag('deletelabel.png'), '/quizzes', :method => :delete, :data => { :confirm => "#{t('are_you_sure')}" }, :class => "remove")
+        - else
+          = link_to( 'Submit', '/quizzes')
+    .from
+      = quiz.title      
+      .info
+        %span.time.timeago{:datetime => quiz.created_at}
+          = quiz.created_at ? time_ago_in_words(quiz.created_at) : time_ago_in_words(Time.now)
+
+    
+
+
+
