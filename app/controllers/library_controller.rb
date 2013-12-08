@@ -13,3 +13,4 @@ class LibraryController < ApplicationController
       format.json {render :json => {'documents' => @documents, 'assignments' => @assignments, 'quizzes' => @quizzes}.to_json}
     end
   end
+end  
