@@ -1,6 +1,6 @@
 class LibraryController < ApplicationController
 
-  before_filter :authenticate_user!, :only => [:index]
+  before_filter :authenticate_user!, :except => [:index]
   respond_to :html, :json, :js
 
   def index
