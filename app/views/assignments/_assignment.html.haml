@@ -7,7 +7,7 @@
         - else
           = link_to( 'Submit', '/assignment')
     .from
-      = assignment.title      
+      = assignment.name      
       .info
         %span.time.timeago{:datetime => assignment.submission_date}
           = assignment.submission_date ? time_ago_in_words(assignment.submission_date) : time_ago_in_words(Time.now)
