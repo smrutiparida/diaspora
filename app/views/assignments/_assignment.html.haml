@@ -1,0 +1,18 @@
+%li.comment{:data=>{:guid=>assignment.id}, :class => ("hidden" if(defined? hidden))}
+  .content
+    .remove_comment
+      .right
+        - if user_signed_in? && assignment.author == current_user.person
+          = link_to(image_tag('deletelabel.png'), '/assignment', :method => :delete, :data => { :confirm => "#{t('are_you_sure')}" }, :class => "remove")
+        - else
+          = link_to( 'Submit', '/assignment')
+    .from
+      = assignment.title      
+      .info
+        %span.time.timeago{:datetime => assignment.submission_date}
+          = assignment.submission_date ? time_ago_in_words(assignment.submission_date) : time_ago_in_words(Time.now)
+
+    
+
+
+

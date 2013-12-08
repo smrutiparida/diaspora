@@ -1,0 +1,33 @@
+
+- content_for :page_title do
+  = t('.title')
+
+#section_header
+  %h2
+    = t('.title')
+  %div{:style => "float:right;margin-top:11px;"}
+    = render 'documents/uploader', :person => current_user.person
+
+#leftNavBar.span-5.append-1
+  = render 'documents/aspect_listings'
+
+%div.span-17
+  %ul
+    %li.image_list
+      .section.contact_pictures
+        = render :partial => 'documents/index', :collection => @documents    
+
+  %ul.comments
+    = render :partial => 'assignments/assignment', :collection => @assignments
+
+    %li.comment.add_comment_bottom_link_container
+      = link_to "Create an assignment", '/assignments', :rel => 'facebox' 
+
+
+  %ul.comments
+    = render :partial => 'quizzes/quiz', :collection => @quiz
+
+    %li.comment.add_comment_bottom_link_container
+      = link_to "Create a Quiz", '/quizzes'
+    
+  
