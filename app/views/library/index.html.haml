@@ -1,6 +1,6 @@
 
 - content_for :page_title do
-  = t('.title')
+  = "My Library"
 
 #section_header
   %h2
@@ -25,7 +25,7 @@
 
 
   %ul.comments
-    = render :partial => 'quizzes/quiz', :collection => @quiz
+    = render :partial => 'quizzes/quiz', :collection => @quizzes
 
     %li.comment.add_comment_bottom_link_container
       = link_to "Create a Quiz", '/quizzes/new'
