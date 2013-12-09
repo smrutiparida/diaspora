@@ -2,97 +2,38 @@
 -#   licensed under the Affero General Public License version 3 or later.  See
 -#   the COPYRIGHT file.
 
-
-- if AppConfig.settings.invitations.open?
-  .section
-    .title
-      .icons-plus
-      %h5.title-header
-        = t('people.person.profile_sidebar.assignments')
-    .content
-      = render "shared/invitations"
-
-.section
-  .title
-    .icons-heart
-    %h5.title-header
-      = t('people.person.profile_sidebar.quizzes')
-  .content
-    != t('aspects.index.new_here.follow', :link => link_to("#"+t('shared.publisher.new_user_prefill.newhere'), tag_path(:name => t('shared.publisher.new_user_prefill.newhere'))))
-    %br
-    = link_to(t('aspects.index.new_here.learn_more'), "http://wiki.diasporafoundation.org/Welcoming_Committee")
-
 .section
   .title
     .icons-question
     %h5.title-header
-      = t('aspects.index.help.need_help')
+      = "Quizzes"
   .content
-    = t('aspects.index.help.here_to_help')
-    %br
-    = t('aspects.index.help.do_you')
-    %br
-    != t('aspects.index.help.have_a_question', :link => link_to("#"+t('aspects.index.help.tag_question'), tag_path(:name => t('aspects.index.help.tag_question'))))
-    %br
-    != t('aspects.index.help.find_a_bug', :link => link_to("#"+t('aspects.index.help.tag_bug'), tag_path(:name => t('aspects.index.help.tag_bug'))))
-    %br
-    != t('aspects.index.help.feature_suggestion', :link => link_to("#"+t('aspects.index.help.tag_feature'), tag_path(:name => t('aspects.index.help.tag_feature'))))
-    %br
-    %br
-    %p
-      != t('aspects.index.help.tutorials_and_wiki',
-           :faq => link_to(t('_help'), faq_getting_help_path),
-           :tutorial => link_to(t('aspects.index.help.tutorial_link_text'), "https://diasporafoundation.org/tutorials", :target => '_blank'),
-           :wiki => link_to('Wiki','http://wiki.diasporafoundation.org', :target => '_blank'), :target => '_blank')
-
-- unless AppConfig.configured_services.blank? || all_services_connected?
-  .section
-    .title
-      .icons-monotone_wrench_settings
-      %h5.title-header
-        = t('aspects.index.services.heading')
-    .content
-      %div
-        = t('aspects.index.services.content')
-
-      #right_service_icons
-        - AppConfig.configured_services.each do |service|
-          - unless current_user.services.any?{|x| x.provider == service}
-            = link_to(content_tag(:div, nil, :class => "social_media_logos-#{service.to_s.downcase}-24x24", :title => service.to_s.titleize), "/auth/#{service}")
+    - if @quizzes and @quizzes.length > 0
+      = render "shared/quizzes" @quizzes
+    -else
+      = "No quizzes present"
 
 .section
   .title
     .icons-bookmark
     %h5.title-header
-      = t('bookmarklet.heading')
+      = "Assignments"
   .content
-    != t('bookmarklet.explanation', :link => link_to(t('bookmarklet.post_something'), magic_bookmarklet_link))
-
-- if AppConfig.settings.paypal_hosted_button_id.present? || AppConfig.bitcoin_donation_address
-  .section
-    .title
-      .icons-coffee
-      %h5.title-header
-        = t('aspects.index.donate')
-    .content
-      = t('aspects.index.keep_pod_running', :pod => AppConfig.pod_uri.host)
-      %br
-      = render 'shared/donatepod'
-
-- if AppConfig.admins.podmin_email.present?
-  .section
-    .title
-      .icons-mail
-      %h5.title-header
-        = t('aspects.index.help.any_problem')
-    .content
-      = t('aspects.index.help.contact_podmin')
-      %br
-      %br
-      = link_to t('aspects.index.help.mail_podmin'), "mailto:#{AppConfig.admins.podmin_email}", :class => "button"
-
+    - if @assignments and @assignments.length > 0
+      = render "shared/assignmentss" @assignments
+    -else
+      = "No assignmentss present"  
 .section
   .title
-  %ul.content
-    = render "shared/links"
-
+    .icons-plus
+    %h5.title-header
+      = "Your Library"
+  .content
+    - if documents and @documents.length > 0
+      = render "shared/documents" @documents
+    - else
+      = "You have not added any documents yet!"
+      %br
+      =  Start now
+      %br
+      = link_to "Click here", "/library", :class => "button"

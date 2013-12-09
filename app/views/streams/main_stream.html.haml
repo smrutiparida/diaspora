@@ -30,11 +30,12 @@
 
   %ul#stream_selection
     %li.hoverable{:data => {:stream => 'stream'}}
-      = link_to t("streams.multi.title"), stream_path, :rel => 'backbone'
-    %li.hoverable{:data => {:stream => 'activity'}}
-      = link_to t("streams.activity.title"), activity_stream_path, :rel => 'backbone'
-    %li.hoverable{:data => {:stream => 'mentions'}}
-      = link_to t('streams.mentions.title'), mentioned_stream_path, :rel => 'backbone'
+      = link_to "Home", stream_path, :rel => 'backbone'
+    -#  
+      %li.hoverable{:data => {:stream => 'activity'}}
+        = link_to "", activity_stream_path, :rel => 'backbone'
+      %li.hoverable{:data => {:stream => 'mentions'}}
+        = link_to t('streams.mentions.title'), mentioned_stream_path, :rel => 'backbone'
     %li.all_aspects
       = render 'aspects/aspect_listings', :stream => @stream
     %li
