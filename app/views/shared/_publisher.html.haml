@@ -8,6 +8,20 @@
         if( app.publisher ) app.publisher.triggerGettingStarted();
       });
 
+%div>
+  %ul
+    %li
+      %a{ :href => "#"}
+        %span
+          %i 
+            = Update Status
+    %li
+      %a{ :href => "#"}
+        %span
+          %i 
+            = Add a Doc/Photo
+
+
 #publisher{:class => ((aspect == :profile || publisher_open) ? "mention_popup" : "closed")}
   .content_creation
     = form_for(StatusMessage.new) do |status|
@@ -78,9 +92,11 @@
 
           = status.submit t('.share'), :disabled => publisher_hidden_text.blank?, :class => 'button creation', :tabindex => 2
 
-          
+          .facebox_content
+            #question_mark_pane
+              = render 'shared/public_explain'
     = link_to '', contacts_path(:aspect_ids => aspect_ids), :class => 'selected_contacts_link hidden'
 
 
     #publisher_photo_upload
-      
+      = render 'photos/new_photo', :aspect_ids => aspect_ids.join(',')
