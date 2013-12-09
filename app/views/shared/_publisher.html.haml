@@ -6,23 +6,24 @@
   function removeAssignment(elt)
   {
     
-    var spandata = $(elt).parent().find('span:first-child')
+    var assignment = $(elt).parent();
+    var spandata = assignment.find('span:first-child')
     alert(spandata.attr('data-id'));
     assignment.addClass('dim');
     $.ajax({
-      url: '/assignments/'+spandata.attr('data-id'),
+      url: '/assignments/'+ spandata.attr('data-id'),
       dataType: 'json',
       type: 'DELETE',
       success: function() {
         $.when(assignment.fadeOut(400)).then(function(){
           assignment.remove();
 
-          if( self.options.publisher.$('.publisher_assignment').length == 0 ) {
+//          if( self.options.publisher.$('.publisher_assignment').length == 0 ) {
             // no more photos left...
-            self.options.publisher.el_wrapper.removeClass('with_assignments');
-          }
+  //          self.options.publisher.el_wrapper.removeClass('with_assignments');
+    //      }
 
-          self.trigger('change');
+      //    self.trigger('change');
         });
       }
     });
