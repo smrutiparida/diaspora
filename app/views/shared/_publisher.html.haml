@@ -6,8 +6,7 @@
   function removeAssignment()
   {
     
-    var assignment = $(this).parent();
-    var spandata   = assignment.find('span').first();
+    var spandata = $(this).parent().find('span:first-child')
     alert(spandata.attr('data-id'));
     assignment.addClass('dim');
     $.ajax({
