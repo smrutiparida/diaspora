@@ -11,27 +11,27 @@
 %div{:style => "padding: 15px 0px 0px 12px;"}
   %ul{:style => "list-style:none;padding: 0px;margin:0px"}
     %li{:style => "display:inline-block;margin-right:12px;"}
-      = image_tag 'icons/marker.png', :alt => t('.upload_photos').titleize
-      %a{ :href => "#"}
+      = image_tag 'icons/marker.png', :alt => t('.upload_photos').titleize,:class => 'publisher_image'
+      %a{ :href => "#",:onClick => "$('.status-message-area').addClass('hidden');$('#publisher_textarea_wrapper').show();"}}
         %span
           %i 
             = "Update Status"
     %li{:style => "display:inline-block;margin-right:12px;"}
-      = image_tag 'icons/plus.png', :alt => t('.upload_photos').titleize, :onClick => "$('.status-message-area').addClass('hidden');$('file_upload_wrapper').show();"
-      %a{ :href => "#"}
+      = image_tag 'icons/plus.png', :alt => t('.upload_photos').titleize,:class => 'publisher_image'
+      %a{ :href => "#", :onClick => "$('.status-message-area').addClass('hidden');$('#file_upload_wrapper').show();"}
         %span
           %i 
             = "Add a Doc"
     %li{:style => "display:inline-block;margin-right:12px;"}
-      = image_tag 'icons/bookmark.png', :alt => t('.upload_photos').titleize
-      %a{ :href => "#"}
+      = image_tag 'icons/bookmark.png', :alt => t('.upload_photos').titleize,:class => 'publisher_image'
+      %a{ :href => "#", :onClick => "$('.status-message-area').addClass('hidden');$('#assignment_wrapper').show();"}
         %span
           %i 
             = "Assignment"
     
     %li{:style => "display:inline-block;"}
-      = image_tag 'icons/question.png', :alt => t('.upload_photos').titleize
-      %a{ :href => "#"}
+      = image_tag 'icons/question.png', :alt => t('.upload_photos').titleize,:class => 'publisher_image'
+      %a{ :href => "#", :onClick => "$('.status-message-area').addClass('hidden');$('#quiz_wrapper').show();"}
         %span
           %i 
             = "Post a Quiz"
@@ -56,16 +56,36 @@
 
             #file-upload{:title => t('.upload_photos')}
               = image_tag 'icons/camera.png', :alt => t('.upload_photos').titleize
-          #file_upload_wrapper{:style =>"display:none;"}         
+          #file_upload_wrapper.status-message-area{:style =>"display:none;border:1px sold #ccc"}         
             %ul#documentdropzone
             %div
               %ul
-                %li
-                  %span
+                %li#document-upload{:style =>"list-style:none;display:inline-block;width:50%;border-right:1px solid #ccc" }
+                  %span{:style => "display:block;text-alight:center;pading:15px 0px;" }
                     = "Upload a file"
-                %li
-                  %span  
+                %li#library-file{:style => "list-style:none;display:inline-block;width:48%;"}
+                  %span{:style => "display:block;text-align:center;"}  
                     = "Add a file from Library"
+          #assignment_wrapper.status-message-area{:style =>"display:none;border:1px sold #ccc"}         
+            %ul#assignmentdropzone
+            %div
+              %ul
+                %li#assignment-upload{:style =>"list-style:none;display:inline-block;width:60%;border-right:1px solid #ccc" }
+                  %span{:style => "display:block;text-alight:center;pading:15px 0px;" }
+                    = link_to "Create a new assignment", '/assignments/new', :rel => 'facebox'
+                %li{:style => "list-style:none;display:inline-block;width:38%;"}
+                  %span{:style => "display:block;text-align:center;"}  
+                    = "Load an assignment", '/assignments/index', :rel => 'facebox'
+          #quiz_wrapper.status-message-area{:style =>"display:none;border:1px sold #ccc"}         
+            %ul#quizdropzone
+            %div
+              %ul
+                %li{:style =>"list-style:none;display:inline-block;width:50%;border-right:1px solid #ccc" }
+                  %span{:style => "display:block;text-alight:center;pading:15px 0px;" }
+                    = "Create a quiz"
+                %li{:style => "list-style:none;display:inline-block;width:48%;"}
+                  %span{:style => "display:block;text-align:center;"}  
+                    = "Add a file from Library"     
               
 
       - if publisher_public
