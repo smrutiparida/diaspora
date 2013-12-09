@@ -362,7 +362,7 @@ app.views.Publisher = Backbone.View.extend({
 
   open : function() {
     // visually 'open' the publisher
-    //this.$el.removeClass('closed');
+    this.$el.removeClass('closed');
     this.el_wrapper.addClass('active');
 
     // fetch contacts for mentioning
