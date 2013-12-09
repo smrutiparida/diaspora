@@ -108,15 +108,15 @@ app.views.DocumentUploader = Backbone.View.extend({
   _removeDocument: function(evt) {
     var self  = this;
     var doc = $(evt.target).parents('.publisher_document')
-    var span   = doc.find('span');
+    var docspan   = doc.find('span');
 
-    document.addClass('dim');
+    doc.addClass('dim');
     $.ajax({
-      url: '/documents/'+span.attr('data-id'),
+      url: '/documents/'+docspan.attr('data-id'),
       dataType: 'json',
       type: 'DELETE',
       success: function() {
-        $.when(span.fadeOut(400)).then(function(){
+        $.when(docspan.fadeOut(400)).then(function(){
           doc.remove();
 
           if( self.options.publisher.$('.publisher_document').length == 0 ) {
