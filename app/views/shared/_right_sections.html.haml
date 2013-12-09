@@ -10,9 +10,9 @@
   .content
     - if @quizzes and @quizzes.length > 0
       = for quiz in @quizzes        
-          = quiz.title "," 
-          = time_ago_in_words(quiz.created_at)
-          %br                
+        = quiz.title "," 
+        = time_ago_in_words(quiz.created_at)
+        %br                
     -else
       = "No quizzes present"
 
