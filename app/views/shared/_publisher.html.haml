@@ -8,25 +8,29 @@
         if( app.publisher ) app.publisher.triggerGettingStarted();
       });
 
-%div
+%div{:style => "padding: 15px 0px 0px 5px;"}
   %ul{:style => "list-style:none;padding: 0px;margin:0px"}
     %li{:style => "display:inline-block;"}
+      = image_tag 'icons/camera.png', :alt => t('.upload_photos').titleize
       %a{ :href => "#"}
         %span
           %i 
             = "Update Status"
     %li{:style => "display:inline-block;"}
+      = image_tag 'icons/camera.png', :alt => t('.upload_photos').titleize
       %a{ :href => "#"}
         %span
           %i 
             = "Add a Doc/Photo"
     %li{:style => "display:inline-block;"}
+      = image_tag 'icons/camera.png', :alt => t('.upload_photos').titleize
       %a{ :href => "#"}
         %span
           %i 
             = "Assignment"
     
     %li{:style => "display:inline-block;"}
+      = image_tag 'icons/camera.png', :alt => t('.upload_photos').titleize
       %a{ :href => "#"}
         %span
           %i 
