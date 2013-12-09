@@ -8,29 +8,29 @@
         if( app.publisher ) app.publisher.triggerGettingStarted();
       });
 
-%div{:style => "padding: 15px 0px 0px 5px;"}
+%div{:style => "padding: 15px 0px 0px 12px;"}
   %ul{:style => "list-style:none;padding: 0px;margin:0px"}
-    %li{:style => "display:inline-block;"}
-      = image_tag 'icons/camera.png', :alt => t('.upload_photos').titleize
+    %li{:style => "display:inline-block;margin-right:12px;"}
+      = image_tag 'icons/marker.png', :alt => t('.upload_photos').titleize
       %a{ :href => "#"}
         %span
           %i 
             = "Update Status"
-    %li{:style => "display:inline-block;"}
-      = image_tag 'icons/camera.png', :alt => t('.upload_photos').titleize
+    %li{:style => "display:inline-block;margin-right:12px;"}
+      = image_tag 'icons/plus.png', :alt => t('.upload_photos').titleize, :onClick => "$('.status-message-area').addClass('hidden');$('file_upload_wrapper').show();"
       %a{ :href => "#"}
         %span
           %i 
-            = "Add a Doc/Photo"
-    %li{:style => "display:inline-block;"}
-      = image_tag 'icons/camera.png', :alt => t('.upload_photos').titleize
+            = "Add a Doc"
+    %li{:style => "display:inline-block;margin-right:12px;"}
+      = image_tag 'icons/bookmark.png', :alt => t('.upload_photos').titleize
       %a{ :href => "#"}
         %span
           %i 
             = "Assignment"
     
     %li{:style => "display:inline-block;"}
-      = image_tag 'icons/camera.png', :alt => t('.upload_photos').titleize
+      = image_tag 'icons/question.png', :alt => t('.upload_photos').titleize
       %a{ :href => "#"}
         %span
           %i 
@@ -43,7 +43,7 @@
       %div
         %params
           #fileInfo
-          #publisher_textarea_wrapper
+          #publisher_textarea_wrapper.status-message-area
             = link_to(content_tag(:div, nil, :class => 'icons-deletelabel'), "#", :id => "hide_publisher", :title => t('.discard_post'))
             %ul#photodropzone
             - if current_user.getting_started?
@@ -56,6 +56,17 @@
 
             #file-upload{:title => t('.upload_photos')}
               = image_tag 'icons/camera.png', :alt => t('.upload_photos').titleize
+          #file_upload_wrapper{:style =>"display:none;"}         
+            %ul#documentdropzone
+            %div
+              %ul
+                %li
+                  %span
+                    = "Upload a file"
+                %li
+                  %span  
+                    = "Add a file from Library"
+              
 
       - if publisher_public
         = hidden_field_tag 'aspect_ids[]', "public"
