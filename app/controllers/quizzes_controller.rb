@@ -24,7 +24,13 @@ class QuizzesController < ApplicationController
     end
   end
 
-  def index
+  def index    
+    @quizzes = Quiz.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
+        
+    respond_to do |format|
+      format.html      
+    end
+  end
     redirect_to '/library'
   end  
 

@@ -108,10 +108,10 @@
               %ul{:style =>"padding:0px;margin:0px;border:1px solid #ccc;"}
                 %li#quiz-upload{:style =>"list-style:none;display:inline-block;width:42%;border-right:1px solid #ccc;text-align:center;padding:18px;" }
                   %span{:style => "display:block;text-alight:center;" }
-                    = link_to "Create a quiz", '/quizzes/', :rel => 'facebox'
+                    = link_to "Create a quiz", '/quizzes/new'
                 %li{:style => "list-style:none;display:inline-block;width:45%;"}
                   %span{:style => "display:block;text-align:center;"}  
-                    = "Add a quiz from Library"     
+                    = link_to "Add a quiz from Library", '/quizzes/', :rel => 'facebox'
             %ul#quizdropzone  
 
       - if publisher_public
