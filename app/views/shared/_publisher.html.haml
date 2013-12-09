@@ -84,7 +84,7 @@
           #file_upload_wrapper.status-message-area{:style =>"display:none;border:1px sold #ccc"}                     
             %div
               %ul{:style =>"padding:0px;margin:0px;border:1px solid #ccc;"}
-                %li{:style =>"list-style:none;display:inline-block;width:42%;border-right:1px solid #ccc;padding:18px;vertical-align:middle;" }
+                %li#document-upload{:style =>"list-style:none;display:inline-block;width:42%;border-right:1px solid #ccc;padding:18px;vertical-align:middle;" }
                   %span{:style => "display:block;text-alight:center;" }
                     = "Upload a file"
                 %li#library-file{:style => "list-style:none;display:inline-block;width:45%;vertical-align:middle;"}
@@ -100,18 +100,18 @@
                     = link_to "Create a new assignment", '/assignments/new', :rel => 'facebox'
                 %li{:style => "list-style:none;display:inline-block;width:45%;"}
                   %span{:style => "display:block;text-align:center;"}  
-                    = link_to "Load an assignment", '/assignments/index', :rel => 'facebox'
+                    = link_to "Load an assignment", '/assignments/new', :rel => 'facebox'
             %ul#assignmentdropzone
           #quiz_wrapper.status-message-area{:style =>"display:none;border:1px sold #ccc"}         
             
             %div
               %ul{:style =>"padding:0px;margin:0px;border:1px solid #ccc;"}
-                %li{:style =>"list-style:none;display:inline-block;width:42%;border-right:1px solid #ccc;text-align:center;padding:18px;" }
+                %li#quiz-upload{:style =>"list-style:none;display:inline-block;width:42%;border-right:1px solid #ccc;text-align:center;padding:18px;" }
                   %span{:style => "display:block;text-alight:center;" }
-                    = "Create a quiz"
+                    = link_to "Create a quiz", '/quizzes/', :rel => 'facebox'
                 %li{:style => "list-style:none;display:inline-block;width:45%;"}
                   %span{:style => "display:block;text-align:center;"}  
-                    = "Add a file from Library"     
+                    = "Add a quiz from Library"     
             %ul#quizdropzone  
 
       - if publisher_public
