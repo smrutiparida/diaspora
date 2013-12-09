@@ -219,9 +219,12 @@ app.views.Publisher = Backbone.View.extend({
     var assignments = new Array();
     $('li.publisher_assignment span').each(function(){
       var assign_name = $(this).text();      
+      var sub_date = $(this).attr('sub-date');
+      var sub_month = $(this).attr('sub-month');
       assignments.push(
         {
-          "icon":"/assets/facebox/xml.png",
+          "subdate": sub_date,
+          "submonth": sub_month,
           "name": assign_name
         }
       );
@@ -232,7 +235,7 @@ app.views.Publisher = Backbone.View.extend({
       var quiz_name = $(this).text();      
       quizzes.push(
         {
-          "icon":"/assets/facebox/xml.png",
+          "icon":"/assets/facebox/quiz.png",
           "name": quiz_name
         }
       );

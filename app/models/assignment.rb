@@ -9,7 +9,8 @@ class Assignment < ActiveRecord::Base
     t.add :id
     t.add :guid
     t.add :created_at
-    t.add :submission_date
+    t.add :submission_date.to_date, :as => :submission_date
+    t.add :submission_date.strftime("%B") ,:as => :submission_month      
     t.add :author
     t.add :name
     t.add :description
