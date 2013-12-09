@@ -34,10 +34,10 @@ class AssignmentsController < ApplicationController
   end  
 
   def destroy
-    assignment = current_user.assignments.where(:id => params[:id]).first
+    assignment = Assignment.where(id: params[:id]).first
 
     if assignment
-      current_user.retract(assignment)
+      assignment.destroy
 
       respond_to do |format|
         format.json{ render :nothing => true, :status => 204 }                
