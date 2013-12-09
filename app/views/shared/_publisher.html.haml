@@ -5,9 +5,9 @@
 :javascript
   function removeAssignment()
   {
-    var self  = this;
-    var assignment = $(evt.target).parents('.publisher_assignment')
-    var spandata   = assignment.find('span');
+    
+    var assignment = $(this).parent();
+    var spandata   = assignment.find('span').first();
     alert(spandata.attr('data-id'));
     assignment.addClass('dim');
     $.ajax({
