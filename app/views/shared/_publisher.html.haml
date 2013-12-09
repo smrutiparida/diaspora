@@ -8,20 +8,30 @@
         if( app.publisher ) app.publisher.triggerGettingStarted();
       });
 
-%div>
-  %ul
-    %li
+%div
+  %ul{:style => "list-style:none;padding: 0px;margin:0px"}
+    %li{:style => "display:inline-block;"}
       %a{ :href => "#"}
         %span
           %i 
             = "Update Status"
-    %li
+    %li{:style => "display:inline-block;"}
       %a{ :href => "#"}
         %span
           %i 
             = "Add a Doc/Photo"
-
-
+    %li{:style => "display:inline-block;"}
+      %a{ :href => "#"}
+        %span
+          %i 
+            = "Assignment"
+    
+    %li{:style => "display:inline-block;"}
+      %a{ :href => "#"}
+        %span
+          %i 
+            = "Post a Quiz"
+    
 #publisher{:class => ((aspect == :profile || publisher_open) ? "mention_popup" : "closed")}
   .content_creation
     = form_for(StatusMessage.new) do |status|
