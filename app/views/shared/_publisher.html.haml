@@ -14,54 +14,20 @@
       = status.error_messages
       %div
         %params
+          #fileInfo
           #publisher_textarea_wrapper
             = link_to(content_tag(:div, nil, :class => 'icons-deletelabel'), "#", :id => "hide_publisher", :title => t('.discard_post'))
-            
             %ul#photodropzone
-            %ul#documentdropzone
-            %ul#assignmentdropzone
-            %ul#quizdropzone
-
             - if current_user.getting_started?
-              = status.text_area :fake_text, :rows => 2, :value => h(publisher_formatted_text), :tabindex => 1, :placeholder => "Type your note here...",
+              = status.text_area :fake_text, :rows => 2, :value => h(publisher_formatted_text), :tabindex => 1, :placeholder => "#{t('contacts.index.start_a_conversation')}...",
                 :title => popover_with_close_html( '1. ' + t('shared.public_explain.share') ),
                 'data-content' => t('shared.public_explain.new_user_welcome_message')
             - else
-              = status.text_area :fake_text, :rows => 2, :value => h(publisher_formatted_text), :tabindex => 1, :placeholder => "Type your note here..."
+              = status.text_area :fake_text, :rows => 2, :value => h(publisher_formatted_text), :tabindex => 1, :placeholder => "#{t('contacts.index.start_a_conversation')}..."
             = status.hidden_field :text, :value => h(publisher_hidden_text), :class => 'clear_on_submit'
-                      
-            
-            
 
-      #publisher-icons
-        %span
-          = "Add a:"
-        #locator.btn{:title => t('.get_location')}
-          = image_tag 'icons/marker.png', :alt => t('.get_location').titleize, :class => 'publisher_image'
-        #file-upload.btn{:title => t('.upload_photos')}
-          = image_tag 'icons/camera.png', :alt => t('.upload_photos').titleize, :class => 'publisher_image'
-          %span
-            = "Photo"
-        #document-upload.btn{:title => t('.upload_documents')}
-          = image_tag 'icons/marker.png', :alt => t('.upload_documents').titleize, :class => 'publisher_image'
-          %span
-            = "File"
-        #library-file.btn{:title => t('.upload_documents')}
-          = image_tag 'icons/plus.png', :alt => t('.upload_documents').titleize, :class => 'publisher_image'
-          %span
-            = "My Library"              
-        #assignment-upload.btn{:title => t('.upload_documents'), :rel => 'facebox'}
-          = link_to '/assignments/new', :rel => 'facebox' do
-            = image_tag 'icons/bookmark.png', :alt => t('.upload_documents').titleize, :class => 'publisher_image'
-            %span
-              = "Assignment"
-        #quiz-upload.btn{:title => t('.upload_documents'), :rel => 'facebox'}
-          = link_to '/quizzes/', :rel => 'facebox' do
-            = image_tag 'icons/bookmark.png', :alt => t('.upload_documents').titleize, :class => 'publisher_image'
-            %span
-              = "Quiz"                    
-        = hidden_field :location, :coords
-            
+            #file-upload{:title => t('.upload_photos')}
+              = image_tag 'icons/camera.png', :alt => t('.upload_photos').titleize
 
       - if publisher_public
         = hidden_field_tag 'aspect_ids[]', "public"
@@ -77,22 +43,19 @@
             - if current_user.services
               - for service in current_user.services
                 = content_tag :div, nil,
-                              :title => "#{service.provider.titleize} (#{service.nickname})",
+                              :title => service.provider.titleize,
                               :class => "social_media_logos-#{service.provider}-16x16 service_icon dim",
                               :id    => "#{service.provider}",
-                              :maxchar => "#{service.class::MAX_CHARACTERS}",
-                              :data  => {:toggle=>'tooltip', :placement=>'bottom'}
+                              :maxchar => "#{service.class::MAX_CHARACTERS}"
             %a{ :href => "#question_mark_pane", :class => 'question_mark', :rel => 'facebox', :title => t('shared.public_explain.manage') }
               .icons-monotone_wrench_settings
 
           .dropdown{ ! current_user.getting_started? ? {:class => "hang_right"} : { :class => "hang_right", :title => popover_with_close_html("2. #{t('shared.public_explain.control_your_audience')}"), 'data-content'=> t('shared.public_explain.visibility_dropdown')} }
-            .toggle.publisher
-              %span
-                = "Send To:"
+            .button.toggle.publisher
               - if publisher_public
                 = t('public')
               - elsif all_aspects_selected?(selected_aspects)
-                = "All Groups"
+                = t('all_aspects')
               - elsif selected_aspects.size == 1
                 = selected_aspects.first.name
               - else
@@ -111,15 +74,15 @@
                   = aspect_dropdown_list_item(aspect, !all_aspects_selected?(selected_aspects) && selected_aspects.include?(aspect) )
 
           %button{ :disabled => ("disabled" if publisher_hidden_text.blank?), :class => 'button post_preview_button'}
-            = t('.preview')
+            = t('.preview') 
 
           = status.submit t('.share'), :disabled => publisher_hidden_text.blank?, :class => 'button creation', :tabindex => 2
 
-          -#  
-            .facebox_content
-              #question_mark_pane
-                = render 'shared/public_explain'
+          .facebox_content
+            #question_mark_pane
+              = render 'shared/public_explain'
     = link_to '', contacts_path(:aspect_ids => aspect_ids), :class => 'selected_contacts_link hidden'
 
 
     #publisher_photo_upload
+      = render 'photos/new_photo', :aspect_ids => aspect_ids.join(',')
