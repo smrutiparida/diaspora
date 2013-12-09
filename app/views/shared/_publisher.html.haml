@@ -59,8 +59,8 @@
           #file_upload_wrapper.status-message-area{:style =>"display:none;border:1px sold #ccc"}         
             %ul#documentdropzone
             %div
-              %ul
-                %li#document-upload{:style =>"list-style:none;display:inline-block;width:50%;border-right:1px solid #ccc" }
+              %ul{:style =>"padding:0px;margin:0px;border:1px solid #ccc;"}
+                %li{:style =>"list-style:none;display:inline-block;width:50%;border-right:1px solid #ccc" }
                   %span{:style => "display:block;text-alight:center;pading:15px 0px;" }
                     = "Upload a file"
                 %li#library-file{:style => "list-style:none;display:inline-block;width:48%;"}
@@ -79,11 +79,11 @@
           #quiz_wrapper.status-message-area{:style =>"display:none;border:1px sold #ccc"}         
             %ul#quizdropzone
             %div
-              %ul
-                %li{:style =>"list-style:none;display:inline-block;width:50%;border-right:1px solid #ccc" }
+              %ul{:style =>"padding:0px;margin:0px;border:1px solid #ccc;"}
+                %li{:style =>"list-style:none;display:inline-block;width:42%;border-right:1px solid #ccc;text-align:center;padding:18px;" }
                   %span{:style => "display:block;text-alight:center;pading:15px 0px;" }
                     = "Create a quiz"
-                %li{:style => "list-style:none;display:inline-block;width:48%;"}
+                %li{:style => "list-style:none;display:inline-block;width:45%;"}
                   %span{:style => "display:block;text-align:center;"}  
                     = "Add a file from Library"     
               
