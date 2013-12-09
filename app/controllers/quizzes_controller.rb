@@ -31,8 +31,6 @@ class QuizzesController < ApplicationController
       format.html      
     end
   end
-    redirect_to '/library'
-  end  
 
   def show
     @quiz = Quiz.where(:diaspora_handle => current_user.diaspora_handle, id: params[:id]).first
