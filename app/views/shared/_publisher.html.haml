@@ -12,26 +12,26 @@
   %ul{:style => "list-style:none;padding: 0px;margin:0px"}
     %li{:style => "display:inline-block;margin-right:12px;"}
       = image_tag 'icons/marker.png', :alt => t('.upload_photos').titleize,:class => 'publisher_image'
-      %a{ :href => "#",:onClick => "$('.status-message-area').addClass('hidden');$('#publisher_textarea_wrapper').show();"}
+      %a{ :href => "#",:onClick => "$('.status-message-area').hide();$('#publisher_textarea_wrapper').show();"}
         %span
           %i 
             = "Update Status"
     %li{:style => "display:inline-block;margin-right:12px;"}
       = image_tag 'icons/plus.png', :alt => t('.upload_photos').titleize,:class => 'publisher_image'
-      %a{ :href => "#", :onClick => "$('.status-message-area').addClass('hidden');$('#file_upload_wrapper').show();"}
+      %a{ :href => "#", :onClick => "$('.status-message-area').hide();$('#file_upload_wrapper').show();"}
         %span
           %i 
             = "Add a Doc"
     %li{:style => "display:inline-block;margin-right:12px;"}
       = image_tag 'icons/bookmark.png', :alt => t('.upload_photos').titleize,:class => 'publisher_image'
-      %a{ :href => "#", :onClick => "$('.status-message-area').addClass('hidden');$('#assignment_wrapper').show();"}
+      %a{ :href => "#", :onClick => "$('.status-message-area').hide();$('#assignment_wrapper').show();"}
         %span
           %i 
             = "Assignment"
     
     %li{:style => "display:inline-block;"}
       = image_tag 'icons/question.png', :alt => t('.upload_photos').titleize,:class => 'publisher_image'
-      %a{ :href => "#", :onClick => "$('.status-message-area').addClass('hidden');$('#quiz_wrapper').show();"}
+      %a{ :href => "#", :onClick => "$('.status-message-area').hide();$('#quiz_wrapper').show();"}
         %span
           %i 
             = "Post a Quiz"
@@ -65,7 +65,7 @@
                     = "Upload a file"
                 %li#library-file{:style => "list-style:none;display:inline-block;width:48%;"}
                   %span{:style => "display:block;text-align:center;"}  
-                    = "Add a file from Library"
+                    = "Add from Library"
           #assignment_wrapper.status-message-area{:style =>"display:none;border:1px sold #ccc"}         
             %ul#assignmentdropzone
             %div
