@@ -89,8 +89,7 @@
                     = "Upload a file"
                 %li#library-file{:style => "list-style:none;display:inline-block;width:45%;vertical-align:middle;"}
                   %span{:style => "display:block;text-align:center;"}  
-                    = "Add from Library"
-            %ul#documentdropzone        
+                    = "Add from Library"            
           #assignment_wrapper.status-message-area{:style =>"display:none;border:1px sold #ccc"}         
             
             %div
@@ -113,6 +112,8 @@
                   %span{:style => "display:block;text-align:center;"}  
                     = link_to "Add a quiz from Library", '/quizzes/', :rel => 'facebox'
             %ul#quizdropzone  
+
+          %ul#documentdropzone          
 
       - if publisher_public
         = hidden_field_tag 'aspect_ids[]', "public"
