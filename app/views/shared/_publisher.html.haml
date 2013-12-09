@@ -2,38 +2,41 @@
 -#   licensed under the Affero General Public License version 3 or later.  See
 -#   the COPYRIGHT file.
 
+:javascript
+  function removeAssignment()
+  {
+    var self  = this;
+    var assignment = $(evt.target).parents('.publisher_assignment')
+    var spandata   = assignment.find('span');
+    alert(spandata.attr('data-id'));
+    assignment.addClass('dim');
+    $.ajax({
+      url: '/assignments/'+spandata.attr('data-id'),
+      dataType: 'json',
+      type: 'DELETE',
+      success: function() {
+        $.when(assignment.fadeOut(400)).then(function(){
+          assignment.remove();
+
+          if( self.options.publisher.$('.publisher_assignment').length == 0 ) {
+            // no more photos left...
+            self.options.publisher.el_wrapper.removeClass('with_assignments');
+          }
+
+          self.trigger('change');
+        });
+      }
+    });
+
+  return false;
+  }
+
 -if publisher_explain
   :javascript
     $(document).ready(function() {
         if( app.publisher ) app.publisher.triggerGettingStarted();
       });
-    function removeObject(type)
-    {
-      var self  = this;
-      var assignment = $(evt.target).parents('.publisher_assignment')
-      var spandata   = assignment.find('span');
-      alert(spandata.attr('data-id'));
-      assignment.addClass('dim');
-      $.ajax({
-        url: '/assignments/'+spandata.attr('data-id'),
-        dataType: 'json',
-        type: 'DELETE',
-        success: function() {
-          $.when(assignment.fadeOut(400)).then(function(){
-            assignment.remove();
 
-            if( self.options.publisher.$('.publisher_assignment').length == 0 ) {
-              // no more photos left...
-              self.options.publisher.el_wrapper.removeClass('with_assignments');
-            }
-
-            self.trigger('change');
-          });
-        }
-      });
-
-    return false;
-    }
   
 
 %div{:style => "padding: 15px 0px 0px 12px;"}
