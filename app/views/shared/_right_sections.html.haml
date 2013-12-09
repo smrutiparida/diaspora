@@ -29,7 +29,7 @@
     %h5.title-header
       = "Your Library"
   .content
-    - if documents and @documents.length > 0
+    - if @documents and @documents.length > 0
       = render "shared/documents"
     - else
       = "You have not added any documents yet!"
