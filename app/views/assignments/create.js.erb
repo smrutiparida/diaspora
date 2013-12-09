@@ -9,7 +9,7 @@ var response = <%= raw @response.to_json %>;
     $('#assignmentdropzone').append('<li class="publisher_assignment" style="position:relative;"><span data-id="' + 
                       response.id +
                       '" sub-date="'  + response.submission_date + 
-                      '" sub-month="' + response.submission_month + '">' + 
+                      '" sub-month="' + response.submission_date + '">' + 
                       response.name +
                       '</span><div class="x" onClick="removeObject(\'assignments\',this);">X</div>'+
                       '<div class="circle"></div></li>');

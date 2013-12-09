@@ -9,12 +9,13 @@ class Assignment < ActiveRecord::Base
     t.add :id
     t.add :guid
     t.add :created_at
-    t.add lambda { |assignment|
-            assignment.subdate(:submission_date)
-          }, :as => :submission_date
-    t.add lambda { |assignment|
-            assignment.submonth(:submission_date)
-          }, :as => :submission_month    
+    #t.add lambda { |assignment|
+    #        assignment.subdate(:submission_date)
+    #      }, :as => :submission_date
+    #t.add lambda { |assignment|
+    #        assignment.submonth(:submission_date)
+    #      }, :as => :submission_month    
+    t.add :submission_date
     t.add :author
     t.add :name
     t.add :description
