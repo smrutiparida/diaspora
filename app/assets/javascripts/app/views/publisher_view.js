@@ -34,6 +34,8 @@ app.views.Publisher = Backbone.View.extend({
     this.el_preview = this.$('button.post_preview_button');
     this.el_photozone = this.$('#photodropzone');
     this.el_documentzone = this.$('#documentdropzone');
+    this.el_assignmentzone = this.$('#assignmentdropzone');
+    this.el_quizzone = this.$('#quizdropzone');
 
     // init mentions plugin
     Mentions.initialize(this.el_input);
@@ -397,8 +399,10 @@ app.views.Publisher = Backbone.View.extend({
     var onlyWhitespaces = ($.trim(this.el_input.val()) === ''),
         isPhotoAttached = (this.el_photozone.children().length > 0);
         isDocumentAttached = (this.el_documentzone.children().length > 0);
+        isAssignmentPresent = (this.el_assignmentzone.children().length > 0);
+        isQuizPresent = (this.el_quizzone.children().length > 0);
 
-    return (!onlyWhitespaces || isPhotoAttached || isDocumentAttached);
+    return (!onlyWhitespaces || isPhotoAttached || isDocumentAttached || isAssignmentPresent || isQuizPresent);
   },
 
   handleTextchange: function() {
