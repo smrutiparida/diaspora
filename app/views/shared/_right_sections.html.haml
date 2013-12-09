@@ -9,7 +9,7 @@
       = "Quizzes"
   .content
     - if @quizzes and @quizzes.length > 0
-      = render "shared/quizzes" @quizzes
+      = render "shared/quizzes"
     -else
       = "No quizzes present"
 
@@ -20,7 +20,7 @@
       = "Assignments"
   .content
     - if @assignments and @assignments.length > 0
-      = render "shared/assignmentss" @assignments
+      = render "shared/assignmentss"
     -else
       = "No assignmentss present"  
 .section
@@ -30,7 +30,7 @@
       = "Your Library"
   .content
     - if documents and @documents.length > 0
-      = render "shared/documents" @documents
+      = render "shared/documents"
     - else
       = "You have not added any documents yet!"
       %br
