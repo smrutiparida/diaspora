@@ -9,7 +9,7 @@
       = "Quizzes"
   .content
     - if @quizzes and @quizzes.length > 0
-      = for quiz in @quizzes        
+      - for quiz in @quizzes        
         = quiz.title
         = " " 
         = time_ago_in_words(quiz.created_at)
@@ -24,7 +24,7 @@
       = "Assignments"
   .content
     - if @assignments and @assignments.length > 0      
-      = for assignment in @assignments
+      - for assignment in @assignments
         = assignment.name          
         = time_ago_in_words(assignment.submission_date)
         %br                      
@@ -37,7 +37,7 @@
       = "Your Library"
   .content
     - if @documents and @documents.length > 0
-      = for document in @documents
+      - for document in @documents
         = link_to document.processed_doc, document.unprocessed_doc.url
         %br                      
     - else
