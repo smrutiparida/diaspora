@@ -17,7 +17,7 @@ class Document < ActiveRecord::Base
     t.add :size
     t.add :processed_doc, :as  => :name
     t.add lambda { |document|
-             document.icon(:processed_doc)
+            document.icon(:processed_doc)
           }, :as => :icon    
   end
 

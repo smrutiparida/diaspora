@@ -9,8 +9,12 @@ class Assignment < ActiveRecord::Base
     t.add :id
     t.add :guid
     t.add :created_at
-    t.add :submission_date.to_date, :as => :submission_date
-    t.add :submission_date.strftime("%B") ,:as => :submission_month      
+    t.add lambda { |assignment|
+            assignment.subdate(:submission_date)
+          }, :as => :submission_date
+    t.add lambda { |assignment|
+            assignment.submonth(:submission_date)
+          }, :as => :submission_month    
     t.add :author
     t.add :name
     t.add :description
@@ -30,6 +34,19 @@ class Assignment < ActiveRecord::Base
   before_destroy :ensure_user_assignment
   after_destroy :clear_empty_status_message
 
+  
+  def subdate(date = nil)    
+    if date
+      temp = date.to_date
+    end
+  end
+
+  def submonth(date = nil)
+    if date
+      date.strftime("%B")
+    end  
+  end  
+  
   def clear_empty_status_message
     if self.status_message_guid && text_and_photos_and_documents_blank_and_assignments_blank_and_quizzes_blank?
       self.status_message.destroy
