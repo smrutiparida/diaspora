@@ -41,7 +41,8 @@ class AssignmentsController < ApplicationController
 
       respond_to do |format|
         format.json{ render :nothing => true, :status => 204 }                
-      end    
+      end 
+    end     
   end
 
   def assignment_params
