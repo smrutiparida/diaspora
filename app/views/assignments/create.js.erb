@@ -10,7 +10,7 @@ var response = <%= raw @response.to_json %>;
         							response.id +
         							'">' + 
         							response.name +
-        							'</span><span class="x" onClick="removeAssignment();">X</span>'+
+        							'</span><span class="x" onClick="removeAssignment(this);">X</span>'+
         							'<span class="circle"></span></li>');
       
     $.facebox.close();
