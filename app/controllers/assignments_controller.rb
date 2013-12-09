@@ -1,6 +1,6 @@
 class AssignmentsController < ApplicationController
 
-  before_filter :authenticate_user!, :only => [:new, :create, :index]
+  before_filter :authenticate_user!, :only => [:new, :create, :index, :destroy]
   respond_to :html, :json, :js
 
   def new
@@ -32,6 +32,17 @@ class AssignmentsController < ApplicationController
       format.js
     end  
   end  
+
+  def destroy
+    assignment = current_user.assignments.where(:id => params[:id]).first
+
+    if assignment
+      current_user.retract(assignment)
+
+      respond_to do |format|
+        format.json{ render :nothing => true, :status => 204 }                
+      end    
+  end
 
   def assignment_params
     params.require(:assignment).permit(:name, :description,:submission_date,:file_upload,:public, :pending, :aspect_ids)
