@@ -362,7 +362,7 @@ app.views.Publisher = Backbone.View.extend({
 
   open : function() {
     // visually 'open' the publisher
-    this.$el.removeClass('closed');
+    //this.$el.removeClass('closed');
     this.el_wrapper.addClass('active');
 
     // fetch contacts for mentioning
@@ -371,9 +371,9 @@ app.views.Publisher = Backbone.View.extend({
   },
 
   close : function() {
-    $(this.el).addClass("closed");
+    //$(this.el).addClass("closed");
     this.el_wrapper.removeClass("active");
-    this.el_input.css('height', '');
+    //this.el_input.css('height', '');
 
     return this;
   },
