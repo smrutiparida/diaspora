@@ -180,7 +180,7 @@
   }
 }
 
-#publisher_textarea_wrapper {
+#publisher_textarea_wrapper,#file_upload_wrapper,assignment_wrapper,quiz_wrapper {
   #hide_publisher {
     @include opacity(0.3);
     z-index: 5;

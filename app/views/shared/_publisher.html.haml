@@ -7,6 +7,34 @@
     $(document).ready(function() {
         if( app.publisher ) app.publisher.triggerGettingStarted();
       });
+    function removeObject(type)
+    {
+      var self  = this;
+      var assignment = $(evt.target).parents('.publisher_assignment')
+      var spandata   = assignment.find('span');
+      alert(spandata.attr('data-id'));
+      assignment.addClass('dim');
+      $.ajax({
+        url: '/assignments/'+spandata.attr('data-id'),
+        dataType: 'json',
+        type: 'DELETE',
+        success: function() {
+          $.when(assignment.fadeOut(400)).then(function(){
+            assignment.remove();
+
+            if( self.options.publisher.$('.publisher_assignment').length == 0 ) {
+              // no more photos left...
+              self.options.publisher.el_wrapper.removeClass('with_assignments');
+            }
+
+            self.trigger('change');
+          });
+        }
+      });
+
+    return false;
+    }
+  
 
 %div{:style => "padding: 15px 0px 0px 12px;"}
   %ul{:style => "list-style:none;padding: 0px;margin:0px"}
@@ -56,8 +84,7 @@
 
             #file-upload{:title => t('.upload_photos')}
               = image_tag 'icons/camera.png', :alt => t('.upload_photos').titleize
-          #file_upload_wrapper.status-message-area{:style =>"display:none;border:1px sold #ccc"}         
-            %ul#documentdropzone
+          #file_upload_wrapper.status-message-area{:style =>"display:none;border:1px sold #ccc"}                     
             %div
               %ul{:style =>"padding:0px;margin:0px;border:1px solid #ccc;"}
                 %li{:style =>"list-style:none;display:inline-block;width:42%;border-right:1px solid #ccc;padding:18px;vertical-align:middle;" }
@@ -66,8 +93,9 @@
                 %li#library-file{:style => "list-style:none;display:inline-block;width:45%;vertical-align:middle;"}
                   %span{:style => "display:block;text-align:center;"}  
                     = "Add from Library"
+            %ul#documentdropzone        
           #assignment_wrapper.status-message-area{:style =>"display:none;border:1px sold #ccc"}         
-            %ul#assignmentdropzone
+            
             %div
               %ul{:style =>"padding:0px;margin:0px;border:1px solid #ccc;"}
                 %li#assignment-upload{:style =>"list-style:none;display:inline-block;width:42%;border-right:1px solid #ccc;padding:18px;vertical-align:middle;" }
@@ -76,8 +104,9 @@
                 %li{:style => "list-style:none;display:inline-block;width:45%;"}
                   %span{:style => "display:block;text-align:center;"}  
                     = link_to "Load an assignment", '/assignments/index', :rel => 'facebox'
+            %ul#assignmentdropzone
           #quiz_wrapper.status-message-area{:style =>"display:none;border:1px sold #ccc"}         
-            %ul#quizdropzone
+            
             %div
               %ul{:style =>"padding:0px;margin:0px;border:1px solid #ccc;"}
                 %li{:style =>"list-style:none;display:inline-block;width:42%;border-right:1px solid #ccc;text-align:center;padding:18px;" }
@@ -86,7 +115,7 @@
                 %li{:style => "list-style:none;display:inline-block;width:45%;"}
                   %span{:style => "display:block;text-align:center;"}  
                     = "Add a file from Library"     
-              
+            %ul#quizdropzone  
 
       - if publisher_public
         = hidden_field_tag 'aspect_ids[]', "public"

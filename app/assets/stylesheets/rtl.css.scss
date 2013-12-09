@@ -102,17 +102,17 @@ footer ul#footer_nav {
   margin-left: 0;
 }
 
-#publisher_textarea_wrapper #photodropzone {
+#publisher_textarea_wrapper #photodropzone,#assignment_wrapper #assignmentdropzone,#file_upload_wrapper #documentdropzone,#quiz_wrapper #quizdropzone{
   right: 5px;
   left: auto;
 }
 
-#publisher_textarea_wrapper #photodropzone li .circle {
+#publisher_textarea_wrapper #photodropzone li .circle,#assignment_wrapper #assignmentdropzone,#file_upload_wrapper #documentdropzone,#quiz_wrapper #quizdropzone{
   left: -7px;
   right: auto;
 }
 
-#publisher_textarea_wrapper #photodropzone li .x {
+#publisher_textarea_wrapper #photodropzone li .x,#assignment_wrapper #assignmentdropzone,#file_upload_wrapper #documentdropzone,#quiz_wrapper #quizdropzone{
   left: -1px;
   right: auto;
 }
