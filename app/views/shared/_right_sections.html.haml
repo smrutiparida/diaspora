@@ -10,7 +10,8 @@
   .content
     - if @quizzes and @quizzes.length > 0
       = for quiz in @quizzes        
-        = quiz.title "," 
+        = quiz.title
+        = " " 
         = time_ago_in_words(quiz.created_at)
         %br                
     -else
