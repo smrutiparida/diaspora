@@ -38,6 +38,15 @@
     
     Diaspora.page.flashMessages.render({ 'success':true, 'notice': 'Quiz added successfully' });
     $('.content_creation form').append('<input type="hidden", value="'+ quizid +'" name="quizzes[]" />');
+    $('#quizdropzone').append('<li class="publisher_quiz" style="position:relative;"><span data-id="' + 
+                      quizid +
+                      '">' + 
+                      quiztitle +
+                      '</span><div class="x" onClick="removeObject(\'quizzes\',this);">X</div>'+
+                      '<div class="circle"></div></li>');
+    
+
+
     jQuery(document).trigger('close.facebox');  
 
     //$.facebox.close();    
