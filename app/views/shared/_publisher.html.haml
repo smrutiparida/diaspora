@@ -6,7 +6,7 @@
   function removeAssignment(elt)
   {
     
-    var spandata = elt.parent().find('span:first-child')
+    var spandata = $(elt).parent().find('span:first-child')
     alert(spandata.attr('data-id'));
     assignment.addClass('dim');
     $.ajax({
