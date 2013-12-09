@@ -31,20 +31,20 @@
 
         $('#display_quiz').append($('<a />', { onClick: 'attachQuiz(' +quizid + ',"' + quiztitle + '");' , href: '#',class:'button creation', html: 'Assign Quiz' }));
       }
-    });
-    return false;
+    });    
   }          
 
   function attachQuiz(quizid, quiztitle){
+    jQuery(document).trigger('close.facebox');
     Diaspora.page.flashMessages.render({ 'success':true, 'notice': 'Quiz added successfully' });
     $('.content_creation form').append('<input type="hidden", value="'+ quizid +'" name="quizzes[]" />');
     $('#quizdropzone').append('<li class="publisher_quiz" style="position:relative;"><span data-id="' + 
         							quizid +
         							'">' + 
         							quiztitle +
-        							'</span><div class="x">X</div>'+
-        							'<div class="circle"></div></li>');
+        							'</span><span class="x" onClick="removeObject("quizzes",this);>X</span>'+
+        							'<span class="circle"></span></li>');
       
-    $.facebox.close();
-    return false;
+
+    //$.facebox.close();    
   }

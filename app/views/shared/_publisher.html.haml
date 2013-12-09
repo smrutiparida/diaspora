@@ -3,7 +3,7 @@
 -#   the COPYRIGHT file.
 
 :javascript
-  function removeAssignment(elt)
+  function removeObject(type,elt)
   {
     
     var assignment = $(elt).parent();
@@ -11,7 +11,7 @@
     alert(spandata.attr('data-id'));
     assignment.addClass('dim');
     $.ajax({
-      url: '/assignments/'+ spandata.attr('data-id'),
+      url: '/' + type + '/'+ spandata.attr('data-id'),
       dataType: 'json',
       type: 'DELETE',
       success: function() {
