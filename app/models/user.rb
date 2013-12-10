@@ -379,16 +379,23 @@ class User < ActiveRecord::Base
   end
 
   def seed_aspects
-    self.aspects.create(:name => I18n.t('aspects.seed.family'))
-    self.aspects.create(:name => I18n.t('aspects.seed.friends'))
-    self.aspects.create(:name => I18n.t('aspects.seed.work'))
-    aq = self.aspects.create(:name => I18n.t('aspects.seed.acquaintances'))
+    self.aspects.create(:name => "English", :folder => "Classroom"))
+    self.aspects.create(:name => "Hindi", :folder => "Classroom"))
+    self.aspects.create(:name => "Mathematics", :folder => "Classroom"))
+    self.aspects.create(:name => "Science", :folder => "Classroom"))
+    self.aspects.create(:name => "Social Science", :folder => "Classroom"))
+    self.aspects.create(:name => "Poetry"))
+    self.aspects.create(:name => "Music"))
+    self.aspects.create(:name => "Dance"))
+    self.aspects.create(:name => "Computer"))
 
-    if AppConfig.settings.autofollow_on_join?
-      default_account = Webfinger.new(AppConfig.settings.autofollow_on_join_user).fetch
-      self.share_with(default_account, aq) if default_account
-    end
-    aq
+    #aq = self.aspects.create(:name => I18n.t('aspects.seed.acquaintances'))
+
+    #if AppConfig.settings.autofollow_on_join?
+    #  default_account = Webfinger.new(AppConfig.settings.autofollow_on_join_user).fetch
+    #  self.share_with(default_account, aq) if default_account
+    #end
+    #aq
   end
 
   def encryption_key
