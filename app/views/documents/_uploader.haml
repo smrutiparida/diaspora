@@ -40,7 +40,9 @@
           var id = responseJSON.data.document.id;
           var url = responseJSON.data.document.unprocessed_doc.url;
           var fname = responseJSON.data.document.processed_doc;
-          var temp_string = '<div class="hoverable docthumbnail" id="' + id + '"><div class="selected docthumbselected"><div class=\"bd\"><a href=\"' + url + '\">' + fname + '</a></div></div></div>';
+          var format = responseJSON.data.document.processed_doc.substr(responseJSON.data.document.processed_doc.lastIndexOf(".")+1);
+
+          var temp_string = '<div class="hoverable docthumbnail" id="' + id + '"><div class="selected docthumbselected"></div><div style="padding:5px;"><a href="' + url + '"><img alt="file" class="thumb_small" src="/assets/facebox/' + format + '.png"></a></div><p><a href="' + url + '">' + fname + '</a></p></div>';
 
           $('#people_stream').prepend(temp_string).fadeIn('slow');
 
@@ -48,7 +50,8 @@
      });
     }
     window.onload = createUploader;
-    $('#file-upload').addClass("creation");
+    $('#file-upload').addClass("creation");        
+
 
 #profile_photo_upload{:style => "margin-right:137px;"}
   = image_tag('mobile-spinner.gif', :class => 'hidden')

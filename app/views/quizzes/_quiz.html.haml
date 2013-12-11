@@ -8,8 +8,9 @@
           = link_to( 'Submit', '/quizzes')
   %span
     = quiz.title      
-  %span.time.timeago{:datetime => quiz.created_at}
-    = "Solved"
+  %span.time.timeago{:datetime => quiz.created_at, :style => "float:right;"}
+    = "Solved "
     = quiz.created_at ? time_ago_in_words(quiz.created_at) : time_ago_in_words(Time.now)
+    = " ago"
 
 
