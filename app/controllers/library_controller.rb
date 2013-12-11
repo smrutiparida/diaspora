@@ -13,8 +13,10 @@ class LibraryController < ApplicationController
         :contacts => {:user_id => current_user.id, :receiving => true}
       }
 
-    @assignments = Post.joins(:contacts).where(conditions).joins(:contacts => :aspect_memberships).where(
-        :aspect_memberships => {:aspect_id => current_user.aspect_ids}).joins(:assignments).where(:status_message_guid)
+    query = Post.joins(:contacts).where(conditions).joins(:contacts => :aspect_memberships).where(
+        :aspect_memberships => {:aspect_id => current_user.aspect_ids})
+
+    @assignments = query.joins(:assignments).where('assignments.status_message_guid' => :status_message_guid)
 
     respond_to do |format|
       format.html
