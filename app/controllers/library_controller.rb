@@ -13,8 +13,8 @@ class LibraryController < ApplicationController
         :contacts => {:user_id => current_user.id, :receiving => true}
       }
 
-    @assignments = Assignment.joins(:status_message).joins(:aspect_visibilities).where(
-        :aspect_visibilities => {:aspect_id => current_user.aspect_ids})
+    @assignments = Assignment.joins((:status_message).joins(:aspect_visibilities).where(
+        :aspect_visibilities => {:aspect_id => current_user.aspect_ids}))
 
     #@assignments = Assignment.joins(query)
 
