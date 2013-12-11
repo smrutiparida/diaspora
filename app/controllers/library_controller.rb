@@ -14,7 +14,7 @@ class LibraryController < ApplicationController
       }
 
     all_my_posts = Post.joins(:aspect_visibilities).where(
-        :aspect_visibilities => {:aspect_id => current_user.aspect_ids}))
+        :aspect_visibilities => {:aspect_id => current_user.aspect_ids})
     all_my_post_guid = all_my_posts.map{|a| a.guid}
     @assignments = Assignment.where(:status_message_guid => all_my_post_guid)
 
