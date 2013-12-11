@@ -5,6 +5,9 @@
 - content_for :head do
   = javascript_include_tag :profile
 
+- content_for :page_title do
+  = "Getting Started"
+
 %section#hello-there
   .hero-unit
     %h1.center
@@ -42,5 +45,5 @@
           = text_field_tag 'follow_tags', nil, :class => "nostrap"
 
     .awesome
-      = link_to "#{t('.awesome_take_me_to_diaspora')} »", stream_path, :id => "awesome_button", :class => "button creation"
+      = link_to "Take me to Groupify »", stream_path, :id => "awesome_button", :class => "button creation"
 

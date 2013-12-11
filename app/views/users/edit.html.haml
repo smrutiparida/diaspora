@@ -9,7 +9,8 @@
   #section_header
     %h2
       = "Change Password"
-    //= render 'shared/settings_nav'
+    -#
+      = render 'shared/settings_nav'
 
   -#  
     .span-12.prepend-5.last
@@ -53,7 +54,7 @@
       = link_to t('cancel'), edit_user_path
       = t('or')
       = f.submit t('.change_password'), :class => "button"
--#
+  -#
     %br
     %br
     %hr
