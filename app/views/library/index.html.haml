@@ -37,15 +37,9 @@
     %ul#assignments-list{:style=>"padding-left:0px;"}
       = render :partial => 'assignments/assignment', :collection => @assignments
 
-      %li.comment.add_comment_bottom_link_container
-        = link_to "Create an assignment", '/assignments', :rel => 'facebox' 
-
   %div#tabs-3
-    %ul.comments
-      = render :partial => 'quizzes/quiz', :collection => @quizzes
-
-      %li.comment.add_comment_bottom_link_container
-        = link_to "Create a Quiz", '/quizzes/new'
+    %ul{:style=>"padding-left:0px;"}
+      = render :partial => 'quizzes/quiz', :collection => @quizzes      
           
 :javascript
   $( "#tabs" ).tabs();
