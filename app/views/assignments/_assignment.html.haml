@@ -9,7 +9,7 @@
   %span{:style => "width:70%"}
     = assignment.name          
   %span.time.timeago{:datetime => assignment.submission_date}
-    = Submitted
+    = "Submitted "
     = assignment.submission_date ? time_ago_in_words(assignment.submission_date) : time_ago_in_words(Time.now)
      
     
