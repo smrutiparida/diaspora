@@ -46,6 +46,9 @@ class Person < ActiveRecord::Base
   has_many :comments, :foreign_key => :author_id, :dependent => :destroy # This person's own comments
   has_many :participations, :foreign_key => :author_id, :dependent => :destroy
   has_many :conversation_visibilities
+  has_many :documents, :foreign_key => :author_id, :dependent => :destroy # This person's own documents
+  has_many :assignments, :foreign_key => :author_id, :dependent => :destroy # This person's own assignments
+  has_many :quizzes, :foreign_key => :author_id, :dependent => :destroy # This person's own quizzes
 
   has_many :roles
 
