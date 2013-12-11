@@ -12,7 +12,7 @@
         - if aspect.folder and aspect.folder == "Classroom"
           %li.hoverable{:data => {:aspect_id => aspect.id}, :class => ("active" if params["a_id"].to_i == aspect.id)}          
             .icons-check_yes_ok{:class => ("selected" if params["a_id"].to_i == aspect.id) }
-            link_to aspect.name, "/library", :a_id => aspect.id
+            = link_to aspect.name, "/library", :a_id => aspect.id
               
   %li.all_aspects{:class => "active"}
     %a.home_selector
@@ -23,4 +23,4 @@
         - if !aspect.folder or aspect.folder != "Classroom"
           %li.hoverable{:data => {:aspect_id => aspect.id}, :class => ("active" if params["a_id"].to_i == aspect.id)}          
             .icons-check_yes_ok{:class => ("selected" if params["a_id"].to_i == aspect.id) }
-            link_to aspect.name, "/library", :a_id => aspect.id            
+            = link_to aspect.name, "/library", :a_id => aspect.id            
