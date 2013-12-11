@@ -13,10 +13,10 @@ class LibraryController < ApplicationController
         :contacts => {:user_id => current_user.id, :receiving => true}
       }
 
-    @assignments = Assignment.joins(Post.joins(:aspect_visibilities).where(
+    all_my_posts = Post.joins(:aspect_visibilities).where(
         :aspect_visibilities => {:aspect_id => current_user.aspect_ids}))
-
-    #@assignments = Assignment.joins(query)
+    all_my_post_guid = all_my_posts.map{|a| a.guid}
+    @assignments = Assignment.where(:status_message_guid => all_my_post_guid)
 
     respond_to do |format|
       format.html
