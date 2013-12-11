@@ -6,9 +6,9 @@
           = link_to(image_tag('deletelabel.png'), '/assignment', :method => :delete, :data => { :confirm => "#{t('are_you_sure')}" }, :class => "remove")
         - else
           = link_to( 'Submit', '/assignment')
-  %span{:style => "width:70%"}
+  %span.selectable
     = assignment.name          
-  %span.time.timeago{:datetime => assignment.submission_date}
+  %span.time.timeago{:datetime => assignment.submission_date, :style => "float:right;"}}
     = "Submitted "
     = assignment.submission_date ? time_ago_in_words(assignment.submission_date) : time_ago_in_words(Time.now)
      
