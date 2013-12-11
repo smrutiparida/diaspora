@@ -15,7 +15,15 @@
   %ul
     %li.image_list
       #people_stream.section.contact_pictures
-        = render :partial => 'documents/index', :collection => @documents    
+        - for document in @documents
+          %div.hoverable.docthumbnail
+            %div.selected.docthumbselected
+            %div{:style => "padding:5px;"}
+              temp_val = document.processed_doc ? document.processed_doc.slice(document.processed_doc.rindex('.')+1,document.processed_doc.length) : "broken"
+              = link_to image_tag('/assets/facebox/' + temp_val +'.png',:class => 'thumb_small'), document.unprocessed_doc.url
+            %p  
+              = link_to document.processed_doc, document.unprocessed_doc.url
+        
 
   %ul.comments
     = render :partial => 'assignments/assignment', :collection => @assignments
