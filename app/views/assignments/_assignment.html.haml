@@ -8,7 +8,7 @@
           = link_to( 'Submit', '/assignment')
   %span.selectable
     = assignment.name          
-  %span.time.timeago{:datetime => assignment.submission_date, :style => "float:right;"}}
+  %span.time.timeago{:datetime => assignment.submission_date, :style => "float:right;"}
     = "Submitted "
     = assignment.submission_date ? time_ago_in_words(assignment.submission_date) : time_ago_in_words(Time.now)
      
