@@ -4,7 +4,7 @@
 
 #section_header
   %h2
-    = t('.title')
+    = "My Library"
   %div{:style => "float:right;margin-top:11px;"}
     = render 'documents/uploader', :person => current_user.person
 
@@ -12,7 +12,7 @@
   = render 'documents/aspect_listings'
 
 %div#tabs.span-17
-  %ul
+  %ul{style => "border-bottom: 1px solid rgb(204, 204, 204);background-color: rgb(204, 204, 204);border-top-left-radius: 4px;border-top-right-radius: 4px;}
     %li
       = link_to "Documents", "#tabs-1"
     %li
@@ -21,7 +21,7 @@
       = link_to "Quiz", "#tabs-3"              
 
   %div#tabs-1
-    %ul
+    %ul{style=>"padding:left:0px;"}
       %li.image_list
         #people_stream.section.contact_pictures
           - for document in @documents
