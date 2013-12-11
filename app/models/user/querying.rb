@@ -73,7 +73,7 @@ module User::Querying
 
     query = opts[:klass].where(:author_id => person_ids, :public => true, :pending => false)
 
-    unless(opts[:klass] == Photo)
+    unless(opts[:klass] == Photo or opts[:klass] == Assignment or opts[:klass] == Document or opts[:klass] == Quiz)
       query = query.where(:type => opts[:type])
     end
 
@@ -105,7 +105,7 @@ module User::Querying
 
   def contact_for_person_id(person_id)
     Contact.where(:user_id => self.id, :person_id => person_id).includes(:person => :profile).first
-  end
+  end 
 
   # @param [Person] person
   # @return [Boolean] whether person is a contact of this user
