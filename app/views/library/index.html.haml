@@ -34,7 +34,7 @@
                 = link_to document.processed_doc, document.unprocessed_doc.url
           
   %div#tabs-2
-    %ul.comments
+    %ul#assignments-list{:style=>"padding-left:0px;"}
       = render :partial => 'assignments/assignment', :collection => @assignments
 
       %li.comment.add_comment_bottom_link_container
