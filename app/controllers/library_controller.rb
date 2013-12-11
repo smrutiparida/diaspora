@@ -10,8 +10,12 @@ class LibraryController < ApplicationController
            
     
     #below logic valid for students. For teachers the logic will be different.
-    all_my_posts = Post.joins(:aspect_visibilities).where(
-        :aspect_visibilities => {:aspect_id => current_user.aspect_ids})
+    if params[:a_id]
+      all_my_posts = Post.joins(:aspect_visibilities).where(
+          :aspect_visibilities => {:aspect_id => params[:a_id]})
+    else
+      all_my_posts = Post.joins(:aspect_visibilities).where(
+          :aspect_visibilities => {:aspect_id => current_user.aspect_ids})  
     all_my_post_guid = all_my_posts.map{|a| a.guid}
     
     @assignments = Assignment.where(:status_message_guid => all_my_post_guid)
