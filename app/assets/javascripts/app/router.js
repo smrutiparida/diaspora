@@ -67,7 +67,7 @@ app.Router = Backbone.Router.extend({
   },
 
   followed_tags : function(name) {
-    alert("came to followed tags");
+    
     this.stream();
     
     app.tagFollowings = new app.collections.TagFollowings();
@@ -90,7 +90,7 @@ app.Router = Backbone.Router.extend({
     app.aspects = new app.collections.Aspects(app.currentUser.get('aspects'));
     this.aspects_list =  new app.views.AspectsList({ collection: app.aspects });
     this.aspects_list.render();
-    this.aspects_stream();
+    //this.aspects_stream();
   },
 
   aspects_stream : function(){
