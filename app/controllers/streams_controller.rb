@@ -53,11 +53,25 @@ class StreamsController < ApplicationController
     if stream_klass.present?
       @stream ||= stream_klass.new(current_user, :max_time => max_time)
     end
-    
     @documents = Document.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
-    @assignments = Assignment.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
-    @quizzes = Quiz.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
-
+    #@assignments = Assignment.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
+    #@quizzes = Quiz.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
+           
+    
+    #below logic valid for students. For teachers the logic will be different.
+    if params[:a_id]
+      all_my_posts = Post.joins(:aspect_visibilities).where(
+          :aspect_visibilities => {:aspect_id => params[:a_id]})
+    else
+      all_my_posts = Post.joins(:aspect_visibilities).where(
+          :aspect_visibilities => {:aspect_id => current_user.aspect_ids})  
+    end  
+    all_my_post_guid = all_my_posts.map{|a| a.guid}
+    
+    @assignments = Assignment.where(:status_message_guid => all_my_post_guid)
+    @quizzes = Quiz.where(:status_message_guid => all_my_post_guid)
+    @documents += Document.where(:status_message_guid => all_my_post_guid)
+    
     respond_with do |format|
       format.html { render 'streams/main_stream' }
       format.mobile { render 'streams/main_stream' }
