@@ -89,7 +89,7 @@ var app = {
     Backbone.history.start({pushState: true});
 
     // there's probably a better way to do this...
-    $("a[rel=backbone]").live("click", function(evt){
+    /*$("a[rel=backbone]").live("click", function(evt){
       evt.preventDefault();
       var link = $(this);
 
@@ -97,6 +97,8 @@ var app = {
       app.router.navigate(link.attr("href").substring(1) ,true)
     });
     $('#mandatory_groups').click();
+    */
+    app.router.navigate("aspects" ,true)
   },
 
   setupGlobalViews: function() {
