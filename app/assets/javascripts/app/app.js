@@ -38,7 +38,7 @@ var app = {
     this.setupFacebox();
     this.setupUser();
     this.setupHeader();
-    //this.setupBackboneLinks();
+    this.setupBackboneLinks();
     this.setupGlobalViews();
     this.setupDisabledLinks();
   },
