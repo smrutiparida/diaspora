@@ -8,7 +8,7 @@
     
     var assignment = $(elt).parent();
     var spandata = assignment.find('span:first-child')
-    alert(spandata.attr('data-id'));
+    //alert(spandata.attr('data-id'));
     assignment.addClass('dim');
     $.ajax({
       url: '/' + type + '/'+ spandata.attr('data-id'),

@@ -82,7 +82,20 @@ class Assignment < ActiveRecord::Base
     assignment
   end
 
+  def find_all_assignments_for_library
+     # if I am a student
+     # all assignments that is shared in an aspect I am a member of.
+     # 
+     
+     Post.joins(:aspect_memberships).where(conditions)
+
+    if opts[:by_members_of]
+      query = query.joins(:contacts => :aspect_memberships).where(
+        :aspect_memberships => {:aspect_id => opts[:by_members_of]})
+    end   
+  end
   scope :on_statuses, lambda { |post_guids|
     where(:status_message_guid => post_guids)
   }
 end
+
