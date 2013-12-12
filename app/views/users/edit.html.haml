@@ -9,9 +9,7 @@
   #section_header
     %h2
       = "Change Password"
-    %h3 
-      = t('.change_password')
-      
+     
   = form_for 'user', :url => user_path, :html => { :method => :put } do |f|
     = f.error_messages
     %p
