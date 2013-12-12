@@ -77,9 +77,11 @@
               = status.text_area :fake_text, :rows => 2, :value => h(publisher_formatted_text), :tabindex => 1, :placeholder => "#{t('contacts.index.start_a_conversation')}..."
             = status.hidden_field :text, :value => h(publisher_hidden_text), :class => 'clear_on_submit'
 
-            #file-upload{:title => t('.upload_photos')}
-              = image_tag 'icons/camera.png', :alt => t('.upload_photos').titleize
-          #file_upload_wrapper.status-message-area{:style =>"display:none;border:1px sold #ccc"}                     
+            #publisher-images
+              #file-upload{:title => t('.upload_photos')}
+                = image_tag 'icons/camera.png', :alt => t('.upload_photos').titleize
+          
+          #file_upload_wrapper.status-message-area{:style =>"display:none;border:1px sold #ccc"}                   
             %div
               %ul{:style =>"padding:0px;margin:0px;border:1px solid #ccc;"}
                 %li#document-upload{:style =>"list-style:none;display:inline-block;width:42%;border-right:1px solid #ccc;padding:18px;vertical-align:middle;" }
@@ -88,8 +90,9 @@
                 %li#library-file{:style => "list-style:none;display:inline-block;width:45%;vertical-align:middle;"}
                   %span{:style => "display:block;text-align:center;"}  
                     = "Add from Library"            
+            %ul#documentdropzone     
+
           #assignment_wrapper.status-message-area{:style =>"display:none;border:1px sold #ccc"}         
-            
             %div
               %ul{:style =>"padding:0px;margin:0px;border:1px solid #ccc;"}
                 %li#assignment-upload{:style =>"list-style:none;display:inline-block;width:42%;border-right:1px solid #ccc;padding:18px;vertical-align:middle;" }
@@ -99,8 +102,8 @@
                   %span{:style => "display:block;text-align:center;"}  
                     = link_to "Load an assignment", '/assignments/new', :rel => 'facebox'
             %ul#assignmentdropzone
+          
           #quiz_wrapper.status-message-area{:style =>"display:none;border:1px sold #ccc"}         
-            
             %div
               %ul{:style =>"padding:0px;margin:0px;border:1px solid #ccc;"}
                 %li#quiz-upload{:style =>"list-style:none;display:inline-block;width:42%;border-right:1px solid #ccc;text-align:center;padding:18px;" }
@@ -111,7 +114,7 @@
                     = link_to "Add a quiz from Library", '/quizzes/', :rel => 'facebox'
             %ul#quizdropzone  
 
-          %ul#documentdropzone          
+               
 
       - if publisher_public
         = hidden_field_tag 'aspect_ids[]', "public"
