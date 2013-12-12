@@ -125,18 +125,14 @@
   }
 
  
-
- 
-  
-  
   #file-upload {
     bottom: 1px !important;
     display: inline-block;
     margin: 0;    
-    //position: absolute !important;    
+    padding:0.3em 0.3em 3px;
+    position: absolute !important;
     cursor: pointer;
-    width: 80px !important;
-    height:100%;
+    right: 6px;    
 
     input[type='file'] {
       cursor: pointer;

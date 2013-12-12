@@ -78,7 +78,7 @@
             = status.hidden_field :text, :value => h(publisher_hidden_text), :class => 'clear_on_submit'
 
             #publisher-images
-              #file-upload{:title => t('.upload_photos')}
+              #file-upload.btn{:title => t('.upload_photos')}
                 = image_tag 'icons/camera.png', :alt => t('.upload_photos').titleize
           
           #file_upload_wrapper.status-message-area{:style =>"display:none;border:1px sold #ccc"}                   
