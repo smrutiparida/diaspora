@@ -67,16 +67,17 @@ class ProfilesController < ApplicationController
   private
 
   def munge_tag_string
+    ary = ""
     unless @profile_attrs[:tag_string].nil? || @profile_attrs[:tag_string] == I18n.t('profiles.edit.your_tags_placeholder')
       @profile_attrs[:tag_string].split( " " ).each do |extra_tag|
         extra_tag.strip!
         unless extra_tag == ""
           extra_tag = "##{extra_tag}" unless extra_tag.start_with?( "#" )
-          params[:tags] += " #{extra_tag}"
+          ary += " #{extra_tag}"
         end
       end
     end
-    @profile_attrs[:tag_string] = (params[:tags]) ? params[:tags].gsub(',',' ') : ""
+    @profile_attrs[:tag_string] = (ary) ? ary.gsub(',',' ') : ""
   end
 
   def profile_params
