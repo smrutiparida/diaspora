@@ -49,6 +49,7 @@ app.Router = Backbone.Router.extend({
   //below here is oldness
 
   stream : function(page) {
+    alert("comes stream router function");
     app.stream = new app.models.Stream();
     app.stream.fetch();
     app.page = new app.views.Stream({model : app.stream});
