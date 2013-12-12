@@ -74,8 +74,9 @@ app.Router = Backbone.Router.extend({
   },
 
   followed_tags : function(name) {
+    alert("came to followed tags");
     this.stream();
-
+    
     app.tagFollowings = new app.collections.TagFollowings();
     this.followedTagsView = new app.views.TagFollowingList({collection: app.tagFollowings});
     $("#tags_list").replaceWith(this.followedTagsView.render().el);
