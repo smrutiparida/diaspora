@@ -43,7 +43,7 @@ class StreamsController < ApplicationController
   end
 
   def followed_tags
-    
+    gon.preloads[:tagFollowings] = tags
     stream_responder(Stream::FollowedTag)
   end
 
@@ -53,9 +53,6 @@ class StreamsController < ApplicationController
     if stream_klass.present?
       @stream ||= stream_klass.new(current_user, :max_time => max_time)
     end
-
-    gon.preloads[:tagFollowings] = tags
-    
     @documents = Document.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
     #@assignments = Assignment.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
     #@quizzes = Quiz.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
