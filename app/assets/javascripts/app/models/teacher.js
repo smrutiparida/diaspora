@@ -3,9 +3,9 @@ app.models.Teacher = Backbone.Model.extend({
   teacherData : {},
 
   initialize : function(ids) {        
-    this.teacherData = this.fetch(
+    this.teacherData.fetch(
     {        
         url : this.urlRoot + ids[0]        
-    }).parse();
+    });
   }
 });
