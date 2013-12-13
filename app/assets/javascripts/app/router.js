@@ -109,7 +109,7 @@ app.Router = Backbone.Router.extend({
     
     app.teacherModel = new app.models.Teacher.get_teacher(ids);
     //app.teacherModel.fetch();
-    alert(app.teacherModel.attributes;
+    alert(app.teacherModel.attributes);
     var teacherView = new app.views.Teacher({attributes:app.teacherModel.attributes});
     $('#aspect_teacher').html(teacherView.render().el);
 
