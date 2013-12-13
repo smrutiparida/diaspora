@@ -6,6 +6,6 @@ app.models.Teacher = Backbone.Model.extend({
     this.teacherData = this.fetch(
     {        
         url : this.urlRoot + ids[0]        
-    });
+    }).parse();
   }
 });
