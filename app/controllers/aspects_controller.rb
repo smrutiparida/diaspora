@@ -101,8 +101,20 @@ class AspectsController < ApplicationController
   end
   
   def teacher
-    @aspect = current_user.aspects.where(:id => params[:id]).first
-    render :json => { :id => "1", :name => "Smruti", :photo => "assets/facebox/pdf.png" }    
+    #who is the teacher? Role table has persoon_id with role = teacher and contacts table has person_id and user_id
+    aspect = current_user.aspects.where(:id => params[:id]).includes(:contacts => {:person => :profile}).first
+    contacts_in_aspect = aspect.contacts.includes(:aspect_memberships, :person => :profile).all    
+    all_my_post_guid = contacts_in_aspect.map{|a| a.person.id}
+    
+    teacher_info = Role.where(:person_id => all_my_post_guid and :name => 'teacher')
+    @person = Person.find_from_guid_or_username({:id => teacher_info})
+    raise Diaspora::AccountClosed if @person.closed_account?
+
+    respond_to do |format|
+      format.json do
+        render :json => HovercardPresenter.new(@person)
+      end
+    end
   end  
   
   def toggle_contact_visibility
