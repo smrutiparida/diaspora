@@ -3,9 +3,14 @@ app.models.Teacher = Backbone.Model.extend({
   teacherData : {},
 
   initialize : function(ids) {        
-    this.teacherData.fetch(
+    this.fetch(
     {        
         url : this.urlRoot + ids[0]        
-    });
+    }).done(_.bind(this.triggerFetchedEvents, this));
+  },
+
+  triggerFetchedEvents : function(resp){
+    this.teacherData = this.parse(resp);    
   }
+  
 });
