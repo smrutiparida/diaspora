@@ -4,7 +4,7 @@ app.views.Teacher = app.views.Base.extend({
 
   presenter : function() {
     return _.extend(this.defaultPresenter(), {
-      teacher : this.model.attributes
+      teacher : this.attributes
     })
   }
 });
