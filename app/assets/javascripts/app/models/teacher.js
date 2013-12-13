@@ -1,16 +1,12 @@
 app.models.Teacher = Backbone.Model.extend({
-  urlRoot : "/aspects/teacher/",
-  teacherData : {},
+  urlRoot : "/aspects/teacher/"
+},
 
-  initialize : function(ids) {        
-    this.fetch(
-    {        
-        url : this.urlRoot + ids[0]        
-    }).done(_.bind(this.triggerFetchedEvents, this));
-  },
-
-  triggerFetchedEvents : function(resp){
-    this.teacherData = this.parse(resp);    
+  get_teacher : function(ids) {
+    var teacher = new app.models.Teacher();
+    teacher.deferred = teacher.fetch({url : teacher.urlRoot + ids[0]})
+    return teacher  
   }
-  
+
+
 });
