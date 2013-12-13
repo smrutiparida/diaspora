@@ -144,6 +144,7 @@ Diaspora::Application.routes.draw do
     get   :correlations
     get   :stats, :as => 'pod_stats'
     get   "add_invites/:invite_code_id" => 'admins#add_invites', :as => 'add_invites'
+    get   :add_teacher
   end
 
   resource :profile, :only => [:edit, :update]
