@@ -42,7 +42,7 @@
       %br
     = "invite token: #{invite_code_url(user.invited_by.invite_code)}" if user.invited_by.present?
     = link_to t(".add_invites"), add_invites_path(user.invitation_code)
-    = link_to "Assign Teacher", assign_roles_path(user.person.id)
+    = link_to "Assign Teacher", add_teacher_path(user.person.id)
     %br
     %br
     %br
