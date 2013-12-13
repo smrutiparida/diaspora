@@ -57,6 +57,7 @@ Diaspora::Application.routes.draw do
 
   resources :aspects do
     put :toggle_contact_visibility
+    get :teacher
   end
 
   get 'bookmarklet' => 'status_messages#bookmarklet'

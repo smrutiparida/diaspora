@@ -99,7 +99,12 @@ class AspectsController < ApplicationController
     end
     render :json => { :id => @aspect.id, :name => @aspect.name }
   end
-
+  
+  def teacher
+    @aspect = current_user.aspects.where(:id => params[:id]).first
+    render :json => { :id => "1", :name => "Smruti", :photo => "assets/facebox/pdf.png" }    
+  end  
+  
   def toggle_contact_visibility
     @aspect = current_user.aspects.where(:id => params[:aspect_id]).first
 
