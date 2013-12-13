@@ -108,9 +108,9 @@ app.Router = Backbone.Router.extend({
     $('#selected_aspect_contacts .content').html(streamFacesView.render().el);
     
     app.teacherModel = new app.models.Teacher(ids);
-    app.teacherModel.fetch();
-    alert(app.teacherModel.id);
-    var teacherView = new app.views.Teacher({model:app.teacherModel});
+    //app.teacherModel.fetch();
+    alert(app.teacherModel.teacherData.id);
+    var teacherView = new app.views.Teacher({model:app.teacherModel.teacherData});
     $('#aspect_teacher').html(teacherView.render().el);
 
     this.hideInactiveStreamLists();
