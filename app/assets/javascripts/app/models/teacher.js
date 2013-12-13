@@ -1,12 +1,11 @@
 app.models.Teacher = Backbone.Model.extend({
-  urlRoot : "/aspects/teacher",
+  urlRoot : "/aspects/teacher/",
 
   initialize : function(ids) {
+    alert($(ids).first());
     this.teacherData = this.fetch(
     {        
-        url : urlRoot,
-        data : { 'a_ids': ids }
+        url : urlRoot + $(ids).first()        
     });
-  
-
+  }
 });
