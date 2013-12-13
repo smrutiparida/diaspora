@@ -15,7 +15,7 @@
 
   %h3
     = t('admins.admin_bar.user_search')
-  = form_tag 'user_search', :method => :get do
+  = form_tag 'admins/user_search', :method => :get do
     = t('username')
     = text_field_tag 'user[username]', params[:user][:username]
 
@@ -42,6 +42,7 @@
       %br
     = "invite token: #{invite_code_url(user.invited_by.invite_code)}" if user.invited_by.present?
     = link_to t(".add_invites"), add_invites_path(user.invitation_code)
+    = link_to "Assign Teacher", assign_roles_path(person.id)
     %br
     %br
     %br

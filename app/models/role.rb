@@ -13,4 +13,8 @@ class Role < ActiveRecord::Base
   def self.add_spotlight(person)
     find_or_create_by_person_id_and_name(person.id, 'spotlight')
   end
+
+  def seld.add_teacher(person_id)
+    find_or_create_by_person_id_and_name(person.id, 'teacher')
+  end  
 end
