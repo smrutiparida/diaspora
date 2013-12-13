@@ -56,9 +56,11 @@ Diaspora::Application.routes.draw do
   get "aspects" => "streams#aspects", :as => "aspects_stream"
 
   resources :aspects do
-    put :toggle_contact_visibility
-    get :teacher
+    put :toggle_contact_visibility    
   end
+  
+  get 'aspects/teacher/:id' => 'aspects#teacher'
+
 
   get 'bookmarklet' => 'status_messages#bookmarklet'
 
