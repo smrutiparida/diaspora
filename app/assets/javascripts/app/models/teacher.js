@@ -3,6 +3,7 @@ app.models.Teacher = Backbone.Model.extend({
 
   initialize : function(ids) {
     this.aspect_id = ids[0];
+    this.teacher_data = new app.models.Teacher
   },
 
   fetch : function(){
