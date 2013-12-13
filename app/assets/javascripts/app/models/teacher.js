@@ -18,7 +18,7 @@ app.models.Teacher = Backbone.Model.extend({
     //alert(this.attributes.id);
 
     app.teacherView = new app.views.Teacher({attributes:this.attributes});
-    $('#aspect_teacher').html(app.teacherView.el);
+    $('#aspect_teacher').html(app.teacherView.render().el);
     
     //if(respItems && (respItems.author || respItems.length == 0)) {
     //  this.trigger("allItemsLoaded", this);
