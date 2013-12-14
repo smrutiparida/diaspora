@@ -3,7 +3,7 @@ class HovercardPresenter
   attr_accessor :person
 
   # initialize the presenter with the given Person object
-  def initialize(person, contact_id = nil)
+  def initialize(person, contact_id="")
     raise ArgumentError, "the given object is not a Person" unless person.class == Person
 
     self.person = person

@@ -113,7 +113,7 @@ class AspectsController < ApplicationController
 
     respond_to do |format|
       format.json do
-        render :json => HovercardPresenter.new(@person, @contact_id)
+        render :json => HovercardPresenter.new(@person, @contact_id.id)
       end
     end
   end  
