@@ -108,7 +108,7 @@ class AspectsController < ApplicationController
     
     teacher_info = Role.where(:person_id => contacts_in_aspect, :name => 'teacher').first
     @person = Person.find(teacher_info.person_id)
-    @contact_id =current_user.contacts.find(:person_id => @person.id)
+    @contact_id =current_user.contacts.where(:person_id => @person.id).first
     raise Diaspora::AccountClosed if @person.closed_account?
 
     respond_to do |format|
