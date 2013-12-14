@@ -15,7 +15,7 @@
           = t('.to')
       .span-10.last
         = text_field_tag "contact_autocomplete", @person.diaspora_handle
-        = hidden_field :contact_ids, @contact.id
+        = hidden_field_tag "contact_ids", @contact.id
       .clearfix
       %br
       .span-2
