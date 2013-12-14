@@ -29,3 +29,9 @@
       .clearfix
       .bottom_submit_section
         = conversation.submit "Send", 'data-disable-with' => "Sending...", :class => 'button creation'
+
+%p
+  - unless current_user.person.nil?
+    = current_user.person.diaspora_handle
+    - unless current_user.person.role.nil? 
+      = current_user.person.role.name  
