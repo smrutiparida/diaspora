@@ -106,7 +106,7 @@ class AspectsController < ApplicationController
     contacts_in_aspect = aspect.contacts.includes(:aspect_memberships, :person).all    
     #contacts_in_aspect_map = contacts_in_aspect.map{|a| a.person.id}
     
-    teacher_info = Role.where(:person_id => contacts_in_aspect.person, :name => 'teacher').first
+    teacher_info = Role.where(:person_id => contacts_in_aspect, :name => 'teacher').first
     @person = Person.find(teacher_info.person_id)
     raise Diaspora::AccountClosed if @person.closed_account?
 
