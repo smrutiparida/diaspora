@@ -12,7 +12,7 @@
 
       .span-2
         %h4
-          = t('.to')
+          = "To"
       .span-10.last
         = text_field_tag "contact_autocomplete", @person.diaspora_handle
         = hidden_field_tag "contact_ids", @contact.id
@@ -20,7 +20,7 @@
       %br
       .span-2
         %h4
-          = t('.subject')
+          = "Subject"
       .span-10.last
         = conversation.text_field :subject
       %br
@@ -28,4 +28,4 @@
         = text_area_tag "conversation[text]", '', :rows => 5
       .clearfix
       .bottom_submit_section
-        = conversation.submit t('.send'), 'data-disable-with' => t('.sending'), :class => 'button creation'
+        = conversation.submit "Send", 'data-disable-with' => "Sending...", :class => 'button creation'
