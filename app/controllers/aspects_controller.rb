@@ -107,15 +107,23 @@ class AspectsController < ApplicationController
     #contacts_in_aspect_map = contacts_in_aspect.map{|a| a.person.id}
     
     teacher_info = Role.where(:person_id => contacts_in_aspect, :name => 'teacher').first
-    @person = Person.find(teacher_info.person_id)
-    @contact_id =current_user.contacts.where(:person_id => @person.id).first
+    if teacher_info
+      @person = Person.find(teacher_info.person_id)
+      if @person
+        @contact_id =current_user.contacts.where(:person_id => @person.id).first
+      end
+    end    
     raise Diaspora::AccountClosed if @person.closed_account?
 
-    respond_to do |format|
-      format.json do
-        render :json => HovercardPresenter.new(@person, @contact_id.id)
+    unless @person
+      render :json => {}
+    else  
+      respond_to do |format|
+        format.json do
+          render :json => HovercardPresenter.new(@person, @contact_id.id)
+        end
       end
-    end
+    end  
   end  
   
   def toggle_contact_visibility
