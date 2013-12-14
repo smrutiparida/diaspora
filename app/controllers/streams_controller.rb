@@ -71,6 +71,7 @@ class StreamsController < ApplicationController
     @assignments = Assignment.where(:status_message_guid => all_my_post_guid)
     @quizzes = Quiz.where(:status_message_guid => all_my_post_guid)
     @documents += Document.where(:status_message_guid => all_my_post_guid)
+    @role = Roles.where(:person_id => current_user.person.id)
     
     respond_with do |format|
       format.html { render 'streams/main_stream' }
