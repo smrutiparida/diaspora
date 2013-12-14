@@ -1,0 +1,31 @@
+-#   Copyright (c) 2010-2011, Diaspora Inc.  This file is
+-#   licensed under the Affero General Public License version 3 or later.  See
+-#   the COPYRIGHT file.
+
+#new_message_pane
+  .span-12.last
+    #facebox_header
+      %h3
+        = t('conversations.index.new_message')
+
+    = form_for Conversation.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |conversation|
+
+      .span-2
+        %h4
+          = t('.to')
+      .span-10.last
+        = text_field_tag "contact_autocomplete", @person.diaspora_handle
+        = hidden_field :contact_ids, @contact.id
+      .clearfix
+      %br
+      .span-2
+        %h4
+          = t('.subject')
+      .span-10.last
+        = conversation.text_field :subject
+      %br
+      .span-10.prepend-2.last
+        = text_area_tag "conversation[text]", '', :rows => 5
+      .clearfix
+      .bottom_submit_section
+        = conversation.submit t('.send'), 'data-disable-with' => t('.sending'), :class => 'button creation'

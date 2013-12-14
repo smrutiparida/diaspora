@@ -86,6 +86,7 @@ Diaspora::Application.routes.draw do
   resources :conversations do
     resources :messages, :only => [:create, :show]
     delete 'visibility' => 'conversation_visibilities#destroy'
+    get   :teacher_new
   end
 
   get 'notifications/read_all' => 'notifications#read_all'

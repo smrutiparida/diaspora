@@ -95,4 +95,16 @@ class ConversationsController < ApplicationController
     render :layout => false
     end
   end
+
+  def teacher_new    
+    if params[:contact_id]
+      @contact = current_user.contacts.find(params[:contact_id]).first
+      @person = Person.find(@contact.person_id)    
+    
+    if session[:mobile_view] == true && request.format.html?
+    render :layout => true
+    elsif
+    render :layout => false
+    end
+  end
 end
