@@ -100,6 +100,8 @@ class ConversationsController < ApplicationController
     if params[:contact_id]
       @contact = current_user.contacts.find(params[:contact_id]).first
       @person = Person.find(@contact.person_id)    
+    end
+
     
     if session[:mobile_view] == true && request.format.html?
     render :layout => true
