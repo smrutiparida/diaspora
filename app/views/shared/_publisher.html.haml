@@ -45,20 +45,21 @@
         %span
           %i 
             = "Add a Doc"
-    %li{:style => "display:inline-block;margin-right:12px;"}
-      = image_tag 'icons/bookmark.png', :alt => t('.upload_photos').titleize,:class => 'publisher_image'
-      %a{ :href => "#", :onClick => "$('.status-message-area').hide();$('#assignment_wrapper').show();"}
-        %span
-          %i 
-            = "Assignment"
-    
-    %li{:style => "display:inline-block;"}
-      = image_tag 'icons/question.png', :alt => t('.upload_photos').titleize,:class => 'publisher_image'
-      %a{ :href => "#", :onClick => "$('.status-message-area').hide();$('#quiz_wrapper').show();"}
-        %span
-          %i 
-            = "Post a Quiz"
-    
+    - if !@role.nil? and @role.name == "teacher"
+      %li{:style => "display:inline-block;margin-right:12px;"}
+        = image_tag 'icons/bookmark.png', :alt => t('.upload_photos').titleize,:class => 'publisher_image'
+        %a{ :href => "#", :onClick => "$('.status-message-area').hide();$('#assignment_wrapper').show();"}
+          %span
+            %i 
+              = "Assignment"
+      
+      %li{:style => "display:inline-block;"}
+        = image_tag 'icons/question.png', :alt => t('.upload_photos').titleize,:class => 'publisher_image'
+        %a{ :href => "#", :onClick => "$('.status-message-area').hide();$('#quiz_wrapper').show();"}
+          %span
+            %i 
+              = "Post a Quiz"
+      
 #publisher{:class => ((aspect == :profile || publisher_open) ? "mention_popup" : "closed")}
   .content_creation
     = form_for(StatusMessage.new) do |status|
