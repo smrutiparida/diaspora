@@ -107,15 +107,15 @@ class AspectsController < ApplicationController
     #contacts_in_aspect_map = contacts_in_aspect.map{|a| a.person.id}
     
     teacher_info = Role.where(:person_id => contacts_in_aspect, :name => 'teacher').first
-    if teacher_info
+    unless teacher_info.nil?
       @person = Person.find(teacher_info.person_id)
-      if @person
+      unless @person.nil?
         @contact_id =current_user.contacts.where(:person_id => @person.id).first
       end
     end    
     raise Diaspora::AccountClosed if @person.closed_account?
 
-    unless @person
+    unless @person.nil?
       render :json => {}
     else  
       respond_to do |format|
