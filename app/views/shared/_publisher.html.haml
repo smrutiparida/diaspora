@@ -92,7 +92,7 @@
                     = "Add from Library"            
             %ul#documentdropzone     
 
-          - unless @role.nil? or @role.name == "teacher"
+          - if !@role.nil? and @role.name == "teacher"
             #assignment_wrapper.status-message-area{:style =>"display:none;border:1px sold #ccc"}         
               %div
                 %ul{:style =>"padding:0px;margin:0px;border:1px solid #ccc;"}
