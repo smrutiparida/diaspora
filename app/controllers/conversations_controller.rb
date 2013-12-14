@@ -98,7 +98,7 @@ class ConversationsController < ApplicationController
 
   def teacher_new    
     if params[:contact_id]
-      @contact = current_user.contacts.find(params[:contact_id]).first
+      @contact = current_user.contacts.find(params[:contact_id])
       @person = Person.find(@contact.person_id)    
     end
 
