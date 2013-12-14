@@ -1,6 +1,7 @@
 class HovercardPresenter
 
   attr_accessor :person
+  attr_accessor :contact_id
 
   # initialize the presenter with the given Person object
   def initialize(person, contact_id="")
