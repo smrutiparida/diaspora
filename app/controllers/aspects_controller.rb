@@ -102,12 +102,12 @@ class AspectsController < ApplicationController
   
   def teacher
     #who is the teacher? Role table has persoon_id with role = teacher and contacts table has person_id and user_id
-    aspect = current_user.aspects.where(:id => params[:id]).includes(:contacts => {:person => :profile}).first
-    contacts_in_aspect = aspect.contacts.includes(:aspect_memberships, :person => :profile).all    
-    all_my_post_guid = contacts_in_aspect.map{|a| a.person.id}
+    aspect = current_user.aspects.where(:id => params[:id]).includes(:contacts).first
+    contacts_in_aspect = aspect.contacts.includes(:aspect_memberships, :person).all    
+    #contacts_in_aspect_map = contacts_in_aspect.map{|a| a.person.id}
     
-    teacher_info = Role.where(:person_id => all_my_post_guid, :name => 'teacher')
-    @person = Person.find_from_guid_or_username({:id => teacher_info})
+    teacher_info = Role.where(:person_id => contacts_in_aspect.person, :name => 'teacher').first
+    @person = Person.find(teacher_info.person_id)
     raise Diaspora::AccountClosed if @person.closed_account?
 
     respond_to do |format|
