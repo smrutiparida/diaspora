@@ -113,8 +113,7 @@ class AspectsController < ApplicationController
         @contact_id =current_user.contacts.where(:person_id => @person.id).first
       end
     end    
-    raise Diaspora::AccountClosed if @person.closed_account?
-
+    
     unless @person.nil?
       render :json => {}
     else  
