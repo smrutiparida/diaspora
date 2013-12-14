@@ -113,8 +113,8 @@ class AspectsController < ApplicationController
         @contact_id =current_user.contacts.where(:person_id => @person.id).first
       end
     end    
-    
-    unless @person.nil?
+
+    if @person.nil?
       render :json => {}
     else  
       respond_to do |format|
