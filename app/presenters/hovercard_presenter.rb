@@ -3,10 +3,11 @@ class HovercardPresenter
   attr_accessor :person
 
   # initialize the presenter with the given Person object
-  def initialize(person)
+  def initialize(person, contact_id = nil)
     raise ArgumentError, "the given object is not a Person" unless person.class == Person
 
     self.person = person
+    self.contact_id = contact_id
   end
 
   # returns the json representation of the Person object for use with the
@@ -17,7 +18,8 @@ class HovercardPresenter
        :url => profile_url,
        :name => person.name,
        :handle => person.diaspora_handle,
-       :tags => person.tags.map { |t| "#"+t.name }
+       :tags => person.tags.map { |t| "#"+t.name },
+       :contact => contact_id
     }.to_json(options)
   end
 

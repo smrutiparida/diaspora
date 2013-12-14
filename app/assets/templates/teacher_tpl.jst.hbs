@@ -1,4 +1,5 @@
-<a href="{{teacher.url}}" class="photo-link">
-  <img src="{{teacher.avatar.small}}" class="photo">
-  {{teacher.name}}
+<a href="{{teacher.url}}">
+  <img src="{{teacher.avatar}}" class="avatar small">  
 </a>
+<div>{{teacher.name}}</div>
+<a href="/conversations/new?contact_id={{teacher.contact}}" class="button" rel="facebox">Ask Doubt</a>
