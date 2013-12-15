@@ -156,3 +156,25 @@ $bluebg: #e7f2f7;
 	}
 	/* ---- end override app/stylesheets/vendor/autoSuggest.css ---- */
 }
+
+#questions_list {
+	.icons-check_yes_ok {
+		height:18px;
+		width:18px;
+		background: url('icons/check_yes_ok.png') no-repeat;
+		float: left;
+		visibility: hidden;
+	}
+
+	.selected {
+		visibility: visible;
+	}
+	
+	.selected + a {
+		color: #333333;
+	}
+
+	.modify_aspect {
+		background: url("icons/plus.png") no-repeat;
+	}
+}

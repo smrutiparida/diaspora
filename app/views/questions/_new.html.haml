@@ -28,9 +28,10 @@
       %span#question_correct_answer
         = select_tag "question[answer]", "<option selected='selected' value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option>".html_safe 
         
-
-      = button_tag "Cancel", :type => 'button', :id => 'question_form_cancel', :class => 'button'        
-      = question.submit "Add", 'data-disable-with' => "In Progress..", :class => 'button creation'
+      %div
+        = button_tag "Cancel", :type => 'button', :id => 'question_form_cancel', :class => 'button'        
+        = question.submit "Add to Quiz", 'data-disable-with' => "In Progress..", :class => 'button creation'
+        
 
 
 :javascript

@@ -22,8 +22,7 @@
     - if @quizzes.size > 0
       - @quizzes.each do |question|
         %li.hoverable{:data => {:question_id => question.id}}
-          %a.action.modify_aspect.button{:href => "#", :onclick => "addToQuiz(" + question.id.to_s + ",'" + question.description + "');"}          
-            = "+ quiz"
+          %a.action.modify_aspect{:href => "#", :onclick => "addToQuiz(" + question.id.to_s + ",'" + question.description + "');"}                      
           %a.selectable{:href => "#"}
             = question.description
     - else
@@ -61,12 +60,14 @@
     .rightBar
       .title      
         %h5
-          = "Questions"   
+          = "Questions"
+
 
       #qlist
+        = "Empty questions set."
 
     %div{:style => 'margin-top:10px;text-align:center;'}
-      = quiz.submit "  Save Quiz  ", 'data-disable-with' => "In Progress..", :class => 'button creation'
+      = quiz.submit "  Create Quiz  ", 'data-disable-with' => "In Progress..", :class => 'button creation'
     
 
 :javascript
@@ -97,7 +98,12 @@
   function addToQuiz(id, description)
   {
     var count = $("#qlist").children("div").length
+    if (count == 0){
+      $('#qlist').empty();  
+    }
+
     count = count + 1;
+
     var temp_str = '<div class="truncate">' + count + '. ' + description + '</div><input name="quiz[quiz_questions_attributes][][question_id]" type="hidden" value="' + id + '"/><input name="quiz[quiz_questions_attributes][][mark]" type="hidden" value="1"/>';
     
     $('#qlist').append(temp_str);
