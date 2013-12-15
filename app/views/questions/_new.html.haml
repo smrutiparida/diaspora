@@ -6,7 +6,7 @@
     %span Type:
     = select_tag "question[qtype]", "<option selected='selected' value='multiple_choice'>Multiple Choice</option><option value='fill_in_the_blanks'>Fill in the Blanks</option><option value='true_false'>True/False</option>".html_safe 
     %span Mark:
-    = = text_field_tag 'question[mark]', '1', :style => 'width:10%;' 
+    = text_field_tag 'question[mark]', '1', :style => 'width:10%;' 
     %span Points
       
     %div{:style => 'background-color:#eee'}
