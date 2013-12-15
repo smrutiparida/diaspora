@@ -13,12 +13,17 @@
 #leftNavBar.span-6.append-1{:style => 'height:800px;border-right:1px solid #ccc;'}
   %span.add_aspect
     
+  .right-bar
+      .title      
+        %h4
+          = "Question Bank"
 
   %ul.sub_nav#questions_list
     - if @quizzes.size > 0
       - @quizzes.each do |question|
         %li.hoverable{:data => {:question_id => question.id}}
-          %a.action.modify_aspect{:href => "/questions/clone/#{question.id}", :rel => "facebox"}          
+          %a.action.modify_aspect.button{:href => "#", onclick => "addToQuiz({{question.id}}, {{question.description}})"}          
+            = "+ quiz"
           %a.selectable{:href => "#"}
             = question.description
     - else
@@ -29,7 +34,7 @@
   #people_stream.stream.contacts
     = link_to "Add question", "#", :id=>"question_add", :class => 'button creation', :style =>'float:right;margin:10px;'    
   %h4
-    = "QUESTIONS"
+    = "Create a question"
   #quiz_accordion
 
   #form_space    
@@ -53,9 +58,9 @@
     = text_field_tag 'quiz[time]', '15', :style => 'width:10%;display:inline-block;'
     %span Minutes
       
-    .section
+    .right-bar
       .title      
-        %h5.title-header
+        %h5
           = "Questions"   
 
       #qlist
@@ -87,5 +92,14 @@
     }
     
   //  return false;
-  });  
+  });
+
+  function addToQuiz(id, description)
+  {
+    var count = $("#qlist").children("span").length
+    count = count + 1;
+    var temp_str = '<div class="truncate">' + count + '. ' + description + '</div><input name="quiz[quiz_questions_attributes][][question_id]" type="hidden" value="' + id + '"/><input name="quiz[quiz_questions_attributes][][mark]" type="hidden" value="1"/>';
+    alert(temp_str);
+    $('#qlist').append(temp_str);
+  }  
 

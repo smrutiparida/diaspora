@@ -53,12 +53,13 @@ var response = <%= raw @response.to_json %>;
       hidden_form_active = false;
       $('#questions_list').prepend('<li class="hoverable" data-question-id="' + response.id +'"><a class="action modify_aspect" href="/questions/clone/#' + response.id + '"></a><a class="selectable" href="#">' + response.description + '</a></li>');
       //$('#new_quiz#questionlist').append('<input type="hidden" value="' + response.id + '" name="question[id]"');
-      var count = $("#qlist").children("span").length
-      vount = count + 1;
-      var temp_str = '<div class="truncate">' + count + '. ' + response.description + '</div><input name="quiz[quiz_questions_attributes][][question_id]" type="hidden" value="' + response.id + '"/><input name="quiz[quiz_questions_attributes][][mark]" type="hidden" value="1"/>';
+      //var count = $("#qlist").children("span").length
+      //count = count + 1;
+      //var temp_str = '<div class="truncate">' + count + '. ' + response.description + '</div><input name="quiz[quiz_questions_attributes][][question_id]" type="hidden" value="' + response.id + '"/><input name="quiz[quiz_questions_attributes][][mark]" type="hidden" value="1"/>';
       //alert(temp_str);
-      $('#qlist').append(temp_str);
+      //$('#qlist').append(temp_str);
       //alert($('#qlist').html());
+      addToQuiz(response.id, response.description);
 
       $("#question_add").addClass('creation');
     }
