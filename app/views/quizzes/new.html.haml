@@ -44,13 +44,13 @@
     %h5.fieldWithErrors Title
     = text_field_tag 'quiz[title]', nil, :placeholder => 'About the quiz..', :style => 'width:77%;display:inline-block;'
 
-    %div{:style => 'padding-left:10px;'}      
+    %div{:style => 'padding-left:29px;padding-bottom:10px;'}      
       = check_box_tag 'quiz[randomize_questions]', 'true' , true, :style => 'float:left;'
-      %span Randomize questions
+      %span{:style => 'margin-left:4px;vertical-align:middle;'} Randomize questions
     = hidden_field_tag 'quiz[total_marks]', '0' 
-    
+
     %h5.fieldWithErrors Time Limit
-    = text_field_tag 'quiz[title]', nil, :style => 'width:10%;display:inline-block;'
+    = text_field_tag 'quiz[time]', '15', :style => 'width:10%;display:inline-block;'
     %span Minutes
   
        
