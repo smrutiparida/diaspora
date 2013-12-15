@@ -12,7 +12,7 @@
     %div{:style => 'background-color:#eee;margin-right:10px;padding:5px;'}
       %span#question_title Question
       %div{:style => 'margin-bottom:10px;'}
-        = text_field_tag 'question[description]', nil, :placeholder => 'Type a question..', :style => 'width:95%;margin-bottom:0px;'
+        = text_area_tag 'question[description]', nil, :rows => 2, :placeholder => 'Type a question..', :style => 'width:95%;margin-bottom:0px;'
         %div#question_hint{:style => 'display:none;margin-top:0px;font-size:11px;'} Use _____ (underscore) to show the blank field.
         
         
@@ -28,7 +28,7 @@
       %span#question_correct_answer
         = select_tag "question[answer]", "<option selected='selected' value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option>".html_safe 
         
-      %br
+
       = button_tag "Cancel", :type => 'button', :id => 'question_form_cancel', :class => 'button'        
       = question.submit "Add", 'data-disable-with' => "In Progress..", :class => 'button creation'
 
