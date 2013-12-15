@@ -10,16 +10,19 @@
       = "Create a Quiz"
 
     //= form_for Quiz.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |quiz|  
-#leftNavBar.span-6.append-1{:style => 'height:800px;'}
+#leftNavBar.span-6.append-1{:style => 'height:800px;border-right:1px solid #ccc;'}
   %span.add_aspect
     
 
   %ul.sub_nav#questions_list
-    - @quizzes.each do |question|
-      %li.hoverable{:data => {:question_id => question.id}}
-        %a.action.modify_aspect{:href => "/questions/clone/#{question.id}", :rel => "facebox"}          
-        %a.selectable{:href => "#"}
-          = question.description
+    - if @quizzes.size > 0
+      - @quizzes.each do |question|
+        %li.hoverable{:data => {:question_id => question.id}}
+          %a.action.modify_aspect{:href => "/questions/clone/#{question.id}", :rel => "facebox"}          
+          %a.selectable{:href => "#"}
+            = question.description
+    - else
+      = "No Questions in question bank"        
 
 .span-11.last{:style => 'height:800px;'}
   
@@ -35,19 +38,25 @@
   #hidden_form.hidden
     = render 'questions/new'
 
-#rightNavBar.span-5{:style => 'height:800px;'}
+#rightNavBar.span-5{:style => 'height:800px;border-left:1px solid #ccc;'}
   = form_for @quiz, html: {class: "new_conversation form_do_not_clear"}, remote: true do |quiz|
-    %h4
-      %p Title
-      = text_field_tag 'quiz[title]', nil, :placeholder => 'About the quiz..', :style => 'width:98%;'
-         
-    %span
+    
+    %span Title
+    = text_field_tag 'quiz[title]', nil, :placeholder => 'About the quiz..', :style => 'width:70%;display:inline-block;'
+
+    %span Time Limit
+    = text_field_tag 'quiz[title]', nil, :placeholder => 'About the quiz..', :style => 'width:10%;display:inline-block;'
+    %span minutes
+  
+       
+    %span      
       = check_box_tag 'quiz[randomize_questions]', 'true' , true
+      = "Randomize questions"
       = hidden_field_tag 'quiz[total_marks]', '0'    
 
     #qlist
 
-    %p
+    %div
       = quiz.submit "Save Quiz", 'data-disable-with' => "In Progress..", :class => 'button creation'
     
 

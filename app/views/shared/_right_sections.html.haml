@@ -2,12 +2,13 @@
 -#   licensed under the Affero General Public License version 3 or later.  See
 -#   the COPYRIGHT file.
 
-.section
-  .title
-    .icons-question
-    %h5.title-header
-      = "My Teacher"
-  .content#aspect_teacher
+- if @role.nil? or @role.name != "teacher"
+  .section
+    .title
+      .icons-question
+      %h5.title-header
+        = "My Teacher"
+    .content#aspect_teacher
   
 .section
   .title
