@@ -13,7 +13,7 @@
 #leftNavBar.span-6.append-1{:style => 'height:800px;border-right:1px solid #ccc;'}
   %span.add_aspect
     
-  .right-bar
+  .rightBar
     .title      
       %h4
         = "Question Bank"
@@ -58,7 +58,7 @@
     = text_field_tag 'quiz[time]', '15', :style => 'width:10%;display:inline-block;'
     %span Minutes
       
-    .right-bar
+    .rightBar
       .title      
         %h5
           = "Questions"   
@@ -96,10 +96,11 @@
 
   function addToQuiz(id, description)
   {
-    var count = $("#qlist").children("span").length
+    var count = $("#qlist").children("div").length
     count = count + 1;
     var temp_str = '<div class="truncate">' + count + '. ' + description + '</div><input name="quiz[quiz_questions_attributes][][question_id]" type="hidden" value="' + id + '"/><input name="quiz[quiz_questions_attributes][][mark]" type="hidden" value="1"/>';
-    alert(temp_str);
+    
     $('#qlist').append(temp_str);
+    Diaspora.page.flashMessages.render({ 'success':response.success, 'notice': 'Question added to the quiz.' });
   }  
 
