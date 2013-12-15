@@ -4,7 +4,7 @@
 - content_for :page_title do
   = "New Quiz"
 
-.span-24.last
+.span-23.last
   #section_header
     %h2
       = "Create a Quiz"
@@ -28,7 +28,7 @@
   
   #people_stream.stream.contacts
     = link_to "Add question", "#", :id=>"question_add", :class => 'button creation', :style =>'float:right;margin:10px;'    
-  %h3
+  %h4
     = "QUESTIONS"
   #quiz_accordion
 
@@ -38,25 +38,25 @@
   #hidden_form.hidden
     = render 'questions/new'
 
-#rightNavBar.span-5{:style => 'height:800px;border-left:1px solid #ccc;'}
+#rightNavBar.span-5{:style => 'height:800px;border-left:1px solid #ccc;padding-left:5px'}
   = form_for @quiz, html: {class: "new_conversation form_do_not_clear"}, remote: true do |quiz|
     
-    %span Title
-    = text_field_tag 'quiz[title]', nil, :placeholder => 'About the quiz..', :style => 'width:70%;display:inline-block;'
+    %h5.fieldWithErrors Title
+    = text_field_tag 'quiz[title]', nil, :placeholder => 'About the quiz..', :style => 'width:79%;display:inline-block;'
 
     %span Time Limit
-    = text_field_tag 'quiz[title]', nil, :placeholder => 'About the quiz..', :style => 'width:10%;display:inline-block;'
-    %span minutes
+    = text_field_tag 'quiz[title]', nil, :style => 'width:10%;display:inline-block;'
+    %span Minutes
   
        
-    %span      
+    %div      
       = check_box_tag 'quiz[randomize_questions]', 'true' , true
-      = "Randomize questions"
-      = hidden_field_tag 'quiz[total_marks]', '0'    
+      %span "Randomize questions"
+    = hidden_field_tag 'quiz[total_marks]', '0'    
 
     #qlist
 
-    %div
+    %div{:style => 'margin-top:10px;'}
       = quiz.submit "Save Quiz", 'data-disable-with' => "In Progress..", :class => 'button creation'
     
 
