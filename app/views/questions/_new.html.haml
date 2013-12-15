@@ -9,10 +9,11 @@
     = text_field_tag 'question[mark]', '1', :style => 'width:3%;display:inline;' 
     %span Points
       
-    %div{:style => 'background-color:#eee'}
-      %span#question_title Question    
-      = text_field_tag 'question[description]', nil, :placeholder => 'Type a question..', :style => 'width:95%;'
-      %span#question_hint{:style => 'display:none;margin-top:0px;'} Use _____ (underscore) to show the blank field.
+    %div{:style => 'background-color:#eee;margin-right:10px;padding:5px;'}
+      %span#question_title Question
+      %div{:style => 'margin-bottom:10px;'}'    
+        = text_field_tag 'question[description]', nil, :placeholder => 'Type a question..', :style => 'width:95%;margin-bottom:0px;'
+        %div#question_hint{:style => 'display:none;margin-top:0px;font-size:11px;'} Use _____ (underscore) to show the blank field.
         
         
       %div#option_title{:style => 'margin-top:10px;'} Possible Answers
@@ -23,7 +24,7 @@
         = text_field_tag 'question[answer4]', nil, :placeholder => 'Fourth Answer..', :style => 'width:50%;'
 
       
-      %div#answer_title{:style => 'margin-top:10px;'} Correct Answer
+      %span#answer_title{:style => 'margin-top:10px;margin-right:10px;'} Correct Answer
       %span#question_correct_answer
         = select_tag "question[answer]", "<option selected='selected' value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option>".html_safe 
         
