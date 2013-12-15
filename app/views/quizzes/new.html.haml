@@ -52,11 +52,13 @@
     %h5.fieldWithErrors Time Limit
     = text_field_tag 'quiz[time]', '15', :style => 'width:10%;display:inline-block;'
     %span Minutes
-  
-       
-       
+      
+    .section
+      .title      
+        %h5.title-header
+          = "Questions"   
 
-    #qlist
+      #qlist
 
     %div{:style => 'margin-top:10px;text-align:center;'}
       = quiz.submit "  Save Quiz  ", 'data-disable-with' => "In Progress..", :class => 'button creation'
