@@ -22,7 +22,7 @@
     - if @quizzes.size > 0
       - @quizzes.each do |question|
         %li.hoverable{:data => {:question_id => question.id}}
-          %a.action.modify_aspect.button{:href => "#", :onclick => "addToQuiz(" + question.id.to_s + "," + question.description + ");"}          
+          %a.action.modify_aspect.button{:href => "#", :onclick => "addToQuiz(" + question.id.to_s + ",'" + question.description + "');"}          
             = "+ quiz"
           %a.selectable{:href => "#"}
             = question.description
