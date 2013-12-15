@@ -42,22 +42,24 @@
   = form_for @quiz, html: {class: "new_conversation form_do_not_clear"}, remote: true do |quiz|
     
     %h5.fieldWithErrors Title
-    = text_field_tag 'quiz[title]', nil, :placeholder => 'About the quiz..', :style => 'width:79%;display:inline-block;'
+    = text_field_tag 'quiz[title]', nil, :placeholder => 'About the quiz..', :style => 'width:77%;display:inline-block;'
 
-    %span Time Limit
+    %div{:style => 'padding-left:10px;'}      
+      = check_box_tag 'quiz[randomize_questions]', 'true' , true, :style => 'float:left;'
+      %span Randomize questions
+    = hidden_field_tag 'quiz[total_marks]', '0' 
+    
+    %h5.fieldWithErrors Time Limit
     = text_field_tag 'quiz[title]', nil, :style => 'width:10%;display:inline-block;'
     %span Minutes
   
        
-    %div      
-      = check_box_tag 'quiz[randomize_questions]', 'true' , true
-      %span "Randomize questions"
-    = hidden_field_tag 'quiz[total_marks]', '0'    
+       
 
     #qlist
 
-    %div{:style => 'margin-top:10px;'}
-      = quiz.submit "Save Quiz", 'data-disable-with' => "In Progress..", :class => 'button creation'
+    %div{:style => 'margin-top:10px;text-align:center;'}
+      = quiz.submit "  Save Quiz  ", 'data-disable-with' => "In Progress..", :class => 'button creation'
     
 
 :javascript
