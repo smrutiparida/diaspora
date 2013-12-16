@@ -10,6 +10,7 @@ class Question < ActiveRecord::Base
     t.add :qtype
     t.add :answer
     t.add :all_answers
+    t.add :mark
   end
 
   #delegate :author_name, to: :current_user, prefix: true
@@ -42,6 +43,7 @@ class Question < ActiveRecord::Base
     question = self.new
     question.description = params[:description]
     question.qtype = params[:qtype]
+    question.mark = params[:mark].to_i
     Rails.logger.info(question.to_json)
     question.answer = params[:answer]    
     question.diaspora_handle = params[:author].diaspora_handle    

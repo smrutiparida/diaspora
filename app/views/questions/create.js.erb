@@ -59,7 +59,7 @@ var response = <%= raw @response.to_json %>;
       //alert(temp_str);
       //$('#qlist').append(temp_str);
       //alert($('#qlist').html());
-      addToQuiz(response.id, response.description);
+      addToQuiz(response.id, response.description, response.mark);
 
       $("#question_add").addClass('creation');
     }

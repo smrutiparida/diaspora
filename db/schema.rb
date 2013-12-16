@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
     t.string   "tags"   
     t.string   "diaspora_handle"
     t.string   "guid"
+    t.integer  "mark",         :default => 1,                   :null => false
   end
 
   add_index "questions", ["description","diaspora_handle"], :name => "index_questions_on_description_and_diaspora_handle"
