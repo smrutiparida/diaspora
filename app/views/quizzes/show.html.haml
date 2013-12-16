@@ -1,4 +1,6 @@
 - if @role.nil? or @role.name != "teacher"
   = render 'quizzes/quiz_form', :quiz => @quiz
+    %div        
+      = submit_tag "Submit", data: { disable_with: "Submitting..." }, :class => 'button creation'
 - else
   = render 'quizzes/quiz_form', :quiz => @quiz
