@@ -44,3 +44,4 @@
 //= require bootstrap-dropdown
 //= require bootstrap-scrollspy-custom
 //= require osmlocator
+//= require countdown

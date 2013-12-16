@@ -58,7 +58,7 @@ class StatusMessagesController < ApplicationController
       receiving_services = Service.titles(services)
 
       #disabling dispatch as services are not part of the student-teacher architecture
-      #current_user.dispatch_post(@status_message, :url => short_post_url(@status_message.guid), :service_types => receiving_services)
+      current_user.dispatch_post(@status_message, :url => short_post_url(@status_message.guid), :service_types => receiving_services)
 
       #this is done implicitly, somewhere else, but it doesnt work, says max. :'(
       @status_message.photos.each do |photo|
