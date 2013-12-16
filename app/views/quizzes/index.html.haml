@@ -22,7 +22,7 @@
         $('#display_quiz').html(data);
         //$('#display_quiz').append('<a class="button creation" href="#" onClick="attachQuiz(' + quizid + ',' + quiztitle+ ');">Assign Quiz</a>');
 
-        $('#display_quiz').prepend($('<a />', { onClick: "attachQuiz(" + quizid + ",'" + quiztitle + "');" , href: "#",class:"button creation", html: "Assign This Quiz", style: "float:right;" }));
+        $('#display_quiz').append($('<a />', { onClick: 'attachQuiz(' +quizid + ',"' + quiztitle + '");' , href: '#',class:'button creation', html: 'Assign Quiz' }));
       }
     });    
   }          
