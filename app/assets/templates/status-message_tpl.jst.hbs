@@ -40,11 +40,11 @@
 {{/if}}
 
 {{#if quiz}}
-  <div class="photo_attachments">
+  <div class="photo_attachments quiz-attempt">
     {{#with quiz}}
-      <h5>{{name}}</h5>
-      <a href="/quizzes/show/{{id}}" class="button creation" target="_blank">        
-        <span>Attempt Quiz</span>
+      <h5>{{title}}</h5>
+      <a href="/quizzes/{{id}}" class="button creation" target="_blank">        
+        <span class="quiz-status-message">Attempt Quiz</span>
       </a>
       <span>Due Date {{created_at}}</span>
     {{/with}}

@@ -34,12 +34,12 @@ class QuizzesController < ApplicationController
   end
 
   def show
-    @quiz = Quiz.where(:diaspora_handle => current_user.diaspora_handle, id: params[:id]).first
+    @quiz = Quiz.find(params[:id])
     @quiz[:questions] = Question.joins(:quiz_questions).where('quiz_questions.quiz_id' => @quiz.id)
-    Rails.logger.info(@quiz[:questions].to_json)
-    Rails.logger.info(@quiz.to_json)
+    #Rails.logger.info(@quiz[:questions].to_json)
+    #Rails.logger.info(@quiz.to_json)
     respond_with do |format|
-      format.html {render :layout => false}
+      format.html
       format.json {render :json => @quiz.to_json}
     end
     raise ActiveRecord::RecordNotFound unless @quiz
