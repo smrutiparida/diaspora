@@ -4,7 +4,10 @@
     = render 'quizzes/quiz_form', :quiz => @quiz
     %div        
       = submit_tag "Submit", data: { disable_with: "Submitting..." }, :class => 'button creation'
-  :javascript
+- else
+  = render 'quizzes/quiz_form', :quiz => @quiz
+
+:javascript
     $('#counter').countdown({
       stepTime: 60,
       format: 'mm:ss',
@@ -14,6 +17,4 @@
       digitHeight: 77,
       timerEnd: function() { alert('end!!'); },
       image: "digits.png"
-    });    
-- else
-  = render 'quizzes/quiz_form', :quiz => @quiz
+    }); 
