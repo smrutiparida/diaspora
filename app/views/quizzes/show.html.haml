@@ -1,5 +1,9 @@
 - if @role.nil? or @role.name != "teacher"
   %div#counter
+    %div.desc
+      %div Min
+      %div Sec
+  </div>
   = form_for Quiz.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |question|  
     = render 'quizzes/quiz_form', :quiz => @quiz
     %div        
