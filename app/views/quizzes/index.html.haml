@@ -1,5 +1,5 @@
-.span-14.last
-  %h5{:style => 'float:left;margin-right:px;margin-top"6px;'}
+.span-12.last
+  %h5{:style => 'float:left;margin-right:15px;margin-top:6px;'}
     Load a quiz
   .section
     = select_tag "quizList", options_from_collection_for_select(@quizzes, "id", "title")    
@@ -22,7 +22,7 @@
         $('#display_quiz').html(data);
         //$('#display_quiz').append('<a class="button creation" href="#" onClick="attachQuiz(' + quizid + ',' + quiztitle+ ');">Assign Quiz</a>');
 
-        $('#display_quiz').prepend($('<a />', { onClick: 'attachQuiz(' +quizid + ',"' + quiztitle + '");' , href: '#',class:'button creation', html: 'Assign Quiz' }));
+        $('#display_quiz').prepend($('<a />', { onClick: "attachQuiz(" + quizid + ",'" + quiztitle + "');" , href: "#",class:"button creation", html: "Assign This Quiz", style: "float:right;" }));
       }
     });    
   }          
