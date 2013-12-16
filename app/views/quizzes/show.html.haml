@@ -1,8 +1,4 @@
 - if @role.nil? or @role.name != "teacher"
-  %div#counter
-  = form_tag '/quiz/create', :class => 'new_conversation form_do_not_clear', :remote => true
-    = render 'quizzes/quiz_form', :quiz => @quiz
-    %div        
-      = submit_tag "Submit", data: { disable_with: "Submitting..." }, :class => 'button creation'
+  = render 'quizzes/quiz_form', :quiz => @quiz
 - else
   = render 'quizzes/quiz_form', :quiz => @quiz
