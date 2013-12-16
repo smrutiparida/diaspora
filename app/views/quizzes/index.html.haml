@@ -8,7 +8,7 @@
 
 :javascript
   $("#quizList").change(function() {
-    showQuiz($( this ).val(), 'temp');
+    showQuiz($( this ).val(), $('#quizList :selected').text());
   });
   
   function showQuiz(quizid,quiztitle){    
