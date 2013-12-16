@@ -2,7 +2,7 @@
   %h3
     Load a quiz
   .section
-    = select_tag "quizList", options_from_collection_for_select(@quizzese, "id", "title")    
+    = select_tag "quizList", options_from_collection_for_select(@quizzes, "id", "title")    
     %br
     %div#display_quiz
 
