@@ -58,18 +58,15 @@ class QuizzesController < ApplicationController
       #@response = {}
       @response = @quiz.as_api_response(:backbone)
       @response[:success] = true
-      @response[:message] = "Assignment created successfully."
+      @response[:message] = "Quiz created successfully."
     else
       @response[:success] = true
-      response[:message] = "Assignment creation failed. Please try again!"  
+      response[:message] = "Quiz creation failed. Please try again!"  
     end  
-    
-    flash[:notice] = "Quiz created successfully."
-    redirect_to '/stream'
-
-    #respond_to do |format|
-    #  format.js
-    #end  
+   
+    respond_to do |format|
+      format.js
+    end  
   end  
 
   #def quiz_params

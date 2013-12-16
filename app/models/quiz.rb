@@ -51,6 +51,7 @@ class Quiz < ActiveRecord::Base
     quiz.public = params[:public] if params[:public]
     quiz.title = params[:title]
     quiz.total_marks = params[:total_marks]    
+    quiz.time = params[:time]
     quiz.randomize_questions = false unless params[:randomize_questions]    
     quiz.quiz_questions.build(params[:quiz_questions_attributes])
     quiz.diaspora_handle = quiz.author.diaspora_handle

@@ -1,22 +1,17 @@
 .span-12.last
   %h3
-    Load a quiz or 
-    %span
-      = link_to 'Create a Quiz', '/quizzes/new', :class => 'button creation'
-  %br
+    Load a quiz
   .section
-    %ul{:style => 'float:left;width:100px;overflow:elipsis;'}
-      - for quiz in @quizzes
-        %li.hoverable                    
-          = link_to quiz.title, '#', :class => 'quiz-selectable', :onClick => %Q/showQuiz(#{quiz.id.to_s}, '#{quiz.title}');/
-
-    %div#display_quiz{:style => 'float:right;'}
+    = select_tag "quizList", options_from_collection_for_select(@quizzese, "id", "title")    
+    %br
+    %div#display_quiz
 
 :javascript
-  //$(".selectable").hover(
-  //  function() {$(this).find('button').removeClass('hidden');},
-  //  function() {$(this).find('button').addClass('hidden');}
-  //);
+  $("#quizList").change(function() {
+    alert($( this ).val() + "and" +  $( this ).text());
+    showQuiz($( this ).val(), $( this ).text());
+
+  });
   
   function showQuiz(quizid,quiztitle){    
     $('#display_quiz').empty();
