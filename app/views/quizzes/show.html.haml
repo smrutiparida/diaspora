@@ -1,8 +1,8 @@
 - if @role.nil? or @role.name != "teacher"
-  = form_for Answer.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |question|  
+  = form_tag '/quiz/create', :class => 'new_conversation form_do_not_clear', :remote => true
     = render 'quizzes/quiz_form', :quiz => @quiz
     %div        
-      = question.submit "Submit", 'data-disable-with' => "Submitting...", :class => 'button creation'
+      = submit_tag "Submit", data: { disable_with: "Submitting..." }, :class => 'button creation'
   :javascript
     $('#counter').countdown({
     stepTime: 60,
