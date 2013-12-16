@@ -42,10 +42,11 @@
 {{#if quiz}}
   <div class="photo_attachments">
     {{#with quiz}}
-      <a href="#" class="stream-photo-link">
-        <img src="/assets/facebox/pdf.png" class="stream-photo thumb_small" rel="lightbox">        
-        <span>{{name}}</span>
+      <h5>{{name}}</h5>
+      <a href="/quizzes/show/{{id}}" class="button creation" target="_blank">        
+        <span>Attempt Quiz</span>
       </a>
+      <span>Due Date {{created_at}}</span>
     {{/with}}
   </div>
 {{/if}}
