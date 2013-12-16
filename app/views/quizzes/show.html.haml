@@ -8,12 +8,12 @@
     $('#counter').countdown({
       stepTime: 60,
       format: 'mm:ss',
-      startTime: @quiz.time + ":00",
+      startTime: "15:00",
       digitImages: 6,
       digitWidth: 53,
       digitHeight: 77,
       timerEnd: function() { alert('end!!'); },
-      image: "digits.png"
+      image: "/assets/icons/digits.png"
     });    
 - else
   = render 'quizzes/quiz_form', :quiz => @quiz

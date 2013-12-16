@@ -13,6 +13,7 @@
 //= require jquery.placeholder
 //= require timeago
 //= require facebox
+//= require countdown
 //= require jquery.events.input
 //= require jquery.elastic
 //= require jquery.mentionsInput
@@ -44,4 +45,3 @@
 //= require bootstrap-dropdown
 //= require bootstrap-scrollspy-custom
 //= require osmlocator
-//= require countdown
