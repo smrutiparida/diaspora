@@ -1,9 +1,18 @@
-%div.quiz-form-wrapper
-  %div.quiz-form-content   
-    %h1.quiz-form-title
-      %span
-        = @quiz.title
-    - count = 0    
-    - for question in @quiz[:questions]
-      - count = count + 1	
-      = render 'quizzes/question', :question => question, :count => count
+- if @role.nil? or @role.name != "teacher"
+  = form_for Answer.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |question|  
+    = render 'quizzes/quiz_form', :quiz => @quiz
+    %div        
+      = question.submit "Submit", 'data-disable-with' => "Submitting...", :class => 'button creation'
+  :javascript
+    $('#counter').countdown({
+    stepTime: 60,
+    format: 'mm:ss',
+    startTime: @quiz.time + ":00",
+    digitImages: 6,
+    digitWidth: 53,
+    digitHeight: 77,
+    timerEnd: function() { alert('end!!'); },
+    image: "digits.png"
+  });    
+- else
+  = render 'quizzes/quiz_form', :quiz => @quiz

@@ -36,6 +36,7 @@ class QuizzesController < ApplicationController
   def show
     @quiz = Quiz.find(params[:id])
     @quiz[:questions] = Question.joins(:quiz_questions).where('quiz_questions.quiz_id' => @quiz.id)
+    @role = Role.where(:person_id => current_user.person, :name => 'teacher').first
     #Rails.logger.info(@quiz[:questions].to_json)
     #Rails.logger.info(@quiz.to_json)
     respond_with do |format|

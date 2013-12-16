@@ -1,0 +1,9 @@
+%div.quiz-form-wrapper
+  %div.quiz-form-content   
+    %h1.quiz-form-title
+      %span
+        = quiz.title
+    - count = 0    
+    - for question in quiz[:questions]
+      - count = count + 1	
+      = render 'quizzes/question', :question => question, :count => count
