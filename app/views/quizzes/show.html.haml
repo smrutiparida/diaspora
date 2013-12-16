@@ -1,6 +1,6 @@
 - if @role.nil? or @role.name != "teacher"
   %div#counter
-  = form_for Quiz.new, :url => {:controller => 'lists', :action => 'create'},html: {class: "new_conversation form_do_not_clear"}, remote: true do |question|  
+  = form_for Quiz.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |question|  
     = render 'quizzes/quiz_form', :quiz => @quiz
     %div        
       = question.submit "Submit", 'data-disable-with' => "Submitting...", :class => 'button creation'
@@ -14,6 +14,6 @@
       digitHeight: 77,
       timerEnd: function() { alert('end!!'); },
       image: "digits.png"
-  });    
+    });    
 - else
   = render 'quizzes/quiz_form', :quiz => @quiz
