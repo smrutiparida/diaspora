@@ -63,10 +63,13 @@ class QuizzesController < ApplicationController
       @response[:success] = true
       response[:message] = "Assignment creation failed. Please try again!"  
     end  
-   
-    respond_to do |format|
-      format.js
-    end  
+    
+    flash[:notice] = "Quiz created successfully."
+    redirect_to '/stream'
+
+    #respond_to do |format|
+    #  format.js
+    #end  
   end  
 
   #def quiz_params
