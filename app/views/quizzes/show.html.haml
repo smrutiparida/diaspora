@@ -1,19 +1,19 @@
 - if @role.nil? or @role.name != "teacher"
+  %div#counter
   = form_tag '/quiz/create', :class => 'new_conversation form_do_not_clear', :remote => true
     = render 'quizzes/quiz_form', :quiz => @quiz
     %div        
       = submit_tag "Submit", data: { disable_with: "Submitting..." }, :class => 'button creation'
   :javascript
     $('#counter').countdown({
-    stepTime: 60,
-    format: 'mm:ss',
-    startTime: @quiz.time + ":00",
-    digitImages: 6,
-    digitWidth: 53,
-    digitHeight: 77,
-    timerEnd: function() { alert('end!!'); },
-    image: "digits.png"
-  });    
+      stepTime: 60,
+      format: 'mm:ss',
+      startTime: @quiz.time + ":00",
+      digitImages: 6,
+      digitWidth: 53,
+      digitHeight: 77,
+      timerEnd: function() { alert('end!!'); },
+      image: "digits.png"
+    });    
 - else
   = render 'quizzes/quiz_form', :quiz => @quiz
-- end
