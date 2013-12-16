@@ -9,24 +9,24 @@
         %ul.quiz-form-list
           - if question.qtype == "true_false"
             %li
-              = radio_button_tag 'True', 'True', :class => 'quiz-form-radio'
+              = radio_button_tag 'question' + question.id.to_s, 'True', false, :class => 'quiz-form-radio'
               = label_tag 'True', 'True'
             %li  
-              = radio_button_tag 'False', 'False', :class => 'quiz-form-radio'
+              = radio_button_tag 'question' + question.id.to_s, 'False', false, :class => 'quiz-form-radio'
               = label_tag 'False', 'False'
           - else 
             - answer_options = JSON.parse(question.all_answers)
             %li
-              = radio_button_tag 'answer1', 'answer1', :class => 'quiz-form-radio'
+              = radio_button_tag 'question' + question.id.to_s, 'answer1', false, :class => 'quiz-form-radio'
               = label_tag 'Answer1', answer_options["answer1"]
             %li  
-              = radio_button_tag 'answer2', 'answer2', :class => 'quiz-form-radio'
+              = radio_button_tag 'question' + question.id.to_s, 'answer2', false, :class => 'quiz-form-radio'
               = label_tag 'Answer2', answer_options["answer2"]
             %li
-              = radio_button_tag 'answer3', 'answer3', :class => 'quiz-form-radio'
+              = radio_button_tag 'question' + question.id.to_s, 'answer3', false, :class => 'quiz-form-radio'
               = label_tag 'Answer3', answer_options["answer3"]
             %li  
-              = radio_button_tag 'answer4', 'answer4', :class => 'quiz-form-radio'
+              = radio_button_tag 'question' + question.id.to_s, 'answer4', false, :class => 'quiz-form-radio'
               = label_tag 'Answer4', answer_options["answer4"]
   - else
     %div.quiz-form-question.quiz-form-essay

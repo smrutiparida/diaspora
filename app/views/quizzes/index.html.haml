@@ -8,9 +8,7 @@
 
 :javascript
   $("#quizList").change(function() {
-    alert($( this ).val() + "and" +  $( this ).text());
     showQuiz($( this ).val(), $( this ).text());
-
   });
   
   function showQuiz(quizid,quiztitle){    

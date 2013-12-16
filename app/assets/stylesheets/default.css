@@ -11,6 +11,7 @@
 *= require vendor/fileuploader
 *= require vendor/autoSuggest
 *= require entypo-fonts
+*= require vendor/quiz
 *= require entypo
 *= require vendor/jquery-ui-1.10.3.custom.min
 *= require vendor/jquery.ui.tabs
