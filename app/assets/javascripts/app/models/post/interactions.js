@@ -53,7 +53,7 @@ app.models.Post.Interactions = Backbone.Model.extend({
   },
 
   toggleLike : function() {
-    alert("app.models.Post.Interactions:toggleLike");
+    //alert("app.models.Post.Interactions:toggleLike");
     if(this.userLike()) {
       this.unlike()
     } else {
