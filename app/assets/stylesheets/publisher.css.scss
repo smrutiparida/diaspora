@@ -183,7 +183,6 @@
     position: absolute;
     right: 6px;
     margin-top: 9px;
-    border: 1px solid #ccc;
 
     .icons-deletelabel {
       height: 14px;
@@ -207,7 +206,7 @@
   
 
   position: relative;
-  
+  border: 1px solid #ccc;
 
   textarea {
     z-index: 2;
