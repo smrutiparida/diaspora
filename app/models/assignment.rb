@@ -19,7 +19,8 @@ class Assignment < ActiveRecord::Base
     t.add :author
     t.add :name
     t.add :description
-    t.add :pending    
+    t.add :pending
+    t.add :comments_count, :as => :points    
   end
 
   xml_attr :text
@@ -74,6 +75,7 @@ class Assignment < ActiveRecord::Base
     assignment.public = params[:public] if params[:public]
     assignment.pending = params[:pending] if params[:pending]
     assignment.diaspora_handle = assignment.author.diaspora_handle
+    assignment.comments_count = params[:comments_count]
     
     #submission_date is turning out to be null.. need fixing
     #assignment.submission_date = DateTime.strptime(params[:submission_date],'%d/%m/%Y %I:%M:%S %p')

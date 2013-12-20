@@ -8,6 +8,8 @@ var response = <%= raw @response.to_json %>;
     $('.content_creation form').append('<input type="hidden", value="'+ response.id +'" name="assignments[]" />');
     $('#assignmentdropzone').append('<li class="publisher_assignment" style="position:relative;"><span data-id="' + 
                       response.id +
+                      '" points="'  + response.points +
+                      '" description="'  + response.description +
                       '" sub-date="'  + response.submission_date + 
                       '" sub-month="' + response.submission_date + '">' + 
                       response.name +

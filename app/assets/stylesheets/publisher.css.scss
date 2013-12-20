@@ -183,6 +183,7 @@
     position: absolute;
     right: 6px;
     margin-top: 9px;
+    border: 1px solid #ccc;
 
     .icons-deletelabel {
       height: 14px;
@@ -192,6 +193,7 @@
     .active {
       border: 1px solid #999;
     }
+
     &:hover {
       @include opacity(1);
     }

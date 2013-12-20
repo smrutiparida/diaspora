@@ -12,30 +12,32 @@
       %br
   .span-10.append-1.last
     
-    
     %br
     
     #create_assignment
 
       = form_for Assignment.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |assignment|
         
-        %h4
+        %h5
           = "Title"    
         = text_field_tag 'assignment[name]', nil, :placeholder => 'Assignment title..', :size => '20'
         
         
 
-        %h4
+        %h5
           = "Description"  
-        = text_area_tag 'assignment[description]', nil, :rows => '2', :placeholder => "What students need to do.."
+        = text_area_tag 'assignment[description]', nil, :rows => '3', :placeholder => "What students need to do.."
 
         
-          
+        
         = text_field_tag 'assignment[submission_date]', nil, :placeholder => "Due Date..", :class => 'jquery-ui-date', :size => '10', :style => "width:25%"       
-        %span
-          = check_box_tag 'assignment[file_upload]', 'true' , true, :class => 'inline'
-          %b
-            Students will upload a file as part of submission
+
+        %h5.fieldWithErrors Points  
+        = text_field_tag 'assignment[comments_count]', '10', :class => 'jquery-ui-date', :style => "width:10%;display:inline-block"       
+
+        %div
+          = check_box_tag 'assignment[file_upload]', 'true' , true, , :style => 'float:left;'
+          %span{:style => 'margin-left:4px;vertical-align:middle;'} Students will upload a file as part of submission
           
         
 
