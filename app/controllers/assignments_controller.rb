@@ -1,6 +1,6 @@
 class AssignmentsController < ApplicationController
 
-  before_filter :authenticate_user!, :only => [:new, :create, :index, :destroy]
+  before_filter :authenticate_user!, :only => [:new, :create, :index, :destroy, :show]
   respond_to :html, :json, :js
 
   def new
@@ -32,6 +32,16 @@ class AssignmentsController < ApplicationController
       format.js
     end  
   end  
+  
+  def show
+    assignment = Assignment.where(id: params[:id]).first
+
+    if assignment
+      respond_to do |format|
+        format.json
+      end 
+    end     
+  end
 
   def destroy
     assignment = Assignment.where(id: params[:id]).first
