@@ -4,7 +4,7 @@ class AssignmentAssessmentsController < ApplicationController
   respond_to :html, :json, :js
 
   def new
-    @assignment = Assignment.find(params[:assign_id]).first
+    @assignment = Assignment.find(params[:assign_id])
     respond_to do |format|
       format.html do
         render :layout => false
