@@ -11,7 +11,7 @@ class Assignment < ActiveRecord::Base
     t.add :created_at
     t.add :submission_date
     t.add lambda { |assignment|
-            assignment.subdate(:submission_date)
+            assignment.subdate(:created_at)
           }, :as => :sub_date
     t.add lambda { |assignment|
             assignment.submonth(:submission_date)
