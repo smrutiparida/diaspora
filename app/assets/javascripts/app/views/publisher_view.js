@@ -219,13 +219,19 @@ app.views.Publisher = Backbone.View.extend({
     var assignments = new Array();
     $('li.publisher_assignment span').each(function(){
       var assign_name = $(this).text();      
-      var sub_date = "15"; //$(this).attr('sub-date');
-      var sub_month = "Nov";//$(this).attr('sub-month');
+      var sub_date = $(this).attr('sub-date');
+      var sub_month = $(this).attr('sub-month');
+      var id = $(this).attr('data-id');
+      var description = $(this).attr('description');
+      var points = $(this).attr('points');
       assignments.push(
         {
-          "subdate": sub_date,
-          "submonth": sub_month,
-          "name": assign_name
+          "date": sub_date,
+          "month": sub_month,
+          "name": assign_name,
+          "points": points,
+          "description": description,
+          "id": id
         }
       );
     });
@@ -337,7 +343,7 @@ app.views.Publisher = Backbone.View.extend({
     this.$('#documentInfo').empty();
     
     $('#assignmentdropzone').find('li').remove();
-    this.$("input[name='documents[]']").remove();
+    this.$("input[name='assignments[]']").remove();
 
     $('#quizdropzone').find('li').remove();
     this.$("input[name='quizzes[]']").remove();

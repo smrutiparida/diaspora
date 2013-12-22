@@ -27,15 +27,16 @@
 
 {{#if assignments}}  
   {{#each assignments}}
-    <div style="float:left;padding-right:15px;">
+    <div style="float:left;padding-right:15px;margin-top:4px;">
       <div style="width:50px;">
-        <div class="assignment-month-part">Dec</div>
-        <div class="assignment-date-part">15</div>
+        <div class="assignment-month-part">{{month}}</div>
+        <div class="assignment-date-part">{{date}}</div>
       </div>
-    </div>  
-    <a href="/assignment/submit" class="stream-photo-link">        
-      <span>{{name}}</span>
-    </a>
+    </div>
+    <h5 style="margin-bottom:0.7em">{{name}}</h5>
+    <a href="/assignment/submit/{{id}}" class="creation button">Upload Assignment</a>  
+    <span style="margin-left:10px;">for {{points}} points</span>
+    <div style="padding-top:10px;">{{description}}</div>      
   {{/each}}  
 {{/if}}
 

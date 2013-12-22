@@ -10,8 +10,8 @@ var response = <%= raw @response.to_json %>;
                       response.id +
                       '" points="'  + response.points +
                       '" description="'  + response.description +
-                      '" sub-date="'  + response.submission_date + 
-                      '" sub-month="' + response.submission_date + '">' + 
+                      '" sub-date="'  + response.sub_date + 
+                      '" sub-month="' + response.sub_month + '">' + 
                       response.name +
                       '</span><div class="x" onClick="removeObject(\'assignments\',this);">X</div>'+
                       '<div class="circle"></div></li>');
