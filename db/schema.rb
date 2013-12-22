@@ -307,7 +307,22 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
     t.datetime "updated_at"    
     t.string   "status_message_guid"
     t.integer  "comments_count"
-    
+    t.boolean  "is_result_published",  :default => false  
+  end
+
+  create_table "assignment_assessments", :force => true do |t|    
+    t.integer  "assignment_id",                             :null => false    
+    t.string   "diaspora_handle"
+    t.datetime "submission_date"
+    t.string   "filename"
+    t.boolean  "is_checked",             :default => false, :null => false
+    t.string   "filepath"
+    t.integer  "size"    
+    t.datetime "created_at"
+    t.datetime "updated_at"    
+    t.datetime "checked_date"
+    t.string   "comments"
+    t.integer  "points"    
   end
 
   add_index "assignments", ["status_message_guid"], :name => "index_assignments_on_status_message_guid"
@@ -358,6 +373,28 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end
+
+  create_table "quiz_assessments", :force => true do |t|
+    t.string   "diaspora_handle"
+    t.integer  "quiz_id",        :null => false    
+    t.integer  "marks_obtained"
+    t.integer  "highest_marks_obtained"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.datetime "attempted_on"
+    t.datetime "last_attempted_on"
+    t.string   "comments"
+  end
+
+  create_table "quiz_questions_assessments", :force => true do |t|
+    t.integer  "quiz_assessment_id",         :null => false
+    t.integer  "quiz_question_id",           :null => false
+    t.string   "answer"
+    t.integer  "marks"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false    
+  end
+
 
   add_index "quiz_questions", ["quiz_id", "question_id"], :name => "index_quiz_questions_on_quiz_id_and_question_id", :unique => true
   add_index "quiz_questions", ["quiz_id"], :name => "index_quiz_questions_on_quiz_id"

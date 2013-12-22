@@ -95,6 +95,8 @@ Diaspora::Application.routes.draw do
 
   resources :assignments
 
+  resources :assignment_assessments
+
   resources :quizzes
   
   resources :tags, :only => [:index]
