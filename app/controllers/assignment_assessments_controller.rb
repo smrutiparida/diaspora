@@ -18,7 +18,7 @@ class AssignmentsController < ApplicationController
         @assignment_assessment = current_user.build_post(:assignment_assessment, assignment_assessment_params)
         if @assignment_assessment.save
           respond_to do |format|
-            format.json { render :json => {"success" => true, "message" => 'Assignment submitted successfully.' }
+            format.json { render :json => {"success" => true, "message" => 'Assignment submitted successfully.'} }
           end
         else
           respond_with @assignment_assessment, :location => assignment_assessments_path, :error => message
