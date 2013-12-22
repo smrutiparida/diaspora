@@ -226,8 +226,8 @@ app.views.Publisher = Backbone.View.extend({
       var points = $(this).attr('points');
       assignments.push(
         {
-          "date": sub_date,
-          "month": sub_month,
+          "sub_date": sub_date,
+          "sub_month": sub_month,
           "name": assign_name,
           "points": points,
           "description": description,
