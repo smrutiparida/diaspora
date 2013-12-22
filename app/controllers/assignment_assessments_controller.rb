@@ -1,4 +1,4 @@
-class AssignmentsController < ApplicationController
+class AssignmentAssessmentsController < ApplicationController
 
   before_filter :authenticate_user!, :only => [:new, :create, :index, :destroy, :show]
   respond_to :html, :json, :js
