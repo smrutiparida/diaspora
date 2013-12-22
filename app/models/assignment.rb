@@ -46,7 +46,7 @@ class Assignment < ActiveRecord::Base
 
   def submonth(date = nil)
     if date
-      DiasporaateTime.parse(date.to_s).strftime("%b")
+      DateTime.parse(date.to_s).strftime("%b")
     end  
   end  
 
