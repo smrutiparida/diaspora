@@ -5,18 +5,19 @@
   
   - if @assignments.size > 0
     .span-12.last
-      %h5{:style => 'float:left;margin-right:15px;margin-top:6px;'}
+      %h3{:style => 'float:left;margin-right:15px;margin-top:6px;'}
         Load a previous assignment
       .section
         = select_tag "assignmentList", options_from_collection_for_select(@assignments, "id", "name")    
-
+  %br
+  %br
   .span-12.last
     %h4
-      = "Create Assignment"
-      %br
+      Create Assignment
+
   .span-10.append-1.last
     
-    %br
+    
     
     #create_assignment
 
@@ -29,14 +30,14 @@
         
 
         %h5{:style => 'margin-bottom:0px;'}
-          = "Description"  
+          Description  
         = text_area_tag 'assignment[description]', nil, :rows => '3', :placeholder => "What students need to do.."
 
         
         
         
         %h5.fieldWithErrors Points  
-        = text_field_tag 'assignment[comments_count]', '10', :class => 'jquery-ui-date', :style => "width:7%;display:inline-block;margin-left:5px;"       
+        = text_field_tag 'assignment[comments_count]', '10', :style => "width:7%;display:inline-block;margin-left:5px;"       
         %h5.fieldWithErrors{:style => 'margin-left:20px;'} DueDate  
         = text_field_tag 'assignment[submission_date]', nil, :placeholder => "Due Date..", :class => 'jquery-ui-date', :size => '10', :style => "width:25%;display:inline-block;margin-left:5px;"       
  
@@ -54,7 +55,7 @@
 
 
 :javascript
-  $(".jquery-ui-date").datepicker(dateFormat: 'dd/mm/yy');
+  $(".jquery-ui-date").datepicker(dateFormat: 'dd-mm-yy');
   
   $("#assignmentList").change(function() {
     loadAssignment($( this ).val());
