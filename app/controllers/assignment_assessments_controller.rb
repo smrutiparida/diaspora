@@ -68,7 +68,7 @@ class AssignmentsController < ApplicationController
 
     if @assignment_assessment.save      
       respond_to do |format|
-        format.json{ render(:layout => false , :json => {"success" => true, "data" => 'Assignment uploaded successfully.' )}
+        format.json{ render(:layout => false , :json => {"success" => true, "data" => 'Assignment uploaded successfully.' })}
       end
     else
       respond_with @assignment_assessment, :location => assignment_assessments_path, :error => message
