@@ -167,7 +167,7 @@ class StatusMessage < Post
   end
 
   def text_and_photos_and_documents_blank_and_assignments_blank_and_quizzes_blank?
-    self.text.blank? && self.photos.blank? && self.documents.blank && self.assignments.blank && self.quizzes.blank?
+    self.text.blank? && self.photos.blank? && self.documents.blank? && self.assignments.blank? && self.quizzes.blank?
   end
 
   def queue_gather_oembed_data
