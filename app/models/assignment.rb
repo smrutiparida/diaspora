@@ -39,13 +39,14 @@ class Assignment < ActiveRecord::Base
   
   def subdate(date = nil)    
     if date
+      Rails.logger.info(date.to_s)
       DateTime.parse(date.to_s).strftime("%d")
     end
   end
 
   def submonth(date = nil)
     if date
-      DateTime.parse(date.to_s).strftime("%b")
+      DiasporaateTime.parse(date.to_s).strftime("%b")
     end  
   end  
 
