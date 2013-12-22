@@ -1,6 +1,14 @@
+
 .span-15.last
   .span-3
     .icons-cog
+  
+  - if @assignments.size > 0
+    .span-12.last
+      %h5{:style => 'float:left;margin-right:15px;margin-top:6px;'}
+        Load a previous assignment
+      .section
+        = select_tag "assignmentList", options_from_collection_for_select(@assignments, "id", "name")    
 
   .span-12.last
     %h4
@@ -28,7 +36,7 @@
         
         
         %h5.fieldWithErrors Points  
-        = text_field_tag 'assignment[comments_count]', '7', :class => 'jquery-ui-date', :style => "width:10%;display:inline-block;margin-left:5px;"       
+        = text_field_tag 'assignment[comments_count]', '10', :class => 'jquery-ui-date', :style => "width:7%;display:inline-block;margin-left:5px;"       
         %h5.fieldWithErrors{:style => 'margin-left:20px;'} DueDate  
         = text_field_tag 'assignment[submission_date]', nil, :placeholder => "Due Date..", :class => 'jquery-ui-date', :size => '10', :style => "width:25%;display:inline-block;margin-left:5px;"       
  
@@ -44,14 +52,9 @@
         %p
           = assignment.submit "Create Assignment", 'data-disable-with' => "In Progress..", :class => 'button creation'
 
-.span-12.last
-  %h5{:style => 'float:left;margin-right:15px;margin-top:6px;'}
-    Load a previous assignment
-  .section
-    = select_tag "assignmentList", options_from_collection_for_select(@assignments, "id", "name")    
 
 :javascript
-  $(".jquery-ui-date").datepicker();
+  $(".jquery-ui-date").datepicker(dateFormat: 'dd/mm/yy');
   
   $("#assignmentList").change(function() {
     loadAssignment($( this ).val());

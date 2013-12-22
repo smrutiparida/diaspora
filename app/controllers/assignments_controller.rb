@@ -38,7 +38,7 @@ class AssignmentsController < ApplicationController
 
     if assignment
       respond_to do |format|
-        format.json
+        format.json {render :json => assignment.as_api_response(:backbone)}
       end 
     end     
   end
