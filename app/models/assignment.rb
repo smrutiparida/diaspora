@@ -11,10 +11,10 @@ class Assignment < ActiveRecord::Base
     t.add :created_at
     t.add :submission_date
     t.add lambda { |assignment|
-            assignment.subdate(:created_at)
+            assignment.subdate(assignment.submission_date)
           }, :as => :sub_date
     t.add lambda { |assignment|
-            assignment.submonth(:submission_date)
+            assignment.submonth(assignment.submission_date)
           }, :as => :sub_month    
     t.add :author
     t.add :name
