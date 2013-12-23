@@ -11,7 +11,7 @@
   %span.time.timeago{:datetime => assignment.submission_date, :style => "float:right;"}
     = assignment.submission_date < Time.now ? "Locked On:" : "Deadline:"
     = time_tag(assignment.submission_date, :format=>'%b %d')
-    = link_to 'View Details', '/assignment_assessments/#{assignment.id}', :class => 'button'      
+    = link_to 'Details', '/assignment_assessments/' + assignment.id.to_s, :class => 'button',:style => 'margin-left:5px;'     
   
 
 
