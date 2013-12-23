@@ -10,7 +10,7 @@
     = assignment.name          
   %span.time.timeago{:datetime => assignment.submission_date, :style => "float:right;"}
     = assignment.submission_date < Time.now ? "Deadline:#{time_tag(assignment.submission_date)}" : "Submitted "
-    = link_tag 'View Details', '/assignment_assessments/#{assignment.id}'       
+    = link_to 'View Details', '/assignment_assessments/#{assignment.id}'       
   
 
 
