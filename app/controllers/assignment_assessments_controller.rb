@@ -20,7 +20,7 @@ class AssignmentAssessmentsController < ApplicationController
       @assessments = AssignmentAssessment.where(assignment_id => @assignment.id)
     else
       @assessments = AssignmentAssessment.where(assignment_id => @assignment.id, :diaspora_handle => current_user.diaspora_handle).first
-    end  
+    end
     respond_to do |format|
       format.html      
     end
