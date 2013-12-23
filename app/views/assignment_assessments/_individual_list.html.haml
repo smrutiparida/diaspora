@@ -1,11 +1,11 @@
 %h3
-  = assessment.diaspora_handle
+  = assignment_assessment.diaspora_handle
 %div
   = "Submitted on"
-  = assessment.submission_date
-  = link_to assessment.filename, assessment.filepath
-  - if assignment.is_result_published and assessment.is_checked  
-    = label_tag 'Points', "Points earned:" + assessment.points.to_s
-    = label_tag 'Comments', assessment.comments
+  = assignment_assessment.submission_date
+  = link_to assignment_assessment.filename, assignment_assessment.filepath
+  - if assignment_assignment.is_result_published and assignment_assessment.is_checked  
+    = label_tag 'Points', "Points earned:" + assignment_assessment.points.to_s
+    = label_tag 'Comments', assignment_assessment.comments
   - else
     = label_tag "Progress", "Evaluation in Progress"

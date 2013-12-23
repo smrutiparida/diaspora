@@ -16,11 +16,11 @@ class AssignmentAssessmentsController < ApplicationController
     role = Role.where(:person_id => current_user.person.id, :name => 'teacher').first
     @teacher = role.nil? ? false : true
     @assignment = Assignment.find(params[:id])
-    @assessments = nil
+    @assignment_assessments = nil
     if @teacher
-      @assessments = AssignmentAssessment.where(:assignment_id => @assignment.id)
+      @assignment_assessments = AssignmentAssessment.where(:assignment_id => @assignment.id)
     else
-      @assessments = AssignmentAssessment.where(:assignment_id => @assignment.id, :diaspora_handle => current_user.diaspora_handle).first
+      @assignment_assessments = AssignmentAssessment.where(:assignment_id => @assignment.id, :diaspora_handle => current_user.diaspora_handle).first
     end
     respond_to do |format|
       format.html      
