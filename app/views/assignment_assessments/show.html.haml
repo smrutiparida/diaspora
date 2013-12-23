@@ -1,6 +1,6 @@
 = render 'assignment_assessments/details', :assignment => @assignment
 - if @teacher
-  = render 'assignment_assessments/submit_list', :assessments => @assessments
+  = render 'assignment_assessments/submit_list', :assessments => @assessments, :assignment => @assignment
   - if Time.now > assignment.submitted_date
     = link_to "Publish Result", 'assignment_assessments/publish'
 - else
