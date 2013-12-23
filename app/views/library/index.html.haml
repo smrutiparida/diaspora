@@ -47,4 +47,5 @@
       = render :partial => 'quizzes/quiz', :collection => @quizzes      
           
 :javascript
-  $( "#tabs" ).tabs();
+  - tabindex = @assignment_active ? 1 : 0
+  $( "#tabs" ).tabs({active: {{tabindex}}});
