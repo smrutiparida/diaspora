@@ -7,7 +7,8 @@
 - else
   - if @assignment.submission_date > Time.now
     = link_to "Upload Assignment", 'assignment_assessments/create', :class => 'button creation', :style => 'float:right;'
-  = render :partial => 'assignment_assessments/individual_list', :locals => {:assessment => @assessments, :assignment => @assignment}
+  - unless @assessments.nil?
+    = render :partial => 'assignment_assessments/individual_list', :locals => {:assessment => @assessments, :assignment => @assignment}
 
 :javascript
   $( "#accordion" ).accordion();
