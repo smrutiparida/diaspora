@@ -14,15 +14,12 @@ class LibraryController < ApplicationController
     if @teacher
       @assignments = Assignment.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
       @quizzes = Quiz.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
-    else
+    else      
+      opts = {}
       if params[:a_id]
-        all_my_posts = Post.joins(:aspect_visibilities).where(
-            :aspect_visibilities => {:aspect_id => params[:a_id]})
-      else
-        all_my_posts = Post.joins(:aspect_visibilities).where(
-            :aspect_visibilities => {:aspect_id => current_user.aspect_ids})  
-      end
-
+        opts[:by_members_of] = params[:a_id]
+      
+      all_my_posts = current_user.find_visible_shareables(Post, opts)
       all_my_post_guid = all_my_posts.map{|a| a.guid}
       
       @assignments = Assignment.where(:status_message_guid => all_my_post_guid)
