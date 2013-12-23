@@ -20,7 +20,7 @@ class LibraryController < ApplicationController
         opts[:by_members_of] = params[:a_id]
       end  
       
-      all_my_posts = current_user.find_visible_shareables(Post, opts)
+      all_my_posts = current_user.visible_shareables(Post, opts)
       all_my_post_guid = all_my_posts.map{|a| a.guid}
       
       @assignments = Assignment.where(:status_message_guid => all_my_post_guid)
