@@ -6,7 +6,7 @@
     = link_to "Publish Result", 'assignment_assessments/publish'
 - else
   - if @assignment.submission_date > Time.now
-    = link_to "Upload Assignment", 'assignment_assessments/create', :class => 'button creation', :style => 'float:right;'
+    = render 'assignment_assessments/uploader', :person => current_user.person    
   - unless @assessments.nil?
     = render :partial => 'assignment_assessments/individual_list', :locals => {:assessment => @assessments, :assignment => @assignment}
 
