@@ -17,9 +17,9 @@ class AssignmentAssessmentsController < ApplicationController
     @teacher = role.nil? ? false : true
     @assignment = Assignment.find(params[:id])
     if @teacher
-      @assessments = AssignmentAssessment.where(assignment_id => @assignment.id)
+      @assessments = AssignmentAssessment.where(:assignment_id => @assignment.id)
     else
-      @assessments = AssignmentAssessment.where(assignment_id => @assignment.id, :diaspora_handle => current_user.diaspora_handle).first
+      @assessments = AssignmentAssessment.where(:assignment_id => @assignment.id, :diaspora_handle => current_user.diaspora_handle).first
     end
     respond_to do |format|
       format.html      
