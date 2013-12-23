@@ -1,7 +1,8 @@
 %h3
   = assessment.diaspora_handle
 %div
-  = "Submitted on" assessment.submission_date
+  = "Submitted on"
+  = assessment.submission_date
   = link_to assessment.filename, assessment.filepath
   - if assignment.is_result_published and assessment.is_checked  
     = label_tag 'Points', "Points earned:" + assessment.points.to_s
