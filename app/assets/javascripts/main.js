@@ -22,6 +22,7 @@
 //= require jquery.autocomplete-custom
 //= require jquery.ui.tabs
 //= require jquery.ui.datepicker
+//= require jquery.ui.accordion
 //= require keycodes
 //= require fileuploader-custom
 //= require handlebars-1.0.0.beta.6

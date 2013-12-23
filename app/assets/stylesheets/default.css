@@ -16,4 +16,5 @@
 *= require vendor/jquery-ui-1.10.3.custom.min
 *= require vendor/jquery.ui.tabs
 *= require vendor/jquery.ui.datepicker
+*= require vendor/jquery.ui.accordion
 */
