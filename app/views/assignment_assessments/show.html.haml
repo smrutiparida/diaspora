@@ -1,14 +1,14 @@
 = render 'assignment_assessments/details', :assignment => @assignment
 - if @teacher
   %div#accordion
-    = render :partial => 'assignment_assessments/individual_list', :collection => @assignment_assessments
+    = render @assignment_assessments
   - if Time.now > @assignment.submission_date
     = link_to "Publish Result", 'assignment_assessments/publish'
 - else
   - if @assignment.submission_date > Time.now
     = render 'assignment_assessments/uploader', :assignment => @assignment    
   - unless @assessments.nil?
-    = render :partial => 'assignment_assessments/individual_list', :locals => {:assessment => @assignment_assessments, :assignment => @assignment}
+    = render :partial => 'assignment_assessments/assignment_assessment', :locals => {:assessment => @assignment_assessments, :assignment => @assignment}
 
 :javascript
   $( "#accordion" ).accordion();
