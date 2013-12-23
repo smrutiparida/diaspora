@@ -317,7 +317,8 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
     t.string   "filename"
     t.boolean  "is_checked",             :default => false, :null => false
     t.string   "filepath"
-    t.integer  "size"    
+    t.integer  "size"
+    t.string   "random_string"    
     t.datetime "created_at"
     t.datetime "updated_at"    
     t.datetime "checked_date"
