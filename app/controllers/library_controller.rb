@@ -18,6 +18,7 @@ class LibraryController < ApplicationController
       opts = {}
       if params[:a_id]
         opts[:by_members_of] = params[:a_id]
+      end  
       
       all_my_posts = current_user.find_visible_shareables(Post, opts)
       all_my_post_guid = all_my_posts.map{|a| a.guid}
