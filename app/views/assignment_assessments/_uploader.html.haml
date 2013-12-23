@@ -7,7 +7,7 @@
     function createUploader(){
      var uploader = new qq.FileUploaderBasic({
          element: document.getElementById('file-upload'),
-         params: {'assignment_assessment': {assignment_id' : '{{@assignment.id}}'}},
+         params: {'assignment_assessment': {'assignment_id' : #{assignment.id}}},
          allowedExtensions: ['pdf', 'doc', 'docx', 'ppt', 'pptx', 'pps', 'ppsx', 'odt', 'xls', 'xlsx', 'rtf', 'txt', 'csv', 'tsv', 'xml', 'html'],
          action: "/assignment_assessments",
          button: document.getElementById('file-upload'),

@@ -6,7 +6,7 @@
     = link_to "Publish Result", 'assignment_assessments/publish'
 - else
   - if @assignment.submission_date > Time.now
-    = render 'assignment_assessments/uploader', :person => current_user.person    
+    = render 'assignment_assessments/uploader', :assignment => @assignment    
   - unless @assessments.nil?
     = render :partial => 'assignment_assessments/individual_list', :locals => {:assessment => @assessments, :assignment => @assignment}
 
