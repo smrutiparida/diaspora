@@ -1,0 +1,60 @@
+-#   Copyright (c) 2010-2011, Diaspora Inc.  This file is
+-#   licensed under the Affero General Public License version 3 or later.  See
+-#   the COPYRIGHT file.
+
+- content_for :head do
+  :javascript
+    function createUploader(){
+     var uploader = new qq.FileUploaderBasic({
+         element: document.getElementById('file-upload'),
+         params: {'assignment_assessment': {assignment_id' : '{{@assignment.id}}'}},
+         allowedExtensions: ['pdf', 'doc', 'docx', 'ppt', 'pptx', 'pps', 'ppsx', 'odt', 'xls', 'xlsx', 'rtf', 'txt', 'csv', 'tsv', 'xml', 'html'],
+         action: "/assignment_assessments",
+         button: document.getElementById('file-upload'),
+         sizeLimit: 4194304,
+
+         onProgress: function(id, fileName, loaded, total){
+          var progress = Math.round(loaded / total * 100 );
+           $('#fileInfo').text(fileName + ' ' + progress + '%');
+         },
+
+         messages: {
+             typeError: "#{t('photos.new_photo.invalid_ext')}",
+             sizeError: "#{t('photos.new_photo.size_error')}",
+             emptyError: "#{t('photos.new_photo.empty')}"
+         },
+
+         onSubmit: function(id, fileName){
+          $('#file-upload').addClass("loading");
+          $("#profile_photo_upload").find(".avatar").addClass('loading');
+          $("#file-upload-spinner").removeClass("hidden");
+         },
+
+         onComplete: function(id, fileName, responseJSON){
+          $("#file-upload-spinner").addClass("hidden");
+          $('#fileInfo').text(fileName + ' completed').fadeOut(2000);
+          $('#file-upload').removeClass("loading");
+
+          
+          
+          Diaspora.page.flashMessages.render({ 'success':responseJSON.success, 'notice':responseJSON.message });
+         }
+     });
+    }
+    window.onload = createUploader;
+    $('#file-upload').addClass("creation");        
+
+%h5
+  Click to upload the file(MAX Size: 4 MB)
+#profile_photo_upload{:style => "margin-right:137px;"}
+  = image_tag('mobile-spinner.gif', :class => 'hidden')
+
+  #file-upload.button.creation
+    = "Upload assignment"
+
+  = image_tag('mobile-spinner.gif', :class => 'hidden', :style => "z-index:-1", :id => 'file-upload-spinner')
+
+  %p
+    #fileInfo
+
+  #publisher_photo_upload
