@@ -1,9 +1,11 @@
 %div assignment.name
 %div assignment.description
 %div 
-  = "Teacher:" assignment.diaspora_handle
+  = "Teacher:" 
+  = assignment.diaspora_handle
 %div
-  = "Points" assignment.comments_count
+  = "Points" 
+  = assignment.comments_count
 %div
   = "Submit date"
   = time_tag(assignment.submission_date, :format=>'%b %d')
