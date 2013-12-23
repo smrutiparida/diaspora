@@ -2,12 +2,12 @@
 - if @teacher
   %div#accordion
     = render :partial => 'assignment_assessments/individual_list', :collection => @assessments, :local => {:assignment => @assignment}
-  - if Time.now > assignment.submitted_date
+  - if Time.now > @assignment.submitted_date
     = link_to "Publish Result", 'assignment_assessments/publish'
 - else
-  - if assignment.submitted_date > Time.now
+  - if @assignment.submitted_date > Time.now
     = link_to "Upload Assignment", 'assignment_assessments/create', :class => 'button creation', :style => 'float:right;'
-  = render 'assignment_assessments/individual_list', :assessment => @assessments, :assignment => @assignment
+  = render :partial => 'assignment_assessments/individual_list', :assessment => @assessments, :assignment => @assignment
 
 :javascript
   $( "#accordion" ).accordion();
