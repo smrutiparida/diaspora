@@ -14,7 +14,7 @@ class AssignmentAssessment < ActiveRecord::Base
         
     assignment_assessment.unprocessed_doc.store! params[:user_file]
     assignment_assessment.filepath = assignment_assessment.unprocessed_doc.url
-    Rails.logger.info(assignment_assessment.to_s)
+    
     assignment_assessment
   end
 end   

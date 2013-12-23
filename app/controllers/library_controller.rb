@@ -4,8 +4,8 @@ class LibraryController < ApplicationController
   respond_to :html, :json, :js
 
   def index
-    #role = Roles.where(:person_id => current_user.person.id, :name => 'teacher').first
-    #@teacher = role.nil? ? false : true
+    role = Roles.where(:person_id => current_user.person.id, :name => 'teacher').first
+    @teacher = role.nil? ? false : true
     @assignment_active = (params[:tab] == "assignment") ? 1 : 0
     
     @documents = Document.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  

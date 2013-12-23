@@ -1,7 +1,7 @@
 = render 'assignment_assessments/details', :assignment => @assignment
 - if @teacher
   %div#accordion
-    = render :partial => 'assignment_assessments/individual_list', :collection => @assessments, :locals => {:assignment => @assignment}
+    = render :partial => 'assignment_assessments/individual_list', :collection => @assessments
   - if Time.now > @assignment.submission_date
     = link_to "Publish Result", 'assignment_assessments/publish'
 - else
