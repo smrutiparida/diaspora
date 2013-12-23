@@ -13,7 +13,7 @@ class AssignmentAssessmentsController < ApplicationController
   end
 
   def show
-    role = Roles.where(:person_id => current_user.person.id, :name => 'teacher').first
+    role = Role.where(:person_id => current_user.person.id, :name => 'teacher').first
     @teacher = role.nil? ? false : true
     @assignment = Assignment.find(params[:id])
     if @teacher
