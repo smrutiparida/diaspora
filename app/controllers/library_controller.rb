@@ -4,7 +4,7 @@ class LibraryController < ApplicationController
   respond_to :html, :json, :js
 
   def index
-    @assignment_active = (params[:tab] == "assignment") ? true : false
+    @assignment_active = (params[:tab] == "assignment") ? 1 : 0
     @documents = Document.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
     #@assignments = Assignment.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
     #@quizzes = Quiz.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
