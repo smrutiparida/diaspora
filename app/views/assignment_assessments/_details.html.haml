@@ -1,0 +1,17 @@
+%div assignment.name
+%div assignment.description
+%div 
+  = "Teacher:" assignment.diaspora_handle
+%div
+  = "Points" assignment.comments_count
+%div
+  = "Submit date"
+  = time_tag(assignment.submission_date, :format=>'%b %d')
+%div
+  = "Current Status"
+  - if assignment.is_result_published
+    = "Results Published"
+  - elsif assignment.submission_date > Time.now
+    = "Active"
+  - else
+    = "Evaluation in progress"
