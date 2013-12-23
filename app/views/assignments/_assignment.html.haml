@@ -9,8 +9,8 @@
   %span.selectable
     = assignment.name          
   %span.time.timeago{:datetime => assignment.submission_date, :style => "float:right;"}
-    = assignment.submission_date < Time.now ? "Deadline:#{time_tag(assignment.submission_date)}" : "Submitted "
-    = link_to 'View Details', '/assignment_assessments/#{assignment.id}'       
+    = assignment.submission_date < Time.now ? "Submitted " : "Deadline:#{time_tag(assignment.submission_date)}"
+    = link_to 'View Details', '/assignment_assessments/#{assignment.id}', :class => 'button'      
   
 
 
