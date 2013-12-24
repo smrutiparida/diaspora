@@ -226,7 +226,7 @@ en:
       post_a_message: "post a message >>"
       people_sharing_with_you: "People sharing with you"
 
-      welcome_to_groupify: "Welcome to Groupify, %{name}!"
+      welcome_to_lmnop: "Welcome to lmnop, %{name}!"
       introduce_yourself: "This is your wall.  Jump in and introduce yourself."
 
       new_here:
@@ -380,13 +380,13 @@ en:
     getting_help: 
       title: "Getting help"
       getting_started_q: "Help! I need some basic help to get me started!"
-      getting_started_a: "You're in luck. Try the %{tutorial_series} on our project site. It will take you step-by-step through the registration process and teach you all the basic things you need to know about using groupify*."
+      getting_started_a: "You're in luck. Try the %{tutorial_series} on our project site. It will take you step-by-step through the registration process and teach you all the basic things you need to know about using lmnop*."
       get_support_q: "What if my question is not answered in this FAQ? Where else can I get support?"
       get_support_a_website: "visit our %{link}"
       get_support_a_tutorials: "check out our %{tutorials}"
       get_support_a_wiki: "search the %{link}"
       get_support_a_irc: "join us on %{irc} (Live chat)"
-      get_support_a_hashtag: "ask in a public post on groupify* using the %{question} hashtag"
+      get_support_a_hashtag: "ask in a public post on lmnop using the %{question} hashtag"
     account_and_data_management:
       title: "Account and data management"
       move_pods_q: "How do I move my seed (account) from one pod to another?"
@@ -698,16 +698,16 @@ en:
     thanks: "Thanks,"
     to_change_your_notification_settings: "to change your notification settings"
     single_admin:
-        subject: "A message about your Groupify account:"
-        admin: "Your Groupify administrator"
+        subject: "A message about your lmnop account:"
+        admin: "Your lmnop administrator"
     started_sharing:
-        subject: "%{name} started sharing with you on groupify*"
+        subject: "%{name} started sharing with you on lmnop"
         sharing: "has started sharing with you!"
         view_profile: "View %{name}'s profile"
     comment_on_post:
         reply: "Reply or view %{name}'s post >"
     mentioned:
-        subject: "%{name} has mentioned you on groupify*"
+        subject: "%{name} has mentioned you on lmnop"
         mentioned: "mentioned you in a post:"
     private_message:
         reply_to_or_view: "Reply to or view this conversation >"
@@ -720,13 +720,13 @@ en:
     confirm_email:
         subject: "Please activate your new email address %{unconfirmed_email}"
         click_link: "To activate your new email address %{unconfirmed_email}, please follow this link:"
-    accept_invite: "Accept Your groupify* invite!"
-    invited_you: "%{name} invited you to groupify*"
+    accept_invite: "Accept Your lmnop invite!"
+    invited_you: "%{name} invited you to lmnop"
     invite:
       message: |-
         Hello!
 
-        You have been invited to join groupify*!
+        You have been invited to join lmnop!
 
         Click this link to get started
 
@@ -735,7 +735,7 @@ en:
 
         Love,
 
-        The groupify* email robot!
+        The lmnop email robot!
 
         [1]: %{invite_url}
   people:
@@ -905,7 +905,7 @@ en:
       continue: "Continue"
       submitting: "Submitting..."
     create:
-      success: "You've joined Groupify!"
+      success: "You've joined lmnop!"
     edit:
       edit: "Edit %{name}"
       leave_blank: "(leave blank if you don't want to change it)"
@@ -926,7 +926,7 @@ en:
       ignore: "Ignored contact request."
     create:
       sending: "Sending"
-      sent: "You've asked to share with %{name}.  They should see it next time they log in to Groupify."
+      sent: "You've asked to share with %{name}.  They should see it next time they log in to lmnop."
     new_request_to_person:
       sent: "sent!"
     helper:
@@ -963,7 +963,7 @@ en:
     create:
       success: "Authentication successful."
       failure: "Authentication failed."
-      already_authorized: "A user with groupify id %{groupify_id} already authorized that %{service_name} account."
+      already_authorized: "A user with lmnop id %{diaspora_id} already authorized that %{service_name} account."
       read_only_access: "Access level is read-only, please try to authorize again later"
     destroy:
       success: "Successfully deleted authentication."
@@ -1040,7 +1040,7 @@ en:
       visibility_dropdown: "Use this dropdown to change visibility of your post.  (We suggest you make this first one public.)"
       title: "Set up connected services"
       share: "Share"
-      outside: "Public messages will be available for others outside of Groupify to see."
+      outside: "Public messages will be available for others outside of lmnop to see."
       logged_in: "logged in to %{service}"
       manage: "Manage connected services"
       atom_feed: "Atom feed"
@@ -1221,7 +1221,7 @@ en:
       stop_ignoring: "Stop ignoring"
 
     destroy:
-      success: "Your account has been locked.  It may take 20 minutes for us to finish closing your account.  Thank you for trying Groupify."
+      success: "Your account has been locked.  It may take 20 minutes for us to finish closing your account.  Thank you for trying lmnop."
       no_password: "Please enter your current password to close your account."
       wrong_password: "The entered password didn't match your current password."
     getting_started:
@@ -1235,7 +1235,7 @@ en:
       connect_to_facebook_link: "hooking up your Facebook account"
 
       what_are_you_in_to: "What are you into?"
-      hashtag_explanation: "Hashtags allow you to talk about and follow your interests.  They're also a great way to find new people on Groupify."
+      hashtag_explanation: "Hashtags allow you to talk about and follow your interests.  They're also a great way to find new people on lmnop."
       hashtag_suggestions: "Try following tags like #art, #movies, #gif, etc."
 
       saved: "Saved!"
