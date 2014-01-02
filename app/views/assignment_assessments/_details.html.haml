@@ -9,7 +9,7 @@
           = assignment.name
 
       .last_author
-          = assignment.description
+        = assignment.description
         %time
           = "Submit Date: "
           = time_tag(assignment.submission_date, :format=>'%b %d')
