@@ -19,7 +19,8 @@
           - if Time.now > @assignment.submission_date
             = link_to "Publish Result", 'assignment_assessments/publish', :class => 'button', :rel => 'facebox'
           = link_to "View Performance", 'assignment_assessments/analyze', :class => 'button', :rel => 'facebox'  
-      = render 'assignment_assessments/details', :assignment => @assignment
+        = "Assignment Details"  
+    = render 'assignment_assessments/details', :assignment => @assignment
 
   #conversation_inbox
     .stream.conversations
