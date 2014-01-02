@@ -33,7 +33,7 @@
           %br
           %div{:style => 'text-align:center;'}
             %i
-              = "No Submissions Yet."
+              = "No Submissions Yet"
         = will_paginate @assignment_assessments
       
 
@@ -43,8 +43,8 @@
       - if @teacher
         - if assignment_assessment
           = render :partial => 'assignment_assessments/assignment_assessment', :locals => {:assessment => @assignment_assessments, :assignment => @assignment}
-        %div.hidden   
-          = render @assignment_assessments, :assignment => @assignment 
+          %div.hidden   
+            = render @assignment_assessments, :assignment => @assignment 
         - else
           #no_conversation_text
             = "No Assignment Selected"
