@@ -1,22 +1,25 @@
-%div 
-  = assignment.name
-  %div
-    = "Current Status"
-    - if assignment.is_result_published
-      = "Results Published"
-    - elsif assignment.submission_date > Time.now
-      = "Active"
-    - else
-      = "Evaluation in progress"
+.stream_element.conversation
+    .media
+      .img
+        = person_image_tag(teacher_info)
 
-%div 
-  = assignment.description
-%div 
-  = "Teacher:" 
-  = assignment.diaspora_handle
-%div
-  = "Points" 
-  = assignment.comments_count
-%div
-  = "Submit date"
-  = time_tag(assignment.submission_date, :format=>'%b %d')
+      .bg
+        .subject          
+          %h5
+            = assignment.name
+
+        .last_author
+            = assignment.description
+          %time
+            = "Submit Date: "
+            = time_tag(assignment.submission_date, :format=>'%b %d')
+          %div
+            = assignment.comments_count
+            = "Points"
+          %span.participants_link
+            - if assignment.is_result_published
+              = "Results Published"
+            - elsif assignment.submission_date > Time.now
+              = "Active"
+            - else
+              = "Evaluation in progress"

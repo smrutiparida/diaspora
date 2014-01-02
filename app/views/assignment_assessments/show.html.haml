@@ -13,14 +13,14 @@
 
 #left_pane
   #left_pane_header
-    %h3
-      - if @teacher
-        .right
-          - if Time.now > @assignment.submission_date
-            = link_to "Publish Result", 'assignment_assessments/publish', :class => 'button', :rel => 'facebox'
-          = link_to "View Performance", 'assignment_assessments/analyze', :class => 'button', :rel => 'facebox'  
-        = "Assignment Details"  
-    = render 'assignment_assessments/details', :assignment => @assignment
+    = render 'assignment_assessments/details', :assignment => @assignment, :teacher_info => @teacher_info
+    - if @teacher
+      .right
+        - if Time.now > @assignment.submission_date and !@assignment.is_result_published
+          = link_to "Publish Result", 'assignment_assessments/publish', :class => 'button', :rel => 'facebox'
+        = link_to "View Performance", 'assignment_assessments/analyze', :class => 'button', :rel => 'facebox'  
+         
+    
 
   #conversation_inbox
     .stream.conversations
