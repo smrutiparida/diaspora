@@ -17,11 +17,18 @@ class AssignmentAssessmentsController < ApplicationController
     @teacher = role.nil? ? false : true
     @assignment = Assignment.find(params[:id])
     @assignment_assessments = nil
+    @assignment_assessment = nil
     if @teacher
       @assignment_assessments = AssignmentAssessment.where(:assignment_id => @assignment.id)
+      @assignment_assessment = AssignmentAssessment.where(:assignment_id => @assignment.id).first
     else
-      @assignment_assessments = AssignmentAssessment.where(:assignment_id => @assignment.id, :diaspora_handle => current_user.diaspora_handle).first
+      @assignment_assessment = AssignmentAssessment.where(:assignment_id => @assignment.id, :diaspora_handle => current_user.diaspora_handle).first
     end
+
+    @authors = {}
+    @assignment_assessments.each { |c| @authors[c.id] = Person.includes(:profile).where(diaspora_handle: c.diaspora_handle).first }
+
+    
     respond_to do |format|
       format.html      
     end
