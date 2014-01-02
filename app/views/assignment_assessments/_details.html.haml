@@ -1,25 +1,25 @@
 .stream_element.conversation
-    .media
-      .img
-        = person_image_tag(teacher_info)
+  .media
+    .img
+      = person_image_tag(teacher_info)
 
-      .bg
-        .subject          
-          %h5
-            = assignment.name
+    .bg
+      .subject          
+        %h5
+          = assignment.name
 
-        .last_author
-            = assignment.description
-          %time
-            = "Submit Date: "
-            = time_tag(assignment.submission_date, :format=>'%b %d')
-          %div
-            = assignment.comments_count
-            = "Points"
-          %span.participants_link
-            - if assignment.is_result_published
-              = "Results Published"
-            - elsif assignment.submission_date > Time.now
-              = "Active"
-            - else
-              = "Evaluation in progress"
+      .last_author
+          = assignment.description
+        %time
+          = "Submit Date: "
+          = time_tag(assignment.submission_date, :format=>'%b %d')
+        %div
+          = assignment.comments_count
+          = "Points"
+        %span.participants_link
+          - if assignment.is_result_published
+            = "Results Published"
+          - elsif assignment.submission_date > Time.now
+            = "Active"
+          - else
+            = "Evaluation in progress"
