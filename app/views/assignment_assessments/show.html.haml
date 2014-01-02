@@ -15,45 +15,43 @@
   #left_pane_header
     %h3
       - if @teacher
-	      .right
-	        - if Time.now > @assignment.submission_date
-	          = link_to "Publish Result", 'assignment_assessments/publish', :class => 'button', :rel => 'facebox'
-	        = link_to "View Performance", 'assignment_assessments/analyze', :class => 'button', :rel => 'facebox'  
+	    .right
+	      - if Time.now > @assignment.submission_date
+	        = link_to "Publish Result", 'assignment_assessments/publish', :class => 'button', :rel => 'facebox'
+	      = link_to "View Performance", 'assignment_assessments/analyze', :class => 'button', :rel => 'facebox'  
       = render 'assignment_assessments/details', :assignment => @assignment
 
   #conversation_inbox
     .stream.conversations
       - if @teacher
-	      - if @assignment_assessments.count > 0
-	        = render :partial => 'assignment_assessments/student', :collection => @assignment_assessments	        
-	      - else
-	        %br
-	        %br
-	        %br
-	        %br
-	        %div{:style => 'text-align:center;'}
-	          %i
-	            = "No Submissions Yet"
-	      = will_paginate @assignment_assessments
+	    - if @assignment_assessments.count > 0
+	      = render :partial => 'assignment_assessments/student', :collection => @assignment_assessments	        
+	    - else
+	      %br
+	      %br
+	      %br
+	      %br
+	      %div{:style => 'text-align:center;'}
+	        %i
+	          = "No Submissions Yet"
+	    = will_paginate @assignment_assessments
 	  
 
 .span-15.prepend-9.last
   .stream_container
     #conversation_show
       - if @teacher
-          - if assignment_assessment
-            = render :partial => 'assignment_assessments/assignment_assessment', :locals => {:assessment => @assignment_assessments, :assignment => @assignment}
-	      %div.hidden   
-	        = render @assignment_assessments, :assignment => @assignment 
-	      - else
-	        #no_conversation_text
-	          = "No Assignment Selected"
-	        #no_conversation_controls
-	          = link_to t('.create_a_new_message'), new_conversation_path, :rel => 'facebox'
+        - if assignment_assessment
+          = render :partial => 'assignment_assessments/assignment_assessment', :locals => {:assessment => @assignment_assessments, :assignment => @assignment}
+	    %div.hidden   
+	      = render @assignment_assessments, :assignment => @assignment 
+	    - else
+	      #no_conversation_text
+	        = "No Assignment Selected"
+	      #no_conversation_controls
+	        = link_to t('.create_a_new_message'), new_conversation_path, :rel => 'facebox'
 	  - else
         - if @assignment.submission_date > Time.now
           = render 'assignment_assessments/uploader', :assignment => @assignment    
         - unless @assessments.nil?
           = render :partial => 'assignment_assessments/assignment_assessment', :locals => {:assessment => @assignment_assessments, :assignment => @assignment}
-
-
