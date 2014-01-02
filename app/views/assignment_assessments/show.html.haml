@@ -40,17 +40,17 @@
   .stream_container
     #conversation_show
       - if @teacher
-        - if assignment_assessment
-          = render :partial => 'assignment_assessments/assignment_assessment', :locals => {:assessment => @assignment_assessments, :assignment => @assignment}
+        - if @assignment_assessment
+          = render :partial => 'assignment_assessments/assignment_assessment', :locals => {:assessment => @assignment_assessment, :assignment => @assignment}
           %div.hidden   
             = render @assignment_assessments, :assignment => @assignment 
         - else
           #no_conversation_text
             = "No Assignment Selected"
           #no_conversation_controls
-            = link_to t('.create_a_new_message'), new_conversation_path, :rel => 'facebox'
+            = link_to t('.create_a_new_message'), '#', :rel => 'facebox'
       - else
         - if @assignment.submission_date > Time.now
           = render 'assignment_assessments/uploader', :assignment => @assignment    
         - unless @assessments.nil?
-          = render :partial => 'assignment_assessments/assignment_assessment', :locals => {:assessment => @assignment_assessments, :assignment => @assignment}
+          = render :partial => 'assignment_assessments/assignment_assessment', :locals => {:assessment => @assignment_assessment, :assignment => @assignment}
