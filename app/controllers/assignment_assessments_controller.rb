@@ -38,6 +38,7 @@ class AssignmentAssessmentsController < ApplicationController
 
   def create
     rescuing_document_errors do
+      Rails.logger.info("Line 41")
       if remotipart_submitted?
         @assignment_assessment = current_user.build_post(:assignment_assessment, assignment_assessment_params)
         if @assignment_assessment.save
@@ -48,6 +49,7 @@ class AssignmentAssessmentsController < ApplicationController
           respond_with @assignment_assessment, :location => assignment_assessments_path, :error => message
         end
       else
+        Rails.logger.info("Line 52")
         legacy_create    
       end  
     end
@@ -61,6 +63,7 @@ class AssignmentAssessmentsController < ApplicationController
     if not request.params[:qqfile].is_a?(String)
       params[:qqfile]
     else
+      Rails.logger.info("Line 66")
       ######################## dealing with local files #############
       # get file name
       file_name = params[:qqfile]
@@ -77,6 +80,7 @@ class AssignmentAssessmentsController < ApplicationController
       Tempfile.send(:define_method, "content_type") {return att_content_type}
       Tempfile.send(:define_method, "original_filename") {return file_name}
       Tempfile.send(:define_method, "content_length") {return att_content_length}
+      Rails.logger.info("Line 83")
       file
     end
   end
@@ -87,21 +91,23 @@ class AssignmentAssessmentsController < ApplicationController
 
   def legacy_create
     params[:assignment_assessment][:user_file] = file_handler(params)
-
+    Rails.logger.info("Line 92")
     @assignment_assessment = current_user.build_post(:assignment_assessment, params[:assignment_assessment])
 
-    if @assignment_assessment.save      
+    if @assignment_assessment.save
+      Rails.logger.info("Line 98")      
       respond_to do |format|
         format.json{ render(:layout => false , :json => {"success" => true, "data" => 'Assignment uploaded successfully.' })}
       end
     else
+      Rails.logger.info("Line 103")
       respond_with @assignment_assessment, :location => assignment_assessments_path, :error => message
     end
   end
 
   def rescuing_document_errors
     begin
-      yield
+        yield
     rescue TypeError
       message = I18n.t 'documents.create.type_error'
       respond_with @assignment_assessment, :location => assignment_assessments_path, :error => message
