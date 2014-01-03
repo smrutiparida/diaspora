@@ -14,7 +14,8 @@ class AssignmentAssessmentsController < ApplicationController
 
   def update
     @assignment_assessment = AssignmentAssessment.find(params[:id])
-
+    
+    params[assignment_assessment][:points] = params[assignment_assessment][:points].to_i
     if @assignment_assessment.update_attributes!(assignment_assessment_params)
       redirect_to 'assignment_assessment/' + @assignment_assessment.assignment_id.to_s + '?s_id=' + @assignment_assessment.id.to_s
     else

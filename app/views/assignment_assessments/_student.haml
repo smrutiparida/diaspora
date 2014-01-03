@@ -1,7 +1,7 @@
 .conversation_participants
 .span-15.last
   .stream
-    .stream_element
+    .stream_element{:style => 'border-bottom:none;'}
       .media
         .img
           = person_image_tag(author)
@@ -12,22 +12,22 @@
 
           %div
             = link_to assessment.filename, assessment.filepath 
-            = link_to 'Run Turniton', '#', :class => 'creation button', :disabled => true
+           
     
-    .stream_element.new_message  
+    .stream_element{:style => 'border-bottom:none;'}
       - if teacher
         - if assessment.is_checked  
           = label_tag 'Points', "Points earned:" + assessment.points.to_s
           = label_tag 'Comments', assessment.comments
         - else
           .bd
-            %h3
+            %h5{:style => 'border-bottom:1px solid #999999;margin:2em 0em 0.5em 0em;'}
               = "Evaluate"
             = form_for assessment do |assess|
-              = label_tag 'Points', "Points:"
-              = assess.text_field :points, :maxlength => 5
-              = label_tag 'Comments', "Comments"
-              = assess.text_area :comments, :rows => 5, :tabindex => 2
+              = label_tag 'Points', "Points:", :style => 'font-weight:normal;'
+              = assess.text_field :points, :maxlength => 5, :style => 'display:inline;'
+              = label_tag 'Comments', "Comments", :style => 'display:block;'
+              = assess.text_area :comments, :rows => 5, :tabindex => 2, :style => 'font-weight:normal;'
               = assess.submit "Submit Remarks", 'data-disable-with' => "Submitting Evaluation..", :class => 'button creation', :tabindex => 3
       - else
         - if assignment.is_result_published and assessment.is_checked  
