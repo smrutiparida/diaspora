@@ -24,7 +24,7 @@
             = form_for assessment do |assess|
               = assess.text_field :comments, :maxlength => 5
               = assess.text_area :points, :rows => 5, :tabindex => 2
-              = message.submit "Submit Remarks", 'data-disable-with' => "Submitting Evaluation..", :class => 'button creation', :tabindex => 3
+              = assess.submit "Submit Remarks", 'data-disable-with' => "Submitting Evaluation..", :class => 'button creation', :tabindex => 3
       - else
         - if assignment.is_result_published and assessment.is_checked  
           = label_tag 'Points', "Points earned:" + assessment.points.to_s
