@@ -10,7 +10,7 @@ class UnprocessedDocument < CarrierWave::Uploader::Base
   end
 
   def extension_white_list
-    %w(pdf txt doc docx ppt xls)
+    %w(pdf txt doc docx ppt xls xlsx pptx csv tsv rtf)
   end
 
   def filename

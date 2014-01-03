@@ -10,10 +10,13 @@ class AssignmentAssessment < ActiveRecord::Base
     assignment_assessment.submission_date = DateTime.now
     assignment_assessment.filename = params[:user_file].original_filename()
     assignment_assessment.size = params[:user_file].content_length()
-    Rails.logger.info("Model Middle")
+    
     assignment_assessment.random_string = SecureRandom.hex(10)
         
-    assignment_assessment.unprocessed_doc.store! params[:user_file]
+    doc_file = params.delete(:user_file)
+    Rails.logger.info(doc_file)
+    assignment_assessment.unprocessed_doc.store! doc_file
+    Rails.logger.info("Model Middle")
     assignment_assessment.filepath = assignment_assessment.unprocessed_doc.url
     Rails.logger.info("Model exit")
     assignment_assessment

@@ -3,7 +3,7 @@
 -#   the COPYRIGHT file.
 
 .conversation-wrapper{ :"data-conversation-path" => assignment_assessment_path(assignment_assessment) }
-  .stream_element.conversation{:data=>{:guid=>assignment_assessment.id}
+  .stream_element.conversation{:data=>{:guid=>assignment_assessment.id}}
     .media
       .img
         - if authors[assignment_assessment.id].present?
