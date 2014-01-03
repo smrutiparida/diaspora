@@ -31,7 +31,7 @@
     .stream.conversations
       - if @teacher
         - if @assignment_assessments.count > 0
-          = render :partial => 'assignment_assessments/assignment_assessment', :collection => @assignment_assessments            
+          = render :partial => 'assignment_assessments/assignment_assessment', :collection => @assignment_assessments. :locals => {:authors => @authors}            
         - else
           %br
           %br
