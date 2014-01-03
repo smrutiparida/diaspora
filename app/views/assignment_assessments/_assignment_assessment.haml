@@ -1,11 +1,33 @@
-%h3
-  = assignment_assessment.diaspora_handle
-%div
-  = "Submitted on"
-  = assignment_assessment.submission_date
-  = link_to assignment_assessment.filename, assignment_assessment.filepath
-  - if assignment.is_result_published and assignment_assessment.is_checked  
-    = label_tag 'Points', "Points earned:" + assignment_assessment.points.to_s
-    = label_tag 'Comments', assignment_assessment.comments
-  - else
-    = label_tag "Progress", "Evaluation in Progress"
+-#   Copyright (c) 2010-2011, Diaspora Inc.  This file is
+-#   licensed under the Affero General Public License version 3 or later.  See
+-#   the COPYRIGHT file.
+
+.conversation-wrapper{ :"data-conversation-path" => assignment_assessment_path(assignment_assessment) }
+  .stream_element.conversation{:data=>{:guid=>assignment_assessment.id}}
+    .media
+      .img
+        - if authors[assignment_assessment.id].present?
+          = person_image_tag(authors[assignment_assessment.id])
+
+      .bg
+        .subject
+          .message_count
+            = assignment_assessment.size.to_i/1024
+            = " KB"
+          
+          %div{ :class => direction_for(assignment_assessment.filename) }
+            = assignment_assessment.filename[0..30]
+
+        .last_author
+          %time.timeago.timestamp{:datetime => assignment_assessment.updated_at.iso8601}
+            = t('ago', :time =>  time_ago_in_words(assignment_assessment.updated_at))
+
+          - if authors[assignment_assessment.id].present?
+            = authors[assignment_assessment.id].name
+
+          %span.participants_link
+            - if assignment_assessment.is_checked
+              = "Checked"
+            - else
+              = "Not Checked"
+          

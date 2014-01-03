@@ -31,7 +31,7 @@
     .stream.conversations
       - if @teacher
         - if @assignment_assessments.count > 0
-          = render :partial => 'assignment_assessments/student', :collection => @assignment_assessments            
+          = render :partial => 'assignment_assessments/assignment_assessment', :collection => @assignment_assessments            
         - else
           %br
           %br
@@ -47,7 +47,7 @@
     #conversation_show
       - if @teacher
         - if @assignment_assessment
-          = render :partial => 'assignment_assessments/assignment_assessment', :locals => {:assessment => @assignment_assessment, :assignment => @assignment}          
+          = render :partial => 'assignment_assessments/student', :locals => {:assessment => @assignment_assessment, :assignment => @assignment}          
         - else
           #no_conversation_text
             = "Nothing to show"          
