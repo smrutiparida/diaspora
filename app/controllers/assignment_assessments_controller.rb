@@ -27,7 +27,8 @@ class AssignmentAssessmentsController < ApplicationController
     end
 
     @authors = {}
-    @assignment_assessments.each { |c| @authors[c.id] = Person.includes(:profile).where(diaspora_handle: c.diaspora_handle).first }
+    unless @assignment_assessments.nil?
+      @assignment_assessments.each { |c| @authors[c.id] = Person.includes(:profile).where(diaspora_handle: c.diaspora_handle).first }
 
     
     respond_to do |format|

@@ -16,12 +16,16 @@
     - if @teacher
       .right
         = link_to "View Performance", 'assignment_assessments/analyze', :class => 'button', :rel => 'facebox'  
-    = "Assignment Details"     
+    %h3
+      = "Assignment Details"     
     = render 'assignment_assessments/details', :assignment => @assignment, :teacher_info => @teacher_info
-    - if @teacher
-      .right
+    .right
+      - if @teacher      
         - if Time.now > @assignment.submission_date and !@assignment.is_result_published
           = link_to "Publish Result", 'assignment_assessments/publish', :class => 'button', :rel => 'facebox'
+      - else
+        - if @assignment.submission_date > Time.now
+          = render 'assignment_assessments/uploader', :assignment => @assignment    
 
   #conversation_inbox
     .stream.conversations
@@ -46,9 +50,7 @@
           = render :partial => 'assignment_assessments/assignment_assessment', :locals => {:assessment => @assignment_assessment, :assignment => @assignment}          
         - else
           #no_conversation_text
-            = "Nothig to show"          
-      - else
-        - if @assignment.submission_date > Time.now
-          = render 'assignment_assessments/uploader', :assignment => @assignment    
+            = "Nothing to show"          
+      - else        
         - unless @assessments.nil?
           = render :partial => 'assignment_assessments/assignment_assessment', :locals => {:assessment => @assignment_assessment, :assignment => @assignment}

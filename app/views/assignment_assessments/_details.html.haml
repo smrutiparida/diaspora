@@ -1,6 +1,6 @@
-.stream_element.conversation
-  .media
-    .img
+%div{:style => "padding:8px 8px 8px 0px;"}
+  .media{:style => "margin-left:0px;"}
+    .img{:style => "margin-bottom:10px;"}
       = person_image_tag(teacher_info)
     .bg
       .subject          
@@ -8,7 +8,7 @@
           = assignment.name
       .last_author
         = assignment.description
-      %time.timeago.timestamp
+      %time.timeago.timestamp{:datetime => assignment.submission_date.iso8601, :style => "float:right;"}
         = "Submit Date: "
         = time_tag(assignment.submission_date, :format=>'%b %d')
       %br  
