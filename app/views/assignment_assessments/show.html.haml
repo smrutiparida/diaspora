@@ -12,15 +12,16 @@
   footer{ display:none;}
 
 #left_pane
-  #left_pane_header
+  #left_pane_header{:style => "height:170px;"}
+    - if @teacher
+      .right
+        = link_to "View Performance", 'assignment_assessments/analyze', :class => 'button', :rel => 'facebox'  
+    = "Assignment Details"     
     = render 'assignment_assessments/details', :assignment => @assignment, :teacher_info => @teacher_info
     - if @teacher
       .right
         - if Time.now > @assignment.submission_date and !@assignment.is_result_published
           = link_to "Publish Result", 'assignment_assessments/publish', :class => 'button', :rel => 'facebox'
-        = link_to "View Performance", 'assignment_assessments/analyze', :class => 'button', :rel => 'facebox'  
-         
-    
 
   #conversation_inbox
     .stream.conversations
@@ -42,14 +43,10 @@
     #conversation_show
       - if @teacher
         - if @assignment_assessment
-          = render :partial => 'assignment_assessments/assignment_assessment', :locals => {:assessment => @assignment_assessment, :assignment => @assignment}
-          %div.hidden   
-            = render @assignment_assessments, :assignment => @assignment 
+          = render :partial => 'assignment_assessments/assignment_assessment', :locals => {:assessment => @assignment_assessment, :assignment => @assignment}          
         - else
           #no_conversation_text
-            = "No Assignment Selected"
-          #no_conversation_controls
-            = link_to t('.create_a_new_message'), '#', :rel => 'facebox'
+            = "Nothig to show"          
       - else
         - if @assignment.submission_date > Time.now
           = render 'assignment_assessments/uploader', :assignment => @assignment    
