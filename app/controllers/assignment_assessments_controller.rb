@@ -14,9 +14,14 @@ class AssignmentAssessmentsController < ApplicationController
 
   def update
     @assignment_assessment = AssignmentAssessment.find(params[:id])
-    
-    params[:assignment_assessment][:points] = params[:assignment_assessment][:points].to_i
-    if @assignment_assessment.update_attributes!(assignment_assessment_params)
+    Rails.logger.info(@assignment_assessment.to_json)
+    assessment_hash = assignment_assessment_params
+    assessment_hash[:points] = assessment_hash[:points].to_i
+    assessment_hash[:is_checked] = true
+    assessment_hash[:checked_date] = Time.now
+    Rails.logger.info(assessment_hash.to_json)
+
+    if @assignment_assessment.update_attributes!(assessment_hash)
       redirect_to 'assignment_assessment/' + @assignment_assessment.assignment_id.to_s + '?s_id=' + @assignment_assessment.id.to_s
     else
       flash[:error] = I18n.t 'aspects.update.failure', :name => @aspect.name
