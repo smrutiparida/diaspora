@@ -12,10 +12,10 @@
   footer{ display:none;}
 
 #left_pane
-  #left_pane_header{:style => "height:170px;"}
+  #left_pane_header{:style => "height:170px;background-color:#999999"}
     - if @teacher
       .right
-        = link_to "View Performance", 'assignment_assessments/analyze', :class => 'button', :rel => 'facebox'  
+        = link_to "View Performance", 'assignment_assessments/analyze', :class => 'button', :rel => 'facebox', :style => 'margin-right:10px;' 
     %h3
       = "Assignment Details"     
     = render 'assignment_assessments/details', :assignment => @assignment, :teacher_info => @teacher_info
@@ -44,13 +44,10 @@
 
 .span-15.prepend-9.last
   .stream_container
-    #conversation_show
-      - if @teacher
-        - if @assignment_assessment
-          = render :partial => 'assignment_assessments/student', :locals => {:assessment => @assignment_assessment, :assignment => @assignment}          
-        - else
-          #no_conversation_text
-            = "Nothing to show"          
-      - else        
-        - unless @assessments.nil?
-          = render :partial => 'assignment_assessments/assignment_assessment', :locals => {:assessment => @assignment_assessment, :assignment => @assignment}
+    #conversation_show      
+	  - if @assignment_assessment
+	    = render :partial => 'assignment_assessments/student', :locals => {:assessment => @assignment_assessment, :assignment => @assignment, :author => @authors[@assignment_assessment.id], :teacher => @teacher}          
+	  - else
+	    #no_conversation_text
+	      = "Nothing to show"          
+	  

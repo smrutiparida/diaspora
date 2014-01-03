@@ -1,6 +1,6 @@
 class AssignmentAssessmentsController < ApplicationController
 
-  before_filter :authenticate_user!, :only => [:new, :create, :index, :destroy, :show]
+  before_filter :authenticate_user!, :only => [:new, :create, :index, :destroy, :show, :update]
   respond_to :html, :json, :js
 
   def new
@@ -12,18 +12,33 @@ class AssignmentAssessmentsController < ApplicationController
     end
   end
 
+  def update
+    @assignment_assessment = AssignmentAssessment.find(params[:id])
+
+    if @assignment_assessment.update_attributes!(assignment_assessment_params)
+      redirect_to 'assignment_assessment/' + @assignment_assessment.assignment_id.to_s + '?s_id=' + @assignment_assessment.id.to_s
+    else
+      flash[:error] = I18n.t 'aspects.update.failure', :name => @aspect.name
+    end    
+  end
+
   def show
     role = Role.where(:person_id => current_user.person.id, :name => 'teacher').first
     @teacher = role.nil? ? false : true
     @assignment = Assignment.find(params[:id])
     @teacher_info = Person.includes(:profile).where(diaspora_handle: @assignment.diaspora_handle).first
     @assignment_assessments = nil
-    @assignment_assessment = nil
+    @assignment_assessment = nil 
+
     if @teacher
       @assignment_assessments = AssignmentAssessment.where(:assignment_id => @assignment.id)
-      @assignment_assessment = AssignmentAssessment.where(:assignment_id => @assignment.id).first
+      if params[:s_id]
+        @assignment_assessment = AssignmentAssessment.where(:id => params[:s_id], :assignment_id => @assignment.id).first
+      else  
+        @assignment_assessment = AssignmentAssessment.where(:assignment_id => @assignment.id).first
+      end  
     else
-      @assignment_assessment = AssignmentAssessment.where(:assignment_id => @assignment.id, :diaspora_handle => current_user.diaspora_handle).first
+      @assignment_assessment = AssignmentAssessment.where(:assignment_id => @assignment.id, :diaspora_handle => current_user.diaspora_handle).first        
     end
 
     @authors = {}
@@ -86,7 +101,7 @@ class AssignmentAssessmentsController < ApplicationController
   end
   
   def assignment_assessment_params
-    params.require(:assignment_assessment).permit(:assignment_id, :user_file)
+    params.require(:assignment_assessment).permit(:assignment_id, :user_file, :points, :comments)
   end
 
   def legacy_create
@@ -95,10 +110,7 @@ class AssignmentAssessmentsController < ApplicationController
     @assignment_assessment = current_user.build_post(:assignment_assessment, params[:assignment_assessment])
     Rails.logger.info(@assignment_assessment.to_json)
     if @assignment_assessment.save
-      Rails.logger.info("Line 98")      
-      respond_to do |format|
-        format.json{ render(:layout => false , :json => {"success" => true, "data" => 'Assignment uploaded successfully.' })}
-      end
+      redirect_to 'assignment_assessment/' + @assignment_assessment.assignment_id.to_s      
     else
       Rails.logger.info("Line 103")
       respond_with @assignment_assessment, :location => assignment_assessments_path, :error => message

@@ -1,11 +1,32 @@
-%h3
-  = assessment.diaspora_handle
-%div
-  = "Submitted on"
-  = assessment.submission_date
-  = link_to assessment.filename, assessment.filepath
-  - if assignment.is_result_published and assessment.is_checked  
-    = label_tag 'Points', "Points earned:" + assessment.points.to_s
-    = label_tag 'Comments', assessment.comments
-  - else
-    = label_tag "Progress", "Evaluation in Progress"
+.conversation_participants
+.span-15.last
+  .stream
+    .stream_element
+      .media
+        .img
+          = person_image_tag(author)
+        .bd
+          = person_link(author, :class => 'author from')
+          %time.timeago{:datetime => assessment.created_at.iso8601}
+            = t('ago', :time =>  time_ago_in_words(assessment.created_at))
+
+          %div
+            = link_to assessment.filename, assessment.filepath 
+            = link_to 'Run Turniton', '#', :class => 'creation button', :disabled => 'true'
+    
+    .stream_element.new_message  
+      - if teacher
+        - if assessment.is_checked  
+          = label_tag 'Points', "Points earned:" + assessment.points.to_s
+          = label_tag 'Comments', assessment.comments
+        - else
+          .bd
+            = form_for assessment do |assess|
+              = assess.text_field :comments, :maxlength => 5
+              = assess.text_area :points, :rows => 5, :tabindex => 2
+              = message.submit "Submit Remarks", 'data-disable-with' => "Submitting Evaluation..", :class => 'button creation', :tabindex => 3
+      - else
+        - if assignment.is_result_published and assessment.is_checked  
+            = label_tag 'Points', "Points earned:" + assessment.points.to_s
+            = label_tag 'Comments', assessment.comments
+
