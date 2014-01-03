@@ -18,7 +18,7 @@ class AssignmentAssessment < ActiveRecord::Base
     assignment_assessment.unprocessed_doc.store! doc_file
     Rails.logger.info("Model Middle")
     assignment_assessment.filepath = assignment_assessment.unprocessed_doc.url
-    assignment_assessment.delete(unprocessed_doc)
+    assignment_assessment.delete(:unprocessed_doc)
     Rails.logger.info("Model exit")
     assignment_assessment
   end
