@@ -45,9 +45,9 @@
 .span-15.prepend-9.last
   .stream_container
     #conversation_show      
-	  - if @assignment_assessment
-	    = render :partial => 'assignment_assessments/student', :locals => {:assessment => @assignment_assessment, :assignment => @assignment, :author => @authors[@assignment_assessment.id], :teacher => @teacher}          
-	  - else
-	    #no_conversation_text
-	      = "Nothing to show"          
-	  
+      - if @assignment_assessment
+        = render :partial => 'assignment_assessments/student', :locals => {:assessment => @assignment_assessment, :assignment => @assignment, :author => @authors[@assignment_assessment.id], :teacher => @teacher}          
+      - else
+        #no_conversation_text
+          = "Nothing to show"          
+       
