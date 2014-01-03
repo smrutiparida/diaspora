@@ -93,7 +93,7 @@ class AssignmentAssessmentsController < ApplicationController
     params[:assignment_assessment][:user_file] = file_handler(params)
     Rails.logger.info("Line 92")
     @assignment_assessment = current_user.build_post(:assignment_assessment, params[:assignment_assessment])
-
+    Rails.logger.info(@assignment_assessment.to_json)
     if @assignment_assessment.save
       Rails.logger.info("Line 98")      
       respond_to do |format|
