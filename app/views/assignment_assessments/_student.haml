@@ -12,7 +12,7 @@
 
           %div
             = link_to assessment.filename, assessment.filepath 
-            = link_to 'Run Turniton', '#', :class => 'creation button', :disabled => 'true'
+            = link_to 'Run Turniton', '#', :class => 'creation button', :disabled => true
     
     .stream_element.new_message  
       - if teacher
@@ -27,6 +27,6 @@
               = message.submit "Submit Remarks", 'data-disable-with' => "Submitting Evaluation..", :class => 'button creation', :tabindex => 3
       - else
         - if assignment.is_result_published and assessment.is_checked  
-            = label_tag 'Points', "Points earned:" + assessment.points.to_s
-            = label_tag 'Comments', assessment.comments
+          = label_tag 'Points', "Points earned:" + assessment.points.to_s
+          = label_tag 'Comments', assessment.comments
 
