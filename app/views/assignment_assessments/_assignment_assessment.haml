@@ -2,7 +2,7 @@
 -#   licensed under the Affero General Public License version 3 or later.  See
 -#   the COPYRIGHT file.
 
-.conversation-wrapper{ :"data-conversation-path" => assignment_assessment_path(assignment_assessment) }
+.assessment-wrapper{ :"data-conversation-path" => 'assignment_assessment/' + assignment_assessment.assignment_id.to_s + '?s_id=' + assignment_assessment.id.to_s  }
   .stream_element.conversation{:data=>{:guid=>assignment_assessment.id}}
     .media
       .img
