@@ -16,9 +16,9 @@ class AssignmentAssessment < ActiveRecord::Base
     doc_file = params.delete(:user_file)
     Rails.logger.info(doc_file)
     assignment_assessment.unprocessed_doc.store! doc_file
-    Rails.logger.info(assignment_assessment.to_json)
+    
     assignment_assessment.filepath = assignment_assessment.unprocessed_doc.url
-    assignment_assessment.delete("unprocessed_doc")
+    Rails.logger.info(assignment_assessment.to_json)
     Rails.logger.info("Model exit")
     assignment_assessment
   end

@@ -85,7 +85,7 @@ class Document < ActiveRecord::Base
     end
 
     document.update_path
-
+    Rails.logger.info(document.to_json)
     document
   end
 
