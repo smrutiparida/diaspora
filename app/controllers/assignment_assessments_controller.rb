@@ -41,8 +41,8 @@ class AssignmentAssessmentsController < ApplicationController
       @assignment_assessments = AssignmentAssessment.where(:assignment_id => @assignment.id)
       if params[:s_id]
         @assignment_assessment = AssignmentAssessment.where(:id => params[:s_id], :assignment_id => @assignment.id).first
-        @authors[@assignment_assessment.id] = Person.includes(:profile).where(diaspora_handle: @assignment_assessment.diaspora_handle).first
-        Rails.logger.info(@authors[@assignment_assessment.id].to_json)
+        @student = Person.includes(:profile).where(diaspora_handle: @assignment_assessment.diaspora_handle).first
+        Rails.logger.info(@student.to_json)
       else  
         @assignment_assessment = AssignmentAssessment.where(:assignment_id => @assignment.id).first
         unless @assignment_assessments.nil?
