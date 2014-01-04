@@ -22,7 +22,7 @@ class AssignmentAssessmentsController < ApplicationController
     Rails.logger.info(assessment_hash.to_json)
 
     if @assignment_assessment.update_attributes!(assessment_hash)
-      redirect_to 'assignment_assessment/' + @assignment_assessment.assignment_id.to_s + '?s_id=' + @assignment_assessment.id.to_s
+      redirect_to '/assignment_assessments/' + @assignment_assessment.assignment_id.to_s + '?s_id=' + @assignment_assessment.id.to_s
     else
       flash[:error] = I18n.t 'aspects.update.failure', :name => @aspect.name
     end    
@@ -41,12 +41,14 @@ class AssignmentAssessmentsController < ApplicationController
       @assignment_assessments = AssignmentAssessment.where(:assignment_id => @assignment.id)
       if params[:s_id]
         @assignment_assessment = AssignmentAssessment.where(:id => params[:s_id], :assignment_id => @assignment.id).first
+        @authors[@assignment_assessment.id] = Person.includes(:profile).where(diaspora_handle: @assignment_assessment.diaspora_handle).first
       else  
         @assignment_assessment = AssignmentAssessment.where(:assignment_id => @assignment.id).first
-      end  
-      unless @assignment_assessments.nil?
+        unless @assignment_assessments.nil?
         @assignment_assessments.each { |c| @authors[c.id] = Person.includes(:profile).where(diaspora_handle: c.diaspora_handle).first }
       end
+      end  
+      
     else
       @assignment_assessment = AssignmentAssessment.where(:assignment_id => @assignment.id, :diaspora_handle => current_user.diaspora_handle).first        
       unless @assignment_assessment.nil?
