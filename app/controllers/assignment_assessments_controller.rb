@@ -49,7 +49,9 @@ class AssignmentAssessmentsController < ApplicationController
       end
     else
       @assignment_assessment = AssignmentAssessment.where(:assignment_id => @assignment.id, :diaspora_handle => current_user.diaspora_handle).first        
-      @authors[@assignment_assessment.id] = Person.includes(:profile).where(diaspora_handle: @assignment_assessment.diaspora_handle).first
+      unless @assignment_assessment.nil?
+        @authors[@assignment_assessment.id] = Person.includes(:profile).where(diaspora_handle: @assignment_assessment.diaspora_handle).first
+      end
     end
 
     
