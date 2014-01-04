@@ -36,6 +36,7 @@ class AssignmentAssessmentsController < ApplicationController
     @assignment_assessments = nil
     @assignment_assessment = nil 
 
+    @authors = {}
     if @teacher
       @assignment_assessments = AssignmentAssessment.where(:assignment_id => @assignment.id)
       if params[:s_id]
@@ -43,14 +44,14 @@ class AssignmentAssessmentsController < ApplicationController
       else  
         @assignment_assessment = AssignmentAssessment.where(:assignment_id => @assignment.id).first
       end  
+      unless @assignment_assessments.nil?
+        @assignment_assessments.each { |c| @authors[c.id] = Person.includes(:profile).where(diaspora_handle: c.diaspora_handle).first }
+      end
     else
       @assignment_assessment = AssignmentAssessment.where(:assignment_id => @assignment.id, :diaspora_handle => current_user.diaspora_handle).first        
+      @authors[@assignment_assessment.id] = Person.includes(:profile).where(diaspora_handle: @assignment_assessment.diaspora_handle).first
     end
 
-    @authors = {}
-    unless @assignment_assessments.nil?
-      @assignment_assessments.each { |c| @authors[c.id] = Person.includes(:profile).where(diaspora_handle: c.diaspora_handle).first }
-    end
     
     respond_to do |format|
       format.html   
@@ -117,7 +118,7 @@ class AssignmentAssessmentsController < ApplicationController
     @assignment_assessment = current_user.build_post(:assignment_assessment, params[:assignment_assessment])
     Rails.logger.info(@assignment_assessment.to_json)
     if @assignment_assessment.save
-      redirect_to '/assignment_assessment/' + @assignment_assessment.assignment_id.to_s      
+      redirect_to '/assignment_assessments/' + @assignment_assessment.assignment_id.to_s      
     else
       Rails.logger.info("Line 103")
       respond_with @assignment_assessment, :location => assignment_assessments_path, :error => message
