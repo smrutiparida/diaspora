@@ -323,7 +323,8 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
     t.datetime "updated_at"    
     t.datetime "checked_date"
     t.string   "comments"
-    t.integer  "points"    
+    t.integer  "points"   
+    t.string   "unprocessed_doc" 
   end
 
   add_index "assignments", ["status_message_guid"], :name => "index_assignments_on_status_message_guid"
