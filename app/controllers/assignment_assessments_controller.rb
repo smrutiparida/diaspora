@@ -120,7 +120,7 @@ class AssignmentAssessmentsController < ApplicationController
     @assignment_assessment = current_user.build_post(:assignment_assessment, params[:assignment_assessment])
     Rails.logger.info(@assignment_assessment.to_json)
     if @assignment_assessment.save
-      redirect_to '/assignment_assessments/' + @assignment_assessment.assignment_id.to_s      
+      #redirect_to '/assignment_assessments/' + @assignment_assessment.assignment_id.to_s      
     else
       Rails.logger.info("Line 103")
       respond_with @assignment_assessment, :location => assignment_assessments_path, :error => message
