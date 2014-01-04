@@ -16,9 +16,17 @@
     
     .stream_element{:style => 'border-bottom:none;'}
       - if teacher
-        - if assessment.is_checked  
-          = label_tag 'Points', "Points earned:" + assessment.points.to_s
-          = label_tag 'Comments', assessment.comments
+        - if assessment.is_checked
+          %div
+            %span{:style => 'font-weight: bold; color: #999999'}
+              = "Points earned: "
+            %span
+              = assessment.points.to_s
+          %div{:style => 'width: 60%;'}
+            %span{:style => 'font-weight: bold; color: #999999'}
+              = "Comments: "
+            %span
+              = assessment.comments              
         - else
           .bd
             %h5{:style => 'border-bottom:1px solid #999999;margin:2em 0em 0.5em 0em;'}

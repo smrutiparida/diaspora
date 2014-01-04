@@ -1,0 +1,18 @@
+$('#conversation_show').html("<%= escape_javascript(render('assignment_assessments/student', :locals => {:assessment => @assignment_assessment, :assignment => @assignment, :author => @authors[@assignment_assessment.id], :teacher => @teacher})) %>");
+
+$(".stream_element", "#conversation_inbox").removeClass('selected');
+$(".stream_element[data-guid='<%= @assignment_assessment.id %>']", "#conversation_inbox").addClass('selected');
+
+
+$('time.timeago').each(function(i,e) {
+  var jqe = $(e);
+  jqe.attr('data-original-title', new Date(jqe.attr('datetime')).toLocaleString());
+});
+
+$(".timeago").tooltip();
+$("time.timeago").timeago();
+
+$('time.timeago').each(function(i,e) {
+  var jqe = $(e);
+  jqe.attr('title', '');
+});
