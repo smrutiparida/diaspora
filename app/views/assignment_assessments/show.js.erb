@@ -1,4 +1,4 @@
-$('#conversation_show').html("<%= escape_javascript(render('assignment_assessments/student', :locals => {:assessment => @assignment_assessment, :assignment => @assignment, :author => @student, :teacher => @teacher})) %>");
+$('#conversation_show').html("<%= escape_javascript(render('assignment_assessments/student', :assessment => @assignment_assessment, :assignment => @assignment, :author => @student, :teacher => @teacher)) %>");
 
 $(".stream_element", "#conversation_inbox").removeClass('selected');
 $(".stream_element[data-guid='<%= @assignment_assessment.id %>']", "#conversation_inbox").addClass('selected');
