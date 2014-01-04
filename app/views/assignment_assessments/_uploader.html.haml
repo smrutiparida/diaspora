@@ -35,8 +35,10 @@
           $('#fileInfo').text(fileName + ' completed').fadeOut(2000);
           $('#file-upload').removeClass("loading");
 
+          alert("assessment id:: " +  #{assignment.id});
           window.location.href = "/assignment_assessments/" + #{assignment.id};
-          window.location.reload();
+
+          //window.location.reload();
           
           Diaspora.page.flashMessages.render({ 'success':responseJSON.success, 'notice':responseJSON.message });
          }
