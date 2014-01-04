@@ -45,8 +45,8 @@ class AssignmentAssessmentsController < ApplicationController
       else  
         @assignment_assessment = AssignmentAssessment.where(:assignment_id => @assignment.id).first
         unless @assignment_assessments.nil?
-        @assignment_assessments.each { |c| @authors[c.id] = Person.includes(:profile).where(diaspora_handle: c.diaspora_handle).first }
-      end
+          @assignment_assessments.each { |c| @authors[c.id] = Person.includes(:profile).where(diaspora_handle: c.diaspora_handle).first }
+        end
       end  
       
     else
