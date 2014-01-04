@@ -122,7 +122,7 @@ class AssignmentAssessmentsController < ApplicationController
     if @assignment_assessment.save
       #redirect_to '/assignment_assessments/' + @assignment_assessment.assignment_id.to_s      
       respond_to do |format|
-        format.json{ render(:layout => false , :json => {"success" => true}.to_json )}
+        format.json { render :json => {"success" => true, "message" => 'Assignment submitted successfully.'} }
         format.html{ render(:layout => false , :json => {"success" => true}.to_json )}
       end
     else
