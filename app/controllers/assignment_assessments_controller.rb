@@ -121,6 +121,10 @@ class AssignmentAssessmentsController < ApplicationController
     Rails.logger.info(@assignment_assessment.to_json)
     if @assignment_assessment.save
       #redirect_to '/assignment_assessments/' + @assignment_assessment.assignment_id.to_s      
+      respond_to do |format|
+        format.json{ render(:layout => false , :json => {"success" => true}.to_json )}
+        format.html{ render(:layout => false , :json => {"success" => true}.to_json )}
+      end
     else
       Rails.logger.info("Line 103")
       respond_with @assignment_assessment, :location => assignment_assessments_path, :error => message
