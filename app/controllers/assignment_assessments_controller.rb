@@ -57,7 +57,7 @@ class AssignmentAssessmentsController < ApplicationController
     
     respond_to do |format|
       format.js
-      format.any(:json, :html) { render :html }
+      format.any(:json, :html) { render }
     end
   end
 
