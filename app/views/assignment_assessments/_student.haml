@@ -39,6 +39,17 @@
               = assess.submit "Submit Remarks", 'data-disable-with' => "Submitting Evaluation..", :class => 'button creation', :tabindex => 3
       - else
         - if assignment.is_result_published and assessment.is_checked  
-          = label_tag 'Points', "Points earned:" + assessment.points.to_s
-          = label_tag 'Comments', assessment.comments
-
+          %div
+            %span{:style => 'font-weight: bold; color: #999999'}
+              = "Points earned: "
+            %span
+              = assessment.points.to_s
+          %div{:style => 'width: 60%;'}
+            %span{:style => 'font-weight: bold; color: #999999'}
+              = "Comments: "
+            %span
+              = assessment.comments     
+        - else 
+          %div
+            %span{:style => 'font-weight: bold; color: #999999'}
+              = "Evaluation in Progress. You will receive a message once the result is published."

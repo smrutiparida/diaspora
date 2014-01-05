@@ -43,4 +43,15 @@ $(document).ready(function(){
   });
 
   
+  $('#performance-button').click(function(){
+    var assignment_id = $(this).data('id');
+    
+    
+    $.get('/assignment_assessments/performance?a_id=' + assignment_id, function(data) {
+      $('#conversation_show').html(data);
+    });
+
+    return false;
+  });
+
 });

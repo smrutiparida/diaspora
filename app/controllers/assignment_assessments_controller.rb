@@ -1,6 +1,6 @@
 class AssignmentAssessmentsController < ApplicationController
 
-  before_filter :authenticate_user!, :only => [:new, :create, :index, :destroy, :show, :update, :publish]
+  before_filter :authenticate_user!, :only => [:new, :create, :index, :destroy, :show, :update, :publish, :performance]
   respond_to :html, :json, :js
 
   def new
@@ -42,6 +42,13 @@ class AssignmentAssessmentsController < ApplicationController
     end  
   end
 
+  def performance
+    respond_to do |format|
+      format.html do
+        render :layout => false
+      end
+    end
+  end
   def update
     @assignment_assessment = AssignmentAssessment.find(params[:id])
     Rails.logger.info(@assignment_assessment.to_json)
