@@ -2,15 +2,11 @@
 -#   licensed under the Affero General Public License version 3 or later.  See
 -#   the COPYRIGHT file.
 
-- content_for :head do
-  = javascript_include_tag "https://www.google.com/jsapi" 
 
-- content_for :page_title do
-  = "Assignment Details"
+= javascript_include_tag "https://www.google.com/jsapi" 
 
-#left_pane
-  #left_pane_header{:style => "height:100%;background-color:#999999"}
-    %div#chart_div
+%div
+  %div#chart_div
 
 :javascript    
   google.load('visualization', '1.0', {'packages':['corechart']});

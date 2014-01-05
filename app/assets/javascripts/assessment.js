@@ -42,7 +42,7 @@ $(document).ready(function(){
     return false;
   });
 
-/* 
+
   $('#performance-button').click(function(){
     var assignment_id = $(this).data('id');
     
@@ -53,5 +53,5 @@ $(document).ready(function(){
 
     return false;
   });
-*/
+
 });

@@ -15,7 +15,7 @@
   #left_pane_header{:style => "height:100%;background-color:#999999"}
     - if @teacher
       .right
-        = link_to "View Performance", '/assignment_assessments/performance?a_id=' + @assignment.id.to_s, :class => 'button', :style => 'margin-right:10px;', :id => 'performance-button',:"data-id" => @assignment.id.to_s
+        = link_to "View Performance", '#', :class => 'button', :style => 'margin-right:10px;', :id => 'performance-button',:"data-id" => @assignment.id.to_s
     %h3
       = "Assignment Details"     
     = render 'assignment_assessments/details', :assignment => @assignment, :teacher_info => @teacher_info
