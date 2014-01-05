@@ -37,7 +37,9 @@ class AssignmentAssessmentsController < ApplicationController
         @assignment.update_attributes!(assessment_hash)
       end
     end
-    format.json { render :json => {"success" => true, "message" => 'Assignment published successfully.'} }
+    respond_to do |format|
+      format.json { render :json => {"success" => true, "message" => 'Assignment published successfully.'} }
+    end  
   end
 
   def update
