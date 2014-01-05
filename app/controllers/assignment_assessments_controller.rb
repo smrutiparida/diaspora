@@ -1,6 +1,6 @@
 class AssignmentAssessmentsController < ApplicationController
 
-  before_filter :authenticate_user!, :only => [:new, :create, :index, :destroy, :show, :update]
+  before_filter :authenticate_user!, :only => [:new, :create, :index, :destroy, :show, :update, :publish]
   respond_to :html, :json, :js
 
   def new
@@ -8,6 +8,29 @@ class AssignmentAssessmentsController < ApplicationController
     respond_to do |format|
       format.html do
         render :layout => false
+      end
+    end
+  end
+
+  def publish
+    role = Role.where(:person_id => current_user.person.id, :name => 'teacher').first
+    @teacher = role.nil? ? false : true
+    @assignment_assessments = nil
+    if @teacher
+      @assignment_assessments = AssignmentAssessment.where(:assignment_id => @assignment.id)
+      unless @assignment_assessments.nil?
+        @assignment_assessments.each { 
+          |c| @recipient = Person.includes(:profile).where(diaspora_handle: c.diaspora_handle).first
+          opts = {}
+          opts[:participant_ids] = @recipient.id
+          opts[:message] = { text: "Assignment has been processed"}
+          opts[:subject] = "Assignment processed"
+          @conversation = current_user.build_conversation(opts)
+
+          if @conversation.save
+            Postzord::Dispatcher.build(current_user, @conversation).post
+          end
+        }
       end
     end
   end
