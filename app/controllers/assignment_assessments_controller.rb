@@ -17,6 +17,7 @@ class AssignmentAssessmentsController < ApplicationController
     @teacher = role.nil? ? false : true
     @assignment_assessments = nil
     if @teacher
+      @assignment = Assignment.find(params[:a_id])
       @assignment_assessments = AssignmentAssessment.where(:assignment_id => @assignment.id)
       unless @assignment_assessments.nil?
         @assignment_assessments.each { 
