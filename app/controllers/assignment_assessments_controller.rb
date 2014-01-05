@@ -43,6 +43,7 @@ class AssignmentAssessmentsController < ApplicationController
         @assignment_assessment = AssignmentAssessment.where(:id => params[:s_id], :assignment_id => @assignment.id).first
         @student = Person.includes(:profile).where(diaspora_handle: @assignment_assessment.diaspora_handle).first
         Rails.logger.info(@student.to_json)
+        Rails.logger.info(@assignment_assessment.to_json)
       else  
         @assignment_assessment = AssignmentAssessment.where(:assignment_id => @assignment.id).first
       end  
