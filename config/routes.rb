@@ -94,7 +94,7 @@ Diaspora::Application.routes.draw do
   end
 
   resources :assignments
-
+  get 'assignment_assessments/publish' => 'assignment_assessments#publish'
   resources :assignment_assessments
 
   resources :quizzes
