@@ -48,7 +48,7 @@ $(document).ready(function(){
     
     
     $.get('/assignment_assessments/performance?a_id=' + assignment_id, function(data) {
-      $('#conversation_show').html(data);
+      $('#conversation_show').innerHTML = data;
     });
 
     return false;
