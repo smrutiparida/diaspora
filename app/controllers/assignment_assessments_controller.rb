@@ -16,8 +16,8 @@ class AssignmentAssessmentsController < ApplicationController
     role = Role.where(:person_id => current_user.person.id, :name => 'teacher').first
     @teacher = role.nil? ? false : true
     @assignment_assessments = nil
-    if @teacher and !@assignment.is_result_published
-      @assignment = Assignment.find(params[:a_id])
+    @assignment = Assignment.find(params[:a_id])
+    if @teacher and !@assignment.is_result_published      
       @assignment_assessments = AssignmentAssessment.where(:assignment_id => @assignment.id)
       unless @assignment_assessments.nil?
         @assignment_assessments.each { 
