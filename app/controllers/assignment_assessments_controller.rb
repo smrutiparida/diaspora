@@ -45,11 +45,10 @@ class AssignmentAssessmentsController < ApplicationController
         Rails.logger.info(@student.to_json)
       else  
         @assignment_assessment = AssignmentAssessment.where(:assignment_id => @assignment.id).first
-        unless @assignment_assessments.nil?
-          @assignment_assessments.each { |c| @authors[c.id] = Person.includes(:profile).where(diaspora_handle: c.diaspora_handle).first }
-        end
       end  
-      
+      unless @assignment_assessments.nil?
+        @assignment_assessments.each { |c| @authors[c.id] = Person.includes(:profile).where(diaspora_handle: c.diaspora_handle).first }
+      end
     else
       @assignment_assessment = AssignmentAssessment.where(:assignment_id => @assignment.id, :diaspora_handle => current_user.diaspora_handle).first        
       unless @assignment_assessment.nil?
