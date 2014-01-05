@@ -16,7 +16,7 @@ class AssignmentAssessmentsController < ApplicationController
     role = Role.where(:person_id => current_user.person.id, :name => 'teacher').first
     @teacher = role.nil? ? false : true
     @assignment_assessments = nil
-    if @teacher
+    if @teacher and !@assignment.is_result_published
       @assignment = Assignment.find(params[:a_id])
       @assignment_assessments = AssignmentAssessment.where(:assignment_id => @assignment.id)
       unless @assignment_assessments.nil?
@@ -24,16 +24,19 @@ class AssignmentAssessmentsController < ApplicationController
           |c| @recipient = Person.includes(:profile).where(diaspora_handle: c.diaspora_handle).first
           opts = {}
           opts[:participant_ids] = @recipient.id
-          opts[:message] = { text: "Assignment has been processed"}
-          opts[:subject] = "Assignment processed"
+          opts[:message] = { text: "Assignment result has been published."}
+          opts[:subject] = "Assignment published."
           @conversation = current_user.build_conversation(opts)
 
           if @conversation.save
             Postzord::Dispatcher.build(current_user, @conversation).post
           end
         }
+        assessment_hash[:is_result_published] = true
+        @assignment.update_attributes!(assessment_hash)
       end
     end
+    format.json { render :json => {"success" => true, "message" => 'Assignment published successfully.'} }
   end
 
   def update

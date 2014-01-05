@@ -22,7 +22,7 @@
     .right
       - if @teacher      
         - if Time.now > @assignment.submission_date and !@assignment.is_result_published
-          = link_to "Publish Result", 'assignment_assessments/publish?a_id='+@assignment.id.to_s, :class => 'button', :rel => 'facebox'
+          = link_to "Publish Result", '#', :"data-id" => @assignment.id.to_s, :class => 'button', :id => 'publish-button'
       - else
         - if @assignment.submission_date > Time.now
           = render 'assignment_assessments/uploader', :assignment => @assignment    

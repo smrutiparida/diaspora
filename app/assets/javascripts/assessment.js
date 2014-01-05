@@ -29,5 +29,18 @@ $(document).ready(function(){
     return false;
   });
 
+  $('#publish-button').click(function(){
+    var assignment_id = $(this).data('id');
+    $(this).val("Publishing...");
+    
+    $.getJSON('/assignment_assessments/publish?a_id=' + assignment_id, function(data) {
+      Diaspora.page.flashMessages.render({ 'success':data.success, 'notice':data.message });
+      $(this).val("Published");
+      $(this).preventDefault();
+    });
 
+    return false;
+  });
+
+  
 });
