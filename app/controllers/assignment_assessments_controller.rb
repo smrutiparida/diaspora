@@ -32,6 +32,7 @@ class AssignmentAssessmentsController < ApplicationController
             Postzord::Dispatcher.build(current_user, @conversation).post
           end
         }
+        assessment_hash = {}
         assessment_hash[:is_result_published] = true
         @assignment.update_attributes!(assessment_hash)
       end
