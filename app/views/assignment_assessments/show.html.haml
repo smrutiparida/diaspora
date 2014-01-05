@@ -12,20 +12,23 @@
   footer{ display:none;}
 
 #left_pane
-  #left_pane_header{:style => "height:170px;background-color:#999999"}
+  #left_pane_header{:style => "height:100%;background-color:#999999"}
     - if @teacher
       .right
         = link_to "View Performance", 'assignment_assessments/analyze', :class => 'button', :rel => 'facebox', :style => 'margin-right:10px;' 
     %h3
       = "Assignment Details"     
     = render 'assignment_assessments/details', :assignment => @assignment, :teacher_info => @teacher_info
-    .right
-      - if @teacher      
-        - if Time.now > @assignment.submission_date and !@assignment.is_result_published
+    
+    - if @teacher      
+      - if Time.now > @assignment.submission_date
+        - if !@assignment.is_result_published
           = link_to "Publish Result", '#', :"data-id" => @assignment.id.to_s, :class => 'button', :id => 'publish-button'
-      - else
-        - if @assignment.submission_date > Time.now
-          = render 'assignment_assessments/uploader', :assignment => @assignment    
+        - else 
+          = link_to "Published", '#', :"data-id" => @assignment.id.to_s, :class => 'button disabled', :id => 'publish-button'
+    - else
+      - if @assignment.submission_date > Time.now
+        = render 'assignment_assessments/uploader', :assignment => @assignment    
 
   #conversation_inbox
     .stream.conversations

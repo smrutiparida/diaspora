@@ -31,12 +31,12 @@ $(document).ready(function(){
 
   $('#publish-button').click(function(){
     var assignment_id = $(this).data('id');
-    $(this).val("Publishing...");
+    $(this).text("Publishing...");
     
     $.getJSON('/assignment_assessments/publish?a_id=' + assignment_id, function(data) {
       Diaspora.page.flashMessages.render({ 'success':data.success, 'notice':data.message });
-      $(this).val("Published");
-      $(this).preventDefault();
+      $(this).text("Published");
+      $(this).attr('class','button disabled');
     });
 
     return false;
