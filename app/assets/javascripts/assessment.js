@@ -35,8 +35,8 @@ $(document).ready(function(){
     
     $.getJSON('/assignment_assessments/publish?a_id=' + assignment_id, function(data) {
       Diaspora.page.flashMessages.render({ 'success':data.success, 'notice':data.message });
-      $(this).text("Published");
-      $(this).attr('class','button disabled');
+      $('#publish-button').text("Published");
+      $('#publish-button').attr('class','button disabled');
     });
 
     return false;
