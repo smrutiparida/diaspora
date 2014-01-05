@@ -55,7 +55,8 @@ class AssignmentAssessmentsController < ApplicationController
       unless @assignment_assessments.nil?
         @assignment_assessments.each { 
           |c| c.is_checked ? data2.push([c.diaspora_handle ,c.points])
-          c.is_checked ? temp[c.points] = temp[c.points] + 1
+          temp[c.points] = temp[c.points] + 1 if c.is_checked
+        }
       end    
     end
 
@@ -66,6 +67,7 @@ class AssignmentAssessmentsController < ApplicationController
       format.js
     end
   end
+  
   def update
     @assignment_assessment = AssignmentAssessment.find(params[:id])
     Rails.logger.info(@assignment_assessment.to_json)
