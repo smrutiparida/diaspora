@@ -45,7 +45,7 @@ class AssignmentAssessmentsController < ApplicationController
   def performance
     respond_to do |format|
       format.html do
-        render :layout => false
+        render :layout => true
       end
     end
   end
