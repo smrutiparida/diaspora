@@ -1,4 +1,5 @@
 $('#conversation_show').html("<div id='chart_div'></div>");
+$('#conversation_show').html("<div id='table_div'></div>");
 var data = new google.visualization.DataTable();
 data.addColumn('string', 'Topping');
 data.addColumn('number', 'Slices');
@@ -14,5 +15,18 @@ var options = {'title':'How Much Pizza I Ate Last Night',
                'height':300};
 var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
 chart.draw(data, options);
+
+var data2 = new google.visualization.DataTable();
+data2.addColumn('string', 'Name');
+data2.addColumn('number', 'Marks');
+data2.addRows([
+  ['Mike',  10],
+  ['Jim',   6],
+  ['Alice', 9],
+  ['Bob',   7]
+]);
+
+var table = new google.visualization.Table(document.getElementById('table_div'));
+table.draw(data, {showRowNumber: true});
 
 
