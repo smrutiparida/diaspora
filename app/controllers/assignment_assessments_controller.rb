@@ -43,6 +43,25 @@ class AssignmentAssessmentsController < ApplicationController
   end
 
   def performance
+    role = Role.where(:person_id => current_user.person.id, :name => 'teacher').first
+    @teacher = role.nil? ? false : true
+    @assignment_assessments = nil
+    @assignment = Assignment.find(params[:a_id])
+    @data = []
+    @data2 = []
+    @temp = {}
+    if @teacher      
+      @assignment_assessments = AssignmentAssessment.where(:assignment_id => @assignment.id)
+      unless @assignment_assessments.nil?
+        @assignment_assessments.each { 
+          |c| c.is_checked ? data2.push([c.diaspora_handle ,c.points])
+          c.is_checked ? temp[c.points] = temp[c.points] + 1
+      end    
+    end
+
+    @temp.each { |key,value| data.push([key, val])}
+    Rails.logger.info(data.to_json)
+    Rails.logger.info(data2.to_json)
     respond_to do |format|
       format.js
     end
