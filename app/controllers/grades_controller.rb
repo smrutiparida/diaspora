@@ -36,7 +36,7 @@ class GradesController < ApplicationController
       @t0.push(t('username'))
       @assignments.each{|a| @t0.push(a.name)}
       Rails.logger.info(@t0.to_json)
-      
+      @temp.push(t0)
       
       @data.each do |key, value|
         @t1 = []
