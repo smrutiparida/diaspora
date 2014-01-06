@@ -1,6 +1,6 @@
-class LibraryController < ApplicationController
+class GradesController < ApplicationController
 
-  before_filter :authenticate_user!, :only => [:index]
+  before_filter :authenticate_user!, :only => [:index, :show]
   respond_to :html, :json, :js
 
   def index    
