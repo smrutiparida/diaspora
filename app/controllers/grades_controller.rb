@@ -24,6 +24,8 @@ class GradesController < ApplicationController
     file = Tempfile.new(file_name)
     # put data into this file from raw post request
     file.print request.raw_post
+    Rails.logger.info(request.raw_post)
+    file.close
     @data = []
     Rails.logger.info(file.path.to_s)
     CSV.foreach(file.path) do |row|
