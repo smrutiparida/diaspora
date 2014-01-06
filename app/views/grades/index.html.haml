@@ -28,6 +28,8 @@
 
 .span-15.prepend-9.last
   .stream_container
+    %span{:style => "display:block;text-align:center;"}  
+      = link_to "Upload Grades", '/grades/new', :rel => 'facebox', :class => 'creation button', :id => 'grade-button', :style => 'display:none;'
     #conversation_show      
       #no_conversation_text
         = "Nothing to show"          

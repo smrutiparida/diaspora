@@ -10,6 +10,12 @@ class GradesController < ApplicationController
     end
   end
 
+  def new
+    respond_to do |format|
+      format.html
+    end
+  end
+
   def show
     role = Role.where(:person_id => current_user.person.id, :name => 'teacher').first
     @teacher = role.nil? ? false : true

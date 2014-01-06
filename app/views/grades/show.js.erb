@@ -2,6 +2,7 @@ $('#conversation_show').html("<div id='chart_div'></div><div id='table_div'></di
 
 $(".stream_element", "#conversation_inbox").removeClass('selected');
 $(".stream_element[data-guid='<%= params[:id] %>']", "#conversation_inbox").addClass('selected');
+$('#grade-button').show();
 
 var data2 = new google.visualization.arrayToDataTable(<%= @temp.to_json.html_safe %>);
 var table = new google.visualization.Table(document.getElementById('table_div'));
