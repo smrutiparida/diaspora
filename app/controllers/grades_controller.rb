@@ -33,17 +33,17 @@ class GradesController < ApplicationController
       end  
       Rails.logger.info(@data.to_json)
       @t = []
-      t.push("Name")
-      @assignments.each{|a| t.push(a.name)}
+      @t.push("Name")
+      @assignments.each{|a| @t.push(a.name)}
       temp.push(t)
       
       @data.each do |key, value|
         @t1 = []
         @t1.push(key)
         @assignments.each do |a|
-          value.has_key?(a.id) ? t1.push(value[a.id]) : t1.push(0)
+          value.has_key?(a.id) ? @t1.push(value[a.id]) : @t1.push(0)
         end
-        temp.push(t1)    
+        temp.push(@t1)    
       end  
       Rails.logger.info(@temp.to_json)
     else      
