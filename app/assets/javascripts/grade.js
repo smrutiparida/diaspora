@@ -26,13 +26,13 @@ $(document).ready(function(){
     return false;
   });
 
-  
+
 });
 
 function createUploader(){
  var uploader = new qq.FileUploaderBasic({
      element: document.getElementById('file-upload'),
-     params: {'assignment_assessment': {'a_id' : #{params[:id]}}},
+     params: {},
      allowedExtensions: ['csv'],
      action: "/grades",
      button: document.getElementById('file-upload'),
