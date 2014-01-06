@@ -68,7 +68,7 @@ class StreamsController < ApplicationController
     end  
     all_my_post_guid = all_my_posts.map{|a| a.guid}
     
-    @assignments = Assignment.where(:status_message_guid => all_my_post_guid)
+    @assignments = Assignment.where(:status_message_guid => all_my_post_guid, :is_result_published => false)
     @quizzes = Quiz.where(:status_message_guid => all_my_post_guid)
     @documents += Document.where(:status_message_guid => all_my_post_guid)    
     @role = Role.where(:person_id => current_user.person, :name => 'teacher').first

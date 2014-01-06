@@ -29,12 +29,11 @@
   .title
     .icons-bookmark
     %h5.title-header
-      = "Assignments"
+      = "Open Assignments"
   .content
     - if @assignments and @assignments.length > 0      
       - for assignment in @assignments
-        = assignment.name          
-        = time_ago_in_words(assignment.submission_date)
+        = link_to assignment.name, "assignment_assessments/" + assignment.id.to_s
         %br                      
     -else
       = "No assignmentss present"  
