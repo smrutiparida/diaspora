@@ -29,6 +29,7 @@ class GradesController < ApplicationController
 
     file.close
     @data = []
+    @data.push(['Students', 'Marks'])
     Rails.logger.info(file.path.to_s)
     CSV.foreach(file.path) do |row|
       Rails.logger.info(row.to_json)
