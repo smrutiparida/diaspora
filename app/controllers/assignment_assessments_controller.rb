@@ -61,8 +61,8 @@ class AssignmentAssessmentsController < ApplicationController
     end
 
     @temp.each { |key,value| @data.push([key, value])}
-    Rails.logger.info(data.to_json)
-    Rails.logger.info(data2.to_json)
+    Rails.logger.info(@data.to_json)
+    Rails.logger.info(@data2.to_json)
     respond_to do |format|
       format.js
     end
