@@ -54,8 +54,9 @@ class AssignmentAssessmentsController < ApplicationController
       @assignment_assessments = AssignmentAssessment.where(:assignment_id => @assignment.id)
       unless @assignment_assessments.nil?
         @assignment_assessments.each do |c|
-          c.is_checked ? @data2.push([c.diaspora_handle ,c.points]) : next
-          @temp.has_key?(c.points) ? @temp[c.points] = @temp[c.points] + 1 : @temp[c.points] = 1          
+          c.is_checked ? @data2.push([c.diaspora_handle, c.points]) : next
+          @key = c.points.to_s + " marks"
+          @temp.has_key?(@key) ? @temp[@key] = @temp[@key] + 1 : @temp[@key] = 1          
         end
       end    
     end
