@@ -55,7 +55,7 @@ class AssignmentAssessmentsController < ApplicationController
       unless @assignment_assessments.nil?
         @assignment_assessments.each do |c|
           c.is_checked ? @data2.push([c.diaspora_handle ,c.points]) : next
-          temp[c.points] = temp[c.points] + 1 
+          @temp[c.points] = temp[c.points] + 1 
         end
       end    
     end
