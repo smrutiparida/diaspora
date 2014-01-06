@@ -16,12 +16,12 @@ class GradesController < ApplicationController
 
     all_my_posts = Post.joins(:aspect_visibilities).where(:aspect_visibilities => {:aspect_id => params[:id]})
     all_my_post_guid = all_my_posts.map{|a| a.guid}
+    @assignments = Assignment.where(:status_message_guid => all_my_post_guid, :is_result_published => true).order(:updated_at)
+    all_assignment_ids = @assignments.map{|a| a.id}
     @data = {}
     @temp = []
 
-    if @teacher
-      @assignments = Assignment.where(:status_message_guid => all_my_post_guid, :is_result_published => true).order(:updated_at)
-      all_assignment_ids = @assignments.map{|a| a.id}
+    if @teacher  
       @all_assessments = AssignmentAssessment.where(:assignment_id => all_assignment_ids, :is_checked => true).order(:diaspora_handle, :assignment_id)
       unless @all_assessments.nil?
         @all_assessments.each do |c|
@@ -47,18 +47,21 @@ class GradesController < ApplicationController
         @temp.push(@t1)    
       end  
       Rails.logger.info(@temp.to_json)
-    else      
-      opts = {}
-      if params[:a_id]
-        opts[:by_members_of] = params[:a_id]
+    else  
+      @all_assessments = AssignmentAssessment.where(:assignment_id => all_assignment_ids, :is_checked => true, :diaspora_handle => current_user.diaspora_handle).order(:assignment_id)    
+      @temp.push(['Assignment Name', 'Total Points', 'My Points']) 
+      @all_assessments.each{|a| @data[a.assignment_id] = a.points}
+      
+      unless @assignments.nil?
+        @assignments.each do |a|
+          @t0 = []
+          @t0.push(a.name)
+          @t0.push(a.comments_count)
+          @t0.push(@data[a.id])
+          @temp.push(@t0)
+        end
       end  
-      
-      all_my_posts = current_user.visible_shareables(Post, opts)
-      all_my_post_guid = all_my_posts.map{|a| a.guid}
-      
-      @assignments = Assignment.where(:status_message_guid => all_my_post_guid)
-      @quizzes = Quiz.where(:status_message_guid => all_my_post_guid)
-      @documents += Document.where(:status_message_guid => all_my_post_guid)
+      Rails.logger.info(@temp.to_json)
     end
   end
 end
