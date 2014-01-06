@@ -27,7 +27,7 @@
 .span-15.prepend-9.last
   .stream_container
     %span{:style => "display:block;text-align:right;margin-bottom:20px;padding-bottom:15px;border-bottom:1px solid #999999;"}  
-      = link_to "Upload grades", :id => 'grade-button', :style => 'display:none;', :onclick => '$.get("/grades/new",function(data){$("#conversation_show").html(data); createUploader(); return false;});'
+      = link_to "Upload Grades", '#', :id => 'grade-button', :style => 'display:none;', :onclick => '$.get("/grades/new",function(data){$("#conversation_show").html(data); createUploader(); return false;});'
     #conversation_show      
       #no_conversation_text
         = "Nothing to show"          
