@@ -7,7 +7,7 @@
   
   #create_assignment
 
-    %form{:action => '/grades', :class =>'new_conversation form_do_not_clear', ':data-remote' => true, :method => 'post' }
+    %form{:action => '/grades', :class =>'new_conversation form_do_not_clear', :'data-remote' => true, :method => 'post' }
       #file-upload.button.creation
         = "Upload Grade File"
       %div{:style => 'margin:5px;color:#888888;font-size:12px;'}
@@ -15,7 +15,8 @@
       %br
       %br
       %p
-        #fileInfo
+      = hidden_field_tag 'grades[points]'
+
       = image_tag('mobile-spinner.gif', :class => 'hidden', :style => "z-index:-1", :id => 'file-upload-spinner')
       %p
         #table_div
