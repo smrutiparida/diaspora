@@ -10,7 +10,13 @@ class GradesController < ApplicationController
       format.html
     end
   end
-
+  def create
+    Rails.logger.info(params.to_json)
+    #- create assignment object and save
+    #- for each mark create a assessment object and save
+    #- collect aspect_id
+    #- go to show with aspect id
+  end
   def new
     respond_to do |format|
       format.html do
@@ -81,7 +87,7 @@ class GradesController < ApplicationController
       Rails.logger.info(@temp.to_json)
     else  
       opts = {}
-      if params[:a_id]
+      if params[:id]
         opts[:by_members_of] = params[:id]
       end
       all_my_posts = current_user.visible_shareables(Post, opts)
@@ -103,5 +109,9 @@ class GradesController < ApplicationController
       end  
       Rails.logger.info(@temp.to_json)
     end
+    respond_to do |format|
+      format.js
+      format.html
+    end 
   end
 end
