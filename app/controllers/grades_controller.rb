@@ -14,14 +14,15 @@ class GradesController < ApplicationController
     role = Role.where(:person_id => current_user.person.id, :name => 'teacher').first
     @teacher = role.nil? ? false : true
 
-    all_my_posts = Post.joins(:aspect_visibilities).where(:aspect_visibilities => {:aspect_id => params[:id]})
-    all_my_post_guid = all_my_posts.map{|a| a.guid}
-    @assignments = Assignment.where(:status_message_guid => all_my_post_guid, :is_result_published => true).order(:updated_at)
-    all_assignment_ids = @assignments.map{|a| a.id}
+    
     @data = {}
     @temp = []
 
     if @teacher  
+      all_my_posts = Post.joins(:aspect_visibilities).where(:aspect_visibilities => {:aspect_id => params[:id]})
+      all_my_post_guid = all_my_posts.map{|a| a.guid}
+      @assignments = Assignment.where(:status_message_guid => all_my_post_guid, :is_result_published => true).order(:updated_at)
+      all_assignment_ids = @assignments.map{|a| a.id}
       @all_assessments = AssignmentAssessment.where(:assignment_id => all_assignment_ids, :is_checked => true).order(:diaspora_handle, :assignment_id)
       unless @all_assessments.nil?
         @all_assessments.each do |c|
@@ -48,6 +49,14 @@ class GradesController < ApplicationController
       end  
       Rails.logger.info(@temp.to_json)
     else  
+      opts = {}
+      if params[:a_id]
+        opts[:by_members_of] = params[:id]
+      end
+      all_my_posts = current_user.visible_shareables(Post, opts)
+      all_my_post_guid = all_my_posts.map{|a| a.guid}
+      @assignments = Assignment.where(:status_message_guid => all_my_post_guid)
+      all_assignment_ids = @assignments.map{|a| a.id}
       @all_assessments = AssignmentAssessment.where(:assignment_id => all_assignment_ids, :is_checked => true, :diaspora_handle => current_user.diaspora_handle).order(:assignment_id)    
       @temp.push(['Assignment Name', 'Total Points', 'My Points']) 
       @all_assessments.each{|a| @data[a.assignment_id] = a.points}
