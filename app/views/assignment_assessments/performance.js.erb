@@ -9,11 +9,3 @@ var options = {'title':'Class Performance',
                'height':300};
 var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
 chart.draw(data, options);
-
-var data2 = new google.visualization.DataTable();
-data2.addColumn('string', 'Name');
-data2.addColumn('number', 'Marks');
-data2.addRows(<%= @data2.to_json %>);
-
-var table = new google.visualization.Table(document.getElementById('table_div'));
-table.draw(data2, {showRowNumber: true});
