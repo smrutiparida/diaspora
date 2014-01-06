@@ -2,8 +2,6 @@
     
 
 .span-15.last
-  .span-3
-    .icons-cog
   .span-12.last
     %h4
       = "Load a Course Grade for all students"
@@ -39,7 +37,7 @@
           = hidden_field_tag 'assignment[file_upload]', 'false'
           %span{:style => 'margin-left:4px;vertical-align:middle;display:none;'} Students will upload a file as part of submission
           
-        #file-upload.button.creation{ :onclick => 'createUploader();'}
+        #file-upload.button.creation
           = "Upload Grade File(.csv file only - [student id, points])"
         = image_tag('mobile-spinner.gif', :class => 'hidden', :style => "z-index:-1", :id => 'file-upload-spinner')
         %p

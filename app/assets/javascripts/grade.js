@@ -26,5 +26,49 @@ $(document).ready(function(){
     return false;
   });
 
-
+  
 });
+
+function createUploader(){
+ var uploader = new qq.FileUploaderBasic({
+     element: document.getElementById('file-upload'),
+     params: {'assignment_assessment': {'a_id' : #{params[:id]}}},
+     allowedExtensions: ['csv'],
+     action: "/grades",
+     button: document.getElementById('file-upload'),
+     sizeLimit: 4194304,
+
+     onProgress: function(id, fileName, loaded, total){
+      var progress = Math.round(loaded / total * 100 );
+       $('#fileInfo').text(fileName + ' ' + progress + '%');
+     },
+
+     messages: {
+         typeError: "File of wrong extension",
+         sizeError: "Filesize too large. Supported size is till 4 MB",
+         emptyError: "Empty file loaded."
+     },
+
+     onSubmit: function(id, fileName){
+      $('#file-upload').addClass("loading");
+      $("#file-upload-spinner").removeClass("hidden");
+     },
+
+     onComplete: function(id, fileName, responseJSON){
+      $("#file-upload-spinner").addClass("hidden");
+      $('#fileInfo').text(fileName + ' completed').fadeOut(2000);
+      $('#file-upload').removeClass("loading");
+      if ( responseJSON.success = 'success')
+      {
+          $('#fileInfo').empty().append('<input type="hidden" value="' + filename + '">');
+      }
+      else
+      {
+        $('#fileInfo').text(responseJSON.message);
+      }
+      
+
+      
+     }
+ });
+}

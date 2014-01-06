@@ -9,52 +9,6 @@
   = javascript_include_tag "https://www.google.com/uds/api/visualization/1.0/3e90177897a662843613f410c963722a/format+en,default+en,ui+en,table+en,corechart+en.I.js"
   = stylesheet_link_tag "https://www.google.com/uds/api/visualization/1.0/3e90177897a662843613f410c963722a/ui+en,table+en.css"
   
-  :javascript
-    function createUploader(){
-     var uploader = new qq.FileUploaderBasic({
-         element: document.getElementById('file-upload'),
-         params: {'assignment_assessment': {'a_id' : #{params[:id]}}},
-         allowedExtensions: ['csv'],
-         action: "/grades",
-         button: document.getElementById('file-upload'),
-         sizeLimit: 4194304,
-
-         onProgress: function(id, fileName, loaded, total){
-          var progress = Math.round(loaded / total * 100 );
-           $('#fileInfo').text(fileName + ' ' + progress + '%');
-         },
-
-         messages: {
-             typeError: "File of wrong extension",
-             sizeError: "Filesize too large. Supported size is till 4 MB",
-             emptyError: "Empty file loaded."
-         },
-
-         onSubmit: function(id, fileName){
-          $('#file-upload').addClass("loading");
-          $("#file-upload-spinner").removeClass("hidden");
-         },
-
-         onComplete: function(id, fileName, responseJSON){
-          $("#file-upload-spinner").addClass("hidden");
-          $('#fileInfo').text(fileName + ' completed').fadeOut(2000);
-          $('#file-upload').removeClass("loading");
-          if ( responseJSON.success = 'success')
-          {
-              $('#fileInfo').empty().append('<input type="hidden" value="' + filename + '">');
-          }
-          else
-          {
-            $('#fileInfo').text(responseJSON.message);
-          }
-          
-
-          
-         }
-     });
-    }
-    
-  
 - content_for :page_title do
   = "Grade Details"
 
@@ -73,7 +27,7 @@
 .span-15.prepend-9.last
   .stream_container
     %span{:style => "display:block;text-align:right;margin-bottom:20px;"}  
-      = link_to "Upload Grades", '#',:class => 'creation button', :id => 'grade-button', :style => 'display:none;', :onclick => '$.get("/grades/new",function(data){$("#conversation_show").html(data);return false;});'
+      = link_to "Upload Grades", '#',:class => 'creation button', :id => 'grade-button', :style => 'display:none;', :onclick => '$.get("/grades/new",function(data){$("#conversation_show").html(data); window.onload = createUploader; return false;});'
     #conversation_show      
       #no_conversation_text
         = "Nothing to show"          
