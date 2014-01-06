@@ -30,6 +30,9 @@ $(document).ready(function(){
   });
 
   $('#publish-button').click(function(){
+    if($(this).hasClass("disabled"))
+      return;
+    
     var assignment_id = $(this).data('id');
     $(this).text("Publishing...");
     
