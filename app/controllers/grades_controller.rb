@@ -20,11 +20,13 @@ class GradesController < ApplicationController
   end
 
   def parse
+    Rails.logger.info("inside")
+    Rails.logger.info(request.raw_post.force_encoding('BINARY'))
     file_name = params[:qqfile]
     file = Tempfile.new(file_name)
     # put data into this file from raw post request
-    file.print request.raw_post
-    Rails.logger.info(request.raw_post)
+    file.print request.raw_post.force_encoding('BINARY')
+
     file.close
     @data = []
     Rails.logger.info(file.path.to_s)
