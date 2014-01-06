@@ -55,7 +55,7 @@ class GradesController < ApplicationController
       end
       all_my_posts = current_user.visible_shareables(Post, opts)
       all_my_post_guid = all_my_posts.map{|a| a.guid}
-      @assignments = Assignment.where(:status_message_guid => all_my_post_guid)
+      @assignments = Assignment.where(:status_message_guid => all_my_post_guid, :is_result_published => true)
       all_assignment_ids = @assignments.map{|a| a.id}
       @all_assessments = AssignmentAssessment.where(:assignment_id => all_assignment_ids, :is_checked => true, :diaspora_handle => current_user.diaspora_handle).order(:assignment_id)    
       @temp.push(['Assignment Name', 'Total Points', 'My Points']) 
