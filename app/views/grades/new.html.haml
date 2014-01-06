@@ -14,9 +14,19 @@
 
       = form_for Assignment.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |assignment|
         
-        %h5{:style => 'margin-bottom:0px;'}
+        #file-upload.button.creation
+          = "Upload Grade File"
+          %div{:style => 'margin:5px;color:#888888;font-size:12px;'}
+            = ".csv file only. Each line contains student_id,marks. File cannot be more than 4 MB size."
+        %p
+          #table_div
+            %br
+            %br
+            %br
+            %br
+        %h5.fieldWithErrors{:style => 'margin-bottom:0px;'}
           = "Title"    
-        = text_field_tag 'assignment[name]', nil, :placeholder => 'Course/ Assignment / Grade name..', :size => '20'
+        = text_field_tag 'assignment[name]', nil, :placeholder => 'Course/ Assignment / Grade name..', :size => '70'
         
         
 
@@ -37,15 +47,13 @@
           = hidden_field_tag 'assignment[file_upload]', 'false'
           %span{:style => 'margin-left:4px;vertical-align:middle;display:none;'} Students will upload a file as part of submission
           
-        #file-upload.button.creation
-          = "Upload Grade File(.csv file only - [student id, points])"
+        
         = image_tag('mobile-spinner.gif', :class => 'hidden', :style => "z-index:-1", :id => 'file-upload-spinner')
         %p
           #fileInfo
         %br
         %br
-        %p
-          #table_div
+        
 
         %p
           = assignment.submit "Submit Grade", 'data-disable-with' => "In Progress..", :class => 'button creation'

@@ -35,6 +35,7 @@ class GradesController < ApplicationController
       Rails.logger.info(row.to_json)
       @data.push(row)      
     end
+    file.unlink
     respond_to do |format|
       format.json{ render(:layout => false , :json => {"success" => true, "students" => @data}.to_json )}
     end 
