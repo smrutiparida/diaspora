@@ -35,7 +35,7 @@ class GradesController < ApplicationController
       @data.push(row)      
     end
     respond_to do |format|
-      format.json {render :json => @data.to_json}
+      format.json{ render(:layout => false , :json => {"success" => true, "students" => @data}.to_json )}
     end 
   end
 
