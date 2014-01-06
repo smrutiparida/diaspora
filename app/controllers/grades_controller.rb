@@ -12,7 +12,9 @@ class GradesController < ApplicationController
 
   def new
     respond_to do |format|
-      format.html
+      format.html do
+        render :layout => false
+      end
     end
   end
 
