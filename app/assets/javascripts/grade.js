@@ -34,7 +34,7 @@ function createUploader(){
      element: document.getElementById('file-upload'),
      params: {},
      allowedExtensions: ['csv'],
-     action: "/grades",
+     action: "/grades/parse",
      button: document.getElementById('file-upload'),
      sizeLimit: 4194304,
 

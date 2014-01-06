@@ -1,6 +1,6 @@
 class GradesController < ApplicationController
 
-  before_filter :authenticate_user!, :only => [:index, :show]
+  before_filter :authenticate_user!, :only => [:index, :show, :parse]
   respond_to :html, :json, :js
 
   def index    
@@ -16,6 +16,22 @@ class GradesController < ApplicationController
         render :layout => false
       end
     end
+  end
+
+  def parse
+    file_name = params[:qqfile]
+    file = Tempfile.new(file_name, '.csv')
+    # put data into this file from raw post request
+    file.print request.raw_post.force_encoding('BINARY')
+    @data = []
+    Rails.logger.info(file.path.to_s)
+    CSV.foreach(file.path) do |row|
+      Rails.logger.info(row.to_json)
+      @data.push(row)      
+    end
+    respond_to do |format|
+      format.json {render :json => @data.to_json}
+    end 
   end
 
   def show

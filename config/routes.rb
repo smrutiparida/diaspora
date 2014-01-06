@@ -72,6 +72,7 @@ Diaspora::Application.routes.draw do
   
   resources :courses
 
+  post 'grades/parse' => 'grades#parse'
   resources :grades
 
   resources :documents
