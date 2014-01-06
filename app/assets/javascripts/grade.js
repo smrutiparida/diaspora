@@ -64,6 +64,7 @@ function createUploader(){
           var data2 = new google.visualization.arrayToDataTable(responseJSON.students);
           var table = new google.visualization.Table(document.getElementById('table_div'));
           table.draw(data2, {showRowNumber: true});
+          alert(responseJSON.students);
           $('#grades_points').val(responseJSON.students);
       }
       else
