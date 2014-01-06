@@ -3,7 +3,7 @@ $('#conversation_show').html("<div id='chart_div'></div><div id='table_div'></di
 var data = new google.visualization.DataTable();
 data.addColumn('string', 'Points');
 data.addColumn('number', 'Count');
-data.addRows(<%= escape_javascript(@data.to_json) %>);
+data.addRows(<%= @data.to_json.html_safe %>);
 var options = {'title':'Class Performance',
                'width':400,
                'height':300};
@@ -13,7 +13,7 @@ chart.draw(data, options);
 var data2 = new google.visualization.DataTable();
 data2.addColumn('string', 'Name');
 data2.addColumn('number', 'Marks');
-data2.addRows(<%= escape_javascript(@data2.to_json) %>);
+data2.addRows(<%= @data2.to_json.html_safe %>);
 
 var table = new google.visualization.Table(document.getElementById('table_div'));
 table.draw(data2, {showRowNumber: true});
