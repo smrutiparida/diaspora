@@ -6,7 +6,7 @@
     %h4
       = "Load a Course Grade for all students"
 
-  .span-10.append-1.last
+  .span-15.append-1.last
     
     
     
@@ -16,14 +16,20 @@
         
         #file-upload.button.creation
           = "Upload Grade File"
-          %div{:style => 'margin:5px;color:#888888;font-size:12px;'}
-            = ".csv file only. Each line contains student_id,marks. File cannot be more than 4 MB size."
+        %div{:style => 'margin:5px;color:#888888;font-size:12px;'}
+          = ".csv file only. Each line contains student_id,marks. File cannot be more than 4 MB size."
+        %br
+        %br
+        %p
+          #fileInfo
         %p
           #table_div
             %br
             %br
             %br
             %br
+        %br
+        %br
         %h5.fieldWithErrors{:style => 'margin-bottom:0px;'}
           = "Title"    
         = text_field_tag 'assignment[name]', nil, :placeholder => 'Course/ Assignment / Grade name..', :size => '70'
@@ -49,10 +55,9 @@
           
         
         = image_tag('mobile-spinner.gif', :class => 'hidden', :style => "z-index:-1", :id => 'file-upload-spinner')
-        %p
-          #fileInfo
+        
         %br
-        %br
+        
         
 
         %p
