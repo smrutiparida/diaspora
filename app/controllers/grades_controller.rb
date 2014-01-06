@@ -20,9 +20,9 @@ class GradesController < ApplicationController
 
   def parse
     file_name = params[:qqfile]
-    file = Tempfile.new(file_name, '.csv')
+    file = Tempfile.new(file_name)
     # put data into this file from raw post request
-    file.print request.raw_post.force_encoding('BINARY')
+    file.print request.raw_post
     @data = []
     Rails.logger.info(file.path.to_s)
     CSV.foreach(file.path) do |row|
