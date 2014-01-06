@@ -118,6 +118,8 @@ class DocumentsController < ApplicationController
       Tempfile.send(:define_method, "content_type") {return att_content_type}
       Tempfile.send(:define_method, "original_filename") {return file_name}
       Tempfile.send(:define_method, "content_length") {return att_content_length}
+      Rails.logger.info("inside file handler")
+      Rails.logger.info(file.to_json)
       file
     end
   end
@@ -130,7 +132,7 @@ class DocumentsController < ApplicationController
     end
 
     params[:document][:user_file] = file_handler(params)
-    Rails.logger.info(params[:document][:user_file].to_json)
+    
     @document = current_user.build_post(:document, params[:document])
 
     if @document.save
