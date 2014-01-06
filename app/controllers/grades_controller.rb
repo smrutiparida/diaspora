@@ -4,9 +4,9 @@ class GradesController < ApplicationController
   respond_to :html, :json, :js
 
   def index    
+    @courses = current_user.aspects
     respond_to do |format|
       format.html
-      format.json {render :json => {'documents' => @documents, 'assignments' => @assignments, 'quizzes' => @quizzes}.to_json}
     end
   end
 

@@ -24,7 +24,7 @@
 
   #conversation_inbox
     .stream.conversations  
-      = render :partial => 'grades/course_listings', :collection => all_aspects
+      = render :partial => 'grades/course_listings', :collection => @courses
 
 .span-15.prepend-9.last
   .stream_container
