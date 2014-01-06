@@ -29,9 +29,11 @@
     - if @teacher      
       - if Time.now > @assignment.submission_date
         - if !@assignment.is_result_published
-          = link_to "Publish Result", '#', :"data-id" => @assignment.id.to_s, :class => 'button', :id => 'publish-button'
+          = link_to "Publish Result", '#', :"data-id" => @assignment.id.to_s, :class => 'button creation', :id => 'publish-button'
         - else 
           = link_to "Published", '#', :"data-id" => @assignment.id.to_s, :class => 'button disabled', :id => 'publish-button'
+      - else
+        = link_to "Publish Result", '#', :"data-id" => @assignment.id.to_s, :class => 'button disabled', :id => 'publish-button'
     - else
       - if @assignment.submission_date > Time.now
         = render 'assignment_assessments/uploader', :assignment => @assignment    

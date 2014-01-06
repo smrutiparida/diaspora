@@ -12,6 +12,21 @@ class GradesController < ApplicationController
   end
   def create
     Rails.logger.info(params.to_json)
+    assignment = Assignment.new #params.to_hash.slice(:name, :description, :submission_date)
+    assignment.name = params[:name]
+    assignment.description = params[:description]
+    assignment.file_upload = false unless params[:file_upload]
+    assignment.author = params[:author]
+    assignment.public = params[:public] if params[:public]
+    assignment.pending = params[:pending] if params[:pending]
+    assignment.diaspora_handle = assignment.author.diaspora_handle
+    assignment.comments_count = params[:comments_count]
+    
+    #submission_date is turning out to be null.. need fixing
+    #assignment.submission_date = DateTime.strptime(params[:submission_date],'%d/%m/%Y %I:%M:%S %p')
+    assignment.submission_date = DateTime.strptime(params[:submission_date],'%d/%m/%Y')
+        
+    assignment
     #- create assignment object and save
     #- for each mark create a assessment object and save
     #- collect aspect_id
