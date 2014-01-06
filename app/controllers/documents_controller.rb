@@ -33,6 +33,7 @@ class DocumentsController < ApplicationController
           respond_with @document, :location => documents_path, :error => message
         end
       else
+        Rails.logger.info("came here")
         legacy_create    
       end  
     end
