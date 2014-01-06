@@ -1,3 +1,4 @@
+require 'csv'
 class GradesController < ApplicationController
 
   before_filter :authenticate_user!, :only => [:index, :show, :parse]
