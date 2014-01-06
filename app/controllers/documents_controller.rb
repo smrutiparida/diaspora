@@ -129,7 +129,7 @@ class DocumentsController < ApplicationController
     end
 
     params[:document][:user_file] = file_handler(params)
-
+    Rails.logger.info(params[:document][:user_file].to_json)
     @document = current_user.build_post(:document, params[:document])
 
     if @document.save
