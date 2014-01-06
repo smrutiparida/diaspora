@@ -1,0 +1,5 @@
+$('#conversation_show').html("<div id='chart_div'></div><div id='table_div'></div>");
+
+var data2 = new google.visualization.arrayToDataTable(<%= @temp.to_json.html_safe %>);
+var table = new google.visualization.Table(document.getElementById('table_div'));
+table.draw(data2, {showRowNumber: true});

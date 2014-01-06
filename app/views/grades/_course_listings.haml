@@ -1,0 +1,12 @@
+-#   Copyright (c) 2010-2011, Diaspora Inc.  This file is
+-#   licensed under the Affero General Public License version 3 or later.  See
+-#   the COPYRIGHT file.
+
+- if all_aspect.folder and all_aspect.folder == "Classroom"
+  .grade-wrapper{ :"data-conversation-path" => 'grades/' + all_aspect.id.to_s }
+    .stream_element.conversation{:data=>{:guid=>all_aspect.id}}  
+     .bg
+        %div{ :class => direction_for(all_aspect.name) }
+          = all_aspect.name[0..30]
+          
+  

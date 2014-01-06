@@ -70,6 +70,10 @@ Diaspora::Application.routes.draw do
 
   get 'moodle' => "moodle#assignments"   
   
+  resources :courses
+
+  resources :grades
+
   resources :documents
 
   resources :library, :only => [:index]

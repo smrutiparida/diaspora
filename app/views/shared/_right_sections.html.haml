@@ -33,7 +33,7 @@
   .content
     - if @assignments and @assignments.length > 0      
       - for assignment in @assignments
-        = link_to assignment.name, "assignment_assessments/" + assignment.id.to_s
+        = link_to assignment.name[0..30], "assignment_assessments/" + assignment.id.to_s
         %br                      
     -else
       = "No assignmentss present"  
@@ -45,7 +45,7 @@
   .content
     - if @documents and @documents.length > 0
       - for document in @documents
-        = link_to document.processed_doc, document.unprocessed_doc.url
+        = link_to document.processed_doc[0..30], document.unprocessed_doc.url
         %br                      
     - else
       = "You have not added any documents yet!"
