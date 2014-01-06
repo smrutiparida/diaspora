@@ -22,7 +22,7 @@ class GradesController < ApplicationController
     if @teacher
       @assignments = Assignment.where(:status_message_guid => all_my_post_guid, :is_result_published => true).order(:updated_at)
       all_assignment_ids = @assignments.map{|a| a.id}
-      @all_assessments = AssignmentAssessments.where(:assignment_id => all_assignment_ids, :is_checked => true).group(:assignment_id).order(:diaspora_handle)
+      @all_assessments = AssignmentAssessment.where(:assignment_id => all_assignment_ids, :is_checked => true).group(:assignment_id).order(:diaspora_handle)
       unless @all_assessments.nil?
         @all_assessments.each do |c|
           if !@data.has_key?(c.diaspora_handle)
