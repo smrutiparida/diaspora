@@ -70,6 +70,7 @@ class CoursesController < ApplicationController
           else
             temp.push("Link")  
             temp.push("<a href='"+ extern_link.url + "'>" + extern_link.data + "</a>")
+          end  
         end  
         @data_dict[course.module_id].push(temp)
       end
