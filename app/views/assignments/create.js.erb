@@ -4,7 +4,7 @@ var response = <%= raw @response.to_json %>;
 <% else %>
   Diaspora.page.flashMessages.render({ 'success':response.success, 'notice':response.message });
   if(response.success){
-    $('#new_course').append('<input type="hidden" name="post_id" value="' + response.id + '"');
+    $('#course_post_id').val(response.id);
     $('#new_course').submit();
 
  //   $('.content_creation form').append('<input type="hidden", value="'+ response.id +'" name="assignments[]" />');
