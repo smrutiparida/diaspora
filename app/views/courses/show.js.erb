@@ -1,6 +1,6 @@
 $('#conversation_show').empty();
 <% @all_course_modules.each do |course_module| %>
-  $('#conversation_show').append('<div><%= course_module.name %></div><div id="table_div_<%= course_module.id.to_s %>"></div>');
+  $('#conversation_show').append('<h5><%= course_module.name %></h5><div id="table_div_<%= course_module.id.to_s %>"></div>');
   <% if !@all_formatted_courses[course_module.id].nil? %>
     var data2 = new google.visualization.arrayToDataTable(<%= @all_formatted_courses[course_module.id].to_json.html_safe %>);
 	var table = new google.visualization.Table(document.getElementById('table_div_' + <%= course_module.id.to_s %> )); 
