@@ -15,7 +15,7 @@
 :css
   footer{ display:none;}
 
-#left_pane
+#left_pane{:style => 'width:250px;'}
   #left_pane_header
     %h3
       = "Course Content"     
@@ -24,9 +24,36 @@
     .stream.conversations  
       = render :partial => 'grades/course', :collection => @courses
 
-.span-15.prepend-9.last
+.span-15.prepend-7.last
   .stream_container
     #conversation_show      
       #no_conversation_text
         = "Nothing to show"          
-       
+
+.span-5.last{:style => 'height:100%;border-left:1px solid #ccc;padding-left:5px'}
+  %ul{:style=> 'list-style:none;'}
+    %li
+      = image_tag 'icons/bookmark.png', :alt => t('.upload_photos').titleize,:class => 'publisher_image'
+      a{ :href => "#",:onClick => ""}
+        %span
+          = "Add an Assignment"
+    %li
+      = image_tag 'icons/question.png', :alt => t('.upload_photos').titleize,:class => 'publisher_image'
+      a{ :href => "#",:onClick => ""}
+        %span
+          = "Add a Quiz"
+    %li
+      = image_tag 'icons/plus.png', :alt => t('.upload_photos').titleize,:class => 'publisher_image'
+      a{ :href => "#",:onClick => ""}
+        %span
+          = "Add a Library File"
+    %li
+      = image_tag 'icons/marker.png', :alt => t('.upload_photos').titleize,:class => 'publisher_image'
+      a{ :href => "#",:onClick => ""}
+        %span
+          = "Add a Header"
+    %li
+      = image_tag 'icons/globe.png', :alt => t('.upload_photos').titleize,:class => 'publisher_image'
+      a{ :href => "#",:onClick => ""}
+        %span
+          = "Add an External link or video"
