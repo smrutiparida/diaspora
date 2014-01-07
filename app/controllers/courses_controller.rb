@@ -12,16 +12,6 @@ class CoursesController < ApplicationController
       format.html
     end
   end
-
-  def module
-  	@m = Module.new
-  	@m.name = params[:name]
-  	if @m.save
-      respond_to do |format|
-        format.json { render :json => {"success" => true, "data" => }
-      end
-    end
-  end    
 	
   def show
     all_my_courses = Course.where(:aspect_id => params[:id]).order(:module_id)
