@@ -20,8 +20,8 @@
     
     #create_module
       = form_for Course.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |course|    
-        = select_tag "", options_from_collection_for_select(@modules, "id", "name")          
-        = hidden_field_tag "type", "Assignment"
+        = select_tag "course[module_id]", options_from_collection_for_select(@modules, "id", "name")          
+        = hidden_field_tag "course[type]", "Assignment"
     #create_assignment
 
       = form_for Assignment.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |assignment|
