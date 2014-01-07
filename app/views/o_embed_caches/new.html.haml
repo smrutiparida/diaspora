@@ -15,12 +15,12 @@
         %h5{:style => 'margin-bottom:0px;'}
           = "Title"    
         = text_field_tag 'o_embed_cache[data]', nil, :placeholder => 'Link title..', :size => '50'
-        
-        %h5{:style => 'margin-bottom:0px;'}
-          = "Link"    
-        = text_field_tag 'o_embed_cache[url]', nil, :placeholder => 'Link..', :size => '50'
-        
-        
+        - if !params[:header]
+          %h5{:style => 'margin-bottom:0px;'}
+            = "Link"    
+          = text_field_tag 'o_embed_cache[url]', nil, :placeholder => 'Link..', :size => '50'
+        - else
+          = hidden_field_tag 'o_embed_cache[url]', nil
         %p
           = embed.submit "Add link to module", 'data-disable-with' => "In Progress..", :class => 'button creation'
 

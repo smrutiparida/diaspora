@@ -75,7 +75,6 @@ class CoursesController < ApplicationController
         @data_dict[course.module_id].push(temp)
       end
     end  
-    @data_dict[1] = [["Type", "Name"],["Assignment", "<a href='1'>This is a dummy assignment with ver long header</a>"],["Header", "THis is another course with no link nothing."]]
     @data_dict
   end
 end
