@@ -26,7 +26,7 @@ class GradesController < ApplicationController
     #assignment.submission_date = DateTime.strptime(params[:submission_date],'%d/%m/%Y %I:%M:%S %p')
     assignment.submission_date = DateTime.strptime(params[:submission_date],'%d/%m/%Y')
         
-    assignment
+    assignment.save
     #- create assignment object and save
     #- for each mark create a assessment object and save
     #- collect aspect_id
