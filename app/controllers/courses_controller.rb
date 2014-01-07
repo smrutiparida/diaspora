@@ -14,10 +14,34 @@ class CoursesController < ApplicationController
   end
 	
   def show
-    all_my_courses = Course.where(:aspect_id => params[:id]).order(:module_id)
-    @temp = format_course(all_my_courses)
+  	@all_course_modules = Content.where(:aspect_id => params[:id]).order(:created_at)
+    Rails.logger.info(@all_course_modules.to_json)
+  	all_course_modules_guid = @all_course_modules.map{|a| a.id}
+    all_my_courses = Course.where(:module_id => all_course_modules_guid).order(:module_id)
+    @all_formatted_courses = format_course(all_my_courses)
     respond_to do |format|
       format.js
     end 
+  end
+
+  def create
+  	@course = current_user.build_post(:course, course_params)
+  	@course_content = Content.where(:module_id => @course.module_id).first  
+  	if @course.save
+      respond_to do |format|
+        format.js
+      end
+    end
+  end
+
+  def course_params
+    params.require(:course).permit(:module_id, :post_id, :type)
+  end
+
+  private
+  
+  def format_course(all_courses)
+    data_dict = { 1 : [["Name", "Type"],["Assignment 1", "Assignment"],["Assignment 2", "Header"]]}
+    data_dict
   end
 end
