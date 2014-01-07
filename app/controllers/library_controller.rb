@@ -29,7 +29,11 @@ class LibraryController < ApplicationController
     end
 
     respond_to do |format|
-      format.html
+      if params[:a_id]
+        format.html { render 'library/course', :layout => false }
+      else
+        format.html
+      end    
       format.json {render :json => {'documents' => @documents, 'assignments' => @assignments, 'quizzes' => @quizzes}.to_json}
     end
   end
