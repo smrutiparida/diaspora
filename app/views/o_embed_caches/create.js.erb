@@ -1,0 +1,7 @@
+Diaspora.page.flashMessages.render({ 'success':response.success, 'notice':response.message });
+if(response.success){
+	$('#course_post_id').val(<%= @cache.id %>);
+	$('#new_course').submit();
+}
+
+    

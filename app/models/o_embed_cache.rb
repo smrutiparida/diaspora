@@ -8,6 +8,8 @@ class OEmbedCache < ActiveRecord::Base
   acts_as_api
   api_accessible :backbone do |t|
     t.add :data
+    t.add :url
+    t.add :id
   end
 
   def self.find_or_create_by_url(url)
