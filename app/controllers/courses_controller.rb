@@ -64,8 +64,8 @@ class CoursesController < ApplicationController
           temp.push("<a href='"+ file.remote_path + file.remote_name + "'>" + file.processed_doc + "</a>")
         elsif course.type == "OEmbedCache"
           extern_link = OEmbedCache.find(course.post_id)
-          if extern_link.url.nil?
-            temp.push("Header")
+          if extern_link.url.blank?
+            temp.push("Text")
             temp.push(extern_link.data)
           else
             temp.push("Link")  
