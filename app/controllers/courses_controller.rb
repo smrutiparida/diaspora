@@ -56,6 +56,9 @@ class CoursesController < ApplicationController
         elsif course.type == "Quiz"
           quiz = Quiz.find(course.post_id)
           temp.push("<a href='/quizzes/"+ quiz.id.to_s + "'>" + quiz.title + "</a>")
+        elsif course.type == "Library File"
+          file = Document.find(course.post_id)
+          temp.push("<a href='"+ file.remote_path + file.remote_name + "'>" + file.processed_doc + "</a>")
         end  
         @data_dict[course.module_id].push(temp)
       end

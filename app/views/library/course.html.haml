@@ -4,9 +4,9 @@
       %h5{:style => 'margin-bottom:0px;margin-left:10px;display:inline;'}
         = "Select Module"   
       = select_tag "course[module_id]", options_from_collection_for_select(@modules, "id", "name")          
-      = hidden_field_tag "course[type]", "Quiz"
+      = hidden_field_tag "course[type]", "Library File"
       %h5{:style => 'float:left;margin-right:15px;margin-top:6px;'}
-        Select file
+        = "Select File"
       = select_tag "course[post_id]", options_from_collection_for_select(@documents, "id", "processed_doc")    
  
       = course.submit "Add file to module", 'data-disable-with' => "In Progress..", :class => 'button creation'
