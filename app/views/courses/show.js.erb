@@ -1,8 +1,8 @@
+$('#conversation_show').empty();
 $(".stream_element", "#conversation_inbox").removeClass('selected');
 $(".stream_element[data-guid='<%= params[:id] %>']", "#conversation_inbox").addClass('selected');
 
-<% unless @all_course_modules.nil? %>
-  $('#conversation_show').empty();
+<% if @all_course_modules.blank? %>
   <% @all_course_modules.each_with_index do |course_module, index| %>
     $('#conversation_show').append('<h5>Session <%= index+1 %> - <%= course_module.name %></h5><div id="table_div_<%= course_module.id.to_s %>"></div>');
 	  <% if !@all_formatted_courses[course_module.id].nil? %>
@@ -13,6 +13,8 @@ $(".stream_element[data-guid='<%= params[:id] %>']", "#conversation_inbox").addC
 	    $('#conversation_show').append('<div class="no-content">No course in the module.</div>');
 	  <% end %>
   <% end %>
+<% else %>
+  $('#conversation_show').append('<div id="no_conversation_text">No Session to show.</div>');  
 <% end %>	
 
 $('#module-button').attr('href', '/contents/new?a_id=<%= params[:id] %>');
