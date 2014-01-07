@@ -21,3 +21,4 @@ class CoursesController < ApplicationController
       end
     end
   end
+end  
