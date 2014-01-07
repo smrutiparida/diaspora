@@ -21,11 +21,10 @@ class ModulesController < ApplicationController
       respond_to do |format|
         format.js
       end
-    else
+    end
   end    
 	
   def module_params
     params.require(:module).permit(:name, :a_id)
   end
-
 end

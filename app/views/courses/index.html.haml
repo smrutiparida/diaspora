@@ -8,9 +8,6 @@
   = javascript_include_tag "https://www.google.com/uds/?file=visualization&amp;v=1.0&amp;packages=corechart,table"
   = javascript_include_tag "https://www.google.com/uds/api/visualization/1.0/3e90177897a662843613f410c963722a/format+en,default+en,ui+en,table+en,corechart+en.I.js"
   = stylesheet_link_tag "https://www.google.com/uds/api/visualization/1.0/3e90177897a662843613f410c963722a/ui+en,table+en.css"
-  :javascript
-    el = $('#conversation_inbox > .conversations > .grade-wrapper')[0];
-    $.getScript($(el).data('conversation-path'));
 
 - content_for :page_title do
   = "Course Details"
@@ -62,3 +59,7 @@
       %a{ :href => "#",:onClick => ""}
         %span
           = "Add an External link or video"
+
+:javascript
+  el = $('#conversation_inbox > .conversations > .grade-wrapper')[0];
+  $.getScript($(el).data('conversation-path'));
