@@ -25,6 +25,7 @@ class QuizzesController < ApplicationController
   end
 
   def index    
+    @modules = Content.where(:aspect_id => params[:a_id])
     @quizzes = Quiz.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
     
     respond_with do |format|

@@ -1,4 +1,12 @@
 .span-12.last
+  #create_module
+    = form_for Course.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |course|  
+      %h5{:style => 'margin-bottom:0px;margin-left:10px;display:inline;'}
+        = "Select Module"   
+      = select_tag "course[module_id]", options_from_collection_for_select(@modules, "id", "name")          
+      = hidden_field_tag "course[type]", "Quiz"
+      = hidden_field_tag "course[post_id]", nil
+
   %h5{:style => 'float:left;margin-right:15px;margin-top:6px;'}
     Load a quiz
   .section
@@ -22,7 +30,7 @@
         $('#display_quiz').html(data);
         //$('#display_quiz').append('<a class="button creation" href="#" onClick="attachQuiz(' + quizid + ',' + quiztitle+ ');">Assign Quiz</a>');
 
-        $('#display_quiz').append($('<a />', { onClick: 'attachQuiz(' +quizid + ',"' + quiztitle + '");' , href: '#',class:'button creation', html: 'Assign Quiz' }));
+        $('#display_quiz').prepend($('<a />', { onClick: 'attachQuiz(' +quizid + ',"' + quiztitle + '");' , href: '#',class:'button creation', html: 'Add this Quiz to Module' }));
       }
     });    
   }          
@@ -30,17 +38,18 @@
   function attachQuiz(quizid, quiztitle){
     
     Diaspora.page.flashMessages.render({ 'success':true, 'notice': 'Quiz added successfully' });
-    $('.content_creation form').append('<input type="hidden", value="'+ quizid +'" name="quizzes[]" />');
-    $('#quizdropzone').append('<li class="publisher_quiz" style="position:relative;"><span data-id="' + 
-                      quizid +
-                      '">' + 
-                      quiztitle +
-                      '</span><div class="x" onClick="removeObject(\'quizzes\',this);">X</div>'+
-                      '<div class="circle"></div></li>');
+    //$('.content_creation form').append('<input type="hidden", value="'+ quizid +'" name="quizzes[]" />');
+    //$('#quizdropzone').append('<li class="publisher_quiz" style="position:relative;"><span data-id="' + 
+    //                  quizid +
+    //                  '">' + 
+    //                  quiztitle +
+    //                  '</span><div class="x" onClick="removeObject(\'quizzes\',this);">X</div>'+
+    //                  '<div class="circle"></div></li>');
     
+    $('#course_post_id').val(quizid);
+    $('#new_course').submit();
 
-
-    jQuery(document).trigger('close.facebox');  
+    //jQuery(document).trigger('close.facebox');  
 
     //$.facebox.close();    
   }
