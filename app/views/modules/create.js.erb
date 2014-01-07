@@ -1,3 +1,3 @@
 $.facebox.close();
 Diaspora.page.flashMessages.render({ 'success':'success', 'notice':'A new module added to course. Page refreshing.' });
-$.get("/courses/<%= @m.aspect_id %>",function(data){$("#conversation_show").html(data)
+$.get("/courses/<%= @new_module.aspect_id %>",function(data){$("#conversation_show").html(data)
