@@ -18,9 +18,9 @@ class CoursesController < ApplicationController
   	@m.name = params[:name]
   	if @m.save
       respond_to do |format|
-        format.json { render :json => {"success" => true, "data" => @document.as_api_response(:backbone)} }
+        format.json { render :json => {"success" => true, "data" => }
       end
-    else
+    end
   end    
 	
   def show
