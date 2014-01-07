@@ -1,11 +1,14 @@
 $('#conversation_show').empty();
-<% @all_course_modules.each do |course_module| %>
-  $('#conversation_show').append('<h5><%= course_module.name %></h5><div id="table_div_<%= course_module.id.to_s %>"></div>');
+$(".stream_element", "#conversation_inbox").removeClass('selected');
+$(".stream_element[data-guid='<%= params[:id] %>']", "#conversation_inbox").addClass('selected');
+
+<% @all_course_modules.each_with_index do |course_module, index| %>
+  $('#conversation_show').append('<h5>Module <%= index %> - <%= course_module.name %></h5><div id="table_div_<%= course_module.id.to_s %>"></div>');
   <% if !@all_formatted_courses[course_module.id].nil? %>
     var data2 = new google.visualization.arrayToDataTable(<%= @all_formatted_courses[course_module.id].to_json.html_safe %>);
-	var table = new google.visualization.Table(document.getElementById('table_div_' + <%= course_module.id.to_s %> )); 
+	var table = new google.visualization.Table(document.getElementById('table_div_<%= course_module.id.to_s %>' )); 
 	table.draw(data2, {showRowNumber: true, allowHtml:true});  
   <% else %>
-    $('#conversation_show').append('<div>No Content added yet</div>');
+    $('#conversation_show').append('<div class="no-content">No course in the module.</div>');
   <% end %>
 <% end %>

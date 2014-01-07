@@ -14,7 +14,10 @@
 
 :css
   footer{ display:none;}
-  h5{ margin-bottom:10px;}
+  h5{ margin:1em 0em 1em 0em;border-bottom: 1px solid #ccc;padding-bottom: 0.5em;}
+  .no-content{text-align:center;}
+  
+
 
 #left_pane{:style => 'width:180px;'}
   #left_pane_header
@@ -27,7 +30,7 @@
 
 .span-15.prepend-5.last
   .stream_container
-    #conversation_show      
+    #conversation_show{:style => 'padding-right:10px;'}      
       #no_conversation_text
         = "Nothing to show"          
 
