@@ -77,6 +77,8 @@ Diaspora::Application.routes.draw do
 
   resources :courses
 
+  resources :o_embed_caches
+
   resources :contents
 
   resources :documents
