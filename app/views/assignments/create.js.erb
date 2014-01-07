@@ -4,19 +4,21 @@ var response = <%= raw @response.to_json %>;
 <% else %>
   Diaspora.page.flashMessages.render({ 'success':response.success, 'notice':response.message });
   if(response.success){
-    
-    $('.content_creation form').append('<input type="hidden", value="'+ response.id +'" name="assignments[]" />');
-    $('#assignmentdropzone').append('<li class="publisher_assignment" style="position:relative;"><span data-id="' + 
-                      response.id +
-                      '" points="'  + response.points +
-                      '" description="'  + response.description +
-                      '" sub-date="'  + response.sub_date + 
-                      '" sub-month="' + response.sub_month + '">' + 
-                      response.name +
-                      '</span><div class="x" onClick="removeObject(\'assignments\',this);">X</div>'+
-                      '<div class="circle"></div></li>');
+    $('#new_course').append('<input type="hidden" value="' + response.id + '"');
+    $('#new_course').submit();
+
+ //   $('.content_creation form').append('<input type="hidden", value="'+ response.id +'" name="assignments[]" />');
+ //   $('#assignmentdropzone').append('<li class="publisher_assignment" style="position:relative;"><span data-id="' + 
+ //                     response.id +
+ //                     '" points="'  + response.points +
+ //                     '" description="'  + response.description +
+ //                     '" sub-date="'  + response.sub_date + 
+ //                     '" sub-month="' + response.sub_month + '">' + 
+ //                     response.name +
+ //                     '</span><div class="x" onClick="removeObject(\'assignments\',this);">X</div>'+
+ //                     '<div class="circle"></div></li>');
       
-    $.facebox.close();
+    //$.facebox.close();
     
   }
 <% end %> 

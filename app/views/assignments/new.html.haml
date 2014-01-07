@@ -1,24 +1,27 @@
 
 .span-15.last
-  .span-3
-    .icons-cog
-  
-  - if @assignments.size > 0
+  -#
+    .span-3
+      .icons-cog
+    
+    - if @assignments.size > 0
+      .span-12.last
+        %h3{:style => 'float:left;margin-right:15px;margin-top:6px;'}
+          Load a previous assignment
+        .section
+          = select_tag "assignmentList", options_from_collection_for_select(@assignments, "id", "name")    
+    %br
+    %br
     .span-12.last
-      %h3{:style => 'float:left;margin-right:15px;margin-top:6px;'}
-        Load a previous assignment
-      .section
-        = select_tag "assignmentList", options_from_collection_for_select(@assignments, "id", "name")    
-  %br
-  %br
-  .span-12.last
-    %h4
-      Create Assignment
+      %h4
+        Create Assignment
 
   .span-10.append-1.last
     
-    
-    
+    #create_module
+      = form_for Course.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |course|    
+        = select_tag "", options_from_collection_for_select(@modules, "id", "name")          
+        = hidden_field_tag "type", "Assignment"
     #create_assignment
 
       = form_for Assignment.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |assignment|

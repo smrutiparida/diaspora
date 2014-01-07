@@ -4,6 +4,7 @@ class AssignmentsController < ApplicationController
   respond_to :html, :json, :js
 
   def new
+    @modules = Contents.where(:aspect_id => params[:a_id])
     @assignments = Assignment.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)   
     respond_to do |format|
       format.html do
