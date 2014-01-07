@@ -6,7 +6,7 @@ class OEmbedCachesController < ApplicationController
   def new
     @modules = Content.where(:aspect_id => params[:a_id])      
     respond_to do |format|
-      format.html
+      format.html { :layout => false }
     end
   end
 
