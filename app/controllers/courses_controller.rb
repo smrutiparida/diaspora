@@ -41,7 +41,23 @@ class CoursesController < ApplicationController
   private
 
   def format_course(all_courses)
-    data_dict = { 1 => [["Type", "Name"],["Assignment", "<a href='1'>This is a dummy assignment with ver long header</a>"],["Header", "THis is another course with no link nothing."]]}
-    data_dict
+    @data_dict = {}
+    unless all_courses.nil?
+      all_courses.each do |course|
+        if !@data_dict.has_key?(course.module_id)
+          @data_dict[course.module_id] = []
+          @data_dict[course.module_id].push(["Type", "Name"])
+        end  
+        temp = []
+        temp.push(course.type)
+        if course.type == 'Assignment'
+          assignment = Assignment.find(course.post_id)
+          temp.push('<a href="/assignment_assessments/'+ assignment.id.to_s + '>' + assignment.name + '</a>')
+        end  
+        @data_dict[course.module_id].push(temp)
+      end
+    end  
+    @data_dict = { 1 => [["Assignment", "<a href='1'>This is a dummy assignment with ver long header</a>"],["Header", "THis is another course with no link nothing."]]}
+    @data_dict
   end
 end
