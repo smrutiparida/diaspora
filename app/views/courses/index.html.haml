@@ -63,3 +63,4 @@
 :javascript
   el = $('#conversation_inbox > .conversations > .grade-wrapper')[0];
   $.getScript($(el).data('conversation-path'));
+  $('#module-button').attr('href', '/modules/new?a_id=' + $(el).data('guid'))

@@ -3,6 +3,7 @@
     %h5
       = "Name"    
     = text_field_tag 'module[name]', nil, :size => '20',:style => 'display:inline;'
+    = hidden_field_tag 'a_id', params[:a_id]
     %br
     %p
       = submit_tag "Create", 'data-disable-with' => "In Progress..", :class => 'button creation'

@@ -3,7 +3,7 @@
 -#   the COPYRIGHT file.
 
 - if course.folder and course.folder == "Classroom"
-  .grade-wrapper{ :"data-conversation-path" => 'courses/' + course.id.to_s }
+  .grade-wrapper{ :"data-conversation-path" => 'courses/' + course.id.to_s, :data=>{:guid=>course.id} }
     .stream_element.conversation{:data=>{:guid=>course.id}}  
       .bg
         %div{ :class => direction_for(course.name) }
