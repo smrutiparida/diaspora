@@ -7,7 +7,7 @@ $(".stream_element[data-guid='<%= params[:id] %>']", "#conversation_inbox").addC
   <% if !@all_formatted_courses[course_module.id].nil? %>
     var data2 = new google.visualization.arrayToDataTable(<%= @all_formatted_courses[course_module.id].to_json.html_safe %>);
 	var table = new google.visualization.Table(document.getElementById('table_div_<%= course_module.id.to_s %>' )); 
-	table.draw(data2, {showRowNumber: true, allowHtml:true});  
+	table.draw(data2, {showRowNumber: true, allowHtml:true, cssClassNames : {headerRow: 'hidden'}});  
   <% else %>
     $('#conversation_show').append('<div class="no-content">No course in the module.</div>');
   <% end %>
@@ -19,3 +19,5 @@ $('#file-button').attr('href', '/library?a_id=<%= params[:id] %>');
 $('#header-button').attr('href', '/o_embed_caches/new?a_id=<%= params[:id] %>');
 $('#link-button').attr('href', '/o_embed_caches/new?a_id=<%= params[:id] %>');
 $('#quiz-button').attr('href', '/quizzes?a_id=<%= params[:id] %>');
+
+
