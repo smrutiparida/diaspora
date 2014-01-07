@@ -49,16 +49,27 @@ class CoursesController < ApplicationController
           @data_dict[course.module_id].push(["Type", "Name"])
         end  
         temp = []
-        temp.push(course.type)
+        
         if course.type == 'Assignment'
+          temp.push(course.type)
           assignment = Assignment.find(course.post_id)
           temp.push("<a href='/assignment_assessments/"+ assignment.id.to_s + "'>" + assignment.name + "</a>")
         elsif course.type == "Quiz"
+          temp.push(course.type)
           quiz = Quiz.find(course.post_id)
           temp.push("<a href='/quizzes/"+ quiz.id.to_s + "'>" + quiz.title + "</a>")
         elsif course.type == "Document"
+          temp.push(course.type)
           file = Document.find(course.post_id)
           temp.push("<a href='"+ file.remote_path + file.remote_name + "'>" + file.processed_doc + "</a>")
+        elsif course.type == "OEmbedCache"
+          extern_link = OEmbedCache.find(course.post_id)
+          if extern_link.url.nil?
+            temp.push("Header")
+            temp.push(extern_link.data)
+          else
+            temp.push("Link")  
+            temp.push("<a href='"+ extern_link.url + "'>" + extern_link.data + "</a>")
         end  
         @data_dict[course.module_id].push(temp)
       end
