@@ -41,7 +41,7 @@ class CoursesController < ApplicationController
   private
 
   def format_course(all_courses)
-    data_dict = { 1 => [["Name", "Type"],["Assignment 1", "Assignment"],["Assignment 2", "Header"]]}
+    data_dict = { 1 => [["Type", "Name"],["Assignment", "<a href='1'>This is a dummy assignment with ver long header</a>"],["Header", "THis is another course with no link nothing."]]}
     data_dict
   end
 end
