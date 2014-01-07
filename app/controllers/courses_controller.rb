@@ -26,7 +26,7 @@ class CoursesController < ApplicationController
 
   def create
   	@course = current_user.build_post(:course, course_params)
-  	@course_content = Content.where(:module_id => @course.module_id).first  
+  	@course_content = Content.find(@course.module_id)
   	if @course.save
       respond_to do |format|
         format.js
