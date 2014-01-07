@@ -19,10 +19,9 @@ class ModulesController < ApplicationController
 
   def create
   	@new_module = Module.new
-    new_module.name = params[:module][:name]
-    new_module.aspect_id = params[:a_id]
+    @new_module.name = params[:module][:name]
+    @new_module.aspect_id = params[:a_id]
     
-    new_module(:module, module_params)
 
   	if @new_module.save
       respond_to do |format|
