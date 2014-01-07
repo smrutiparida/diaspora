@@ -1,0 +1,29 @@
+.span-4.last{:style => 'height:800px;border-left:1px solid #ccc;padding-left:5px;padding-top:25px;'}
+  %span{:style => "display:block;text-align:center;margin-bottom:20px;padding-bottom:30px;"}  
+    = link_to " Add a Session", '/contents/new', :id => 'module-button', :class => 'button creation', :rel => 'facebox'
+  %ul{:style=> 'list-style:none;padding-left:1em;margin-right:0px;'}
+    %li{:style=> 'margin-bottom:10px;'}
+      = image_tag 'icons/bookmark.png', :alt => t('.upload_photos').titleize,:style=> 'width:12px;'
+      %a{ :href => "/assignments/new", :rel=> 'facebox', :id => "assignment-button"}
+        %span
+          = "Add an Assignment"
+    %li{:style=> 'margin-bottom:10px;'}
+      = image_tag 'icons/question.png', :alt => t('.upload_photos').titleize,:style=> 'width:12px;'
+      %a{ :href => "/quizzes",:rel => 'facebox',:id => "quiz-button"}
+        %span
+          = "Add a Quiz"
+    %li{:style=> 'margin-bottom:10px;'}
+      = image_tag 'icons/plus.png', :alt => t('.upload_photos').titleize,:style=> 'width:12px;'
+      %a{ :href => "/library",:rel=> 'facebox',:id => "file-button"}
+        %span
+          = "Add a Library File"
+    %li{:style=> 'margin-bottom:10px;'}
+      = image_tag 'icons/marker.png', :alt => t('.upload_photos').titleize,:style=> 'width:7px;margin:0px 3px 0px 2px;'
+      %a{ :href => "#",:rel=> 'facebox',:id => "header-button"}
+        %span
+          = "Add Text"
+    %li
+      = image_tag 'icons/globe.png', :alt => t('.upload_photos').titleize,:style=> 'width:11px;'
+      %a{ :href => "#",:rel=> 'facebox',:id => "link-button"}
+        %span
+          = "Add a link"

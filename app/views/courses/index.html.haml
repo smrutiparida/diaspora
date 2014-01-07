@@ -17,8 +17,6 @@
   #conversation_show > h5{ margin:1em 0em 1em 0em;border-bottom: 1px solid #ccc;padding-bottom: 0.5em;background: linear-gradient(to bottom,rgba(255,255,255,1) 0%,rgba(249,250,253,1) 30%,rgba(238,242,247,1) 60%,rgba(228,233,244,1) 100%);}
   .no-content{text-align:center;}
   
-
-
 #left_pane{:style => 'width:180px;'}
   #left_pane_header
     %h3
@@ -35,35 +33,8 @@
         = "No Session to show."
         = link_to "Add your first one", '/contents/new', :id => 'module-button', :class => 'button creation', :rel => 'facebox'         
 
-.span-4.last{:style => 'height:800px;border-left:1px solid #ccc;padding-left:5px;padding-top:25px;'}
-  %span{:style => "display:block;text-align:center;margin-bottom:20px;padding-bottom:30px;"}  
-    = link_to " Add a Session", '/contents/new', :id => 'module-button', :class => 'button creation', :rel => 'facebox'
-  %ul{:style=> 'list-style:none;padding-left:1em;margin-right:0px;'}
-    %li{:style=> 'margin-bottom:10px;'}
-      = image_tag 'icons/bookmark.png', :alt => t('.upload_photos').titleize,:style=> 'width:12px;'
-      %a{ :href => "/assignments/new", :rel=> 'facebox', :id => "assignment-button"}
-        %span
-          = "Add an Assignment"
-    %li{:style=> 'margin-bottom:10px;'}
-      = image_tag 'icons/question.png', :alt => t('.upload_photos').titleize,:style=> 'width:12px;'
-      %a{ :href => "/quizzes",:rel => 'facebox',:id => "quiz-button"}
-        %span
-          = "Add an Existing Quiz"
-    %li{:style=> 'margin-bottom:10px;'}
-      = image_tag 'icons/plus.png', :alt => t('.upload_photos').titleize,:style=> 'width:12px;'
-      %a{ :href => "/library",:rel=> 'facebox',:id => "file-button"}
-        %span
-          = "Add a Library File"
-    %li{:style=> 'margin-bottom:10px;'}
-      = image_tag 'icons/marker.png', :alt => t('.upload_photos').titleize,:style=> 'width:7px;margin:0px 3px 0px 2px;'
-      %a{ :href => "#",:rel=> 'facebox',:id => "header-button"}
-        %span
-          = "Add Text"
-    %li
-      = image_tag 'icons/globe.png', :alt => t('.upload_photos').titleize,:style=> 'width:11px;'
-      %a{ :href => "#",:rel=> 'facebox',:id => "link-button"}
-        %span
-          = "Add a link"
+- if @teacher
+  = render :partial => 'courses/edit'
 
 :javascript
   el = $('#conversation_inbox > .conversations > .grade-wrapper')[0];
