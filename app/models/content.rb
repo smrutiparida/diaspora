@@ -1,4 +1,4 @@
-class Module < ActiveRecord::Base
+class Content < ActiveRecord::Base
 
   def self.diaspora_initialize(params = {})
     Rails.logger.info("Model Enter")

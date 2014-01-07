@@ -240,7 +240,7 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
     t.datetime "updated_at",                            :null => false
   end
 
-  create table "modules", :force => true do |t|
+  create table "contents", :force => true do |t|
     t.string   "name"
     t.integer  "aspect_id"
     t.datetime "created_at",                            :null => false

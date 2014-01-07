@@ -1,4 +1,4 @@
-class ModulesController < ApplicationController
+class ContentsController < ApplicationController
 
   before_filter :authenticate_user!, :only => [:index, :show, :new]
   respond_to :html, :json, :js
@@ -18,10 +18,7 @@ class ModulesController < ApplicationController
   end
 
   def create
-  	@new_module = Module.new
-    @new_module.name = params[:module][:name]
-    @new_module.aspect_id = params[:a_id]
-    
+    @new_module = current_user.build_post(:content, content_params)  
 
   	if @new_module.save
       respond_to do |format|
@@ -30,7 +27,7 @@ class ModulesController < ApplicationController
     end
   end    
 	
-  def module_params
-    params.require(:module).permit(:name, :a_id)
+  def content_params
+    params.require(:content).permit(:name, :a_id)
   end
 end
