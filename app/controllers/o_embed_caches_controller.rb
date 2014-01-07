@@ -1,4 +1,4 @@
-class CoursesController < ApplicationController
+class OEmbedCachesController < ApplicationController
 
   before_filter :authenticate_user!, :only => [:index, :show, :new]
   respond_to :html, :json, :js
