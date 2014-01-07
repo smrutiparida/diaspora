@@ -32,7 +32,7 @@
 
 .span-4.last{:style => 'height:800px;border-left:1px solid #ccc;padding-left:5px;padding-top:25px;'}
   %span{:style => "display:block;text-align:center;margin-bottom:20px;padding-bottom:30px;"}  
-    = link_to "Upload Grades", '#', :id => 'grade-button', :style => 'display:none;', :onclick => '$.get("/grades/new",function(data){$("#conversation_show").html(data); createUploader(); return false;});'
+    = link_to " Add Module ", '#', :id => 'module-button', :class => 'button creation', :rel => 'facebox'
   %ul{:style=> 'list-style:none;padding-left:1em;margin-right:0px;'}
     %li{:style=> 'margin-bottom:10px;'}
       = image_tag 'icons/bookmark.png', :alt => t('.upload_photos').titleize,:style=> 'width:12px;'
