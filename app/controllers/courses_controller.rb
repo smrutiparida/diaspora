@@ -52,7 +52,7 @@ class CoursesController < ApplicationController
         temp.push(course.type)
         if course.type == 'Assignment'
           assignment = Assignment.find(course.post_id)
-          temp.push('<a href="/assignment_assessments/'+ assignment.id.to_s + '>' + assignment.name + '</a>')
+          temp.push("<a href='/assignment_assessments/"+ assignment.id.to_s + "'>" + assignment.name + "</a>")
         end  
         @data_dict[course.module_id].push(temp)
       end
