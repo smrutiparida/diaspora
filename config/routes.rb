@@ -77,7 +77,7 @@ Diaspora::Application.routes.draw do
 
   resources :courses
 
-  resources :modules
+  resources :contents
 
   resources :documents
 
