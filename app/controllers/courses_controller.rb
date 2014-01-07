@@ -53,6 +53,9 @@ class CoursesController < ApplicationController
         if course.type == 'Assignment'
           assignment = Assignment.find(course.post_id)
           temp.push("<a href='/assignment_assessments/"+ assignment.id.to_s + "'>" + assignment.name + "</a>")
+        elsif course.type == "Quiz"
+          quiz = Quiz.find(course.post_id)
+          temp.push("<a href='/quizzes/"+ quiz.id.to_s + "'>" + quiz.title + "</a>")
         end  
         @data_dict[course.module_id].push(temp)
       end
