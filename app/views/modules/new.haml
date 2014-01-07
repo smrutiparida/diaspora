@@ -1,0 +1,8 @@
+.span-6.append-1.last  
+  = form_for Module.new, remote: true do |mod|    
+    %h5
+      = "Name"    
+    = text_field_tag 'module[name]', nil, :size => '20',:style => 'display:inline;'
+    %br
+    %p
+      = mod.submit "Create", 'data-disable-with' => "In Progress..", :class => 'button creation'

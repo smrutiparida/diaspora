@@ -77,6 +77,8 @@ Diaspora::Application.routes.draw do
 
   resources :courses
 
+  resources :modules
+
   resources :documents
 
   resources :library, :only => [:index]

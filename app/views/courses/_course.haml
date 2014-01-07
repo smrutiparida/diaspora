@@ -1,0 +1,10 @@
+-#   Copyright (c) 2010-2011, Diaspora Inc.  This file is
+-#   licensed under the Affero General Public License version 3 or later.  See
+-#   the COPYRIGHT file.
+
+- if course.folder and course.folder == "Classroom"
+  .grade-wrapper{ :"data-conversation-path" => 'courses/' + course.id.to_s }
+    .stream_element.conversation{:data=>{:guid=>course.id}}  
+      .bg
+        %div{ :class => direction_for(course.name) }
+          = course.name[0..30]
