@@ -25,7 +25,7 @@ class DocumentsController < ApplicationController
     if params[:a_id]
       aspect_detail = Aspects.find(params[:a_id]) 
       @folder = aspect_detail.name
-    
+    end
             
     @documents = Document.where(:diaspora_handle => current_user.diaspora_handle, :folder => @folder).order(:updated_at)  
     #@folder_list = Document.select(:folder).distinct
