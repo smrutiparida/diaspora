@@ -5,7 +5,7 @@
   = "New Quiz"
 
 :css
-  #questions_list > .stream_element:hover { cursor: pointer; background-color: #3f8fba;border-bottom: 1px solid #327294;border-top: 1px solid #327294;}
+  #questions_list > .stream_element:hover { cursor: pointer; background-color: #3f8fba;}
 
 #left_pane
   = form_for Quiz.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |quiz|
