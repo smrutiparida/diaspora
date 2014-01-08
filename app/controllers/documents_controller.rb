@@ -173,7 +173,8 @@ class DocumentsController < ApplicationController
     params[:document][:user_file] = file_handler(params)
     
     @document = current_user.build_post(:document, params[:document])
-    @document.folder = params[:folder]
+    Rails.logger.info("Before saving")
+    Rails.logger.info(@document.to_json)
     if @document.save
       aspects = current_user.aspects_from_ids(params[:document][:aspect_ids])
 
