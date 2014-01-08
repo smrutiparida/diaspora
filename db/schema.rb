@@ -392,6 +392,16 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
     t.datetime "updated_at",     :null => false
   end
 
+  create_table "quiz_assignments", :force => true do |t|
+    t.integer  "quiz_id"
+    t.datetime "submission_date"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "diaspora_handle"
+    t.string   "status_message_guid"
+    t.string   "guid",                                   :null => false
+  end
+
   create_table "quiz_assessments", :force => true do |t|
     t.string   "diaspora_handle"
     t.integer  "quiz_id",        :null => false    

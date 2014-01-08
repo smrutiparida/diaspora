@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
 
-  before_filter :authenticate_user!, :only => [:index, :show, :parse]
+  before_filter :authenticate_user!, :only => [:index, :show, :parse, :create]
   respond_to :html, :json, :js
 
   def index    
