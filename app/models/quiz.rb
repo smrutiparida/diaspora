@@ -17,6 +17,7 @@ class Quiz < ActiveRecord::Base
 
   has_many :quiz_questions, :dependent => :destroy
   has_many :questions, :through => :quiz_questions
+  has_many :quiz_assignments, :dependent => :destroy
   accepts_nested_attributes_for :quiz_questions
 
   belongs_to :status_message, :foreign_key => :status_message_guid  , :primary_key => :guid
