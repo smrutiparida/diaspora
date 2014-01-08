@@ -13,6 +13,9 @@
         Load a quiz
       .section
         = select_tag "quiz_assignment[quiz_id]", options_from_collection_for_select(@quizzes, "id", "title")    
+        %div{:style => 'font-size:11px;}
+          = link_to "Click Here", '/quizzes/new'
+          = "to create a new quiz"
       %h5.fieldWithErrors DueDate  
       = text_field_tag 'quiz_assignment[submission_date]', nil, :placeholder => "Due Date..", :class => 'jquery-ui-date', :size => '10', :style => "width:25%;display:inline-block;margin-left:5px;"     
 
