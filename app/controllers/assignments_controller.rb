@@ -14,7 +14,7 @@ class AssignmentsController < ApplicationController
   end
   
   def index
-    redirect_to '/library'    
+    redirect_to '/courses'    
   end
   
   def create

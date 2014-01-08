@@ -85,8 +85,6 @@ Diaspora::Application.routes.draw do
 
   resources :documents
 
-  resources :library, :only => [:index]
-
   resources :quizzes
 
   resources :questions

@@ -1,25 +1,17 @@
 
 - content_for :page_title do
-  = "My Library"
+  = "My Files"
 
 #section_header
   %h2
-    = "My Library"
+    = "My Files"
   %div{:style => "float:right;margin-top:11px;"}
     = render 'documents/uploader', :person => current_user.person
 
 #leftNavBar.span-5.append-1
-  = render 'library/aspect_listings'
+  = render 'documents/aspect_listings'
 
-%div#tabs.span-17
-  %ul{:style => "border-bottom: 1px solid rgb(204, 204, 204);background-color: rgb(204, 204, 204);border-top-left-radius: 4px;border-top-right-radius: 4px;"}
-    %li
-      = link_to "Documents", "#tabs-1"
-    %li
-      = link_to "Assignments", "#tabs-2"      
-    %li
-      = link_to "Quiz", "#tabs-3"              
-
+%div#tabs.span-17  
   %div#tabs-1
     - if @documents
       %ul{:style=>"padding-left:0px;"}
@@ -37,14 +29,5 @@
       %h3
         = "Store your personal documents here."
         
-            
-  %div#tabs-2
-    %ul#assignments-list{:style=>"padding-left:0px;"}
-      = render :partial => 'assignments/assignment', :collection => @assignments
-
-  %div#tabs-3
-    %ul{:style=>"padding-left:0px;"}
-      = render :partial => 'quizzes/quiz', :collection => @quizzes      
+    
           
-:javascript
-  $( "#tabs" ).tabs({selected: #{@assignment_active}});

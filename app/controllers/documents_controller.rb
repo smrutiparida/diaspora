@@ -18,8 +18,42 @@ class DocumentsController < ApplicationController
   end
 
   def index
-    redirect_to '/library'    
+    #role = Role.where(:person_id => current_user.person.id, :name => 'teacher').first
+    #@teacher = role.nil? ? false : true
+    #@assignment_active = (params[:tab] == "assignment") ? 1 : 0
+    
+    @documents = Document.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
+    
+    #below logic valid for students. For teachers the logic will be different.
+    #if @teacher
+    #  @assignments = Assignment.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
+    #  @quizzes = Quiz.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
+    #else      
+    #  opts = {}
+    #  if params[:a_id]
+    #    opts[:by_members_of] = params[:a_id]
+    #  end  
+    #  
+    #  all_my_posts = current_user.visible_shareables(Post, opts)
+    #  all_my_post_guid = all_my_posts.map{|a| a.guid}
+      
+    #  @assignments = Assignment.where(:status_message_guid => all_my_post_guid)
+    #  @quizzes = Quiz.where(:status_message_guid => all_my_post_guid)
+    #  @documents += Document.where(:status_message_guid => all_my_post_guid)
+    #end
+    #unless params[:a_id].nil?
+    #  @modules = Content.where(:aspect_id => params[:a_id])
+    #end  
+    respond_to do |format|
+      if params[:a_id]
+        format.html { render 'documents/course', :layout => false }
+      else
+        format.html
+      end    
+      format.json {render :json => {'documents' => @documents}.to_json}
+    end
   end
+
 
   def create
     rescuing_document_errors do
