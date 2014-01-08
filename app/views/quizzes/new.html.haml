@@ -11,7 +11,7 @@
     = form_for @quiz, html: {class: "new_conversation form_do_not_clear"}, remote: true do |quiz|
     
       %h5.fieldWithErrors Title
-      = text_area_tag 'quiz[title]', nil, :rows => 10, :cols => 3, :placeholder => 'About the quiz..'
+      = text_area_tag 'quiz[title]', nil, :rows => 7, :cols => 1, :placeholder => 'About the quiz..'
       %div{:style => 'padding-left:29px;padding-bottom:10px;'}      
         = check_box_tag 'quiz[randomize_questions]', 'true' , true, :style => 'float:left;'
         %span{:style => 'margin-left:4px;vertical-align:middle;'} Randomize questions
