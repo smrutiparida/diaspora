@@ -25,6 +25,7 @@
       .title      
         %h5{:style => 'margin:5px;'}
           = "Questions"
+        = link_to "Add question", "#", :id=>"question_add", :class => 'button creation', :style =>'float:right;margin:10px;'      
 
             
     #qlist
@@ -48,46 +49,22 @@
         = quiz.submit "  Save Quiz  ", 'data-disable-with' => "In Progress..", :class => 'button creation'       
 
 .span-15.prepend-9.last
-  
-  #people_stream.stream.contacts.stream_container
-    = link_to "Add question", "#", :id=>"question_add", :class => 'button creation', :style =>'float:right;margin:10px;'    
-  %h4
-    = "Create a question"
-  #quiz_accordion
-
-  #form_space    
-  
-
-  #hidden_form.hidden
-    = render 'questions/new'
-
-
-    
+  .stream_container
+    #conversation_show          
+      #no_conversation_text
+        = "Empty Quiz. Nothing to show" 
 
 :javascript
-  $('#question_form_cancel').live('click', function(){
-    hidden_form_active = false;
-    $('#form_space').empty();
-    $("#question_add").addClass('creation');
-  //  $.facebox.close();
-  });
-  
-  hidden_form_active = false;
-  //$('#quiz_accordion').accordion();  
-  
-
-  $('#question_add', "#question_add_first").live('click', function(){
-      
-    if(hidden_form_active){
+  $('#question_add').live('click', function(){
+    alert('came here');
+    if($(this).hasClass("disabled")){
       Diaspora.page.flashMessages.render({ 'success':true, 'notice':'A question is already in process..' });
+      return;
     }
-    else {
-      $('#form_space').append($('#hidden_form').html());
+
+    $.get( "/questions/new", function( data ) {
+      $('#conversation_show').html(data);
       $("#question_add").removeClass('creation');
-      hidden_form_active = true;
-    }
-    
-  //  return false;
   });
 
   function addToQuiz(id, description,mark)
@@ -105,5 +82,39 @@
     $('#quiz_total_marks').val(parseInt($('#quiz_total_marks').val()) + parseInt(mark));
     $('#my_marks').text($('#quiz_total_marks').val());
     Diaspora.page.flashMessages.render({ 'success':response.success, 'notice': 'Question added to the quiz.' });
-  }  
+  } 
+
+  $('#question_qtype').live('change',function() {
+      
+    if($('#question_qtype').val() == "multiple_choice") {
+      $('#question_description').val('');
+      $('#question_hint').hide();
+      $('#option_title').show();
+      //$('#question_title').empty().text("Question");
+      $('#question_options').show().append('<input id="answer1" type="text" style="width:50%;" placeholder="First Answer..." name="question[answer1]"><input id="answer2" type="text" style="width:50%;" placeholder="Second Answer..." name="question[answer2]"><input id="answer3" type="text" style="width:50%;" placeholder="Third Answer..." name="question[answer3]"><input id="answer4" type="text" style="width:50%;" placeholder="Fourth Answer..." name="question[answer4]">');
+      $('#question_correct_answer').empty().append('<select name="question[answer]"><option selected="selected" value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>');
+      
+    }
+    else if($('#question_qtype').val() == "true_false"){
+      //$('#question_title').empty().text("Question");
+      $('#question_description').val('');
+      $('#question_hint').hide();
+      $('#option_title').hide();
+      $('#question_options').empty().hide();      
+      //$('#question_options').empty().hide();
+      //$('#question_options').text('Do Nothing! True and False options will be shown.');
+      $('#question_correct_answer').empty().append('<select name="question[answer]"><option selected="selected" value="true">True</option><option value="false">False</option></select>');
+      
+    }
+    else if($('#question_qtype').val() == "fill_in_the_blanks"){
+      $('#question_description').val('');
+      $('#question_hint').show();
+      $('#option_title').hide();
+      $('#question_options').empty().hide();
+      //$('#question_title').empty().text("Question, Use _____ (underscore) to show the blank field.");
+      //$('#question_options').empty().text('Do nothing! A blank box to shown for the answer.');
+      $('#question_correct_answer').empty().append('<input type="text", value="" style="width:50%;" name="question[answer]" />');
+    }
+  });
+ 
 

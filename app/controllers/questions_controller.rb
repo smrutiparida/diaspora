@@ -3,10 +3,7 @@ class QuestionsController < ApplicationController
   before_filter :authenticate_user!, :only => [:new, :create, :index]
   respond_to :html, :json, :js
 
-  def new
-    unless @question        
-      @question = Question.new
-    end   
+  def new  
     respond_to do |format|
       format.html do
         render :layout => false
