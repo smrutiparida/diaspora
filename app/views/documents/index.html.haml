@@ -9,7 +9,7 @@
     = render 'documents/uploader', :person => current_user.person, :folder => @folder
 
 #leftNavBar.span-5.append-1
-  = render 'documents/aspect_listings', :documents => @documents
+  = render 'documents/aspect_listings', :documents => @documents, :folder => @folder
 
 %div#tabs.span-17  
   %div#tabs-1
