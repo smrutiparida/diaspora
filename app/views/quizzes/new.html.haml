@@ -101,6 +101,7 @@
 
   $('#add_to_quiz').live('click',function(){
     var qpath = $(this).data('qid');
+    $('#no_questions').empty();
     $.getScript('/questions/clone/' + qpath);
     $.facebox.close();
   });
