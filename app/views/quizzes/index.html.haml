@@ -9,12 +9,16 @@
 
   %h5{:style => 'float:left;margin-right:15px;margin-top:6px;'}
     Load a quiz
+  %h5.fieldWithErrors{:style => 'margin-left:20px;'} DueDate  
+    = text_field_tag 'assignment[submission_date]', nil, :placeholder => "Due Date..", :class => 'jquery-ui-date', :size => '10', :style => "width:25%;display:inline-block;margin-left:5px;"     
   .section
     = select_tag "quizList", options_from_collection_for_select(@quizzes, "id", "title")    
     %br
+    = link_to 'Add this to session', '#', :style => 'display:none;margin-top:20px;', :id => 'submit_quiz', :class => 'button creation'
     %div#display_quiz
-
+      
 :javascript
+  $(".jquery-ui-date").datepicker({dateFormat: 'dd/mm/yy'});
   $("#quizList").change(function() {
     showQuiz($( this ).val(), $('#quizList :selected').text());
   });
@@ -30,26 +34,13 @@
         $('#display_quiz').html(data);
         //$('#display_quiz').append('<a class="button creation" href="#" onClick="attachQuiz(' + quizid + ',' + quiztitle+ ');">Assign Quiz</a>');
 
-        $('#display_quiz').prepend($('<a />', { onClick: 'attachQuiz(' +quizid + ',"' + quiztitle + '");' , href: '#',class:'button creation', html: 'Add this Quiz to Module' }));
+        $('#submit_quiz').show().attr('onClick', 'attachQuiz(' + quizid + ',"' + quiztitle + '");');
       }
     });    
   }          
 
-  function attachQuiz(quizid, quiztitle){
-    
+  function attachQuiz(quizid, quiztitle){    
     Diaspora.page.flashMessages.render({ 'success':true, 'notice': 'Quiz added successfully' });
-    //$('.content_creation form').append('<input type="hidden", value="'+ quizid +'" name="quizzes[]" />');
-    //$('#quizdropzone').append('<li class="publisher_quiz" style="position:relative;"><span data-id="' + 
-    //                  quizid +
-    //                  '">' + 
-    //                  quiztitle +
-    //                  '</span><div class="x" onClick="removeObject(\'quizzes\',this);">X</div>'+
-    //                  '<div class="circle"></div></li>');
-    
     $('#course_post_id').val(quizid);
     $('#new_course').submit();
-
-    //jQuery(document).trigger('close.facebox');  
-
-    //$.facebox.close();    
   }
