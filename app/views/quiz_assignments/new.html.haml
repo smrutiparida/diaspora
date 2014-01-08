@@ -13,7 +13,7 @@
         Load a quiz
       .section
         = select_tag "quiz_assignment[quiz_id]", options_from_collection_for_select(@quizzes, "id", "title")    
-        %div{:style => 'font-size:11px;}
+        %div{:style => 'font-size:11px;'}
           = link_to "Click Here", '/quizzes/new'
           = "to create a new quiz"
       %h5.fieldWithErrors DueDate  
