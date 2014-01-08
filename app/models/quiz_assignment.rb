@@ -1,4 +1,6 @@
 class QuizAssignment < ActiveRecord::Base
+  
+  belongs_to :quiz, :foreign_key => :quiz_id, :primary_key => :id
 
   def self.diaspora_initialize(params = {})
     Rails.logger.info("Model Enter")
