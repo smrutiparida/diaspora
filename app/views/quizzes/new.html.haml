@@ -22,12 +22,11 @@
         %span{:style => 'margin-left:4px;vertical-align:middle;'} Randomize questions
 
     .rightBar
-      .title{:style => 'padding:8px 0 0 18px;'}  
-        = link_to "Load question", "/questions", :rel => 'facebox', :style =>'float:right'
-        %span
-          "OR"
-        = link_to "Add question", "#", :id=>"question_add", :class => 'button creation', :style =>'float:right'      
-
+      .title{:style => 'padding:8px 0 8px 0;'} 
+        %div{:style => 'text-align:right;'} 
+          = link_to "Add question", "#", :id=>"question_add", :class => 'button creation'
+          %span OR        
+          = link_to "Load question", "/questions", :rel => 'facebox'
         %h5{:style => 'margin:5px;'}
           = "Questions"
             
