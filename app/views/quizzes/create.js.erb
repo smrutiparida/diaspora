@@ -1,4 +1,6 @@
 var response = <%= raw @response.to_json %>;
 Diaspora.page.flashMessages.render({ 'success':response.success, 'notice':response.message });
+window.location.href = "/quizzes/<%= @quiz.id %>";
+
 
  

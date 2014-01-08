@@ -27,7 +27,8 @@ class QuizzesController < ApplicationController
     #Rails.logger.info(@quiz[:questions].to_json)
     #Rails.logger.info(@quiz.to_json)
     respond_with do |format|
-      format.html {render :layout => layout_option}
+      #format.html {render :layout => layout_option}
+      format.html
       format.json {render :json => @quiz.to_json}
     end
     raise ActiveRecord::RecordNotFound unless @quiz
