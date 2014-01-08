@@ -56,8 +56,8 @@ class CoursesController < ApplicationController
           temp.push("<a target='_blank' href='/assignment_assessments/"+ assignment.id.to_s + "'>" + assignment.name + "</a>")
         elsif course.type == "Quiz"
           temp.push(course.type)
-          quiz = Quiz.find(course.post_id)
-          temp.push("<a target='_blank' href='/quizzes/"+ quiz.id.to_s + "'>" + quiz.title + "</a>")
+          quiz = QuizAssignment.find(course.post_id)
+          temp.push("<a target='_blank' href='/quizzes/"+ quiz.quiz_id.to_s + "'>" + quiz.title + "</a>")
         elsif course.type == "Document"
           temp.push(course.type)
           file = Document.find(course.post_id)
