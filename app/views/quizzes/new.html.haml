@@ -91,19 +91,7 @@
     return false;
   });
 
-  $('.q_selectable').live('click',function(){
-    var q_id= $(this).data('question_id');
-    $.get('/questions/' + q_id, function(data){
-      $('#question_show').html(data);
-      $('#add_to_quiz').attr('data-qid', q_id);
-    });
-  });
-
-  $('#add_to_quiz').live('click'.function(){
-    var qpath = $(this).data('qid');
-    $.getScript('/questions/clone/' + qpath);
-    $.facebox.close();
-  });
+  
   
 
   $('#question_qtype').live('change',function() {
