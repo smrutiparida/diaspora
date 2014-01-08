@@ -45,12 +45,12 @@
     $('#file-upload').addClass("creation");        
 
 #profile_photo_upload{:style => "margin:20px 120px 0px 0px;"}
-  = image_tag('mobile-spinner.gif', :class => 'hidden')
+  = image_tag('ajax-loader.gif', :class => 'hidden')
 
   #file-upload.button.creation
     = "Upload assignment (4 MB MAX)"
   
-  = image_tag('mobile-spinner.gif', :class => 'hidden', :style => "z-index:-1", :id => 'file-upload-spinner')
+  = image_tag('ajax-loader.gif', :class => 'hidden', :style => "z-index:-1", :id => 'file-upload-spinner')
 
   %p
     #fileInfo

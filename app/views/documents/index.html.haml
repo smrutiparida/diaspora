@@ -30,7 +30,8 @@
                   = link_to document.processed_doc, document.unprocessed_doc.url
       - if @documents.blank?
         #no-file-message
-          = "Store your personal documents here."
+          %h3
+            = "Store your personal documents here."
         
     
           
