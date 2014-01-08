@@ -41,9 +41,9 @@ class DocumentsController < ApplicationController
     #  @quizzes = Quiz.where(:status_message_guid => all_my_post_guid)
     #  @documents += Document.where(:status_message_guid => all_my_post_guid)
     #end
-    #unless params[:a_id].nil?
-    #  @modules = Content.where(:aspect_id => params[:a_id])
-    #end  
+    unless params[:a_id].nil?
+      @modules = Content.where(:aspect_id => params[:a_id])
+    end  
     respond_to do |format|
       if params[:a_id]
         format.html { render 'documents/course', :layout => false }
