@@ -23,7 +23,7 @@ class DocumentsController < ApplicationController
     #@assignment_active = (params[:tab] == "assignment") ? 1 : 0
     @folder = "Miscellaneous"
     if params[:a_id]
-      aspect_detail = Aspects.find(params[:a_id]) 
+      aspect_detail = Aspect.find(params[:a_id]) 
       @folder = aspect_detail.name
     end
             
