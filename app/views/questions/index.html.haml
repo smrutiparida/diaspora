@@ -1,4 +1,7 @@
-%div{:style => 'width:500px;'}
+%div{:style => 'width:600px;'}
+  %div{:style => 'height:300px;float:right;padding-left:10px;border-left:1px solid #ccc;'}
+    #question_show
+    = link_to "Add to Quiz", '#', :class => 'button creation', :id => 'add_to_quiz', :'data-qid' => ''
   %ul.sub_nav#questions_list
     - if @questions.size > 0
       - @questions.each do |question|
@@ -7,6 +10,4 @@
             = question.description
     - else
       = "No Questions in question bank"       
-  %div{:style => 'height:80px;float:right;padding-left:10px;border-left:1px solid #ccc;'}
-    #question_show
-    = link_to "Add to Quiz", '#', :class => 'button creation', :id => 'add_to_quiz', :'data-qid' => ''
+  
