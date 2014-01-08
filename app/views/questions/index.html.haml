@@ -3,14 +3,19 @@
     #question_show
     %br
     %br
-    = link_to "Add to Quiz", '#', :class => 'button creation', :id => 'add_to_quiz', :'data-qid' => ''
-  #questions_list{:style => 'height:300px;overflow-y:scroll;'}
-    - if @questions.size > 0
-      - @questions.each do |question|
-        .stream_element.q_selectable{:data => {:question_id => question.id}}
-          .media{:style => 'margin:0px;padding:5px;'}
-            .subject
-              = question.description
-    - else
-      = "No Questions in question bank"       
-  
+    = link_to "Add to Quiz", '#', :class => 'button creation', :id => 'add_to_quiz', :'data-qid' => '', :style => 'position:absolute;bottom:40px;'
+  %div{:style => 'height:300px;'}
+      %h5{:style => 'margin-bottom:2px;padding-bottom:10px;border-bottom:1px solid #ccc;display:inline;'}
+        Question Bank
+      %span{:style => 'display:inline;'}
+        = " (Click to add a question)"
+	  #questions_list{:style => 'height:300px;overflow-y:scroll;'}
+	    - if @questions.size > 0
+	      - @questions.each do |question|
+	        .stream_element.q_selectable{:data => {:question_id => question.id}}
+	          .media{:style => 'margin:0px;padding:5px;'}
+	            .subject
+	              = question.description
+	    - else
+	      = "No Questions in question bank"       
+	  
