@@ -21,9 +21,14 @@ class DocumentsController < ApplicationController
     #role = Role.where(:person_id => current_user.person.id, :name => 'teacher').first
     #@teacher = role.nil? ? false : true
     #@assignment_active = (params[:tab] == "assignment") ? 1 : 0
+    @folder = "Miscellaneous"
+    if params[:a_id]
+      aspect_detail = Aspects.find(params[:a_id]) 
+      @folder = aspect_detail.name
     
-    @documents = Document.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
-    
+            
+    @documents = Document.where(:diaspora_handle => current_user.diaspora_handle, :folder => @folder).order(:updated_at)  
+    #@folder_list = Document.select(:folder).distinct
     #below logic valid for students. For teachers the logic will be different.
     #if @teacher
     #  @assignments = Assignment.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
@@ -168,7 +173,7 @@ class DocumentsController < ApplicationController
     params[:document][:user_file] = file_handler(params)
     
     @document = current_user.build_post(:document, params[:document])
-
+    @document.folder = params[:folder]
     if @document.save
       aspects = current_user.aspects_from_ids(params[:document][:aspect_ids])
 

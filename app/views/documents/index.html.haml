@@ -6,10 +6,10 @@
   %h2
     = "My Files"
   %div{:style => "float:right;margin-top:11px;"}
-    = render 'documents/uploader', :person => current_user.person
+    = render 'documents/uploader', :person => current_user.person, :folder => @folder
 
 #leftNavBar.span-5.append-1
-  = render 'documents/aspect_listings'
+  = render 'documents/aspect_listings', :documents => @documents
 
 %div#tabs.span-17  
   %div#tabs-1

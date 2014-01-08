@@ -7,11 +7,10 @@
     %a.home_selector
       = "Classroom"
 
-    %ul.sub_nav#aspects_list
+    %ul.sub_nav#course_list
       - all_aspects.each do |aspect|
         - if aspect.folder and aspect.folder == "Classroom"
-          %li.hoverable{:data => {:aspect_id => aspect.id}, :class => ("active" if params["a_id"].to_i == aspect.id)}          
-            .icons-check_yes_ok{:class => ("selected" if params["a_id"].to_i == aspect.id) }
+          %li.hoverable{:class => ("selected" if aspect.name == folder) }         
             = link_to aspect.name, "/documents?a_id=" + aspect.id.to_s
               
   %li.all_aspects{:class => "active"}
@@ -21,6 +20,8 @@
     %ul.sub_nav#presonal_groups_list
       - all_aspects.each do |aspect|
         - if !aspect.folder or aspect.folder != "Classroom"
-          %li.hoverable.selectable{:data => {:aspect_id => aspect.id}, :class => ("active" if params["a_id"].to_i == aspect.id)}          
-            .icons-check_yes_ok{:class => ("selected" if params["a_id"].to_i == aspect.id) }
-            = link_to aspect.name, "/library?a_id=" + aspect.id.to_s            
+          %li.hoverable{:class => ("selected" if aspect.name == folder) }                      
+            = link_to aspect.name, "/documents?a_id=" + aspect.id.to_s
+    
+    %li.hoverable{:class => ("selected" if folder == "Miscellaneous") }         
+      = link_to "Miscellaneous", "/documents"                    

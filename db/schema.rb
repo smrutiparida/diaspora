@@ -363,6 +363,7 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
     t.string   "status_message_guid"
     t.integer  "comment_count"
     t.integer  "size"
+    t.string   "folder",              :default => "Miscellaneous", :null => false
   end
 
   add_index "documents", ["status_message_guid"], :name => "index_documents_on_status_message_guid"
