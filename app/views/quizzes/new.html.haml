@@ -81,6 +81,14 @@
     });
   }
 
+  $('.questions-wrapper').live('click', function(){
+    var conversation_path = $(this).data('conversation-path');
+    $.get(conversation_path,function(data){$('#conversation_show').html(data);});
+    $(".stream_element", "#qlist").removeClass('selected');
+    $(this).find(">:first-child").addClass('selected');
+    return false;
+  });
+
   $('#question_qtype').live('change',function() {
       
     if($('#question_qtype').val() == "multiple_choice") {
