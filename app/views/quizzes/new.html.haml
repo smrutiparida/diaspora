@@ -39,10 +39,10 @@
             = link_to "Add your first question", "#", :id=>"question_add_first"
 
     %h5{:style => 'display:inline-block;'} Total Marks:
-      = text_field_tag 'quiz[total_marks]', '0', :disabled => true, :style => 'width:15%;display:inline-block;'
+    = text_field_tag 'quiz[total_marks]', '0', :disabled => true, :style => 'width:15%;display:inline-block;'
       %span Points
     %div{:style => 'margin-top:10px;text-align:center;'}
-        = quiz.submit "  Save Quiz  ", 'data-disable-with' => "In Progress..", :class => 'button creation'       
+      = quiz.submit "  Save Quiz  ", 'data-disable-with' => "In Progress..", :class => 'button creation'       
 
 .span-15.prepend-9.last
   
