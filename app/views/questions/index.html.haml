@@ -8,7 +8,7 @@
     - if @questions.size > 0
       - @questions.each do |question|
         .stream_element.q_selectable{:data => {:question_id => question.id}}
-          .media{:style => 'cursor:pointer;'}
+          .media{:style => 'margin:0px;padding:5px;'}
             .subject
               = question.description
     - else
