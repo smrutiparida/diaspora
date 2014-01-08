@@ -44,7 +44,9 @@
 
           var temp_string = '<div class="hoverable docthumbnail" id="' + id + '"><div class="selected docthumbselected"></div><div style="padding:5px;"><a href="' + url + '"><img alt="file" class="thumb_small" src="/assets/facebox/' + format + '.png"></a></div><p><a href="' + url + '">' + fname + '</a></p></div>';
 
+          $('#no-file-message').empty();
           $('#people_stream').prepend(temp_string).fadeIn('slow');
+
 
          }
      });
