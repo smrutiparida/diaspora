@@ -11,7 +11,10 @@
             = question.mark
             = " Marks"          
           %div{ :class => direction_for(question.description) }
-            = question.description[0..40]
+            = question.description[0..35]
         .last_author
           %span.participants_link
             = question.qtype
+  = hidden_field_tag "quiz[quiz_questions_attributes][][question_id]", question.id
+  = hidden_field_tag "quiz[quiz_questions_attributes][][mark]", question.mark
+          

@@ -7,3 +7,5 @@ $.get("/questions/" + response.id ,function(data){$('#conversation_show').html(d
 $("#question_add").removeClass('disabled').addClass('creation');
 $('#quiz_total_marks').val(parseInt($('#quiz_total_marks').val()) + parseInt(response.mark));
 $('#my_marks').text($('#quiz_total_marks').val());
+
+
