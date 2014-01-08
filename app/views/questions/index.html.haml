@@ -1,10 +1,10 @@
 %ul.sub_nav#questions_list
   - if @questions.size > 0
     - @questions.each do |question|
-      %li.hoverable{:data => {:question_id => question.id}}
-        %a.selectable{:href => "#", :onclick => "$.get('/questions/' + question.id.to_s,function(data){$('#question_show').html(data});$('#add_to_quiz').attr('data-qid','/questions/clone/' + question.id.to_s );"}
+      %li.hoverable.q_selectable{:data => {:question_id => question.id}}
+        %a.selectable{:href => "#"}
           = question.description
   - else
     = "No Questions in question bank"       
 #question_show
-= link_to "#", "Add to Quiz", :id => 'add_to_quiz', :'data-qid' => '',:onclick => "qpath = $(this).data('qid');$.getScript(qpath);$.facebox.close();"
+= link_to "#", "Add to Quiz", :id => 'add_to_quiz', :'data-qid' => ''
