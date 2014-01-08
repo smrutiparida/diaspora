@@ -21,33 +21,35 @@
         = check_box_tag 'quiz[randomize_questions]', 'true' , true, :style => 'float:left;'
         %span{:style => 'margin-left:4px;vertical-align:middle;'} Randomize questions
 
-      .rightBar
-        .title      
-          %h5{:style => 'margin:5px;'}
-            = "Questions"
+    .rightBar
+      .title      
+        %h5{:style => 'margin:5px;'}
+          = "Questions"
 
             
     #qlist
-      .stream.conversations
-        %br
-        %br
-        %br
+      .stream.conversations        
         %br
         %div{:style => 'text-align:center;'}
           %i
             = "No Question present."
             = link_to "Add your first question", "#", :id=>"question_add_first"
+        %br    
 
-    %h5{:style => 'display:inline-block;'} 
-      = "Total Marks:"
-      = text_field_tag 'quiz[total_marks]', '0', :disabled => true, :style => 'width:15%;display:inline-block;'
-      %span Points
-    %div{:style => 'margin-top:10px;text-align:center;'}
-      = quiz.submit "  Save Quiz  ", 'data-disable-with' => "In Progress..", :class => 'button creation'       
+  
+    %div{:style => 'border-top:1px solid #ccc;padding-top:10px;text-align:right;'}
+      %h5{:style => 'display:inline-block;'} 
+        = "Total Marks:"
+      %span#my_marks 0  
+      %span 
+        = " points"
+      = hidden_field_tag 'quiz[total_marks]', '0'
+      %div
+        = quiz.submit "  Save Quiz  ", 'data-disable-with' => "In Progress..", :class => 'button creation'       
 
 .span-15.prepend-9.last
   
-  #people_stream.stream.contacts
+  #people_stream.stream.contacts.stream_container
     = link_to "Add question", "#", :id=>"question_add", :class => 'button creation', :style =>'float:right;margin:10px;'    
   %h4
     = "Create a question"
@@ -101,6 +103,7 @@
     
     $('#qlist').append(temp_str);
     $('#quiz_total_marks').val(parseInt($('#quiz_total_marks').val()) + parseInt(mark));
+    $('#my_marks').text($('#quiz_total_marks').val());
     Diaspora.page.flashMessages.render({ 'success':response.success, 'notice': 'Question added to the quiz.' });
   }  
 
