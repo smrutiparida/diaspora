@@ -1,0 +1,17 @@
+-#   Copyright (c) 2010-2011, Diaspora Inc.  This file is
+-#   licensed under the Affero General Public License version 3 or later.  See
+-#   the COPYRIGHT file.
+
+.questions-wrapper{ :"data-conversation-path" => 'questions/' + question.id.to_s  }
+  .stream_element.conversation{:data=>{:guid=>question.id}}
+    .media  
+      .bg
+        .subject
+          .message_count
+            = question.mark
+            = " Marks"          
+          %div{ :class => direction_for(question.description) }
+            = question.description[0..30]
+        .last_author
+          %span.participants_link
+            = question.qtype

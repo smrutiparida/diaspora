@@ -6,7 +6,7 @@
 
 #left_pane
   = form_for @quiz, html: {class: "new_conversation form_do_not_clear"}, remote: true do |quiz|
-    #left_pane_header{:style => "height:100%;background-color:#999999"}
+    #left_pane_header{:style => "height:100%;border-bottom:none;"}
       %h3
         = "Quiz Details"        
       %h5.fieldWithErrors Title
@@ -22,20 +22,25 @@
         %span{:style => 'margin-left:4px;vertical-align:middle;'} Randomize questions
 
     .rightBar
-      .title      
+      .title{:style => 'padding:8px 0 0 18px;'}  
+        = link_to "Load question", "/questions", :rel => 'facebox', :style =>'float:right'
+        %span
+          "OR"
+        = link_to "Add question", "#", :id=>"question_add", :class => 'button creation', :style =>'float:right'      
+
         %h5{:style => 'margin:5px;'}
           = "Questions"
-        = link_to "Add question", "#", :id=>"question_add", :class => 'button creation', :style =>'float:right;margin:10px;'      
+            
 
             
     #qlist
-      .stream.conversations        
-        %br
-        %div{:style => 'text-align:center;'}
-          %i
-            = "No Question present."
-            = link_to "Add your first question", "#", :id=>"question_add_first"
-        %br    
+              
+    %div#no_questions{:style => 'text-align:center;'}
+       %br
+      %i
+        = "No Question present."
+        = link_to "Add your first question", "#", :id=>"question_add_first"
+      %br    
 
   
     %div{:style => 'border-top:1px solid #ccc;padding-top:10px;text-align:right;'}
@@ -55,39 +60,26 @@
         = "Empty Quiz. Nothing to show" 
 
 :javascript
-  $('#question_add','#question_add_first').live('click', function(){
-    
+  $('#question_add').live('click', function(){create_quiz();});
+  $('#question_form_cancel').live('click', function(){get_new_quiz();});
+  $('#question_add_first').live('click', function(){create_quiz();});
+
+  function create_quiz()
+  {
+    $('#no_questions').empty();
     if($(this).hasClass("disabled")){
       Diaspora.page.flashMessages.render({ 'success':true, 'notice':'A question is already in process..' });
       return;
     }
     get_new_quiz();
-  });
+  }
 
-  $('#question_form_cancel').live('click', function(){get_new_quiz();});
   function get_new_quiz(){
     $.get( "/questions/new", function( data ) {
       $('#conversation_show').html(data);
       $("#question_add").removeClass('creation').addClass('disabled');
     });
   }
-
-  function addToQuiz(id, description,mark)
-  {
-    var count = $("#qlist").children("div").length
-    if (count == 0){
-      $('#qlist').empty();  
-    }
-
-    count = count + 1;
-
-    var temp_str = '<div class="truncate">' + count + '. ' + description + '</div><input name="quiz[quiz_questions_attributes][][question_id]" type="hidden" value="' + id + '"/><input name="quiz[quiz_questions_attributes][][mark]" type="hidden" value="' + mark + '"/>';
-    
-    $('#qlist').append(temp_str);
-    $('#quiz_total_marks').val(parseInt($('#quiz_total_marks').val()) + parseInt(mark));
-    $('#my_marks').text($('#quiz_total_marks').val());
-    Diaspora.page.flashMessages.render({ 'success':response.success, 'notice': 'Question added to the quiz.' });
-  } 
 
   $('#question_qtype').live('change',function() {
       

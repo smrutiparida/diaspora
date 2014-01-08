@@ -1,69 +1,9 @@
 var response = <%= raw @response.to_json %>;
-/*<% if @question_bank %> 
-  Diaspora.page.flashMessages.render({ 'success':response.success, 'notice':response.message });
-  if(response.success){
-    
-    
-    $('#questions_list').prepend('<li class="hoverable" data="{question_id:' +
-                               response.id +
-                              '}"><a class="action modify_aspect" href="/questions/clone/#' + 
-                              response.id
-                              '" rel="facebox">' + 
-                              response.description +
-                              '</a></li>');          
-    $.facebox.close();    
-    //hidden_form_active = false;
-  }
-
- <% else %>
- */
-  Diaspora.page.flashMessages.render({ 'success':response.success, 'notice':response.message });
-  if(response.success){
-    
-    $('#form_space').empty();
-    
-
-    var html_string = '<h3>' + response.description + '</h3><div>';
-    var part_string = '';
-      if(response.qtype == "multiple_choice"){
-        var aset = JSON.parse(response.all_answers);
-        part_string = '<input type="radio">' + aset.answer1 + '<input type="radio">' + aset.answer2 + '<input type="radio">' + aset.answer3 + '<input type="radio">' + aset.answer4;
-        part_string += 'Answer at place ' + response.answer + ' is Correct.';
-      }
-      else if (response.qtype == "true_false"){
-        var place1 = place2 = '';
-        if(response.answer == 'true'){
-          place1 = 'Correct Answer';
-        }
-        else
-        {
-          place2 = 'Correct Answer';
-        }
-        part_string = '<input type="radio">True'+ place1 + '<input type="radio">False' + place2;
-      }
-      else if (response.qtype == "fill_in_the_blanks"){
-         part_string = '<input type="text", value="" style="width:50%;"/>';
-         part_string += response.answer;
-      }
-
-      html_string += part_string + '</div>';
-      //alert(html_string);    
-      //$('#quiz_accordion').append(html_string);
-      //$('#quiz_accordion').accordion("refresh");
-      hidden_form_active = false;
-      $('#questions_list').prepend('<li class="hoverable" data-question-id="' + response.id +'"><a class="action modify_aspect" href="/questions/clone/#' + response.id + '"></a><a class="selectable" href="#">' + response.description + '</a></li>');
-      //$('#new_quiz#questionlist').append('<input type="hidden" value="' + response.id + '" name="question[id]"');
-      //var count = $("#qlist").children("span").length
-      //count = count + 1;
-      //var temp_str = '<div class="truncate">' + count + '. ' + response.description + '</div><input name="quiz[quiz_questions_attributes][][question_id]" type="hidden" value="' + response.id + '"/><input name="quiz[quiz_questions_attributes][][mark]" type="hidden" value="1"/>';
-      //alert(temp_str);
-      //$('#qlist').append(temp_str);
-      //alert($('#qlist').html());
-      addToQuiz(response.id, response.description, response.mark);
-
-      $("#question_add").addClass('creation');
-    }
-//<% end %>     
-    
-
-
+Diaspora.page.flashMessages.render({ 'success':'success', 'notice':'Question added to quiz.' });
+$('#qlist').append("<%= escape_javascript(render('questions/question', :question => @question)) %>");
+$(".stream_element", "#qlist").removeClass('selected');
+$(".stream_element[data-guid='<%= @question.id %>']", "#qlist").addClass('selected');
+$.get("/questions/" + response.id ,function(data){$('#conversation_show').html(data);});
+$("#question_add").removeClass('disabled').addClass('creation');
+$('#quiz_total_marks').val(parseInt($('#quiz_total_marks').val()) + parseInt(response.mark));
+$('#my_marks').text($('#quiz_total_marks').val());

@@ -4,23 +4,8 @@ class QuizzesController < ApplicationController
   respond_to :html, :json, :js
 
   def new
-  	#@quizzes = get_question_bank
-    @quiz = Quiz.new
-    @quizzes = Question.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
-
     respond_to do |format|
-
-      # Used for normal requests to contacts#index and subsequent infinite scroll calls
       format.html 
-      # Used by the mobile site
-      format.mobile { get_question_bank }
-
-      # Used to populate mentions in the publisher
-      format.json {
-      #  aspect_ids = params[:aspect_ids] || current_user.aspects.map(&:id)
-      #  @people = Person.all_from_aspects(aspect_ids, current_user).for_json
-      #  render :json => @people.to_json
-      }
     end
   end
 
@@ -82,9 +67,4 @@ class QuizzesController < ApplicationController
   #  Question.where(:id => aspect_ids)
   #end
   
-  def get_question_bank
-  	@quizzes = Question.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
-	  #@quizzes = @quizzes.for_a_stream.paginate(:page => params[:page], :per_page => 100)
-    #@questions_size = @questions.length
-  end	
 end  

@@ -1,0 +1,9 @@
+%ul.sub_nav#questions_list
+  - if @questions.size > 0
+    - @questions.each do |question|
+      %li.hoverable{:data => {:question_id => question.id}}
+        %a.action.modify_aspect{:href => "#", :onclick => 'addToQuiz(' + question.id.to_s + ',"' + question.description + '",' +  question.mark.to_s  + ');'}                      
+        %a.selectable{:href => "#"}
+          = question.description
+  - else
+    = "No Questions in question bank"       

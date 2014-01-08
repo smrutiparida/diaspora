@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
 
-  before_filter :authenticate_user!, :only => [:new, :create, :index]
+  before_filter :authenticate_user!, :only => [:new, :create, :index, :show]
   respond_to :html, :json, :js
 
   def new  
@@ -12,12 +12,22 @@ class QuestionsController < ApplicationController
   end
   
   def index
-    @questions = Question.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
+    @questions = Question.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at) 
+    respond_to do |format|
+      format.html do
+        render :layout => false
+      end
+    end 
   end
 
-  def clone    
-    @question = Document.where(id: params[:id]).first
-    render :new
+  def show  
+    @question = Question.find(params[:id])
+    respond_to do |format|
+      format.html do
+        render :layout => false
+      end
+      format.js
+    end    
   end
 
   def create
