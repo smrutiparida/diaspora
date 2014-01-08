@@ -34,3 +34,4 @@ class QuizAssignmentsController < ApplicationController
   def quiz_assignment_params
     params.require(:quiz_assignment).permit(:post_id, :submission_date)
   end
+end
