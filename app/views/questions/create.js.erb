@@ -1,11 +1,10 @@
-var response = <%= raw @response.to_json %>;
 Diaspora.page.flashMessages.render({ 'success':'success', 'notice':'Question added to quiz.' });
 $('#qlist').append("<%= escape_javascript(render('questions/question', :question => @question)) %>");
 $(".stream_element", "#qlist").removeClass('selected');
 $(".stream_element[data-guid='<%= @question.id %>']", "#qlist").addClass('selected');
-$.get("/questions/" + response.id ,function(data){$('#conversation_show').html(data);});
+$.get("/questions/<% @question.id %>" ,function(data){$('#conversation_show').html(data);});
 $("#question_add").removeClass('disabled').addClass('creation');
-$('#quiz_total_marks').val(parseInt($('#quiz_total_marks').val()) + parseInt(response.mark));
+$('#quiz_total_marks').val(parseInt($('#quiz_total_marks').val()) + parseInt(<% @question.mark %>));
 $('#my_marks').text($('#quiz_total_marks').val());
 
 

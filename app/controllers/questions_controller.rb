@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
 
-  before_filter :authenticate_user!, :only => [:new, :create, :index, :show]
+  before_filter :authenticate_user!, :only => [:new, :create, :index, :show, :clone]
   respond_to :html, :json, :js
 
   def new  
@@ -29,7 +29,12 @@ class QuestionsController < ApplicationController
       format.js
     end    
   end
-
+  def clone
+    @question = Question.find(params[:id])
+    respond_to do |format|
+      format.js   { render :action => "create"}  #rails now looks for create.js.erb
+    end
+  end
   def create
     @question = current_user.build_post(:question, question_params)
     
