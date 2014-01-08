@@ -5,7 +5,7 @@
   = "New Quiz"
 
 #left_pane
-  = form_for @quiz, html: {class: "new_conversation form_do_not_clear"}, remote: true do |quiz|
+  = form_for Quiz.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |quiz|
     #left_pane_header{:style => "height:100%;border-bottom:none;"}
       %h3
         = "Quiz Details"        
