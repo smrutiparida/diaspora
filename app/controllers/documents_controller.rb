@@ -132,7 +132,7 @@ class DocumentsController < ApplicationController
   private
 
   def document_params
-    params.require(:document).permit(:public, :text, :pending, :user_file, :document_url, :aspect_ids)
+    params.require(:document).permit(:public, :text, :pending, :user_file, :document_url, :aspect_ids, :folder)
   end
 
   def file_handler(params)

@@ -71,7 +71,8 @@ class Document < ActiveRecord::Base
     document.diaspora_handle = document.author.diaspora_handle
     document.processed_doc = params[:user_file].original_filename()
     document.size = params[:user_file].content_length()
-
+    document.folder = params[:folder] if params[:folder]
+    
     document.random_string = SecureRandom.hex(10)
         
     if params[:user_file]      
