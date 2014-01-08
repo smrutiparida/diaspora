@@ -22,10 +22,10 @@
         %span{:style => 'margin-left:4px;vertical-align:middle;'} Randomize questions
 
     .rightBar
-      .title      
+      .title{:style => 'padding: 15px 0;'}
         %h5{:style => 'margin:5px;'}
           = "Questions"
-        = link_to "Add question", "#", :id=>"question_add", :class => 'button creation', :style =>'float:right;margin:10px;'      
+        = link_to "Add question", "#", :id=>"question_add", :class => 'button creation', :style =>'float:right'      
 
             
     #qlist
@@ -65,6 +65,8 @@
     $.get( "/questions/new", function( data ) {
       $('#conversation_show').html(data);
       $("#question_add").removeClass('creation');
+      }
+    );
   });
 
   function addToQuiz(id, description,mark)
