@@ -22,10 +22,10 @@
         %span{:style => 'margin-left:4px;vertical-align:middle;'} Randomize questions
 
     .rightBar
-      .title{:style => 'padding: 15px 0;'}
+      .title      
         %h5{:style => 'margin:5px;'}
           = "Questions"
-        = link_to "Add question", "#", :id=>"question_add", :class => 'button creation', :style =>'float:right'      
+        = link_to "Add question", "#", :id=>"question_add", :class => 'button creation', :style =>'float:right;margin:10px;'      
 
             
     #qlist
@@ -55,19 +55,22 @@
         = "Empty Quiz. Nothing to show" 
 
 :javascript
-  $('#question_add').live('click', function(){
-    alert('came here');
+  $('#question_add','#question_add_first').live('click', function(){
+    
     if($(this).hasClass("disabled")){
       Diaspora.page.flashMessages.render({ 'success':true, 'notice':'A question is already in process..' });
       return;
     }
+    get_new_quiz();
+  });
 
+  $('#question_form_cancel').live('click', function(){get_new_quiz();});
+  function get_new_quiz(){
     $.get( "/questions/new", function( data ) {
       $('#conversation_show').html(data);
-      $("#question_add").removeClass('creation');
-      }
-    );
-  });
+      $("#question_add").removeClass('creation').addClass('disabled');
+    });
+  }
 
   function addToQuiz(id, description,mark)
   {
