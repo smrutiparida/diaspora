@@ -9,7 +9,7 @@
   
   #create_quiz_assignment
     = form_for QuizAssignment.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |quiz_assignment|
-      %h5{:style => 'float:left;margin-right:15px;margin-top:6px;'}
+      %h5{:style => 'float:left;margin-right:32px;margin-top:6px;'}
         Load a quiz
       .section
         = select_tag "quiz_assignment[quiz_id]", options_from_collection_for_select(@quizzes, "id", "title")    

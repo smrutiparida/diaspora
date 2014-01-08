@@ -5,7 +5,7 @@ class QuizAssignment < ActiveRecord::Base
     quiz_assignment = self.new
     quiz_assignment.quiz_id = params[:post_id]
     quiz_assignment.submission_date = DateTime.strptime(params[:submission_date],'%d/%m/%Y')
-    quiz_assignment.diaspora_initialize = params[:author].diaspora_initialize
+    quiz_assignment.diaspora_handle = params[:diaspora_handle]
     quiz_assignment
   end
 end   
