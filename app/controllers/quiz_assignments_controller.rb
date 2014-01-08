@@ -24,7 +24,7 @@ class QuizAssignmentsController < ApplicationController
 
   def create
   	@quiz_assignment = current_user.build_post(:quiz_assignment, quiz_assignment_params)
-  	if @course.save
+  	if @quiz_assignment.save
       respond_to do |format|
         format.js
       end
