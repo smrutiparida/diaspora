@@ -4,50 +4,14 @@
 - content_for :page_title do
   = "New Quiz"
 
-.span-23.last
-  #section_header
-    %h2
-      = "Create a Quiz"
-
-    //= form_for Quiz.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |quiz|  
-#leftNavBar.span-7{:style => 'height:800px;border-right:1px solid #ccc;padding-right:5px;'}
-  %span.add_aspect
-    
-  .rightBar
-    .title      
-      %h4
-        = "Question Bank"
-
-  %ul.sub_nav#questions_list
-    - if @quizzes.size > 0
-      - @quizzes.each do |question|
-        %li.hoverable{:data => {:question_id => question.id}}
-          %a.action.modify_aspect{:href => "#", :onclick => 'addToQuiz(' + question.id.to_s + ',"' + question.description + '",' +  question.mark.to_s  + ');'}                      
-          %a.selectable{:href => "#"}
-            = question.description
-    - else
-      = "No Questions in question bank"        
-
-.span-11.last{:style => 'height:800px;'}
-  
-  #people_stream.stream.contacts
-    = link_to "Add question", "#", :id=>"question_add", :class => 'button creation', :style =>'float:right;margin:10px;'    
-  %h4
-    = "Create a question"
-  #quiz_accordion
-
-  #form_space    
-  
-
-  #hidden_form.hidden
-    = render 'questions/new'
-
-#rightNavBar.span-5{:style => 'height:800px;border-left:1px solid #ccc;padding-left:5px'}
-  = form_for @quiz, html: {class: "new_conversation form_do_not_clear"}, remote: true do |quiz|
+#left_pane
+  #left_pane_header{:style => "height:100%;background-color:#999999"}
+    %h3
+      = "Quiz Details"    
+    = form_for @quiz, html: {class: "new_conversation form_do_not_clear"}, remote: true do |quiz|
     
     %h5.fieldWithErrors Title
-    = text_field_tag 'quiz[title]', nil, :placeholder => 'About the quiz..', :style => 'width:77%;display:inline-block;'
-
+    = text_area_tag 'quiz[title]', nil, :rows => 10, :cols => 3, :placeholder => 'About the quiz..'
     %div{:style => 'padding-left:29px;padding-bottom:10px;'}      
       = check_box_tag 'quiz[randomize_questions]', 'true' , true, :style => 'float:left;'
       %span{:style => 'margin-left:4px;vertical-align:middle;'} Randomize questions
@@ -55,8 +19,8 @@
 
     %h5.fieldWithErrors Time Limit
     = text_field_tag 'quiz[time]', '15', :style => 'width:10%;display:inline-block;'
-    %span Minutes
-      
+    %span Minutes   
+          
     %h5{:style => 'display:inline-block;'} Total Marks:
     = text_field_tag 'quiz[total_marks]', '0', :disabled => true, :style => 'width:15%;display:inline-block;'
     %span Points
@@ -72,6 +36,22 @@
 
     %div{:style => 'margin-top:10px;text-align:center;'}
       = quiz.submit "  Create Quiz  ", 'data-disable-with' => "In Progress..", :class => 'button creation'
+
+.span-15.prepend-9.last
+  
+  #people_stream.stream.contacts
+    = link_to "Add question", "#", :id=>"question_add", :class => 'button creation', :style =>'float:right;margin:10px;'    
+  %h4
+    = "Create a question"
+  #quiz_accordion
+
+  #form_space    
+  
+
+  #hidden_form.hidden
+    = render 'questions/new'
+
+
     
 
 :javascript
