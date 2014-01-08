@@ -56,7 +56,7 @@ class CoursesController < ApplicationController
           temp.push("<a target='_blank' href='/assignment_assessments/"+ assignment.id.to_s + "'>" + assignment.name + "</a>")
         elsif course.type == "Quiz"
           temp.push(course.type)
-          quiz = QuizAssignment.join(:quizzes).where(:id => course.post_id).first
+          quiz = QuizAssignment.joins(:quiz).where(:id => course.post_id).first
           temp.push("<a target='_blank' href='/quizzes/"+ quiz.quiz_id.to_s + "'>" + quiz.title + "</a>")
         elsif course.type == "Document"
           temp.push(course.type)
