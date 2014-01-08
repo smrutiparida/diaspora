@@ -10,7 +10,7 @@
   %h5{:style => 'float:left;margin-right:15px;margin-top:6px;'}
     Load a quiz
   %h5.fieldWithErrors{:style => 'margin-left:20px;'} DueDate  
-    = text_field_tag 'assignment[submission_date]', nil, :placeholder => "Due Date..", :class => 'jquery-ui-date', :size => '10', :style => "width:25%;display:inline-block;margin-left:5px;"     
+  = text_field_tag 'assignment[submission_date]', nil, :placeholder => "Due Date..", :class => 'jquery-ui-date', :size => '10', :style => "width:25%;display:inline-block;margin-left:5px;"     
   .section
     = select_tag "quizList", options_from_collection_for_select(@quizzes, "id", "title")    
     %br
