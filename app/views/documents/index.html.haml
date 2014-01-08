@@ -16,7 +16,7 @@
 
 %div#tabs.span-17  
   %div#tabs-1
-    - if @documents
+    - if !@documents.blank?
       %ul{:style=>"padding-left:0px;"}
         %li.image_list
           #people_stream.section.contact_pictures

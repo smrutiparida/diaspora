@@ -8,7 +8,7 @@
     function createUploader(){
      var uploader = new qq.FileUploaderBasic({
          element: document.getElementById('file-upload'),
-         params: {'document' : {'pending' : false, 'folder' : #{folder}, 'public' : false}},
+         params: {'document' : {'pending' : false, 'folder' : '#{folder}', 'public' : false}},
          allowedExtensions: ['pdf', 'doc', 'docx', 'ppt', 'pptx', 'pps', 'ppsx', 'odt', 'xls', 'xlsx', 'rtf', 'txt', 'csv', 'tsv', 'xml', 'html'],
          action: "#{documents_path}",
          button: document.getElementById('file-upload'),
