@@ -100,7 +100,7 @@
   });
 
   $('#add_to_quiz').live('click'.function(){
-    qpath = $(this).data('qid');
+    var qpath = $(this).data('qid');
     $.getScript('/questions/clone/' + qpath);
     $.facebox.close();
   });
