@@ -57,7 +57,7 @@ class CoursesController < ApplicationController
         elsif course.type == "Quiz"
           temp.push(course.type)
           quiz = Quiz.joins(:quiz_assignments).where('quiz_assignments.id' => course.post_id).first
-          temp.push("<a target='_blank' href='/quizzes/"+ quiz.quiz_id.to_s + "'>" + quiz.title + "</a>")
+          temp.push("<a target='_blank' href='/quizzes/"+ quiz.id.to_s + "'>" + quiz.title + "</a>")
         elsif course.type == "Document"
           temp.push(course.type)
           file = Document.find(course.post_id)
