@@ -23,12 +23,12 @@ class QuizzesController < ApplicationController
     @quiz = Quiz.find(params[:id])
     @quiz[:questions] = Question.joins(:quiz_questions).where('quiz_questions.quiz_id' => @quiz.id)
     @role = Role.where(:person_id => current_user.person, :name => 'teacher').first
-    layout_option = (@role.nil? or @role.name != "teacher") ? true : false
+    #layout_option = (@role.nil? or @role.name != "teacher") ? true : false
+    layout_option = params[:overlay] == "1" ? false : true
     #Rails.logger.info(@quiz[:questions].to_json)
     #Rails.logger.info(@quiz.to_json)
     respond_with do |format|
-      #format.html {render :layout => layout_option}
-      format.html
+      format.html {render :layout => layout_option}
       format.json {render :json => @quiz.to_json}
     end
     raise ActiveRecord::RecordNotFound unless @quiz

@@ -22,7 +22,7 @@
   function showQuiz(quizid,quiztitle){    
     $('#display_quiz').empty();
     $.ajax({
-      url: '/quizzes/'+ quizid,
+      url: '/quizzes/'+ quizid + '?overlay=1',
       dataType: 'html',
       type: 'GET',
       success: function(data) {
