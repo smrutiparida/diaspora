@@ -39,14 +39,14 @@
         %h5{:style => 'margin-bottom:0px;'}
           Description  
         = text_area_tag 'assignment[description]', nil, :rows => '3', :placeholder => "What students need to do.."
-        
-        = link_to "Add a file", '#', :onclick => "$('#upload_area').show();" 
+        %div
+          = link_to "Add a file", '#', :onclick => "$('#upload_area').show();$(this).parent().hide();" 
         %span#upload_area.hidden
           %h5{:style => 'margin:6px 10px 0px 0px;float:left;'}
             = "Select File"
         
           = select_tag "assignment[document_id]", options_from_collection_for_select(@documents, "id", "processed_doc"), :id => 'file_upload_id'
-          %div{:style => "margin-left:86px"}
+          %div{:style => "margin-left:69px"}
           
             = render 'documents/uploader', :person => current_user.person, :folder => @folder.name, :overlay => true
           
