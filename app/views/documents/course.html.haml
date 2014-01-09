@@ -12,7 +12,7 @@
       
       = select_tag "course[post_id]", options_from_collection_for_select(@documents, "id", "processed_doc")
       %div{:style => "margin-left:86px"}
-        = "Click Here to "
+        
         = render 'documents/uploader', :person => current_user.person, :folder => @folder, :overlay => @overlay
     %br
       = course.submit "Add file to session", 'data-disable-with' => "In Progress..", :class => 'button creation', :style => 'float:right;'
