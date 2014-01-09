@@ -11,7 +11,7 @@
       %h5{:style => 'margin:6px 27px 0px 0px;float:left;'}
         = "Select File"
       
-      = select_tag "course[post_id]", options_from_collection_for_select(@documents, "id", "processed_doc")
+      = select_tag "course[post_id]", options_from_collection_for_select(@documents, "id", "processed_doc"), :id => 'file_upload_id'
       %div{:style => "margin-left:86px"}
         
         = render 'documents/uploader', :person => current_user.person, :folder => @folder, :overlay => @overlay

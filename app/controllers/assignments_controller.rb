@@ -5,7 +5,9 @@ class AssignmentsController < ApplicationController
 
   def new
     @modules = Content.where(:aspect_id => params[:a_id])
-    @assignments = Assignment.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)   
+    @folder = Aspect.find(params[:a_id])
+    @assignments = Assignment.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
+    @documents = Document.where(:diaspora_handle => current_user.diaspora_handle, :folder => @folder.name).order(:updated_at)  
     respond_to do |format|
       format.html do
         render :layout => false
