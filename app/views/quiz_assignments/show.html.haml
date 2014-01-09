@@ -38,7 +38,7 @@
       - else
         = link_to "Publish Result", '#', :"data-id" => @quiz_assignment.id.to_s, :class => 'button disabled', :id => 'publish-button'
     - else
-      - if @assignment.submission_date > Time.now
+      - if @quiz_assignment.submission_date > Time.now
         = link_to "Attemp Quiz", '#', :class => 'button', :style => 'margin-right:10px;', :id => 'attempt-button',:"data-id" => @quiz_assignment.id.to_s 
          
   #conversation_inbox
