@@ -96,7 +96,7 @@ class QuizAssessmentsController < ApplicationController
     @quiz = Quiz.find(@quiz_assignment.quiz_id)
     @questions = Question.joins(:quiz_questions).where('quiz_questions.quiz_id' => @quiz.id)
     question_hash = {}
-    @questions.each {|question| question_hash[question.id] = question.attributes.to_json(:only => ['answer', 'mark'])
+    @questions.each {|question| question_hash[question.id] = question.attributes.to_json(:only => ['answer', 'mark'])}
     
 
     @quiz_assessment = current_user.build_post(:quiz_assessment, quiz_assessment_params)
