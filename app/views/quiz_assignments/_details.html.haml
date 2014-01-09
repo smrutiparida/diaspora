@@ -1,0 +1,20 @@
+%div{:style => "padding:8px 8px 8px 0px;"}
+  .media{:style => "margin-left:0px;"}
+    .img{:style => "margin-bottom:10px;"}
+      = person_image_tag(teacher_info)
+    .bg
+      .subject          
+        %h5{:style => "margin-bottom:1em;"}
+          = quiz.title
+      .last_author
+        = "Time: "
+        = quiz.time
+        = "Minutes" 
+      %div.timeago.timestamp{:style => "float:right;color:black;"}
+        = "Submit Date: "
+        = time_tag(quiz_assignment.submission_date, :format=>'%b %d')
+      %br  
+      %div{:style => "float:right;"}
+        = "Marks: "
+        = quiz.total_marks
+        = "Points"

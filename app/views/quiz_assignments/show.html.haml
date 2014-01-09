@@ -1,0 +1,119 @@
+-#   Copyright (c) 2010-2011, Diaspora Inc.  This file is
+-#   licensed under the Affero General Public License version 3 or later.  See
+-#   the COPYRIGHT file.
+
+- content_for :head do
+  = javascript_include_tag "https://www.google.com/jsapi" 
+  = javascript_include_tag "https://www.google.com/uds/?file=visualization&amp;v=1.0&amp;packages=corechart,table"
+  = javascript_include_tag "https://www.google.com/uds/api/visualization/1.0/3e90177897a662843613f410c963722a/format+en,default+en,ui+en,table+en,corechart+en.I.js"
+  = stylesheet_link_tag "https://www.google.com/uds/api/visualization/1.0/3e90177897a662843613f410c963722a/ui+en,table+en.css"
+  
+
+  
+- content_for :page_title do
+  = "Quiz Details"
+
+:css
+  footer{ display:none;}
+
+#left_pane
+  #left_pane_header{:style => "height:100%;"}
+    .right
+      - if @teacher  
+        = link_to "View Performance", '#', :class => 'button', :style => 'margin-right:10px;', :id => 'performance-button',:"data-id" => @quiz_assignment.id.to_s
+      - else
+        = link_to "View Result", '#', :"data-id" => @quiz_assignment.id.to_s, :class => 'button disabled', :id => 'publish-button'
+      
+
+    %h3
+      = "Quiz Details"     
+    = render 'quiz_assignments/details', :quiz => @quiz, :teacher_info => @teacher_info, :quiz_assignment => @quiz_assignment
+    
+    - if @teacher      
+      - if Time.now > @quiz_assignment.submission_date
+        - if !@quiz_assignment.is_result_published
+          = link_to "Publish Result", '#', :"data-id" => @quiz_assignment.id.to_s, :class => 'button creation', :id => 'publish-button'
+        - else 
+          = link_to "Published", '#', :"data-id" => @quiz_assignment.id.to_s, :class => 'button disabled', :id => 'publish-button'
+      - else
+        = link_to "Publish Result", '#', :"data-id" => @quiz_assignment.id.to_s, :class => 'button disabled', :id => 'publish-button'
+    - else
+      - if @assignment.submission_date > Time.now
+        = link_to "Attemp Quiz", '#', :class => 'button', :style => 'margin-right:10px;', :id => 'attempt-button',:"data-id" => @quiz_assignment.id.to_s 
+         
+  #conversation_inbox
+    .stream.conversations
+      - if @teacher
+        - if @quiz_assessments.count > 0
+          = render :partial => 'quiz_assessments/quiz_assessment', :collection => @quiz_assessments, :locals => {:authors => @authors}            
+        - else
+          %br
+          %br
+          %br
+          %br
+          %div{:style => 'text-align:center;'}
+            %i
+              = "No Submissions Yet" 
+           
+.span-15.prepend-9.last
+  .stream_container
+    #conversation_show      
+      - if @teacher or @quiz_assignment.is_result_published
+        = render 'quizzes/quiz_form', :quiz => @quiz
+      - else
+        #no_conversation_text
+          = "Click on Attempt Quiz button to view the quiz"
+
+:javascript
+
+  $('time.timeago').each(function(i,e) {
+    var jqe = $(e);
+    jqe.attr('data-original-title', new Date(jqe.attr('datetime')).toLocaleString());
+    jqe.attr('title', '');
+  });
+
+  $('.timeago').tooltip();
+  $('.timeago').timeago();
+
+  $('time.timeago').each(function(i,e) {
+    var jqe = $(e);
+    jqe.attr('title', '');
+  });
+
+  $('.quiz-assessment-wrapper').live('click', function(){
+    var conversation_path = $(this).data('conversation-path');
+
+    $.getScript(conversation_path, function() {
+      Diaspora.page.directionDetector.updateBinds();
+    });
+
+    return false;
+  });
+
+  $('#publish-button').click(function(){
+    if($(this).hasClass("disabled"))
+      return;
+    
+    var assignment_id = $(this).data('id');
+    $(this).text("Publishing...");
+    
+    $.getJSON('/quiz_assessments/publish?a_id=' + assignment_id, function(data) {
+      Diaspora.page.flashMessages.render({ 'success':data.success, 'notice':data.message });
+      $('#publish-button').text("Published");
+      $('#publish-button').attr('class','button disabled');
+    });
+
+    return false;
+  });
+
+
+  $('#performance-button').click(function(){
+    var assignment_id = $(this).data('id');
+    
+    
+    $.getScript('/quiz_assessments/performance?a_id=' + assignment_id);
+
+    return false;
+  });
+
+});
