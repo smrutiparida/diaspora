@@ -1,4 +1,5 @@
-
+:css
+  #file-upload { font-size:11px;border: none;background-image: none;box-shadow: none;color: #3f8fba;text-decoration: underline;cursor: pointer;}
 .span-15.last
   -#
     .span-3
@@ -38,15 +39,17 @@
         %h5{:style => 'margin-bottom:0px;'}
           Description  
         = text_area_tag 'assignment[description]', nil, :rows => '3', :placeholder => "What students need to do.."
-
-        %h5{:style => 'margin:6px 27px 0px 0px;float:left;'}
-        = "Select File"
-      
-        = select_tag "assignment[document_id]", options_from_collection_for_select(@documents, "id", "processed_doc"), :id => 'file_upload_id'
-        %div{:style => "margin-left:86px"}
         
-          = render 'documents/uploader', :person => current_user.person, :folder => @folder.name, :overlay => true
+        = link_to "Add a file", '#', :onclick => "$('#upload_area').show();" 
+        %span#upload_area.hidden
+          %h5{:style => 'margin:6px 10px 0px 0px;float:left;'}
+            = "Select File"
         
+          = select_tag "assignment[document_id]", options_from_collection_for_select(@documents, "id", "processed_doc"), :id => 'file_upload_id'
+          %div{:style => "margin-left:86px"}
+          
+            = render 'documents/uploader', :person => current_user.person, :folder => @folder.name, :overlay => true
+          
         
         %h5.fieldWithErrors Points  
         = text_field_tag 'assignment[comments_count]', '10', :style => "width:7%;display:inline-block;margin-left:5px;"       
