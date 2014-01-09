@@ -3,56 +3,7 @@
 -#   the COPYRIGHT file.
 
 
-- content_for :head do
-  :javascript
-    function createUploader(){
-     var uploader = new qq.FileUploaderBasic({
-         element: document.getElementById('file-upload'),
-         params: {'document' : {'pending' : false, 'folder' : '#{folder}', 'public' : false}},
-         allowedExtensions: ['pdf', 'doc', 'docx', 'ppt', 'pptx', 'pps', 'ppsx', 'odt', 'xls', 'xlsx', 'rtf', 'txt', 'csv', 'tsv', 'xml', 'html'],
-         action: "#{documents_path}",
-         button: document.getElementById('file-upload'),
-         sizeLimit: 4194304,
 
-         onProgress: function(id, fileName, loaded, total){
-          var progress = Math.round(loaded / total * 100 );
-           $('#fileInfo').text(fileName + ' ' + progress + '%');
-         },
-
-         messages: {
-             typeError: "#{t('photos.new_photo.invalid_ext')}",
-             sizeError: "#{t('photos.new_photo.size_error')}",
-             emptyError: "#{t('photos.new_photo.empty')}"
-         },
-
-         onSubmit: function(id, fileName){
-          $('#file-upload').addClass("loading");
-          $("#profile_photo_upload").find(".avatar").addClass('loading');
-          $("#file-upload-spinner").removeClass("hidden");
-         },
-
-         onComplete: function(id, fileName, responseJSON){
-          $("#file-upload-spinner").addClass("hidden");
-          $('#fileInfo').text(fileName + ' completed').fadeOut(2000);
-          $('#file-upload').removeClass("loading");
-
-
-          var id = responseJSON.data.document.id;
-          var url = responseJSON.data.document.unprocessed_doc.url;
-          var fname = responseJSON.data.document.processed_doc;
-          var format = responseJSON.data.document.processed_doc.substr(responseJSON.data.document.processed_doc.lastIndexOf(".")+1);
-
-          var temp_string = '<div class="hoverable docthumbnail" id="' + id + '"><div class="selected docthumbselected"></div><div style="padding:5px;"><a href="' + url + '"><img alt="file" class="thumb_small" src="/assets/facebox/' + format + '.png"></a></div><p><a href="' + url + '">' + fname + '</a></p></div>';
-
-          $('#no-file-message').empty();
-          $('#people_stream').prepend(temp_string).fadeIn('slow');
-
-
-         }
-     });
-    }
-    window.onload = createUploader;
-    $('#file-upload').addClass("creation");        
 
 
 #profile_photo_upload{:style => "margin-right:137px;"}
@@ -67,3 +18,53 @@
     #fileInfo
 
   #publisher_photo_upload
+
+:javascript
+  function createUploader(){
+   var uploader = new qq.FileUploaderBasic({
+       element: document.getElementById('file-upload'),
+       params: {'document' : {'pending' : false, 'folder' : '#{folder}', 'public' : false}},
+       allowedExtensions: ['pdf', 'doc', 'docx', 'ppt', 'pptx', 'pps', 'ppsx', 'odt', 'xls', 'xlsx', 'rtf', 'txt', 'csv', 'tsv', 'xml', 'html'],
+       action: "#{documents_path}",
+       button: document.getElementById('file-upload'),
+       sizeLimit: 4194304,
+
+       onProgress: function(id, fileName, loaded, total){
+        var progress = Math.round(loaded / total * 100 );
+         $('#fileInfo').text(fileName + ' ' + progress + '%');
+       },
+
+       messages: {
+           typeError: "#{t('photos.new_photo.invalid_ext')}",
+           sizeError: "#{t('photos.new_photo.size_error')}",
+           emptyError: "#{t('photos.new_photo.empty')}"
+       },
+
+       onSubmit: function(id, fileName){
+        $('#file-upload').addClass("loading");
+        $("#profile_photo_upload").find(".avatar").addClass('loading');
+        $("#file-upload-spinner").removeClass("hidden");
+       },
+
+       onComplete: function(id, fileName, responseJSON){
+        $("#file-upload-spinner").addClass("hidden");
+        $('#fileInfo').text(fileName + ' completed').fadeOut(2000);
+        $('#file-upload').removeClass("loading");
+
+
+        var id = responseJSON.data.document.id;
+        var url = responseJSON.data.document.unprocessed_doc.url;
+        var fname = responseJSON.data.document.processed_doc;
+        var format = responseJSON.data.document.processed_doc.substr(responseJSON.data.document.processed_doc.lastIndexOf(".")+1);
+
+        var temp_string = '<div class="hoverable docthumbnail" id="' + id + '"><div class="selected docthumbselected"></div><div style="padding:5px;"><a href="' + url + '"><img alt="file" class="thumb_small" src="/assets/facebox/' + format + '.png"></a></div><p><a href="' + url + '">' + fname + '</a></p></div>';
+
+        $('#no-file-message').empty();
+        $('#people_stream').prepend(temp_string).fadeIn('slow');
+
+
+       }
+   });
+  }
+  window.onload = createUploader;
+  $('#file-upload').addClass("creation");        
