@@ -8,7 +8,7 @@ class QuizAssessment < ActiveRecord::Base
     quiz_assessment = self.new #params.to_hash.slice(:name, :description, :submission_date)
     quiz_assessment.diaspora_handle = params[:author].diaspora_handle
     quiz_assessment.attempted_on = Time.now
-    
+    Rails.logger.info(params[:quiz_questions_assessments_attributes].to_json)
     quiz_assessment.quiz_questions_assessments.build(params[:quiz_questions_assessments_attributes])
     quiz_assessment
   end
