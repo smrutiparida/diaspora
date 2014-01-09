@@ -1,0 +1,17 @@
+#counter
+  
+= form_for QuizAssessment.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |assessment|  
+  = render 'quizzes/quiz_form', :quiz => @quiz
+  = assessment.submit "Submit", 'data-disable-with' => "Submitting...", :class => 'button creation'
+
+:javascript
+  $("#counter").countdown({
+    autostart: true,
+    m: 1,
+    s: 30,
+    done: function() {},
+    tpl : function(el,opts){
+      var template = _.template('<table><tr><th>minutes</th><th>seconds</th></tr><tr><td><%= m %></td><td><%= s %></td></tr></table>');
+      $(el).html(template(opts));    
+    }
+  }); 
