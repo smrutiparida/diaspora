@@ -108,7 +108,7 @@ class QuizAssessmentsController < ApplicationController
     
     @quiz_assessment.quiz_questions_assessments.each do |quiz_answer|
       answer_set = question_hash[quiz_answer.quiz_question_id]
-      if answer_set["answer"].downcase == quiz_answer.answer 
+      if answer_set["answer"].downcase == quiz_answer.answer.downcase
         quiz_answer.marks = answer_set["mark"].to_i 
         @quiz_assessment.marks_obtained += quiz_answer.marks
       else
