@@ -2,6 +2,7 @@
   
 = form_for QuizAssessment.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |assessment|  
   = render 'quizzes/quiz_form', :quiz => @quiz
+  = hidden_field_tag "quiz_assignment_id", @quiz_assignment.id
   = assessment.submit "Submit", 'data-disable-with' => "Submitting...", :class => 'button creation'
 
 :javascript

@@ -92,6 +92,34 @@ class QuizAssessmentsController < ApplicationController
   end
 
   def create
+    @quiz_assignment = QuizAssignment.find([:quiz_assignment_id])
+    @quiz = Quiz.find(@quiz_assignment.quiz_id)
+    @questions = Question.joins(:quiz_questions).where('quiz_questions.quiz_id' => @quiz.id)
+    question_hash = {}
+    @questions.each {|question| question_hash[question.id] = question.attributes.to_json(:only => ['answer', 'mark'])
+    
+
+    @quiz_assessment = current_user.build_post(:quiz_assessment, quiz_assessment_params)
+    quiz_assessment.quiz_assignment_id = @quiz_assignment.id
+    
+    quiz_assessment.marks_obtained = 0
+
+    @quiz_assessment.quiz_questions_assessments.each do |quiz_answer|
+      answer_set = question_hash[quiz_answer.quiz_question_id]
+      if answer_set[:answer].downcase == quiz_answer.answer 
+        quiz_answer.marks = answer_set[:mark].to_i 
+        quiz_assessment.marks_obtained += quiz_answer.marks
+      else
+        quiz_answer.marks = 0
+      end  
+    end  
+
+    if @quiz_assessment.save
+      respond_to do |format|
+        format.js
+      end
+    end
+    
     # When a user attempts a quiz and eventually submits it, this function is calles
     # for each question in a quiz
       # find if the answer submitted by the user is same as the correct answe
@@ -101,8 +129,7 @@ class QuizAssessmentsController < ApplicationController
 
   private
 
-   
   def quiz_assessment_params
-    params.require(:quiz_assessment).permit(:marks)
+    params.require(:quiz_assessment).permit(:quiz_id)
   end
 end

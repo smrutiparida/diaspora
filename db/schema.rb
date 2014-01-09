@@ -407,7 +407,7 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
 
   create_table "quiz_assessments", :force => true do |t|
     t.string   "diaspora_handle"
-    t.integer  "quiz_id",        :null => false    
+    t.integer  "quiz_assignment_id",        :null => false    
     t.integer  "marks_obtained"
     t.integer  "highest_marks_obtained"
     t.datetime "created_at",     :null => false
