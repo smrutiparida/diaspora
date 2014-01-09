@@ -108,6 +108,7 @@ class QuizAssessmentsController < ApplicationController
     
     @quiz_assessment.quiz_questions_assessments.each do |quiz_answer|
       answer_set = question_hash[quiz_answer.quiz_question_id]
+      Rails.logger.info(answer_set.to_json)
       Rails.logger.info(answer_set["answer"].downcase + ',' + quiz_answer.answer.downcase)
       if answer_set["answer"].downcase == quiz_answer.answer.downcase
         quiz_answer.marks = answer_set["mark"]
