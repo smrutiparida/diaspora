@@ -39,7 +39,13 @@
           Description  
         = text_area_tag 'assignment[description]', nil, :rows => '3', :placeholder => "What students need to do.."
 
+        %h5{:style => 'margin:6px 27px 0px 0px;float:left;'}
+        = "Select File"
+      
+        = select_tag "assignment[document_id]", options_from_collection_for_select(@documents, "id", "processed_doc")
+        %div{:style => "margin-left:86px"}
         
+          = render 'documents/uploader', :person => current_user.person, :folder => "Miscellaneous", :overlay => true
         
         
         %h5.fieldWithErrors Points  
