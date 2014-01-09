@@ -65,7 +65,7 @@ class QuizAssessmentsController < ApplicationController
   end
   
   def new
-    @quiz_assignment = QuizAssignment.find(params[:id)
+    @quiz_assignment = QuizAssignment.find(params[:id])
     @quiz = Quiz.joins(:quiz_assignments).where('quiz_assignments.id' => @quiz_assignment.id).first
     @quiz[:questions] = Question.joins(:quiz_questions).where('quiz_questions.quiz_id' => @quiz.id)
 
