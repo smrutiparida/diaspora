@@ -1,5 +1,7 @@
 .span-12.last
   #create_module
+    %div{:style => "float:right;margin-top:11px;"}
+      = render 'documents/uploader', :person => current_user.person, :folder => @folder
     = form_for Course.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |course|  
       %h5{:style => 'margin-bottom:0px;display:inline;'}
         = "Select Module"   
