@@ -24,7 +24,7 @@
         = link_to "View Performance", '#', :class => 'button', :style => 'margin-right:10px;', :id => 'performance-button',:"data-id" => @assignment.id.to_s
     %h3
       = "Assignment Details"     
-    = render 'assignment_assessments/details', :assignment => @assignment, :teacher_info => @teacher_info
+    = render 'assignment_assessments/details', :assignment => @assignment, :teacher_info => @teacher_info, :document => @document
     
     - if @teacher      
       - if Time.now > @assignment.submission_date

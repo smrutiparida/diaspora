@@ -89,6 +89,7 @@ class AssignmentAssessmentsController < ApplicationController
     role = Role.where(:person_id => current_user.person.id, :name => 'teacher').first
     @teacher = role.nil? ? false : true
     @assignment = Assignment.find(params[:id])
+    @document = @assignment.document_id.blank? ? nil : Document.find(@assignment.document_id)
     @teacher_info = Person.includes(:profile).where(diaspora_handle: @assignment.diaspora_handle).first
     @assignment_assessments = nil
     @assignment_assessment = nil 

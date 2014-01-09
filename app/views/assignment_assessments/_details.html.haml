@@ -8,6 +8,10 @@
           = assignment.name
       .last_author
         = assignment.description
+      - unless document.blank?
+        %div
+          %h5 Reference file:
+          = link_to document.processed_doc, document.unprocessed_doc.url  
       %div.timeago.timestamp{:style => "float:right;color:black;"}
         = "Submit Date: "
         = time_tag(assignment.submission_date, :format=>'%b %d')
