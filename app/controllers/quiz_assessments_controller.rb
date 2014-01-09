@@ -92,7 +92,7 @@ class QuizAssessmentsController < ApplicationController
   end
 
   def create
-    @quiz_assignment = QuizAssignment.find([:quiz_assignment_id])
+    @quiz_assignment = QuizAssignment.find(params[:quiz_assignment_id])
     @quiz = Quiz.find(@quiz_assignment.quiz_id)
     @questions = Question.joins(:quiz_questions).where('quiz_questions.quiz_id' => @quiz.id)
     question_hash = {}
