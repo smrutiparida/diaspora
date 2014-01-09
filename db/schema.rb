@@ -324,6 +324,7 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
     t.string   "status_message_guid"
     t.integer  "comments_count"
     t.boolean  "is_result_published",  :default => false, :null => false
+    t.integer  "document_id"
   end
 
   create_table "assignment_assessments", :force => true do |t|    

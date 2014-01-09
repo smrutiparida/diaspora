@@ -28,6 +28,7 @@ class Assignment < ActiveRecord::Base
   xml_attr :status_message_guid
 
   belongs_to :status_message, :foreign_key => :status_message_guid  , :primary_key => :guid
+  has_many   :documents, :foreign_key => :document_id, :primary_key => :id
   validates_associated :status_message
   delegate :author_name, to: :status_message, prefix: true
 

@@ -21,6 +21,8 @@ class AssignmentsController < ApplicationController
   
   def create
     @assignment = current_user.build_post(:assignment, assignment_params)
+    @document = Document.find(params[:assignment][:document_id])
+    @assignment.document_id = @document.id
     if @assignment.save      
       #@response = {}
       @response = @assignment.as_api_response(:backbone)
@@ -59,6 +61,6 @@ class AssignmentsController < ApplicationController
   end
 
   def assignment_params
-    params.require(:assignment).permit(:name, :description,:submission_date,:file_upload,:public, :pending, :aspect_ids, :comments_count)
+    params.require(:assignment).permit(:name, :description,:submission_date,:file_upload,:public, :document_id,:pending, :aspect_ids, :comments_count)
   end
 end
