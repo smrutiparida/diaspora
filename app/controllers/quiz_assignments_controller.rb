@@ -21,7 +21,7 @@ class QuizAssignmentsController < ApplicationController
     @quiz = Quiz.joins(:quiz_assignments).where('quiz_assignments.id' => @quiz_assignment.id).first
     @quiz[:questions] = Question.joins(:quiz_questions).where('quiz_questions.quiz_id' => @quiz.id)
 
-    @teacher_info = Person.includes(:profile).where(diaspora_handle: @assignment.diaspora_handle).first
+    @teacher_info = Person.includes(:profile).where(diaspora_handle: @quiz_assignment.diaspora_handle).first
 
     if @teacher
       @authors = {}
