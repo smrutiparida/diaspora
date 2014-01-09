@@ -1,23 +1,3 @@
-- if @role.nil? or @role.name != "teacher"
-  %div#counter
-    %div.desc
-      %div Min
-      %div Sec
-  </div>
-  = form_for Quiz.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |question|  
-    = render 'quizzes/quiz_form', :quiz => @quiz
-    %div        
-      = question.submit "Submit", 'data-disable-with' => "Submitting...", :class => 'button creation'
-  :javascript
-    $('#counter').countdown({
-      stepTime: 60,
-      format: 'mm:ss',
-      startTime: "15:00",
-      digitImages: 6,
-      digitWidth: 53,
-      digitHeight: 77,
-      timerEnd: function() { alert('end!!'); },
-      image: "/assets/icons/digits.png"
-    });    
-- else
-  = render 'quizzes/quiz_form', :quiz => @quiz
+= render 'quizzes/quiz_form', :quiz => @quiz
+
+

@@ -1,6 +1,6 @@
 class QuizAssessmentsController < ApplicationController
 
-  before_filter :authenticate_user!, :only => [:new, :create, :index, :destroy, :show, :update, :publish, :performance]
+  before_filter :authenticate_user!, :only => [:create, :new, :destroy, :show, :update, :publish, :performance]
   respond_to :html, :json, :js
 
 
@@ -62,19 +62,16 @@ class QuizAssessmentsController < ApplicationController
   end
 
   def update
-    @assignment_assessment = AssignmentAssessment.find(params[:id])
-    Rails.logger.info(@assignment_assessment.to_json)
-    assessment_hash = assignment_assessment_params
-    assessment_hash[:points] = assessment_hash[:points].to_i
-    assessment_hash[:is_checked] = true
-    assessment_hash[:checked_date] = Time.now
-    Rails.logger.info(assessment_hash.to_json)
+  end
+  
+  def new
+    @quiz_assignment = QuizAssignment.find(params[:id)
+    @quiz = Quiz.joins(:quiz_assignments).where('quiz_assignments.id' => @quiz_assignment.id).first
+    @quiz[:questions] = Question.joins(:quiz_questions).where('quiz_questions.quiz_id' => @quiz.id)
 
-    if @assignment_assessment.update_attributes!(assessment_hash)
-      redirect_to '/assignment_assessments/' + @assignment_assessment.assignment_id.to_s + '?s_id=' + @assignment_assessment.id.to_s
-    else
-      flash[:error] = I18n.t 'aspects.update.failure', :name => @aspect.name
-    end    
+    respond_to do |format|
+      format.html      
+    end  
   end
 
   def show

@@ -1,112 +1,188 @@
-/*
- * jquery-counter plugin
+/**
+ * jQuery Countdown Timer plugin v1.0
  *
- * Copyright (c) 2009 Martin Conte Mac Donell <Reflejo@gmail.com>
- * Dual licensed under the MIT and GPL licenses.
- * http://docs.jquery.com/License
+ * https://github.com/unthunk/jquery-countdown-timer
+ *
+ * Copyright 2013 Lucas Myers
+ * Released under the MIT license:
+ *   http://www.opensource.org/licenses/mit-license.php
  */
-jQuery.fn.countdown = function(userOptions)
-{
-  // Default options
-  var options = {
-    stepTime: 60,
-    // startTime and format MUST follow the same format.
-    // also you cannot specify a format unordered (e.g. hh:ss:mm is wrong)
-    format: "dd:hh:mm:ss",
-    startTime: "01:12:32:55",
-    digitImages: 6,
-    digitWidth: 53,
-    digitHeight: 77,
-    timerEnd: function(){},
-    image: "digits.png"
-  };
-  var digits = [], interval;
 
-  // Draw digits in given container
-  var createDigits = function(where) 
-  {
-    var c = 0;
-    // Iterate each startTime digit, if it is not a digit
-    // we'll asume that it's a separator
-    for (var i = 0; i < options.startTime.length; i++)
-    {
-      if (parseInt(options.startTime[i]) >= 0) 
-      {
-        elem = $('<div id="cnt_' + i + '" class="cntDigit" />').css({
-          height: options.digitHeight * options.digitImages * 10, 
-          float: 'left', background: 'url(\'' + options.image + '\')',
-          width: options.digitWidth});
-        digits.push(elem);
-        margin(c, -((parseInt(options.startTime[i]) * options.digitHeight *
-                              options.digitImages)));
-        digits[c].__max = 9;
-        // Add max digits, for example, first digit of minutes (mm) has 
-        // a max of 5. Conditional max is used when the left digit has reach
-        // the max. For example second "hours" digit has a conditional max of 4 
-        switch (options.format[i]) {
-          case 'h':
-            digits[c].__max = (c % 2 == 0) ? 2: 9;
-            if (c % 2 == 0)
-              digits[c].__condmax = 4;
-            break;
-          case 'd': 
-            digits[c].__max = 9;
-            break;
-          case 'm':
-          case 's':
-            digits[c].__max = (c % 2 == 0) ? 5: 9;
-        }
-        ++c;
-      }
-      else 
-        elem = $('<div class="cntSeparator"/>').css({float: 'left'})
-                .text(options.startTime[i]);
+(function($){
 
-      where.append(elem)
-    }
-  };
-  
-  // Set or get element margin
-  var margin = function(elem, val) 
-  {
-    if (val !== undefined)
-      return digits[elem].css({'marginTop': val + 'px'});
+        var labels = [],
 
-    return parseInt(digits[elem].css('marginTop').replace('px', ''));
-  };
+                start = function(el,options) {
+                        if($(el).data('countdown-label') >= 0){
+                                        // there's already a timer on this
+                                        methods.stop(el);
+                                }
+                                // handle the label
+                                var label = $(el).data('countdown-label') >= 0 ? $(el).data('countdown-label') : labels.length,
+                                        opts = $(el).data('countdown-opts') ? $(el).data('countdown-opts') : options;
+                                $(el).data('countdown-label',label);
+                                $(el).data('countdown-opts',opts);
 
-  // Makes the movement. This is done by "digitImages" steps.
-  var moveStep = function(elem) 
-  {
-    digits[elem]._digitInitial = -(digits[elem].__max * options.digitHeight * options.digitImages);
-    return function _move() {
-      mtop = margin(elem) + options.digitHeight;
-      if (mtop == options.digitHeight) {
-        margin(elem, digits[elem]._digitInitial);
-        if (elem > 0) moveStep(elem - 1)();
-        else 
-        {
-          clearInterval(interval);
-          for (var i=0; i < digits.length; i++) margin(i, 0);
-          options.timerEnd();
-          return;
-        }
-        if ((elem > 0) && (digits[elem].__condmax !== undefined) && 
-            (digits[elem - 1]._digitInitial == margin(elem - 1)))
-          margin(elem, -(digits[elem].__condmax * options.digitHeight * options.digitImages));
-        return;
-      }
+                                update(el,opts);
 
-      margin(elem, mtop);
-      if (margin(elem) / options.digitHeight % options.digitImages != 0)
-        setTimeout(_move, options.stepTime);
+                                labels[label] = setInterval(function(){
+                                        tick(el);
+                                },1000);
+                },
 
-      if (mtop == 0) digits[elem].__ismax = true;
-    }
-  };
+                tick = function(el) {
+                        var opts = ($(el).data('countdown-opts')),
+                                done = false;
 
-  $.extend(options, userOptions);
-  this.css({height: options.digitHeight, overflow: 'hidden'});
-  createDigits(this);
-  interval = setInterval(moveStep(digits.length - 1), 1000);
-};
+                        // countdown 1 second
+                        opts.s--;
+                        // detect if countdown is done (all 0's)
+                        if(opts.y === 0 && opts.m === 0 && opts.d === 0 && opts.h === 0 && opts.m === 0 && opts.s === 0){
+                                done = true;
+                        }
+
+                        // if seconds is less than 0, reset to 59, then decrement up the counter
+                        if(opts.s < 0) {
+                                opts.s = 59;
+
+                                // minutes
+                                if(opts.m === 0){
+                                        opts.m = 59;
+
+                                        // hours
+                                        if(opts.h === 0){
+                                                opts.h = 23;
+
+                                                // days
+                                                if(opts.d === 0) {
+                                                        opts.d = 364;
+                                                        // years
+                                                        opts.y--;
+                                                }
+                                                else {
+                                                        opts.d--;
+                                                }
+                                        }
+                                        else {
+                                                opts.h--;
+                                        }
+                                }
+                                else{
+                                        opts.m--;
+                                }
+                        }
+
+                        // update display
+                        update(el,opts);
+
+                        // end of countdown, end timer and run callback
+                        if(done) {
+                                methods.stop(el);
+                                $(el).removeData('countdown-label countdown-opts');
+                                if(opts.done && typeof opts.done === 'function') {
+                                        opts.done();
+                                }
+                        }
+                        else {
+
+                                // save countdown
+                                $(el).data('countdown-opts',opts);
+                        }
+                },
+
+                update = function(el,opts) {
+                        // run opts.tpl if it is passed in
+                        if(opts.tpl && typeof opts.tpl === "function"){
+                                opts.tpl(el,opts);
+                        }
+                        else {
+                                // display the countdown
+                                var template = _.template(
+                                        $("#countdown-tpl").html()
+                                );
+
+                                $(el).html(template(opts));
+                        }
+
+
+                        function format(val) {
+                                var formatted = '' + val;
+                                if(formatted.length === 1) {
+                                        formatted = ''+'0' + val;
+                                }
+                                return formatted;
+                        }
+                },
+
+                methods = {
+                        init: function(options) {
+                                var that = this;
+                                return this.each(function(){
+                                        var $this = $(this);
+                                        var opts = $.extend({}, $.fn.countdown.defaults, options);
+                                        $($this).data('countdown-opts',opts);
+                                        if(opts.autostart) {
+                                                start($this,opts);
+                                        }
+                                });
+                        },
+
+                        pause: function() {
+                                return this.each(function(){
+                                        var $this = $(this);
+                                        methods.stop($this);
+                                });
+                        },
+
+                        resume: function() {
+                                return this.each(function(){
+                                        var $this = $(this);
+                                        var opts = $.extend({}, $.fn.countdown.defaults, $($this).data('countdown-opts'));
+                                        start($this,opts);
+                                });
+                        },
+
+                        start: function() {
+                                return this.each(function(){
+                                        var $this = $(this);
+                                        var opts = $.extend({}, $.fn.countdown.defaults, $($this).data('countdown-opts'));
+                                        start($this,opts);
+                                });
+                        },
+
+                        stop: function(el) {
+                                if(el){
+                                        clearInterval(labels[$(el).data('countdown-label')]);
+                                }
+                                else {
+                                        return this.each(function(){
+                                                var $this = $(this);
+                                                clearInterval(labels[$($this).data('countdown-label')]);
+                                        });
+                                }
+                        }
+
+                };
+
+        $.fn.countdown = function(options){
+
+                if ( methods[options] ) {
+                        return methods[ options ].apply( this, Array.prototype.slice.call( arguments, 1 ));
+                } else if ( typeof options === 'object' || ! options ) {
+                        return methods.init.apply( this, arguments );
+                } else {
+                        $.error( 'Method ' +  method + ' does not exist on jQuery.tooltip' );
+                }
+
+        };
+
+        $.fn.countdown.defaults = {
+                autostart: false,
+                y: 0,
+                d: 0,
+                h: 0,
+                m: 0,
+                s: 0
+        };
+
+})(jQuery);

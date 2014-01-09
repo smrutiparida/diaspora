@@ -39,7 +39,7 @@
         = link_to "Publish Result", '#', :"data-id" => @quiz_assignment.id.to_s, :class => 'button disabled', :id => 'publish-button'
     - else
       - if @quiz_assignment.submission_date > Time.now
-        = link_to "Attemp Quiz", '#', :class => 'button', :style => 'margin-right:10px;', :id => 'attempt-button',:"data-id" => @quiz_assignment.id.to_s 
+        = link_to "Attemp Quiz", '#', :class => 'button creation', :style => 'margin-right:10px;', :id => 'attempt-button',:"data-id" => @quiz_assignment.id.to_s 
          
   #conversation_inbox
     .stream.conversations
@@ -112,5 +112,11 @@
     
     $.getScript('/quiz_assessments/performance?a_id=' + assignment_id);
 
+    return false;
+  });
+
+  $('#attempt-button').click(function(){
+    var assignment_id = $(this).data('id');
+    $.getScript('/quiz_assessments/?id=' + assignment_id);
     return false;
   });
