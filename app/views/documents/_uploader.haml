@@ -57,7 +57,7 @@
         var fname = responseJSON.data.document.processed_doc;
         var format = responseJSON.data.document.processed_doc.substr(responseJSON.data.document.processed_doc.lastIndexOf(".")+1);
 
-        if(responseJSON.overlay) {
+        if(responseJSON.overlay == "true") {
           $("#course_post_id").append('<option value=' + id + ' selected>' + fname + '</option>');      
           $('#fileInfo').text('file added to list');
         }
