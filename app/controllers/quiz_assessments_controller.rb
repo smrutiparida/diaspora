@@ -78,7 +78,7 @@ class QuizAssessmentsController < ApplicationController
     role = Role.where(:person_id => current_user.person.id, :name => 'teacher').first
     @teacher = role.nil? ? false : true
 
-    @quiz_assignment = QuizAssignment.find(params[:id)
+    @quiz_assignment = QuizAssignment.find(params[:id])
     @quiz_assessment = QuizAssessment.where(:quiz_id => @quiz_assignment.id, :diaspora_handle => current_user.diaspora_handle).first
     @quiz = Quiz.joins(:quiz_assignments).where('quiz_assignments.id' => @quiz_assignment.id).first
 
