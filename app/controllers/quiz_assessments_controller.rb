@@ -100,7 +100,7 @@ class QuizAssessmentsController < ApplicationController
     
     Rails.logger.info(question_hash.to_json)
 
-    @quiz_assessment = current_user.build_post(:quiz_assessment, quiz_assessment_params)
+    @quiz_assessment = current_user.build_post(:quiz_assessment, params[:quiz_assessment])
     quiz_assessment.quiz_assignment_id = @quiz_assignment.id
     
     quiz_assessment.marks_obtained = 0
@@ -130,7 +130,5 @@ class QuizAssessmentsController < ApplicationController
 
   private
 
-  def quiz_assessment_params
-    params.require(:quiz_assessment).permit(:quiz_id)
-  end
+  
 end
