@@ -79,6 +79,8 @@ Diaspora::Application.routes.draw do
 
   resources :quiz_assignments
 
+  resources :quiz_assessments
+
   resources :o_embed_caches
 
   resources :contents
