@@ -9,8 +9,8 @@
 #profile_photo_upload{:style => "margin-right:137px;"}
   = image_tag('ajax-loader.gif', :class => 'hidden')
 
-  #file-upload.button.creation
-    = "Add Documents"
+  #file-upload
+    = "Upload a file"
 
   = image_tag('ajax-loader.gif', :class => 'hidden', :style => "z-index:-1", :id => 'file-upload-spinner')
 
@@ -72,5 +72,4 @@
        }
    });
   }
-  createUploader();
-  $('#file-upload').addClass("creation");        
+  createUploader();      
