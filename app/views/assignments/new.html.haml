@@ -45,7 +45,7 @@
         = select_tag "assignment[document_id]", options_from_collection_for_select(@documents, "id", "processed_doc"), :id => 'file_upload_id'
         %div{:style => "margin-left:86px"}
         
-          = render 'documents/uploader', :person => current_user.person, :folder => @forlder.name, :overlay => true
+          = render 'documents/uploader', :person => current_user.person, :folder => @folder.name, :overlay => true
         
         
         %h5.fieldWithErrors Points  
