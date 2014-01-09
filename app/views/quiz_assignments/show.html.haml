@@ -118,6 +118,8 @@
   $('#attempt-button').click(function(){
     window.confirm("This is time based quiz.Clicking the button will start the quiz and you can not quit in the middle.Press ok to confirm.");
     var assignment_id = $(this).data('id');
-    $.getScript('/quiz_assessments/new?id=' + assignment_id);
+    $.get('/quiz_assessments/new?id=' + assignment_id, function(data){
+       $('#conversation_show').html(data);
+    });
     return false;
   });

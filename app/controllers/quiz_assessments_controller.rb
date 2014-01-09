@@ -70,7 +70,7 @@ class QuizAssessmentsController < ApplicationController
     @quiz[:questions] = Question.joins(:quiz_questions).where('quiz_questions.quiz_id' => @quiz.id)
 
     respond_to do |format|
-      format.html      
+      format.html {render :layout => false} 
     end  
   end
 
