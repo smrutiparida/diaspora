@@ -1,5 +1,5 @@
 :css
-  #file-upload { border: none;background-image: none;box-shadow: none;color: #3f8fba;text-decoration: underline;cursor: pointer;}
+  #file-upload { font-size:11px;border: none;background-image: none;box-shadow: none;color: #3f8fba;text-decoration: underline;cursor: pointer;}
 .span-12.last
   #create_module    
     = form_for Course.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |course|  
@@ -9,10 +9,10 @@
       = hidden_field_tag "course[type]", "Document"
       %h5{:style => 'margin:6px 27px 0px 0px;float:left;'}
         = "Select File"
-      .section
-        = select_tag "course[post_id]", options_from_collection_for_select(@documents, "id", "processed_doc")
-        %div{:style => "font-size:11px;margin-left:95px"}
-          = "Click Here to "
-          = render 'documents/uploader', :person => current_user.person, :folder => @folder, :overlay => @overlay
-      %br
-      = course.submit "Add file to session", 'data-disable-with' => "In Progress..", :class => 'button creation'
+      
+      = select_tag "course[post_id]", options_from_collection_for_select(@documents, "id", "processed_doc")
+      %div{:style => "margin-left:86px"}
+        = "Click Here to "
+        = render 'documents/uploader', :person => current_user.person, :folder => @folder, :overlay => @overlay
+    %br
+      = course.submit "Add file to session", 'data-disable-with' => "In Progress..", :class => 'button creation', :style => 'float:right;'
