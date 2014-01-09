@@ -397,6 +397,7 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
   create_table "quiz_assignments", :force => true do |t|
     t.integer  "quiz_id"
     t.datetime "submission_date"
+    t.boolean  "is_result_published",  :default => false, :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "diaspora_handle"

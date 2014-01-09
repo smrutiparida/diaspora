@@ -13,6 +13,29 @@ class QuizAssignmentsController < ApplicationController
     end
   end
 	
+  def show
+    role = Role.where(:person_id => current_user.person.id, :name => 'teacher').first
+    @teacher = role.nil? ? false : true
+
+    @quiz_assignment = QuizAssignment.find(params[:id)
+    @quiz = Quiz.joins(:quiz_assignments).where('quiz_assignments.id' => @quiz_assignment.id).first
+    @quiz[:questions] = Question.joins(:quiz_questions).where('quiz_questions.quiz_id' => @quiz.id)
+
+    @teacher_info = Person.includes(:profile).where(diaspora_handle: @assignment.diaspora_handle).first
+
+    if @teacher
+      @authors = {}
+      @quiz_assessments = QuizAssessment.where(:quiz_id => @quiz_assignment.id)
+      unless @quiz_assessments.nil?
+        @quiz_assessments.each { |c| @authors[c.id] = Person.includes(:profile).where(diaspora_handle: c.diaspora_handle).first }
+      end
+    else
+      @student = nil
+      @quiz_assessment = QuizAssessment.where(:quiz_id => @quiz_assignment.id, :diaspora_handle => current_user.diaspora_handle).first              
+      @student = Person.includes(:profile).where(diaspora_handle: @quiz_assessment.diaspora_handle).first unless @quiz_assessment.blank?      
+    end  
+  end
+
   def new
     @modules = Content.where(:aspect_id => params[:a_id])
     @quizzes = Quiz.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
