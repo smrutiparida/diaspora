@@ -58,7 +58,7 @@
 .span-15.prepend-9.last
   .stream_container
     #conversation_show      
-      - if @teacher or @quiz_assignment.is_result_published
+      - if @teacher or @quiz_assignment.is_result_published == true
         = render 'quizzes/quiz_form', :quiz => @quiz
       - else
         #no_conversation_text
@@ -115,5 +115,3 @@
 
     return false;
   });
-
-});
