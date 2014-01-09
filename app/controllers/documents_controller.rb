@@ -129,7 +129,7 @@ class DocumentsController < ApplicationController
   private
 
   def document_params
-    params.require(:document).permit(:public, :text, :pending, :user_file, :document_url, :aspect_ids, :folder, :overlay)
+    params.require(:document).permit(:public, :text, :pending, :user_file, :document_url, :aspect_ids, :folder)
   end
 
   def file_handler(params)
@@ -183,8 +183,8 @@ class DocumentsController < ApplicationController
       end
 
       respond_to do |format|
-        format.json{ render(:layout => false , :json => {"success" => true, "overlay" => params[:document][:overlay], "data" => @document}.to_json )}
-        format.html{ render(:layout => false , :json => {"success" => true, "overlay" => params[:document][:overlay], "data" => @document}.to_json )}
+        format.json{ render(:layout => false , :json => {"success" => true, "overlay" => params[:overlay], "data" => @document}.to_json )}
+        format.html{ render(:layout => false , :json => {"success" => true, "overlay" => params[:overlay], "data" => @document}.to_json )}
       end
     else
       respond_with @document, :location => documents_path, :error => message
