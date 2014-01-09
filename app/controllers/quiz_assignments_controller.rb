@@ -25,13 +25,13 @@ class QuizAssignmentsController < ApplicationController
 
     if @teacher
       @authors = {}
-      @quiz_assessments = QuizAssessment.where(:quiz_id => @quiz_assignment.id)
+      @quiz_assessments = QuizAssessment.where(:quiz_assignment_id => @quiz_assignment.id)
       unless @quiz_assessments.nil?
         @quiz_assessments.each { |c| @authors[c.id] = Person.includes(:profile).where(diaspora_handle: c.diaspora_handle).first }
       end
     else
       @student = nil
-      @quiz_assessment = QuizAssessment.where(:quiz_id => @quiz_assignment.id, :diaspora_handle => current_user.diaspora_handle).first              
+      @quiz_assessment = QuizAssessment.where(:quiz_assignment_id => @quiz_assignment.id, :diaspora_handle => current_user.diaspora_handle).first              
       @student = Person.includes(:profile).where(diaspora_handle: @quiz_assessment.diaspora_handle).first unless @quiz_assessment.blank?      
     end  
   end
