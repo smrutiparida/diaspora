@@ -21,6 +21,7 @@ class DocumentsController < ApplicationController
     #role = Role.where(:person_id => current_user.person.id, :name => 'teacher').first
     #@teacher = role.nil? ? false : true
     #@assignment_active = (params[:tab] == "assignment") ? 1 : 0
+    @overlay = params[:overlay] == "1" ? true : false
     @folder = "Miscellaneous"
     if params[:a_id]
       aspect_detail = Aspect.find(params[:a_id]) 
@@ -46,15 +47,11 @@ class DocumentsController < ApplicationController
     #  @quizzes = Quiz.where(:status_message_guid => all_my_post_guid)
     #  @documents += Document.where(:status_message_guid => all_my_post_guid)
     #end
-    if !params[:a_id].nil? and params[:overlay] == "1"
+    if !params[:a_id].nil? and @overlay
       @modules = Content.where(:aspect_id => params[:a_id])
     end  
     respond_to do |format|
-      if params[:overlay]
-        format.html { render 'documents/course', :layout => false }
-      else
-        format.html
-      end    
+      @overlay ? format.html { render 'documents/course', :layout => false } : format.html   
       format.json {render :json => {'documents' => @documents}.to_json}
     end
   end
@@ -186,8 +183,8 @@ class DocumentsController < ApplicationController
       end
 
       respond_to do |format|
-        format.json{ render(:layout => false , :json => {"success" => true, "data" => @document}.to_json )}
-        format.html{ render(:layout => false , :json => {"success" => true, "data" => @document}.to_json )}
+        format.json{ render(:layout => false , :json => {"success" => true, "overlay" => params[:overlay], "data" => @document}.to_json )}
+        format.html{ render(:layout => false , :json => {"success" => true, "overlay" => params[:overlay], "data" => @document}.to_json )}
       end
     else
       respond_with @document, :location => documents_path, :error => message

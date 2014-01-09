@@ -23,7 +23,7 @@
   function createUploader(){
    var uploader = new qq.FileUploaderBasic({
        element: document.getElementById('file-upload'),
-       params: {'document' : {'pending' : false, 'folder' : '#{folder}', 'public' : false}},
+       params: {'document' : {'pending' : false, 'folder' : '#{folder}', public' : false}, 'overlay : #{overlay}},
        allowedExtensions: ['pdf', 'doc', 'docx', 'ppt', 'pptx', 'pps', 'ppsx', 'odt', 'xls', 'xlsx', 'rtf', 'txt', 'csv', 'tsv', 'xml', 'html'],
        action: "#{documents_path}",
        button: document.getElementById('file-upload'),
@@ -57,12 +57,18 @@
         var fname = responseJSON.data.document.processed_doc;
         var format = responseJSON.data.document.processed_doc.substr(responseJSON.data.document.processed_doc.lastIndexOf(".")+1);
 
-        var temp_string = '<div class="hoverable docthumbnail" id="' + id + '"><div class="selected docthumbselected"></div><div style="padding:5px;"><a href="' + url + '"><img alt="file" class="thumb_small" src="/assets/facebox/' + format + '.png"></a></div><p><a href="' + url + '">' + fname + '</a></p></div>';
+        if(responseJSON.overlay) {
+          $("#course_post_id").append('<option value=' + id + ' selected>' + fname + '</option>');      
+          $('#fileInfo').text('file added to list');
+        }
+        else
+        {
+          var temp_string = '<div class="hoverable docthumbnail" id="' + id + '"><div class="selected docthumbselected"></div><div style="padding:5px;"><a href="' + url + '"><img alt="file" class="thumb_small" src="/assets/facebox/' + format + '.png"></a></div><p><a href="' + url + '">' + fname + '</a></p></div>';
 
-        $('#no-file-message').empty();
-        $('#people_stream').prepend(temp_string).fadeIn('slow');
-
-
+          $('#no-file-message').empty();
+          $('#people_stream').prepend(temp_string).fadeIn('slow');
+        }
+   
        }
    });
   }

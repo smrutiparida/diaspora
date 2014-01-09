@@ -9,7 +9,7 @@
   %h2
     = "My Files"
   %div{:style => "float:right;margin-top:11px;"}
-    = render 'documents/uploader', :person => current_user.person, :folder => @folder
+    = render 'documents/uploader', :person => current_user.person, :folder => @folder, :overlay => @overlay
 
 #leftNavBar.span-5.append-1
   = render 'documents/aspect_listings', :documents => @documents, :folder => @folder
