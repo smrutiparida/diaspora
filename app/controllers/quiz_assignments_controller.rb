@@ -61,17 +61,17 @@ class QuizAssignmentsController < ApplicationController
   def publish
     role = Role.where(:person_id => current_user.person.id, :name => 'teacher').first
     @teacher = role.nil? ? false : true
-    @assignment_assessments = nil
-    @assignment = Assignment.find(params[:a_id])
+    
+    @assignment = QuizAssignment.find(params[:a_id])
     if @teacher and !@assignment.is_result_published      
-      @assignment_assessments = AssignmentAssessment.where(:assignment_id => @assignment.id)
-      unless @assignment_assessments.nil?
-        @assignment_assessments.each { 
+      @quiz_assessments = QuizAssessment.where(:quiz_assignment_id => @assignment.id)
+      unless @quiz_assessments.nil?
+        @quiz_assessments.each { 
           |c| @recipient = Person.includes(:profile).where(diaspora_handle: c.diaspora_handle).first
           opts = {}
           opts[:participant_ids] = @recipient.id
-          opts[:message] = { text: "Assignment result has been published."}
-          opts[:subject] = "Assignment published."
+          opts[:message] = { text: "Quiz result has been published."}
+          opts[:subject] = "Quiz published."
           @conversation = current_user.build_conversation(opts)
 
           if @conversation.save
@@ -83,6 +83,7 @@ class QuizAssignmentsController < ApplicationController
         @assignment.update_attributes!(assessment_hash)
       end
     end
+    
     respond_to do |format|
       format.json { render :json => {"success" => true, "message" => 'Assignment published successfully.'} }
     end  
