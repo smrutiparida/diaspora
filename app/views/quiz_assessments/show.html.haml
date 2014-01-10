@@ -11,11 +11,11 @@
         - if @quiz[:answers][question.id].blank?
           = "Question not attempted."
         - else  
-          - if @quiz[:answers][question.id].answer != 0
-            = "Correct Answer"
-          - else 
+          - if @quiz[:answers][question.id].marks == 0
             = "Wrong Answer. You Answered -"
             =  @quiz[:answers][question.id].answer
             = ".Correct Answer is -"
             = question.answer
+          - else
+            = "Correct Answer"    
         
