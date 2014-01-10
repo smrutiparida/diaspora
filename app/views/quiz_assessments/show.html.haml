@@ -12,10 +12,12 @@
           = "Question not attempted."
         - else  
           - if @quiz[:answers][question.id].marks == 0
-            = "Wrong Answer. You Answered -"
-            =  @quiz[:answers][question.id].answer
-            = ".Correct Answer is -"
-            = question.answer
+            %span{:style => 'color:red;'}
+              = "Wrong Answer. You Answered -"
+              =  @quiz[:answers][question.id].answer
+              = ".Correct Answer is -"
+              = question.answer
           - else
-            = "Correct Answer"    
+            %span{:style =>'color:green;'}
+              = "Correct Answer"    
         

@@ -92,16 +92,17 @@ class QuizAssignmentsController < ApplicationController
     role = Role.where(:person_id => current_user.person.id, :name => 'teacher').first
     @teacher = role.nil? ? false : true
     @assignment_assessments = nil
-    @assignment = Assignment.find(params[:a_id])
+    @assignment = QuizAssignment.find(params[:a_id])
     @data = []
     @data2 = []
+
     @temp = {}
     if @teacher      
-      @assignment_assessments = AssignmentAssessment.where(:assignment_id => @assignment.id)
-      unless @assignment_assessments.nil?
-        @assignment_assessments.each do |c|
-          c.is_checked ? @data2.push([c.diaspora_handle, c.points]) : next
-          @key = c.points.to_s + " marks"
+      @quiz_assessments = QuizAssessment.where(:quiz_assignment_id => @assignment.id)
+      unless @quiz_assessments.nil?
+        @quiz_assessments.each do |c|
+          @data2.push([c.diaspora_handle, c.marks_obtained])
+          @key = c.marks_obtained.to_s + " marks"
           @temp.has_key?(@key) ? @temp[@key] = @temp[@key] + 1 : @temp[@key] = 1          
         end
       end    

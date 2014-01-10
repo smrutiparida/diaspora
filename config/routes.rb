@@ -77,6 +77,8 @@ Diaspora::Application.routes.draw do
 
   resources :courses
 
+  get 'quiz_assignments/publish' => 'quiz_assignments#publish'
+  get 'quiz_assignments/performance' => 'quiz_assignments#performance'
   resources :quiz_assignments
 
   resources :quiz_assessments
