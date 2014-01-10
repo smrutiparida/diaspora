@@ -57,4 +57,61 @@ class QuizAssignmentsController < ApplicationController
   def quiz_assignment_params
     params.require(:quiz_assignment).permit(:quiz_id, :submission_date)
   end
+
+  def publish
+    role = Role.where(:person_id => current_user.person.id, :name => 'teacher').first
+    @teacher = role.nil? ? false : true
+    @assignment_assessments = nil
+    @assignment = Assignment.find(params[:a_id])
+    if @teacher and !@assignment.is_result_published      
+      @assignment_assessments = AssignmentAssessment.where(:assignment_id => @assignment.id)
+      unless @assignment_assessments.nil?
+        @assignment_assessments.each { 
+          |c| @recipient = Person.includes(:profile).where(diaspora_handle: c.diaspora_handle).first
+          opts = {}
+          opts[:participant_ids] = @recipient.id
+          opts[:message] = { text: "Assignment result has been published."}
+          opts[:subject] = "Assignment published."
+          @conversation = current_user.build_conversation(opts)
+
+          if @conversation.save
+            Postzord::Dispatcher.build(current_user, @conversation).post
+          end
+        }
+        assessment_hash = {}
+        assessment_hash[:is_result_published] = true
+        @assignment.update_attributes!(assessment_hash)
+      end
+    end
+    respond_to do |format|
+      format.json { render :json => {"success" => true, "message" => 'Assignment published successfully.'} }
+    end  
+  end
+
+  def performance
+    role = Role.where(:person_id => current_user.person.id, :name => 'teacher').first
+    @teacher = role.nil? ? false : true
+    @assignment_assessments = nil
+    @assignment = Assignment.find(params[:a_id])
+    @data = []
+    @data2 = []
+    @temp = {}
+    if @teacher      
+      @assignment_assessments = AssignmentAssessment.where(:assignment_id => @assignment.id)
+      unless @assignment_assessments.nil?
+        @assignment_assessments.each do |c|
+          c.is_checked ? @data2.push([c.diaspora_handle, c.points]) : next
+          @key = c.points.to_s + " marks"
+          @temp.has_key?(@key) ? @temp[@key] = @temp[@key] + 1 : @temp[@key] = 1          
+        end
+      end    
+    end
+
+    @temp.each { |key,value| @data.push([key, value])}
+    Rails.logger.info(@data.to_json)
+    Rails.logger.info(@data2.to_json)
+    respond_to do |format|
+      format.js
+    end
+  end
 end

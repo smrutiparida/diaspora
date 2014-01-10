@@ -61,27 +61,20 @@
       - if @teacher
         = render 'quizzes/quiz_form', :quiz => @quiz
       - else
-        - if Time.now > @quiz_assignment.submission_date
-          -if @quiz_assessment.blank? 
+        - if @quiz_assessment.blank? 
+          - if Time.now > @quiz_assignment.submission_date
             #no_conversation_text
               = "You did not appear for this quiz. Nothing to show."
           - else
-            - if @quiz_assignment.is_result_published == true
-              = render 'quizzes/quiz_form', :quiz => @quiz
-            - else 
-              #no_conversation_text
-                = "Result is not published to the students yet. You will be notified when it happens."  
-        - else 
-          - if @quiz_assessment.blank? 
             #no_conversation_text
-              = "Click on Attempt Quiz button to view the quiz"
-          - else
-            - if @quiz_assignment.is_result_published == true
-              = render 'quizzes/quiz_form', :quiz => @quiz
-            - else 
-              #no_conversation_text
-                = "Result is not published to the students yet. You will be notified when it happens."  
-
+              = "Click on Attempt Quiz button to view the quiz"     
+        - else
+          - if @quiz_assignment.is_result_published == true
+            = render 'quizzes/quiz_form', :quiz => @quiz
+          - else 
+            #no_conversation_text
+              = "Result is not published to the students yet. You will be notified when it happens."  
+       
 :javascript
   $('time.timeago').each(function(i,e) {
     var jqe = $(e);
@@ -140,7 +133,7 @@
        $('#conversation_show').html(data);
        quiz_done = false;
        window.onbeforeunload = confirmExit;
-       window.onunload = quizSubmit;
+       //window.onunload = quizSubmit;
     });
     return false;
   });
@@ -151,9 +144,10 @@
     }
   }
 
-  function quizSubmit(){
-    if(quiz_done == false){
-      $('#new_quiz_assessment').submit();
-    }
-  }
+  //function quizSubmit(){
+  //  if(quiz_done == false){
+  //    $('#new_quiz_assessment').submit();
+  //  }
+  //}
+
  
