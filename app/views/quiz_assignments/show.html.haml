@@ -76,7 +76,7 @@
        
 :javascript
   if(!#{@teacher} && #{@quiz_assignment.is_result_published} == true) {
-    $.get('/quiz_assessments/' + #{@quiz_assessment.id} , function(data) {$('#conversation_show').html(data);});
+    $.get('/quiz_assessments/' + #{@quiz_assessment.id unless @quiz_assessment.blank?} , function(data) {$('#conversation_show').html(data);});
   }
 
   $('time.timeago').each(function(i,e) {
