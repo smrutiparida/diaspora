@@ -17,7 +17,7 @@ class QuizAssessmentsController < ApplicationController
   end
 
   def show
-    @quiz_assessment = QuizAssessment.where(:id => params[:id].to_i, :diaspora_handle => current_user.diaspora_handle).first
+    @quiz_assessment = QuizAssessment.find(params[:id].to_i)
     @quiz_assignment = QuizAssignment.find(@quiz_assessment.quiz_assignment_id)
     @quiz = Quiz.joins(:quiz_assignments).where('quiz_assignments.id' => @quiz_assignment.id).first
 
