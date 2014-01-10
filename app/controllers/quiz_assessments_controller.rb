@@ -98,20 +98,19 @@ class QuizAssessmentsController < ApplicationController
     question_hash = {}
     @questions.each {|question| question_hash[question.id.to_i] = question}
     
-    Rails.logger.info(question_hash.to_json)
-
     @quiz_assessment = current_user.build_post(:quiz_assessment, params[:quiz_assessment])
-    Rails.logger.info(@quiz_assessment.to_json)
+    #Rails.logger.info(@quiz_assessment.to_json)
     @quiz_assessment.quiz_assignment_id = @quiz_assignment.id
+    @quiz_assessment.highest_marks_obtained = @quiz.total_marks
     
     @quiz_assessment.marks_obtained = 0
     
     @quiz_assessment.quiz_questions_assessments.each do |quiz_answer|
       answer_set = question_hash[quiz_answer.quiz_question_id]
-      Rails.logger.info(answer_set.answer)
-      Rails.logger.info(answer_set.answer.downcase + ',' + quiz_answer.answer.downcase)
-      if answer_set[:answer].downcase == quiz_answer.answer.downcase
-        quiz_answer.marks = answer_set[:mark]
+      #Rails.logger.info(answer_set.answer)
+      #Rails.logger.info(answer_set.answer.downcase + ',' + quiz_answer.answer.downcase)
+      if answer_set.answer.strip.downcase == quiz_answer.answer.strip.downcase
+        quiz_answer.marks = answer_set.mark
         @quiz_assessment.marks_obtained += quiz_answer.marks
       else
         quiz_answer.marks = 0

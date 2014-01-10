@@ -1,18 +1,38 @@
-#counter
-  
+:css
+  .countdown_row {clear: both;width: 100%;padding: 0px 2px;text-align: center;}
+  .countdown_section {width: 24.5%;color: #888;display: block;float: left;font-size: 75%;text-align: center;}
+  .countdown_amount {font-size:200%;}
+
+#counter  
 = form_for QuizAssessment.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |assessment|  
   = render 'quizzes/quiz_form', :quiz => @quiz
   = hidden_field_tag "quiz_assignment_id", @quiz_assignment.id
   = assessment.submit "Submit", 'data-disable-with' => "Submitting...", :class => 'button creation'
+
+%script#countdown-tpl{ :type => 'text/template' } 
+  %span.countdown_row
+    %span.countdown_section
+      %span.countdown_amount
+        @quiz.time
+      %br
+      = "Mins" 
+    %span.countdown_section
+      %span.countdown_amount
+        0
+      %br
+      = "Sec"
 
 :javascript
   $("#counter").countdown({
     autostart: true,
     m: 1,
     s: 30,
-    done: function() {},
+    done: function() {
+      alert("Time Up! Press OK to submit.")
+      $('#new_quiz_assessment').submit();
+    },
     tpl : function(el,opts){
-      var template = _.template('<table><tr><th>minutes</th><th>seconds</th></tr><tr><td><%= m %></td><td><%= s %></td></tr></table>');
-      $(el).html(template(opts));    
+      var template = _.template($('#countdown-tpl').html());
+      $('#conversation_inbox').html(template(opts));    
     }
   }); 

@@ -409,7 +409,7 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
     t.string   "diaspora_handle"
     t.integer  "quiz_assignment_id",        :null => false    
     t.integer  "marks_obtained"
-    t.integer  "highest_marks_obtained"
+    t.integer  "highest_marks_obtained"  # copies the total_marks from the quiz table and stores for easy access
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
     t.datetime "attempted_on"
