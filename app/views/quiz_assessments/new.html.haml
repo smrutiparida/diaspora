@@ -13,20 +13,20 @@
   %span.countdown_row
     %span.countdown_section
       %span.countdown_amount
-        @quiz.time
+        <%= m %>
       %br
       = "Mins" 
     %span.countdown_section
       %span.countdown_amount
-        0
+        <%= s %>
       %br
       = "Sec"
 
 :javascript
   $("#counter").countdown({
     autostart: true,
-    m: 1,
-    s: 30,
+    m: #{@quiz.time},
+    s: 0,
     done: function() {
       alert("Time Up! Press OK to submit.");
       $('#new_quiz_assessment').submit();

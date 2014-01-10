@@ -60,7 +60,7 @@
     #conversation_show      
       - if @teacher
         = render 'quizzes/quiz_form', :quiz => @quiz
-      -else
+      - else
         - if Time.now > @quiz_assignment.submission_date
           -if @quiz_assessment.blank? 
             #no_conversation_text
