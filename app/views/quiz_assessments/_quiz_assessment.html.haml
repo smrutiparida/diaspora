@@ -24,6 +24,9 @@
             = authors[quiz_assessment.id].name
 
           %span.participants_link
-            - if quiz_assessment.marks == quiz_assessments.highest_marks_obtained
-              = "Class Topper"
+            = "Score "
+            = quiz_assessment.marks_obtained
+            = " of "
+            = quiz_assessments.highest_marks_obtained
+            
             
