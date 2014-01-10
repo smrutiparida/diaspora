@@ -1,0 +1,21 @@
+%div.quiz-form-wrapper
+  %div.quiz-form-content   
+    %h1.quiz-form-title
+      %span
+        = @quiz.title
+    - count = 0    
+    - for question in @quiz[:questions]
+      - count = count + 1	
+      = render 'quizzes/question', :question => question, :count => count
+      %div
+        - if @quiz[:answers][question.id].blank?
+          = "Question not attempted."
+        - else  
+          - if @quiz[:answers][question.id].answer != 0
+            = "Correct Answer"
+          - else 
+            = "Wrong Answer. You Answered -"
+            =  @quiz[:answers][question.id].answer
+            = ".Correct Answer is -"
+            = question.answer
+        
