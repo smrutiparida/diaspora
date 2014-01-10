@@ -109,7 +109,7 @@ class QuizAssessmentsController < ApplicationController
       answer_set = question_hash[quiz_answer.quiz_question_id]
       #Rails.logger.info(answer_set.answer)
       #Rails.logger.info(answer_set.answer.downcase + ',' + quiz_answer.answer.downcase)
-      if answer_set.answer.strip.downcase == quiz_answer.answer.strip.downcase
+      if answer_set.answer.downcase.strip == quiz_answer.answer.downcase.strip
         quiz_answer.marks = answer_set.mark
         @quiz_assessment.marks_obtained += quiz_answer.marks
       else
