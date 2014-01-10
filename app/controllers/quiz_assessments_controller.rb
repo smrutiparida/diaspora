@@ -96,7 +96,7 @@ class QuizAssessmentsController < ApplicationController
     @quiz = Quiz.find(@quiz_assignment.quiz_id)
     @questions = Question.joins(:quiz_questions).where('quiz_questions.quiz_id' => @quiz.id)
     question_hash = {}
-    @questions.each {|question| question_hash[question.id.to_i] = question.attributes}
+    @questions.each {|question| question_hash[question.id.to_i] = question}
     
     Rails.logger.info(question_hash.to_json)
 
