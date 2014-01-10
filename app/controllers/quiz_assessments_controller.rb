@@ -17,19 +17,26 @@ class QuizAssessmentsController < ApplicationController
   end
 
   def show
-    role = Role.where(:person_id => current_user.person.id, :name => 'teacher').first
-    @teacher = role.nil? ? false : true
-
-    @quiz_assignment = QuizAssignment.find(params[:id])
-    @quiz_assessment = QuizAssessment.where(:quiz_id => @quiz_assignment.id, :diaspora_handle => current_user.diaspora_handle).first
+    @quiz_assessment = QuizAssessment.where(:id => params[:id].to_i, :diaspora_handle => current_user.diaspora_handle).first
+    @quiz_assignment = QuizAssignment.find(@quiz_assessment.quiz_assignment_id)
     @quiz = Quiz.joins(:quiz_assignments).where('quiz_assignments.id' => @quiz_assignment.id).first
 
     @quiz[:questions] = Question.joins(:quiz_questions).where('quiz_questions.quiz_id' => @quiz.id)
-    @quiz[:answers] = QuizQuestionsAssessment.where(:quiz_assessment_id => @quiz_assessment.id )
+    @answers = QuizQuestionsAssessment.where(:quiz_assessment_id => @quiz_assessment.id )
+    
+    all_answers = @answers.map{|a| a.quiz_question_id}
+    quiz_questions = QuizQuestion.where(:id => all_answers)
+    quiz_questions_map = {}
+    quiz_questions.each { |q| quiz_questions_map[q.id] = q.question_id }
+    answer_hash = {}
+    @answers.each {|answer| answer_hash[quiz_questions_map[answer.quiz_question_id.to_i]] = answer}
+    
+    @quiz[:answers] = answer_hash
+   
     
     respond_to do |format|
       format.js
-      format.any(:json, :html) { render }
+      format.html { render :layout => false}
     end
   end
 

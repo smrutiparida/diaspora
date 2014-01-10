@@ -1,32 +1,18 @@
 -#   Copyright (c) 2010-2011, Diaspora Inc.  This file is
 -#   licensed under the Affero General Public License version 3 or later.  See
 -#   the COPYRIGHT file.
-
 .quiz-assessment-wrapper{ :"data-conversation-path" => 'quiz_assessments/' + quiz_assessment.id.to_s  }
   .stream_element.conversation{:data=>{:guid=>quiz_assessment.id}}
     .media
       .img
         - if authors[quiz_assessment.id].present?
           = person_image_tag(authors[quiz_assessment.id])
-
       .bg
         .subject
           .message_count
             = quiz_assessment.marks_obtained
             = " marks"
-          
-          
         .last_author
           %time.timeago.timestamp{:datetime => quiz_assessment.attempted_on.iso8601}
-            = t('ago', :time =>  time_ago_in_words(quiz_assessment.attempted_on))
-
-          - if authors[quiz_assessment.id].present?
-            = authors[quiz_assessment.id].name
-
-          %span.participants_link
-            = "Score "
-            = quiz_assessment.marks_obtained
-            = " of "
-            = quiz_assessment.highest_marks_obtained
-            
+            = t('ago', :time =>  time_ago_in_words(quiz_assessment.attempted_on))            
             
