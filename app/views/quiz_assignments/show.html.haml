@@ -38,7 +38,7 @@
       - else
         = link_to "Publish Result", '#', :"data-id" => @quiz_assignment.id.to_s, :class => 'button disabled', :id => 'publish-button'
     - else
-      - if @quiz_assignment.submission_date > Time.now
+      - if @quiz_assignment.submission_date > Time.now and @quiz_assessment.blank?
         = link_to "Attemp Quiz", '#', :class => 'button creation', :style => 'margin-right:10px;', :id => 'attempt-button',:"data-id" => @quiz_assignment.id.to_s 
          
   #conversation_inbox
@@ -58,11 +58,26 @@
 .span-15.prepend-9.last
   .stream_container
     #conversation_show      
-      - if @teacher or @quiz_assignment.is_result_published == true
+      - if @teacher
         = render 'quizzes/quiz_form', :quiz => @quiz
-      - else
-        #no_conversation_text
-          = "Click on Attempt Quiz button to view the quiz"
+      -else
+        - if Time.now > @quiz_assignment.submission_date
+          -if @quiz_assessment.blank? 
+            #no_conversation_text
+              = "You did not appear for this quiz. Nothing to show."
+          - else
+            - if @quiz_assignment.is_result_published == true
+              = render 'quizzes/quiz_form', :quiz => @quiz
+            - else 
+              #no_conversation_text
+                = "Result is not published to the students yet. You will be notified when it happens."  
+        - else 
+          - if @quiz_assessment.blank? 
+            #no_conversation_text
+              = "Click on Attempt Quiz button to view the quiz"
+          - else
+              #no_conversation_text
+                = "Result is not published to the students yet. You will be notified when it happens."  
 
 :javascript
   $('time.timeago').each(function(i,e) {
