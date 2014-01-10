@@ -75,7 +75,7 @@
               = "Result is not published to the students yet. You will be notified when it happens."  
        
 :javascript
-  if(#{@teacher} && #{@quiz_assignment.is_result_published} == true) {
+  if(!#{@teacher} && #{@quiz_assignment.is_result_published} == true) {
     $.get('/quiz_assessments/' + #{@quiz_assignment.id} , function(data) {$('#conversation_show').html(data);});
   }
 
