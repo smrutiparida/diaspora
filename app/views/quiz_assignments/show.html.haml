@@ -138,6 +138,19 @@
     var assignment_id = $(this).data('id');
     $.get('/quiz_assessments/new?id=' + assignment_id, function(data){
        $('#conversation_show').html(data);
+       quiz_done = false;
+       window.onbeforeunload = confirmExit;
     });
     return false;
   });
+
+  function confirmExit() {
+    if(quiz_done == false){  
+      var r=confirm("Are you sure to exit? This will submit the quiz. Press OK to confirm");
+      if (r==true)
+      {
+        $('#new_quiz_assessment').submit();
+      }
+    }
+  }
+ 

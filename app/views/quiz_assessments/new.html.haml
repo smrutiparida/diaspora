@@ -29,6 +29,7 @@
     s: 0,
     done: function() {
       alert("Time Up! Press OK to submit.");
+      quiz_done = true;
       $('#new_quiz_assessment').submit();
     },
     tpl : function(el,opts){
@@ -36,3 +37,4 @@
       $('#conversation_inbox').html(template(opts));    
     }
   }); 
+
