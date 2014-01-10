@@ -112,7 +112,7 @@ class QuizAssignmentsController < ApplicationController
     Rails.logger.info(@data.to_json)
     Rails.logger.info(@data2.to_json)
     respond_to do |format|
-      format.js
+      format.js {render :template => 'assignment_assessments/performance'}
     end
   end
 end
