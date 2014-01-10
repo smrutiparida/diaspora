@@ -32,6 +32,7 @@ class QuizAssessmentsController < ApplicationController
     @answers.each {|answer| answer_hash[quiz_questions_map[answer.quiz_question_id.to_i]] = answer}
     
     @quiz[:answers] = answer_hash
+    Rails.logger.info(@quiz.to_json)
    
     
     respond_to do |format|

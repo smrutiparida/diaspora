@@ -93,8 +93,8 @@
   $('.quiz-assessment-wrapper').live('click', function(){
     var conversation_path = $(this).data('conversation-path');
 
-    $.getScript(conversation_path, function() {
-      Diaspora.page.directionDetector.updateBinds();
+    $.get(conversation_path, function(data) {
+      $('#conversation_show').html(data);
     });
 
     return false;
