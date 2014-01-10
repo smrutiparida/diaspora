@@ -110,7 +110,7 @@
     var assignment_id = $(this).data('id');
     $(this).text("Publishing...");
     
-    $.getJSON('/quiz_assessments/publish?a_id=' + assignment_id, function(data) {
+    $.getJSON('/quiz_assignments/publish?a_id=' + assignment_id, function(data) {
       Diaspora.page.flashMessages.render({ 'success':data.success, 'notice':data.message });
       $('#publish-button').text("Published");
       $('#publish-button').attr('class','button disabled');
