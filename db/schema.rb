@@ -419,7 +419,7 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
 
   create_table "quiz_questions_assessments", :force => true do |t|
     t.integer  "quiz_assessment_id",         :null => false
-    t.integer  "quiz_question_id",           :null => false
+    t.integer  "quiz_question_id",           :null => false  #this is not the id of the quiz_question table but the id of question table
     t.string   "answer"
     t.integer  "marks"
     t.datetime "created_at",                 :null => false

@@ -24,19 +24,18 @@ class QuizAssessmentsController < ApplicationController
     @quiz[:questions] = Question.joins(:quiz_questions).where('quiz_questions.quiz_id' => @quiz.id)
     @answers = QuizQuestionsAssessment.where(:quiz_assessment_id => @quiz_assessment.id )
     
-    all_answers = @answers.map{|a| a.quiz_question_id}
-    quiz_questions = QuizQuestion.where(:id => all_answers)
-    quiz_questions_map = {}
-    quiz_questions.each { |q| quiz_questions_map[q.id] = q.question_id }
+    #all_answers = @answers.map{|a| a.quiz_question_id}
+    #quiz_questions = QuizQuestion.where(:id => all_answers)
+    #quiz_questions_map = {}
+    #quiz_questions.each { |q| quiz_questions_map[q.id] = q.question_id }
     answer_hash = {}
-    @answers.each {|answer| answer_hash[quiz_questions_map[answer.quiz_question_id.to_i]] = answer}
+    @answers.each {|answer| answer_hash[answer.quiz_question_id.to_i] = answer}
     
     @quiz[:answers] = answer_hash
     Rails.logger.info(@quiz.to_json)
    
     
     respond_to do |format|
-      format.js
       format.html { render :layout => false}
     end
   end
