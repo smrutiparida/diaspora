@@ -95,8 +95,8 @@ class QuizAssessmentsController < ApplicationController
     @quiz_assignment = QuizAssignment.find(params[:quiz_assignment_id])
     @quiz = Quiz.find(@quiz_assignment.quiz_id)
     @questions = Question.joins(:quiz_questions).where('quiz_questions.quiz_id' => @quiz.id)
-    question_hash = HashWithIndifferentAccess.new
-    @questions.each {|question| question_hash[question.id.to_i] = question.attributes.to_json(:only => ['answer', 'mark'])}
+    question_hash = {}
+    @questions.each {|question| question_hash[question.id.to_i] = question.attributes}
     
     Rails.logger.info(question_hash.to_json)
 
@@ -108,8 +108,8 @@ class QuizAssessmentsController < ApplicationController
     
     @quiz_assessment.quiz_questions_assessments.each do |quiz_answer|
       answer_set = question_hash[quiz_answer.quiz_question_id]
-      Rails.logger.info(answer_set.to_json)
-      Rails.logger.info(answer_set[:answer].downcase + ',' + quiz_answer.answer.downcase)
+      Rails.logger.info(answer_set.answer)
+      Rails.logger.info(answer_set.answer.downcase + ',' + quiz_answer.answer.downcase)
       if answer_set[:answer].downcase == quiz_answer.answer.downcase
         quiz_answer.marks = answer_set[:mark]
         @quiz_assessment.marks_obtained += quiz_answer.marks
