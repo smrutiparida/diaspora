@@ -22,7 +22,10 @@
       - if @teacher  
         = link_to "View Performance", '#', :class => 'button', :style => 'margin-right:10px;', :id => 'performance-button',:"data-id" => @quiz_assignment.id.to_s
       - else
-        = link_to "View Result", '#', :"data-id" => @quiz_assignment.id.to_s, :class => 'button disabled', :id => 'publish-button'
+        - if @quiz_assignment.submission_date > Time.now and @quiz_assessment.blank?
+          = link_to "Attemp Quiz", '#', :class => 'button creation', :style => 'margin-right:10px;', :id => 'attempt-button',:"data-id" => @quiz_assignment.id.to_s 
+        - else   
+          = link_to "Quiz Attempted", '#', :class => 'button disabled'
       
 
     %h3
@@ -37,9 +40,7 @@
           = link_to "Published", '#', :"data-id" => @quiz_assignment.id.to_s, :class => 'button disabled', :id => 'publish-button'
       - else
         = link_to "Publish Result", '#', :"data-id" => @quiz_assignment.id.to_s, :class => 'button disabled', :id => 'publish-button'
-    - else
-      - if @quiz_assignment.submission_date > Time.now and @quiz_assessment.blank?
-        = link_to "Attemp Quiz", '#', :class => 'button creation', :style => 'margin-right:10px;', :id => 'attempt-button',:"data-id" => @quiz_assignment.id.to_s 
+    
          
   #conversation_inbox
     .stream.conversations
@@ -69,13 +70,15 @@
             #no_conversation_text
               = "Click on Attempt Quiz button to view the quiz"     
         - else
-          - if @quiz_assignment.is_result_published == true
-            = render 'quizzes/quiz_form', :quiz => @quiz
-          - else 
+          - if @quiz_assignment.is_result_published != true
             #no_conversation_text
               = "Result is not published to the students yet. You will be notified when it happens."  
        
 :javascript
+  if(#{@teacher} && #{@quiz_assignment.is_result_published} == true) {
+    $.get('/quiz_assessments/' + #{@quiz_assignment.id} , function(data) {$('#conversation_show').html(data);});
+  }
+
   $('time.timeago').each(function(i,e) {
     var jqe = $(e);
     jqe.attr('data-original-title', new Date(jqe.attr('datetime')).toLocaleString());
