@@ -140,17 +140,14 @@
        $('#conversation_show').html(data);
        quiz_done = false;
        window.onbeforeunload = confirmExit;
+       window.onunload = function() {if(quiz_done == false){$('#new_quiz_assessment').submit();}}
     });
     return false;
   });
 
   function confirmExit() {
     if(quiz_done == false){  
-      var r=confirm("Are you sure to exit? This will submit the quiz. Press OK to confirm");
-      if (r==true)
-      {
-        $('#new_quiz_assessment').submit();
-      }
+      return "Are you sure to exit? This will submit the quiz. Press OK to confirm");
     }
   }
  
