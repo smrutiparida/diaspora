@@ -76,6 +76,9 @@
             #no_conversation_text
               = "Click on Attempt Quiz button to view the quiz"
           - else
+            - if @quiz_assignment.is_result_published == true
+              = render 'quizzes/quiz_form', :quiz => @quiz
+            - else 
               #no_conversation_text
                 = "Result is not published to the students yet. You will be notified when it happens."  
 
