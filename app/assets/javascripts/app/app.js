@@ -98,7 +98,7 @@ var app = {
     });
     $('#mandatory_groups').click();
     */
-    app.router.navigate("aspects" ,true)
+    //app.router.navigate("aspects" ,true)
   },
 
   setupGlobalViews: function() {
