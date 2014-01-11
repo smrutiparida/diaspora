@@ -85,7 +85,7 @@ class QuizAssignmentsController < ApplicationController
     end
     
     respond_to do |format|
-      format.json { render :json => {"success" => true, "message" => 'Assignment published successfully.'} }
+      format.json { render :json => {"success" => true, "message" => 'Quiz published successfully.'} }
     end  
   end
 
