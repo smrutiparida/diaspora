@@ -41,8 +41,8 @@ class StatusMessagesController < ApplicationController
   end
 
   def create
-    val_list = *params[:aspect_ids].to_s.to_i
-    params[:status_message][:aspect_ids] = [val_list]
+    Rails.logger.info(*params[:aspect_ids])
+    params[:status_message][:aspect_ids] = [*params[:aspect_ids]]
     normalize_public_flag!
     services = [*params[:services]].compact
 
