@@ -41,6 +41,7 @@ class StatusMessagesController < ApplicationController
   end
 
   def create
+    Rails.logger.info(*params[:aspect_ids])
     params[:status_message][:aspect_ids] = [*params[:aspect_ids]]
     normalize_public_flag!
     services = [*params[:services]].compact
@@ -49,8 +50,8 @@ class StatusMessagesController < ApplicationController
     @status_message.build_location(:address => params[:location_address], :coordinates => params[:location_coords]) if params[:location_address].present?
     @status_message.attach_photos_by_ids(params[:photos])
     @status_message.attach_documents_by_ids(params[:documents])
-    @status_message.get_assignments_by_ids(params[:assignments])
-    @status_message.get_quizzes_by_ids(params[:quizzes])
+    @status_message.get_assignments_by_ids(params[:Assignment])
+    @status_message.get_quizzes_by_ids(params[:Quiz])
 
     if @status_message.save
       aspects = current_user.aspects_from_ids(destination_aspect_ids)
