@@ -501,6 +501,7 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
     t.string   "location"
     t.string   "full_name",        :limit => 70
     t.boolean  "nsfw",                            :default => false
+    t.string   "role",              :default => "student", :null =>false
   end
 
   add_index "profiles", ["full_name", "searchable"], :name => "index_profiles_on_full_name_and_searchable"

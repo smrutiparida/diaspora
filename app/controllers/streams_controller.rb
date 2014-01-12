@@ -53,10 +53,7 @@ class StreamsController < ApplicationController
     if stream_klass.present?
       @stream ||= stream_klass.new(current_user, :max_time => max_time)
     end
-    @documents = Document.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
-    #@assignments = Assignment.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
-    #@quizzes = Quiz.where(:diaspora_handle => current_user.diaspora_handle).order(:updated_at)  
-           
+    
     
     #below logic valid for students. For teachers the logic will be different.
     if params[:a_id]
@@ -70,9 +67,9 @@ class StreamsController < ApplicationController
     
     @assignments = Assignment.where(:status_message_guid => all_my_post_guid, :is_result_published => false)
     @quizzes = Quiz.where(:status_message_guid => all_my_post_guid)
-    @documents += Document.where(:status_message_guid => all_my_post_guid)    
-    @role = Role.where(:person_id => current_user.person, :name => 'teacher').first
     
+    @role = Role.where(:person_id => current_user.person, :name => 'teacher').first
+    Rails.logger.info("Role is" + current_user.role)
     respond_with do |format|
       format.html { render 'streams/main_stream' }
       format.mobile { render 'streams/main_stream' }
