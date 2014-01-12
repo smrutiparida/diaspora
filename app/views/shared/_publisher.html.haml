@@ -144,7 +144,7 @@
               - if publisher_public
                 = t('public')
               - elsif all_aspects_selected?(selected_aspects)
-                = t('all_aspects')
+                = "All Groups"
               - elsif selected_aspects.size == 1
                 = selected_aspects.first.name
               - else
