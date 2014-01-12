@@ -15,4 +15,6 @@
         .last_author
           %time.timeago.timestamp{:datetime => quiz_assessment.attempted_on.iso8601}
             = t('ago', :time =>  time_ago_in_words(quiz_assessment.attempted_on))            
-            
+        
+        - if authors[quiz_assessment.id].present?
+          = authors[quiz_assessment.id].name
