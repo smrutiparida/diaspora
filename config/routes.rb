@@ -79,6 +79,7 @@ Diaspora::Application.routes.draw do
 
   get 'quiz_assignments/publish' => 'quiz_assignments#publish'
   get 'quiz_assignments/performance' => 'quiz_assignments#performance'
+  get 'quiz_assignments/quiz_assessments/:id' => 'quiz_assessments#show'
   resources :quiz_assignments
 
   resources :quiz_assessments
