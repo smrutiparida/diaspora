@@ -98,9 +98,9 @@ var app = {
     });
     $('#mandatory_groups').click();
     */
-  //  if($(".stream_title").text() == "Stream"){
-    app.router.navigate("aspects" ,true);  
-  
+    if(location.href.substr(location.href.lastIndexOf("/")+1); == "stream"){
+      app.router.navigate("aspects" ,true);  
+    }
     
   },
 
