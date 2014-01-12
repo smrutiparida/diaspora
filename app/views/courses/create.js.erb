@@ -4,9 +4,9 @@ if(response.success){
 //post the rspective thing and them close your self
     post_content = {};
     post_content["status_message"] = "Course session update!";
-    post_content["aspect_ids"] = ["<%= @course_content.aspect_id %>"];
+    post_content["aspect_ids"] = "<%= @course_content.aspect_id %>";
     post_content[response.type] = response.post_id;
-    $.post( "/status_messages", post_content , function( data ) {
+    $.post( "/status_messages", {status_message : "Course session update!", aspect_ids : "<%= @course_content.aspect_id %>", response.type : response.post_id} , function( data ) {
     $.facebox.close();
     Diaspora.page.flashMessages.render({ 'success':'success', 'notice':'Content added to module. Page refreshing.' });
     $.getScript("/courses/<%= @course_content.aspect_id %>");
