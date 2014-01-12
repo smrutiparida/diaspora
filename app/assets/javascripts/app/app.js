@@ -98,7 +98,10 @@ var app = {
     });
     $('#mandatory_groups').click();
     */
-    //app.router.navigate("aspects" ,true)
+    if($(".stream_title").text() == "Stream"){
+      app.router.navigate("aspects" ,true);  
+    }
+    
   },
 
   setupGlobalViews: function() {
