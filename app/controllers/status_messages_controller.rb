@@ -41,8 +41,11 @@ class StatusMessagesController < ApplicationController
   end
 
   def create
-    Rails.logger.info(*params[:aspect_ids])
-    params[:status_message][:aspect_ids] = [*params[:aspect_ids]]
+   my_aspect_list = []
+    params[:aspect_ids].each do |c|
+      my_aspect_list.push(c.to_i)
+    end
+    params[:status_message][:aspect_ids] = my_aspect_list
     normalize_public_flag!
     services = [*params[:services]].compact
 
@@ -54,7 +57,7 @@ class StatusMessagesController < ApplicationController
     @status_message.get_quizzes_by_ids(params[:Quiz])
 
     if @status_message.save
-      aspects = current_user.aspects_from_ids(destination_aspect_ids)
+      aspects = current_user.aspects_from_ids(destination_aspect_ids(my_aspect_list))
       current_user.add_to_streams(@status_message, aspects)
       receiving_services = Service.titles(services)
 
