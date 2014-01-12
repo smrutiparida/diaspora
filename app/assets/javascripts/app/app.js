@@ -98,7 +98,7 @@ var app = {
     });
     $('#mandatory_groups').click();
     */
-    if(location.href.substr(location.href.lastIndexOf("/")+1); == "stream"){
+    if(location.href.substr(location.href.lastIndexOf("/")+1) == "stream"){
       app.router.navigate("aspects" ,true);  
     }
     
