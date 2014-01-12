@@ -6,9 +6,9 @@
   = t('.edit_account')
 
 
-  #section_header
-    %h2
-      = "Change Password"
+#section_header
+  %h2
+    = "Change Password"
      
   = form_for 'user', :url => user_path, :html => { :method => :put } do |f|
     = f.error_messages

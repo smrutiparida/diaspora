@@ -34,8 +34,6 @@
   %ul#stream_selection
     %li.hoverable{:data => {:stream => 'stream'}}
       = link_to "Home", stream_path, :rel => 'backbone'      
-    %li.hoverable{:data => {:course => 'course'}}
-      = link_to "Course Syllabus", '/courses'
     %li.hoverable{:data => {:grade => 'grade'}}
       = link_to "Grades", '/grades'
     -#
@@ -45,8 +43,9 @@
         = link_to t('streams.mentions.title'), mentioned_stream_path, :rel => 'backbone'
     %li.all_aspects
       = render 'aspects/aspect_listings', :stream => @stream
-    %li
-      = render 'tags/followed_tags_listings'
+    -#
+      %li
+        = render 'tags/followed_tags_listings'
 
 
 
