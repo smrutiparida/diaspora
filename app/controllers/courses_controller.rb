@@ -28,6 +28,9 @@ class CoursesController < ApplicationController
   	@course = current_user.build_post(:course, course_params)
   	@course_content = Content.find(@course.module_id)
   	if @course.save
+      @response = @course.as_api_response(:backbone)
+      @response[:success] = true
+      @response[:message] = "Course created successfully."
       respond_to do |format|
         format.js
       end
