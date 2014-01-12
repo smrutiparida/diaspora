@@ -41,7 +41,7 @@ class StatusMessagesController < ApplicationController
   end
 
   def create
-    //Rails.logger.info(*params[:aspect_ids])
+    #Rails.logger.info(*params[:aspect_ids])
     params[:status_message][:aspect_ids] = [*params[:aspect_ids]]
     normalize_public_flag!
     services = [*params[:services]].compact
