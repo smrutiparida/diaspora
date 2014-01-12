@@ -19,14 +19,14 @@
 
 #left_pane
   #left_pane_header{:style => "height:100%;"}
-    - if @teacher
+    - if current_user.role == "teacher"
       .right
         = link_to "View Performance", '#', :class => 'button', :style => 'margin-right:10px;', :id => 'performance-button',:"data-id" => @assignment.id.to_s
     %h3
       = "Assignment Details"     
     = render 'assignment_assessments/details', :assignment => @assignment, :teacher_info => @teacher_info, :document => @document
     
-    - if @teacher      
+    - if current_user.role == "teacher"     
       - if Time.now > @assignment.submission_date
         - if !@assignment.is_result_published
           = link_to "Publish Result", '#', :"data-id" => @assignment.id.to_s, :class => 'button creation', :id => 'publish-button'
@@ -40,7 +40,7 @@
 
   #conversation_inbox
     .stream.conversations
-      - if @teacher
+      - if current_user.role == "teacher"
         - if @assignment_assessments.count > 0
           = render :partial => 'assignment_assessments/assignment_assessment', :collection => @assignment_assessments, :locals => {:authors => @authors}            
         - else
@@ -57,7 +57,7 @@
   .stream_container
     #conversation_show      
       - if @assignment_assessment
-        = render :partial => 'assignment_assessments/student', :locals => {:assessment => @assignment_assessment, :assignment => @assignment, :author => @authors[@assignment_assessment.id], :teacher => @teacher}          
+        = render :partial => 'assignment_assessments/student', :locals => {:assessment => @assignment_assessment, :assignment => @assignment, :author => @authors[@assignment_assessment.id]}          
       - else
         #no_conversation_text
           = "Nothing to show"          

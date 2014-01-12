@@ -33,7 +33,7 @@
         = "No Session to show."
         = link_to "Add your first one", '/contents/new', :id => 'module-button', :class => 'button creation', :rel => 'facebox'         
 
-- if @teacher
+- if current_user.role == "teacher"
   = render :partial => 'courses/edit'
 
 :javascript

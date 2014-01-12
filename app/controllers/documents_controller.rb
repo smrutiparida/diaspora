@@ -18,8 +18,6 @@ class DocumentsController < ApplicationController
   end
 
   def index
-    #role = Role.where(:person_id => current_user.person.id, :name => 'teacher').first
-    #@teacher = role.nil? ? false : true
     #@assignment_active = (params[:tab] == "assignment") ? 1 : 0
     @overlay = params[:overlay] == "1" ? true : false
     @folder = "Miscellaneous"

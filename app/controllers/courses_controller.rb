@@ -5,7 +5,7 @@ class CoursesController < ApplicationController
 
   def index    
     role = Role.where(:person_id => current_user.person.id, :name => 'teacher').first
-    @teacher = role.nil? ? false : true
+    
 
     @courses = current_user.aspects
     respond_to do |format|

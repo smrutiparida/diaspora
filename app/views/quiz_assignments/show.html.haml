@@ -19,7 +19,7 @@
 #left_pane
   #left_pane_header{:style => "height:100%;"}
     .right
-      - if @teacher  
+      - if current_user.role == "teacher" 
         = link_to "View Performance", '#', :class => 'button', :style => 'margin-right:10px;', :id => 'performance-button',:"data-id" => @quiz_assignment.id.to_s
       - else
         - if @quiz_assignment.submission_date > Time.now and @quiz_assessment.blank?
@@ -32,7 +32,7 @@
       = "Quiz Details"     
     = render 'quiz_assignments/details', :quiz => @quiz, :teacher_info => @teacher_info, :quiz_assignment => @quiz_assignment
     
-    - if @teacher      
+    - if current_user.role == "teacher"     
       - if Time.now > @quiz_assignment.submission_date
         - if !@quiz_assignment.is_result_published
           = link_to "Publish Result", '#', :"data-id" => @quiz_assignment.id.to_s, :class => 'button creation', :id => 'publish-button'
@@ -44,7 +44,7 @@
          
   #conversation_inbox
     .stream.conversations
-      - if @teacher
+      - if current_user.role == "teacher"
         - if @quiz_assessments.count > 0
           = render :partial => 'quiz_assessments/quiz_assessment', :collection => @quiz_assessments, :locals => {:authors => @authors}            
         - else
@@ -59,7 +59,7 @@
 .span-15.prepend-9.last
   .stream_container
     #conversation_show      
-      - if @teacher
+      - if current_user.role == "teacher"
         = render 'quizzes/quiz_form', :quiz => @quiz
       - else
         - if @quiz_assessment.blank? 
@@ -75,7 +75,7 @@
               = "Result is not published to the students yet. You will be notified when it happens."  
        
 :javascript
-  if(!#{@teacher} && #{@quiz_assignment.is_result_published} == true) {
+  if(!#{current_user.role == "teacher"} && #{@quiz_assignment.is_result_published} == true) {
     $.get('/quiz_assessments/#{@quiz_assessment.id unless @quiz_assessment.blank?}' , function(data) {$('#conversation_show').html(data);});
   }
 

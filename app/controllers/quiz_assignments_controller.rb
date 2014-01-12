@@ -4,8 +4,6 @@ class QuizAssignmentsController < ApplicationController
   respond_to :html, :json, :js
 
   def index    
-    role = Role.where(:person_id => current_user.person.id, :name => 'teacher').first
-    @teacher = role.nil? ? false : true
 
     @courses = current_user.aspects
     respond_to do |format|
@@ -14,8 +12,6 @@ class QuizAssignmentsController < ApplicationController
   end
 	
   def show
-    role = Role.where(:person_id => current_user.person.id, :name => 'teacher').first
-    @teacher = role.nil? ? false : true
 
     @quiz_assignment = QuizAssignment.find(params[:id])
     @quiz = Quiz.joins(:quiz_assignments).where('quiz_assignments.id' => @quiz_assignment.id).first
@@ -23,7 +19,7 @@ class QuizAssignmentsController < ApplicationController
 
     @teacher_info = Person.includes(:profile).where(diaspora_handle: @quiz_assignment.diaspora_handle).first
 
-    if @teacher
+    if current_user.role == "teacher"
       @authors = {}
       @quiz_assessments = QuizAssessment.where(:quiz_assignment_id => @quiz_assignment.id)
       unless @quiz_assessments.nil?
@@ -59,11 +55,9 @@ class QuizAssignmentsController < ApplicationController
   end
 
   def publish
-    role = Role.where(:person_id => current_user.person.id, :name => 'teacher').first
-    @teacher = role.nil? ? false : true
     
     @assignment = QuizAssignment.find(params[:a_id])
-    if @teacher and !@assignment.is_result_published      
+    if current_user.role == "teacher" and !@assignment.is_result_published      
       @quiz_assessments = QuizAssessment.where(:quiz_assignment_id => @assignment.id)
       unless @quiz_assessments.nil?
         @quiz_assessments.each { 
@@ -90,15 +84,13 @@ class QuizAssignmentsController < ApplicationController
   end
 
   def performance
-    role = Role.where(:person_id => current_user.person.id, :name => 'teacher').first
-    @teacher = role.nil? ? false : true
     @assignment_assessments = nil
     @assignment = QuizAssignment.find(params[:a_id])
     @data = []
     @data2 = []
 
     @temp = {}
-    if @teacher      
+    if current_user.role == "teacher"     
       @quiz_assessments = QuizAssessment.where(:quiz_assignment_id => @assignment.id)
       unless @quiz_assessments.nil?
         @quiz_assessments.each do |c|

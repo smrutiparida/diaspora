@@ -63,14 +63,12 @@ class GradesController < ApplicationController
   end
 
   def show
-    role = Role.where(:person_id => current_user.person.id, :name => 'teacher').first
-    @teacher = role.nil? ? false : true
 
     
     @data = {}
     @temp = []
 
-    if @teacher  
+    if current_user.role == "teacher"
       all_my_posts = Post.joins(:aspect_visibilities).where(:aspect_visibilities => {:aspect_id => params[:id]})
       all_my_post_guid = all_my_posts.map{|a| a.guid}
       @assignments = Assignment.where(:status_message_guid => all_my_post_guid, :is_result_published => true).order(:updated_at)

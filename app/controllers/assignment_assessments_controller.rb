@@ -13,11 +13,11 @@ class AssignmentAssessmentsController < ApplicationController
   end
 
   def publish
-    role = Role.where(:person_id => current_user.person.id, :name => 'teacher').first
-    @teacher = role.nil? ? false : true
+    
+    
     @assignment_assessments = nil
     @assignment = Assignment.find(params[:a_id])
-    if @teacher and !@assignment.is_result_published      
+    if current_user.role == "teacher" and !@assignment.is_result_published      
       @assignment_assessments = AssignmentAssessment.where(:assignment_id => @assignment.id)
       unless @assignment_assessments.nil?
         @assignment_assessments.each { 
@@ -43,14 +43,13 @@ class AssignmentAssessmentsController < ApplicationController
   end
 
   def performance
-    role = Role.where(:person_id => current_user.person.id, :name => 'teacher').first
-    @teacher = role.nil? ? false : true
+    
     @assignment_assessments = nil
     @assignment = Assignment.find(params[:a_id])
     @data = []
     @data2 = []
     @temp = {}
-    if @teacher      
+    if current_user.role == "teacher"
       @assignment_assessments = AssignmentAssessment.where(:assignment_id => @assignment.id)
       unless @assignment_assessments.nil?
         @assignment_assessments.each do |c|
@@ -86,8 +85,8 @@ class AssignmentAssessmentsController < ApplicationController
   end
 
   def show
-    role = Role.where(:person_id => current_user.person.id, :name => 'teacher').first
-    @teacher = role.nil? ? false : true
+   
+   
     @assignment = Assignment.find(params[:id])
     @document = @assignment.document_id.blank? ? nil : Document.find(@assignment.document_id)
     @teacher_info = Person.includes(:profile).where(diaspora_handle: @assignment.diaspora_handle).first
@@ -95,7 +94,7 @@ class AssignmentAssessmentsController < ApplicationController
     @assignment_assessment = nil 
 
     @authors = {}
-    if @teacher
+    if current_user.role == "teacher"
       @assignment_assessments = AssignmentAssessment.where(:assignment_id => @assignment.id)
       if params[:s_id]
         @assignment_assessment = AssignmentAssessment.where(:id => params[:s_id], :assignment_id => @assignment.id).first
@@ -124,7 +123,7 @@ class AssignmentAssessmentsController < ApplicationController
 
   def create
     rescuing_document_errors do
-      Rails.logger.info("Line 41")
+      
       if remotipart_submitted?
         @assignment_assessment = current_user.build_post(:assignment_assessment, assignment_assessment_params)
         if @assignment_assessment.save
@@ -135,7 +134,7 @@ class AssignmentAssessmentsController < ApplicationController
           respond_with @assignment_assessment, :location => assignment_assessments_path, :error => message
         end
       else
-        Rails.logger.info("Line 52")
+ 
         legacy_create    
       end  
     end
@@ -166,7 +165,7 @@ class AssignmentAssessmentsController < ApplicationController
       Tempfile.send(:define_method, "content_type") {return att_content_type}
       Tempfile.send(:define_method, "original_filename") {return file_name}
       Tempfile.send(:define_method, "content_length") {return att_content_length}
-      Rails.logger.info("Line 83")
+
       file
     end
   end
@@ -177,7 +176,7 @@ class AssignmentAssessmentsController < ApplicationController
 
   def legacy_create
     params[:assignment_assessment][:user_file] = file_handler(params)
-    Rails.logger.info("Line 92")
+
     @assignment_assessment = current_user.build_post(:assignment_assessment, params[:assignment_assessment])
     Rails.logger.info(@assignment_assessment.to_json)
     if @assignment_assessment.save
@@ -187,7 +186,7 @@ class AssignmentAssessmentsController < ApplicationController
         format.html{ render(:layout => false , :json => {"success" => true}.to_json )}
       end
     else
-      Rails.logger.info("Line 103")
+
       respond_with @assignment_assessment, :location => assignment_assessments_path, :error => message
     end
   end
