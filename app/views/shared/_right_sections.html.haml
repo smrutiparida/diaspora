@@ -2,7 +2,7 @@
 -#   licensed under the Affero General Public License version 3 or later.  See
 -#   the COPYRIGHT file.
 
-- curent_user.role != "teacher"
+- if curent_user.role != "teacher"
   .section
     .title
       .icons-question
@@ -37,3 +37,21 @@
         %br                      
     - else
       = "No assignmentss present"  
+-#
+  .section
+    .title
+      .icons-plus
+      %h5.title-header
+        = "Personal Files"
+    .content
+      - if @documents and @documents.length > 0
+        - for document in @documents
+          = link_to document.processed_doc[0..30], document.unprocessed_doc.url
+          %br                      
+      - else
+        = "You have not added any documents yet!"
+        %br
+        =  "Start now"
+        %br
+        %br
+        = link_to "Click here", "/library", :class => "button"
