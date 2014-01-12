@@ -80,7 +80,7 @@
 			
 
 			#banner {
-				
+				background: black;
 			}
 
 			#top-bar{			
@@ -163,7 +163,8 @@
 				float: left;	
 				width: 43%;
 				position: relative;
-				top: 110px;
+				top: 50px;
+				left:10%;
 			}
 
 			#left-content h2 {
@@ -284,7 +285,7 @@
 	                $('#page').width(desired_width);
 	            }
 	            $('#homepage-header').width(desired_width);
-	            $('#banner').height(desired_height * 0.90);
+	            $('#banner').height(desired_height * 0.60);
 	            
 	        }
 
@@ -293,7 +294,7 @@
 			$(document).ready(function() {
 				$(window).resize(set_width_height);
 				set_width_height();
-				$('#empower1').jSlots({time:10000, loops:3});
+				//$('#empower1').jSlots({time:10000, loops:3});
 				
 			});
 			
