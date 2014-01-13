@@ -1,12 +1,12 @@
-//var response = <%= raw @response.to_json %>;
+var response = <%= raw @response.to_json %>;
 
-//if(response.success){
+if(response.success){
 //post the rspective thing and them close your self
-  //var post_content = {status_message : "Course session update!", aspect_ids : "<%= @course_content.aspect_id %>"};
-  //post_content[response.type] = response.post_id;
-  //$.post( "/status_messages", post_content , function( data ) {
+  var post_content = {status_message : "Course session update!", aspect_ids : "<%= @course_content.aspect_id %>"};
+  post_content[response.type] = response.post_id;
+  $.post( "/status_messages", post_content , function( data ) {
     $.facebox.close();
     Diaspora.page.flashMessages.render({ 'success':'success', 'notice':'Content added to module. Page refreshing.' });
     $.getScript("/courses/<%= @course_content.aspect_id %>");
-  //}, "json"); 
-//}
+  }, "json"); 
+}

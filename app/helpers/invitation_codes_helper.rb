@@ -18,7 +18,7 @@ module InvitationCodesHelper
       
         @aspect = Aspect.find(invitation_details.aspect_id) 
       
-        #inviter.share_with(current_user.person, @aspect)
+        inviter.share_with(current_user.person, @aspect)
         
         new_aspect = current_user.aspects.create(:name => @aspect.name, :folder => "Classroom")
         
@@ -33,7 +33,7 @@ module InvitationCodesHelper
 
         user_in_contacts.each do |existing_user|
           user_aspect = existing_user.aspects.where(:name => @aspect.name).first
-          existing_user.share_with(current_user.person, user_aspect)
+          existing_user.share_with(current_user.person, user_aspect) unless user_aspect.blank?
         end
       
         render :partial => 'aspects/add_contact_course', :locals => {:inviter => inviter.person, :aspect => @aspect}
