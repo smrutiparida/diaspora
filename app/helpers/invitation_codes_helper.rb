@@ -18,9 +18,9 @@ module InvitationCodesHelper
       
         @aspect = Aspect.find(invitation_details.aspect_id) 
       
-        inviter.share_with(current_user.person, @aspect)
+        #inviter.share_with(current_user.person, @aspect)
         
-        new_aspect = self.aspects.create(:name => @aspect.name, :folder => "Classroom")
+        new_aspect = current_user.aspects.create(:name => @aspect.name, :folder => "Classroom")
         
         @inviter_aspect = inviter.aspects.find(invitation_details.aspect_id)
         contacts_in_aspect = @inviter_aspect.contacts.includes(:aspect_memberships).all    
