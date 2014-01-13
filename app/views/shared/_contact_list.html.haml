@@ -6,7 +6,7 @@
 .contact_list_controls
   = search_field_tag :contact_search, "", id: "contact_list_search", class: 'contact_list_search', results: 5, placeholder: t('.all_contacts')
   %div{:style => 'float:right;padding-top:7px;'}
-    = link_to 'Invite a Student', '#', :onclick => '$.facebox({ajax:"/users/invitations?aspect=<%= aspect.id %>"});', :style => 'margin-right:5px;'
+    = link_to 'Invite a Student', '#', :onclick => "$.facebox({ajax:'/users/invitations?aspect=' + aspect.id.to_s });", :style => 'margin-right:5px;'
     %span{:style => 'margin-right:10px;'} OR
 
 
