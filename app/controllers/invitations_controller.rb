@@ -86,8 +86,11 @@ class InvitationsController < ApplicationController
       flash[:error] << '. '
       flash[:error] << t('invitations.create.rejected') +  invalid_emails.join(', ')
     end
-
-    format.html{ render :nothing => true, :status => 201 }
+    
+    respond_to do |format|
+        format.html { render :nothing => true, :status => 201 }
+    end
+    
   end
 
   def check_if_invites_open
