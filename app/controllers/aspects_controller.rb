@@ -12,6 +12,7 @@ class AspectsController < ApplicationController
   def create
     @aspect = current_user.aspects.build(aspect_params)
     aspecting_person_id = params[:aspect][:person_id]
+    @aspect.folder = params[:aspect][:folder]
 
     if @aspect.save
       flash[:notice] = I18n.t('aspects.create.success', :name => @aspect.name)
@@ -21,7 +22,8 @@ class AspectsController < ApplicationController
       elsif aspecting_person_id.present?
         connect_person_to_aspect(aspecting_person_id)
       else
-        redirect_to contacts_path(:a_id => @aspect.id)
+        redirect_to :back
+        #redirect_to contacts_path(:a_id => @aspect.id)
       end
     else
       respond_to do |format|
