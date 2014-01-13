@@ -57,6 +57,8 @@ class InvitationsController < ApplicationController
     session[:valid_email_invites] = valid_emails
     session[:invalid_email_invites] = invalid_emails
     
+    new_set = []
+    
     unless valid_emails.empty?      
       opts = {}
       opts[:sender] = current_user
