@@ -68,8 +68,6 @@ class StreamsController < ApplicationController
     @assignments = Assignment.where(:status_message_guid => all_my_post_guid, :is_result_published => false)
     @quizzes = Quiz.where(:status_message_guid => all_my_post_guid)
     
-    
-    Rails.logger.info("Role is" + current_user.role)
     respond_with do |format|
       format.html { render 'streams/main_stream' }
       format.mobile { render 'streams/main_stream' }
