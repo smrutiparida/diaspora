@@ -5,6 +5,11 @@
 
 .contact_list_controls
   = search_field_tag :contact_search, "", id: "contact_list_search", class: 'contact_list_search', results: 5, placeholder: t('.all_contacts')
+  %div{:style => 'float:right;padding-top:7px;'}
+    = link_to 'Invite a Student', '#', :onclick => '$.facebox.close();$.facebox({ajax:"/users/invitations"});', :style => 'margin-right:5px;'
+    %span{:style => 'margin-right:5px;'} OR
+
+
   = t('contacts', count: @aspect_contacts_count)
 
 .contact_list.searchable
