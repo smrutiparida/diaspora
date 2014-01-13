@@ -28,7 +28,7 @@ module InvitationCodesHelper
         user_in_contacts = User.where(:id => contacts_in_aspect)
         
         person_in_contacts.each do |existing_member|
-          self.share_with(existing_member, new_aspect)
+          current_user.share_with(existing_member, new_aspect)
         end 
 
         user_in_contacts.each do |existing_user|
