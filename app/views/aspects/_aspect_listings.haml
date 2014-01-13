@@ -2,11 +2,14 @@
 -#   licensed under the Affero General Public License version 3 or later.  See
 -#   the COPYRIGHT file.
 
-= link_to "Classroom", aspects_path, :class => 'hoverable', :rel => 'backbone', :data => {:stream => 'aspects'}, :id => 'mandatory_groups'
+= link_to "Courses", aspects_path, :class => 'hoverable', :rel => 'backbone', :data => {:stream => 'aspects'}, :id => 'mandatory_groups'
 %ul#aspects_list
+  - if current_user.role == "teacher"
+    %li.hoverable
+      = link_to  '+ Create a Course', 'aspects/new?type=Classroom', :rel => 'facebox', :class => 'selectable new_aspect'
 
 = link_to "Personal Groups", aspects_path, :class => 'hoverable'
 %ul#personal_aspects_list
   %li.hoverable
-    = link_to  '+ Create a Group', 'aspects/new', :rel => 'facebox', :class => 'selectable new_aspect'
+    = link_to  '+ Create a Group', 'aspects/new?type=Personal', :rel => 'facebox', :class => 'selectable new_aspect'
   
