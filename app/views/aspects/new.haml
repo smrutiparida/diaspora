@@ -19,8 +19,8 @@
       %p.checkbox_select
         = aspect.label :contacts_visible, "make contacts in this group visible to each other?"
         = aspect.check_box :contacts_visible, :checked => false
-    = hidden_field_tag "contacts_visible", true
-    = hidden_field_tag "folder", params[:type]
+    = hidden_field_tag "aspect[contacts_visible]", true
+    = hidden_field_tag "aspect[folder]", params[:type]
     %br
 
     .bottom_submit_section
