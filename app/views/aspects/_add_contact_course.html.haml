@@ -1,0 +1,9 @@
+.well
+  = t('.invited_by')
+  .media
+    .float-right      
+      = "Invited to be part of "
+      = aspect.name
+    = person_image_link(inviter, :class => 'img')
+    .bd
+      = person_link(inviter)
