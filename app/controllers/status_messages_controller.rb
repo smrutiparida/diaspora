@@ -56,7 +56,7 @@ class StatusMessagesController < ApplicationController
     @status_message.get_quizzes_by_ids(params[:Quiz])
 
     if @status_message.save
-      aspects = current_user.aspects_from_ids(destination_aspect_ids(my_aspect_lis))
+      aspects = current_user.aspects_from_ids(destination_aspect_ids(my_aspect_list))
       current_user.add_to_streams(@status_message, aspects)
       receiving_services = Service.titles(services)
 
