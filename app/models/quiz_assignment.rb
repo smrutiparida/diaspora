@@ -1,6 +1,18 @@
 class QuizAssignment < ActiveRecord::Base
-  
+ 
+ # NOTE API V1 to be extracted
+  acts_as_api
+  api_accessible :backbone do |t|
+    t.add :id    
+    t.add :submission_date    
+    t.add :title
+    t.add :total_marks            
+  end 
+
   belongs_to :quiz, :foreign_key => :quiz_id, :primary_key => :id
+  delegate :title, :total_marks, to: :quiz
+  belongs_to :status_message, :foreign_key => :status_message_guid  , :primary_key => :guid
+  validates_associated :status_message
 
   def self.diaspora_initialize(params = {})
     Rails.logger.info("Model Enter")
