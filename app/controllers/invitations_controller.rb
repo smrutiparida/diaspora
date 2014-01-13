@@ -64,10 +64,10 @@ class InvitationsController < ApplicationController
 
       all_local_invitations = Invitation.batch_invite(valid_emails, opts)  
       all_local_invitations.each do |i|
-        new_set.push(i.identifier) unless i.recipient_id.blank?
+        new_set.push(i.identifier) if i.recipient_id.blank?
       end
-
-      Workers::Mail::InviteEmail.perform_async(new_set.join(','),
+      unless new_set.empty?
+        Workers::Mail::InviteEmail.perform_async(new_set.join(','),
                                                current_user.id,
                                                inviter_params)
     end
