@@ -10,8 +10,10 @@ class AspectsController < ApplicationController
              :json
 
   def create
+    Rails.logger.info(params.to_json)
     @aspect = current_user.aspects.build(aspect_params)
     aspecting_person_id = params[:aspect][:person_id]
+    Rails.logger.info(params.to_json)
     @aspect.folder = params[:aspect][:folder]
 
     Rails.logger.info(@aspect.to_json)
