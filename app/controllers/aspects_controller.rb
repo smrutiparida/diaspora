@@ -14,6 +14,8 @@ class AspectsController < ApplicationController
     aspecting_person_id = params[:aspect][:person_id]
     @aspect.folder = params[:aspect][:folder]
 
+    Rails.logger.info(@aspect.to_json)
+
     if @aspect.save
       flash[:notice] = I18n.t('aspects.create.success', :name => @aspect.name)
 
