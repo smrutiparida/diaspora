@@ -64,10 +64,10 @@ class InvitationsController < ApplicationController
       opts[:sender] = current_user
       opts[:aspect] = Aspect.find(inviter_params[:aspect])
 
-      all_local_invitations = Invitation.batch_invite(valid_emails, opts)  
-      all_local_invitations.each do |i|
-        new_set.push(i.identifier) if i.recipient_id.blank?
-      end
+      #all_local_invitations = Invitation.batch_invite(valid_emails, opts)  
+      #all_local_invitations.each do |i|
+      #  new_set.push(i.identifier) if i.recipient_id.blank?
+      #end
       Workers::Mail::InviteEmail.perform_async(valid_emails.join(','),
                                                current_user.id,
                                                inviter_params)
