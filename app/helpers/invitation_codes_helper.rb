@@ -13,7 +13,7 @@ module InvitationCodesHelper
     inviter = current_user.invited_by
     if inviter.present?
      
-      invitation_details = Invitation.where(:sender_id => inviter.id, :identifier => current_user.email)
+      invitation_details = Invitation.where(:sender_id => inviter.id, :identifier => current_user.email).first
       unless invitation_details.blank?
         @aspect = Aspect.find(invitation_details.aspect_id) 
         inviter.share_with(current_user.person, @aspect)
