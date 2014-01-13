@@ -4,9 +4,7 @@ class QuizAssignment < ActiveRecord::Base
   acts_as_api
   api_accessible :backbone do |t|
     t.add :id    
-    t.add :submission_date    
-    t.add :title
-    t.add :total_marks            
+    t.add :submission_date              
   end 
 
   belongs_to :quiz, :foreign_key => :quiz_id, :primary_key => :id
