@@ -14,6 +14,9 @@ class Person < ActiveRecord::Base
     t.add :guid
     t.add :name
     t.add lambda { |person|
+      person.profile.role
+    }, :as => :role
+    t.add lambda { |person|
       person.diaspora_handle
     }, :as => :diaspora_id
     t.add lambda { |person|
