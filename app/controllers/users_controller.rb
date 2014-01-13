@@ -114,7 +114,7 @@ class UsersController < ApplicationController
     @user     = current_user
     @person   = @user.person
     @profile  = @user.profile
-
+    
     @css_framework = :bootstrap
     @include_application_css = true #Hack for multiple CSS frameworks and having two main styles
     respond_to do |format|

@@ -56,9 +56,18 @@ class InvitationsController < ApplicationController
 
     session[:valid_email_invites] = valid_emails
     session[:invalid_email_invites] = invalid_emails
+    
+    unless valid_emails.empty?      
+      opts = {}
+      opts[:sender] = current_user.user
+      opts[:aspect] = Aspect.find(inviter_params[:aspect])
 
-    unless valid_emails.empty?
-      Workers::Mail::InviteEmail.perform_async(valid_emails.join(','),
+      all_local_invitations = self.batch_invite(valid_emails, opts)  
+      all_local_invitations.each do |i|
+        new_set.push(i.identifier) unless i.recipient_id.blank?
+      end
+
+      Workers::Mail::InviteEmail.perform_async(new_set.join(','),
                                                current_user.id,
                                                inviter_params)
     end
@@ -100,6 +109,6 @@ class InvitationsController < ApplicationController
   end
 
   def inviter_params
-    params.require(:email_inviter).permit(:message, :locale, :emails)
+    params.require(:email_inviter).permit(:message, :locale, :emails, :aspect)
   end
 end
