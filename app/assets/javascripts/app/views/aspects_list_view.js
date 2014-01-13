@@ -15,6 +15,11 @@ app.views.AspectsList = app.views.Base.extend({
   postRenderTemplate: function() {
     this.collection.each(this.appendAspect, this);
     this.$('a[rel*=facebox]').facebox();
+    alert(app.currentUser.get('role'));
+    if(app.currentUser.get('role') != "teacher"){
+       $('#teacher-create-course').hide();
+    }
+
     this.updateStreamTitle();
     this.toggleSelector();
   },
