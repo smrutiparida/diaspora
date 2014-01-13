@@ -37,8 +37,8 @@ class Aspect < ActiveRecord::Base
         self.documents << shareable
       when Assignment
         self.assignments << shareable  
-      when Quiz
-        self.quizzes << shareable  
+      when QuizAssignment
+        self.quiz_assignments << shareable  
       else
         raise "Unknown shareable type '#{shareable.class.base_class.to_s}'"
     end
