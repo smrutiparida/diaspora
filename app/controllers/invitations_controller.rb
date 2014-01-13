@@ -70,6 +70,7 @@ class InvitationsController < ApplicationController
         Workers::Mail::InviteEmail.perform_async(new_set.join(','),
                                                current_user.id,
                                                inviter_params)
+      end  
     end
 
     if emails.empty?
