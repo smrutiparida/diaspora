@@ -62,7 +62,7 @@ class InvitationsController < ApplicationController
       opts[:sender] = current_user
       opts[:aspect] = Aspect.find(inviter_params[:aspect])
 
-      all_local_invitations = self.batch_invite(valid_emails, opts)  
+      all_local_invitations = Invitation.batch_invite(valid_emails, opts)  
       all_local_invitations.each do |i|
         new_set.push(i.identifier) unless i.recipient_id.blank?
       end
