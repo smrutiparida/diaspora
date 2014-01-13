@@ -27,7 +27,7 @@
         %h4
           = t('.language')
         = select_tag('email_inviter[locale]',  options_from_collection_for_select(available_language_options, "second", "first", :selected => current_user.language))
-
+        = hidden_field_tag 'email_inviter[aspect]',params[:aspect]
         %br
 
         %p
