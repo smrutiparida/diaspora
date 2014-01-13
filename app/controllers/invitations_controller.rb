@@ -60,14 +60,14 @@ class InvitationsController < ApplicationController
     new_set = []
     
     unless valid_emails.empty?      
-      #opts = {}
-      #opts[:sender] = current_user
-      #opts[:aspect] = Aspect.find(inviter_params[:aspect])
+      opts = {}
+      opts[:sender] = current_user
+      opts[:aspect] = Aspect.find(inviter_params[:aspect])
 
-      #all_local_invitations = Invitation.batch_invite(valid_emails, opts)  
-      #all_local_invitations.each do |i|
-      #  new_set.push(i.identifier) if i.recipient_id.blank?
-      #end
+      all_local_invitations = Invitation.batch_invite(valid_emails, opts)  
+      all_local_invitations.each do |i|
+        new_set.push(i.identifier) if i.recipient_id.blank?
+      end
       Workers::Mail::InviteEmail.perform_async(valid_emails.join(','),
                                                current_user.id,
                                                inviter_params)
@@ -86,9 +86,7 @@ class InvitationsController < ApplicationController
       flash[:error] << t('invitations.create.rejected') +  invalid_emails.join(', ')
     end
     
-    respond_to do |format|
-        format.html { render :nothing => true, :status => 201 }
-    end
+    redirect_to :back
     
   end
 
