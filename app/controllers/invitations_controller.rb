@@ -64,7 +64,16 @@ class InvitationsController < ApplicationController
       opts[:sender] = current_user
       opts[:aspect] = Aspect.find(inviter_params[:aspect])
 
-      Invitation.batch_invite(valid_emails, opts)  
+      users_on_pod = User.where(:email => emails, :invitation_token => nil)
+
+      #share with anyone whose email you entered who is on the pod
+      users_on_pod.each{|u| opts[:sender].share_with(u.person, opts[:aspect])}
+
+      emails.each do |e|
+        user = users_on_pod.find{|u| u.email == e}
+        Invitation.create(opts.merge(:identifier => e, :recipient => user))
+      end
+      #Invitation.batch_invite(valid_emails, opts)  
       #all_local_invitations.each do |i|
       #  new_set.push(i.identifier) if i.recipient_id.blank?
       #end
