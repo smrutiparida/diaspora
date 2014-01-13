@@ -14,7 +14,7 @@ class AspectsController < ApplicationController
     @aspect = current_user.aspects.build(aspect_params)
     aspecting_person_id = params[:aspect][:person_id]
     Rails.logger.info(params.to_json)
-    @aspect.folder = params[:aspect][:folder]
+    @aspect.folder = "Classroom"
 
     Rails.logger.info(@aspect.to_json)
 
