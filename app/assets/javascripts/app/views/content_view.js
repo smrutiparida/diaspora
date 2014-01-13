@@ -49,7 +49,7 @@ app.views.Content = app.views.Base.extend({
 
   quiz : function() {
     //alert("app.views.Content:Presenter:documents");
-    var quizzes = this.model.get("quizzes")    
+    var quizzes = this.model.get("quiz_assignments")    
     if(!quizzes || quizzes.length == 0) { return }    
     //alert(quizzes[0].icon);  
     return quizzes[0];
