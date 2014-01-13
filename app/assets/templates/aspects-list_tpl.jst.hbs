@@ -3,6 +3,10 @@
     {{ t "aspect_navigation.select_all" }}
   </a>
 </li>
-<li class="hoverable" style="display:none;">
-  <a href="/aspects/new" class="selectable new_aspect" rel="facebox">{{ t "aspect_navigation.add_an_aspect" }}</a>
+{{#if app.currentUser.get('role') == "teacher" }}
+  <li class="hoverable">
+{{else}}
+  <li class="hoverable" style="display:none;">
+{{/if}}
+  <a href="/aspects/new?type=Classroom" class="selectable new_aspect" rel="facebox">+ Create a Course</a>
 </li>
