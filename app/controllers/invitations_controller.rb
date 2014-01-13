@@ -59,7 +59,7 @@ class InvitationsController < ApplicationController
     
     unless valid_emails.empty?      
       opts = {}
-      opts[:sender] = current_user.user
+      opts[:sender] = current_user
       opts[:aspect] = Aspect.find(inviter_params[:aspect])
 
       all_local_invitations = self.batch_invite(valid_emails, opts)  
