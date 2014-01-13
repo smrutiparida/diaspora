@@ -14,10 +14,12 @@ module InvitationCodesHelper
     if inviter.present?
      
       invitation_details = Invitation.where(:sender_id => inviter.id, :identifier => current_user.email)
-      @aspect = Aspect.find(invitation_details.aspect_id)
-      inviter.share_with(current_user.person, @aspect)
+      unless invitation_details.blank?
+        @aspect = Aspect.find(invitation_details.aspect_id) 
+        inviter.share_with(current_user.person, @aspect)
      
-      render :partial => 'aspects/add_contact_course', :locals => {:inviter => inviter.person, :aspect => @aspect}
+        render :partial => 'aspects/add_contact_course', :locals => {:inviter => inviter.person, :aspect => @aspect}
+      end  
     end
   end
 end
