@@ -13,7 +13,7 @@ class Aspect < ActiveRecord::Base
   has_many :photos, :through => :aspect_visibilities, :source => :shareable, :source_type => 'Photo'
   has_many :documents, :through => :aspect_visibilities, :source => :shareable, :source_type => 'Document'
   has_many :assignments, :through => :aspect_visibilities, :source => :shareable, :source_type => 'Assignment'
-  has_many :quizzes, :through => :aspect_visibilities, :source => :shareable, :source_type => 'Quiz'
+  has_many :quiz_assignments, :through => :aspect_visibilities, :source => :shareable, :source_type => 'QuizAssignment'
 
   validates :name, :presence => true, :length => { :maximum => 20 }
 

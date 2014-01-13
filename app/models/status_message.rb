@@ -21,7 +21,7 @@ class StatusMessage < Post
   xml_attr :photos, :as => [Photo]
   xml_attr :documents, :as => [Document]
   xml_attr :assignments, :as => [Assignment]
-  xml_attr :quizzes, :as => [Quiz]
+  xml_attr :quiz_assignments, :as => [QuizAssignment]
   xml_attr :location, :as => Location
 
 
@@ -31,7 +31,7 @@ class StatusMessage < Post
 
   has_many :assignments, :dependent => :destroy, :foreign_key => :status_message_guid, :primary_key => :guid  
 
-  has_many :quizzes, :dependent => :destroy, :foreign_key => :status_message_guid, :primary_key => :guid  
+  has_many :quiz_assignments, :dependent => :destroy, :foreign_key => :status_message_guid, :primary_key => :guid  
 
   has_one :location
 
@@ -95,7 +95,7 @@ class StatusMessage < Post
 
   def get_quizzes_by_ids(quiz_ids)
     return [] unless quiz_ids.present?
-    self.quizzes << Quiz.where(:id => quiz_ids, :author_id => self.author_id).all
+    self.quiz_assignments << QuizAssignment.where(:id => quiz_ids).all
   end
 
   def nsfw
@@ -167,7 +167,7 @@ class StatusMessage < Post
   end
 
   def text_and_photos_and_documents_blank_and_assignments_blank_and_quizzes_blank?
-    self.text.blank? && self.photos.blank? && self.documents.blank? && self.assignments.blank? && self.quizzes.blank?
+    self.text.blank? && self.photos.blank? && self.documents.blank? && self.assignments.blank? && self.quiz_assignments.blank?
   end
 
   def queue_gather_oembed_data
@@ -194,13 +194,13 @@ class StatusMessage < Post
 
   protected
   def presence_of_content
-    if text_and_photos_and_documents_blank_and_assignments_blank_and_quizzes_blank?
+    if text_and_photos_and_documents_blank_and_assignments_blank_and_quiz_assignments_blank?
       errors[:base] << "Cannot create a StatusMessage without content"
     end
   end
 
   def absence_of_content
-    unless text_and_photos_and_documents_blank_and_assignments_blank_and_quizzes_blank?
+    unless text_and_photos_and_documents_blank_and_assignments_blank_and_quiz_assignments_blank?
       errors[:base] << "Cannot destory a StatusMessage with text and/or photos present and/or assignment present"
     end
   end

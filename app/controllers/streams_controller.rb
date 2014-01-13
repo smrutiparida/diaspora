@@ -66,7 +66,7 @@ class StreamsController < ApplicationController
     all_my_post_guid = all_my_posts.map{|a| a.guid}
     
     @assignments = Assignment.where(:status_message_guid => all_my_post_guid, :is_result_published => false)
-    @quizzes = Quiz.where(:status_message_guid => all_my_post_guid)
+    @quizzes = QuizAssignment.where(:status_message_guid => all_my_post_guid)
     
     respond_with do |format|
       format.html { render 'streams/main_stream' }

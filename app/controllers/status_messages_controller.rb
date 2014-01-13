@@ -51,7 +51,7 @@ class StatusMessagesController < ApplicationController
     @status_message = current_user.build_post(:status_message, params[:status_message])
     @status_message.build_location(:address => params[:location_address], :coordinates => params[:location_coords]) if params[:location_address].present?
     @status_message.attach_photos_by_ids(params[:photos])
-    @status_message.attach_documents_by_ids(params[:documents])
+    @status_message.attach_documents_by_ids(params[:Document])
     @status_message.get_assignments_by_ids(params[:Assignment])
     @status_message.get_quizzes_by_ids(params[:Quiz])
 
