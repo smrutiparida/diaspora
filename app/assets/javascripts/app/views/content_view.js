@@ -11,7 +11,7 @@ app.views.Content = app.views.Base.extend({
       smallPhotos : this.smallPhotos(),
       location: this.location(),
       documents: this.documents(),
-      assignments: this.assignments(),
+      assignment: this.assignments(),
       quiz : this.quiz()
     });
   },
@@ -42,18 +42,30 @@ app.views.Content = app.views.Base.extend({
   assignments : function() {
     //alert("app.views.Content:Presenter:documents");
     var assignments = this.model.get("assignments")    
-    if(!assignments) { return }    
+    if(!assignments || assignments.length == 0) { return }    
     //alert(documents[0].icon);  
-    return assignments;
+    if(app.currentUser.get('role') != "teacher"){  
+      assignments[0].teacher = "none";
+    }
+    else
+    {
+      assignments[0].teacher = "inline"; 
+    }
+    return assignments[0];
   },
 
   quiz : function() {
     //alert("app.views.Content:Presenter:documents");
     var quizzes = this.model.get("quiz_assignments")    
     if(!quizzes || quizzes.length == 0) { return }    
-      
-    quizzes[0].teacher = "none";
-    alert(quizzes[0].teacher);
+    if(app.currentUser.get('role') != "teacher"){  
+      quizzes[0].teacher = "none";
+    }
+    else
+    {
+      quizzes[0].teacher = "inline"; 
+    }
+
     return quizzes[0];
   },
 

@@ -25,8 +25,8 @@
   </div>
 {{/if}}
 
-{{#if assignments}}  
-  {{#each assignments}}
+{{#if assignment}}  
+  {{#with assignment}}
     <div style="float:left;padding-right:15px;margin-top:4px;">
       <div style="width:50px;">
         <div class="assignment-month-part">{{sub_month}}</div>
@@ -37,7 +37,7 @@
     <a href="/asssignment_assessments/{{id}}" class="creation button" style="display:{{teacher}}">Upload Assignment</a>  
     <span style="margin-left:10px;">for {{points}} points</span>
     <div style="padding-top:10px;">{{description}}</div>      
-  {{/each}}  
+  {{/with}}  
 {{/if}}
 
 {{#if quiz}}
