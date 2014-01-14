@@ -14,7 +14,8 @@ class CoursesController < ApplicationController
   end
 	
   def show
-  	@all_course_modules = Content.where(:aspect_id => params[:id]).order(:created_at)
+    my_aspect_id = current_user.role == "teacher" ? params[:id] ? get_my_teacher_aspect_id(params[:id])
+  	@all_course_modules = Content.where(:aspect_id => my_aspect_id).order(:created_at)
     Rails.logger.info(@all_course_modules.to_json)
   	all_course_modules_guid = @all_course_modules.map{|a| a.id}
     all_my_courses = Course.where(:module_id => all_course_modules_guid).order(:module_id)
@@ -42,7 +43,18 @@ class CoursesController < ApplicationController
   end
 
   private
-
+  
+  def get_my_teacher_aspect_id(student_aspect_id)
+    aspect = Aspect.find(student_aspect_id)
+    contacts_in_aspect = aspect.contacts.includes(:aspect_memberships).all    
+    teacher_in_contact = User.where(:id => contacts_in_aspect, :role => 'teacher').first
+    
+    unless teacher_in_contact.blank?
+      @user_aspect = teacher_in_contact.aspects.where(:name => aspect.name).first
+    end
+    @user_aspect.id
+  end
+  
   def format_course(all_courses)
     @data_dict = {}
     unless all_courses.nil?

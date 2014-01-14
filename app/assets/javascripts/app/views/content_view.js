@@ -44,7 +44,7 @@ app.views.Content = app.views.Base.extend({
     var assignments = this.model.get("assignments")    
     if(!assignments || assignments.length == 0) { return }    
     //alert(documents[0].icon);  
-    if(app.currentUser.get('role') != "teacher"){  
+    if(app.currentUser.get('role') == "teacher"){  
       assignments[0].teacher = "none";
     }
     else
@@ -58,7 +58,7 @@ app.views.Content = app.views.Base.extend({
     //alert("app.views.Content:Presenter:documents");
     var quizzes = this.model.get("quiz_assignments")    
     if(!quizzes || quizzes.length == 0) { return }    
-    if(app.currentUser.get('role') != "teacher"){  
+    if(app.currentUser.get('role') == "teacher"){  
       quizzes[0].teacher = "none";
     }
     else
