@@ -10,6 +10,10 @@ class QuizAssignment < ActiveRecord::Base
     t.add lambda { |quiz_assignment|
             quiz_assignment.subdate(quiz_assignment.submission_date)
           }, :as => :sub_date             
+
+    t.add lambda { |quiz_assignment|
+            quiz_assignment.submonth(quiz_assignment.submission_date)
+          }, :as => :sub_month    
   end 
 
   belongs_to :quiz, :foreign_key => :quiz_id, :primary_key => :id
@@ -20,10 +24,16 @@ class QuizAssignment < ActiveRecord::Base
   def subdate(date = nil)    
     if date
       Rails.logger.info(date.to_s)
-      DateTime.parse(date.to_s).strftime("%b %d")
+      DateTime.parse(date.to_s).strftime("%d")
     end
   end
-
+  
+  def submonth(date = nil)    
+    if date
+      Rails.logger.info(date.to_s)
+      DateTime.parse(date.to_s).strftime("%b")
+    end
+  end
   def self.diaspora_initialize(params = {})
     Rails.logger.info("Model Enter")
     quiz_assignment = self.new

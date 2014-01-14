@@ -45,13 +45,19 @@
 {{#if quiz}}
   <div class="photo_attachments quiz-attempt">
     {{#with quiz}}
-      <h5>{{title}}</h5>
+      <div style="float:left;padding-right:15px;margin-top:4px;">
+      <div style="width:50px;">
+        <div class="assignment-month-part">{{sub_month}}</div>
+        <div class="assignment-date-part">{{sub_date}}</div>
+      </div>
+    </div>
+      <h5 style="margin-bottom:0.7em">{{title}}</h5>
       {{#if student}}
         <a href="/quiz_assignments/{{id}}" class="button creation" target="_blank">        
           <span>Attempt Quiz</span>
         </a>
       {{/if}}  
-      <span class="quiz-status-message">Due Date {{sub_date}}</span>
+      <span style="margin-left:10px;">for {{total_marks}} marks</span>
     {{/with}}
   </div>
 {{/if}}
