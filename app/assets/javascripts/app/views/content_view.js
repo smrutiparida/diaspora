@@ -12,7 +12,8 @@ app.views.Content = app.views.Base.extend({
       location: this.location(),
       documents: this.documents(),
       assignments: this.assignments(),
-      quiz : this.quiz()
+      quiz : this.quiz(),
+      student : (app.currentUser.get('role') != "teacher")
     });
   },
 
