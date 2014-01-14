@@ -10,10 +10,12 @@ class QuizAssignment < ActiveRecord::Base
     t.add lambda { |quiz_assignment|
             quiz_assignment.subdate(quiz_assignment.submission_date)
           }, :as => :sub_date             
-
     t.add lambda { |quiz_assignment|
             quiz_assignment.submonth(quiz_assignment.submission_date)
-          }, :as => :sub_month    
+          }, :as => :sub_month  
+    t.add lambda { |quiz_assignment|
+            quiz_assignment.getuser()
+          }, :as => :teacher   
   end 
 
   belongs_to :quiz, :foreign_key => :quiz_id, :primary_key => :id
@@ -27,7 +29,9 @@ class QuizAssignment < ActiveRecord::Base
       DateTime.parse(date.to_s).strftime("%d")
     end
   end
-  
+  def getuser()
+    return "none"
+  end
   def submonth(date = nil)    
     if date
       Rails.logger.info(date.to_s)

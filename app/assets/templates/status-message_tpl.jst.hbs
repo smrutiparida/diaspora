@@ -34,7 +34,7 @@
       </div>
     </div>
     <h5 style="margin-bottom:0.7em">{{name}}</h5>
-    <a href="/asssignment_assessments/{{id}}" class="submit-course-module creation button">Upload Assignment</a>  
+    <a href="/asssignment_assessments/{{id}}" class="creation button" style="display:{{teacher}}">Upload Assignment</a>  
     <span style="margin-left:10px;">for {{points}} points</span>
     <div style="padding-top:10px;">{{description}}</div>      
   {{/each}}  
@@ -50,7 +50,7 @@
       </div>
     </div>
       <h5 style="margin-bottom:0.7em">{{title}}</h5>
-      <a href="/quiz_assignments/{{id}}" class="submit-course-module button creation" target="_blank">        
+      <a href="/quiz_assignments/{{id}}" class="submit-course-module button creation" target="_blank" style="display:{{teacher}}">        
         <span>Attempt Quiz</span>
       </a>  
       <span style="margin-left:10px;">for {{total_marks}} marks</span>

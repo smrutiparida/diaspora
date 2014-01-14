@@ -20,7 +20,10 @@ class Assignment < ActiveRecord::Base
     t.add :name
     t.add :description
     t.add :pending
-    t.add :comments_count, :as => :points    
+    t.add :comments_count, :as => :points   
+    t.add lambda { |assignment|
+            assignment.getuser()
+          }, :as => :teacher 
   end
 
   xml_attr :name
@@ -44,7 +47,9 @@ class Assignment < ActiveRecord::Base
       DateTime.parse(date.to_s).strftime("%d")
     end
   end
-
+  def getuser()
+    return "none"
+  end
   def submonth(date = nil)
     if date
       DateTime.parse(date.to_s).strftime("%b")
