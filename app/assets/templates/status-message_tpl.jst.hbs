@@ -34,9 +34,7 @@
       </div>
     </div>
     <h5 style="margin-bottom:0.7em">{{name}}</h5>
-    {{#if student}}
-      <a href="/asssignment_assessments/{{id}}" class="creation button">Upload Assignment</a>  
-    {{/if}}  
+    <a href="/asssignment_assessments/{{id}}" class="creation button" style="display:none;" class="submit-course-module">Upload Assignment</a>  
     <span style="margin-left:10px;">for {{points}} points</span>
     <div style="padding-top:10px;">{{description}}</div>      
   {{/each}}  
@@ -52,11 +50,9 @@
       </div>
     </div>
       <h5 style="margin-bottom:0.7em">{{title}}</h5>
-      {{#if student}}
-        <a href="/quiz_assignments/{{id}}" class="button creation" target="_blank">        
-          <span>Attempt Quiz</span>
-        </a>
-      {{/if}}  
+      <a href="/quiz_assignments/{{id}}" class="button creation" target="_blank" style="display:none;" class="submit-course-module">        
+        <span>Attempt Quiz</span>
+      </a>  
       <span style="margin-left:10px;">for {{total_marks}} marks</span>
     {{/with}}
   </div>

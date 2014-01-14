@@ -12,8 +12,7 @@ app.views.Content = app.views.Base.extend({
       location: this.location(),
       documents: this.documents(),
       assignments: this.assignments(),
-      quiz : this.quiz(),
-      student : app.currentUser.get('role') == "teacher"
+      quiz : this.quiz()
     });
   },
 
@@ -104,6 +103,9 @@ app.views.Content = app.views.Base.extend({
   postRenderTemplate : function(){
     //alert("app.views.Content:Presenter:postRenderTemplate");
     _.defer(_.bind(this.collapseOversized, this))
+    if (app.currentUser.get('role') != "teacher"){
+      $('.submit-course-module').show();
+    }
   }
 });
 
