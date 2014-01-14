@@ -39,7 +39,7 @@ module InvitationCodesHelper
           existing_user.share_with(current_user.person, user_aspect) unless user_aspect.blank?
         end
       
-        render :partial => 'aspects/add_contact_course', :locals => {:inviter => inviter.person, :aspect => @aspect}
+        render :partial => 'aspects/add_contact_course', :locals => {:inviter => inviter.person, :aspect => @inviter_aspect}
       end  
     end
   end
