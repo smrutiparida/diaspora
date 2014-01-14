@@ -21,8 +21,10 @@ class AssignmentsController < ApplicationController
   
   def create
     @assignment = current_user.build_post(:assignment, assignment_params)
-    @document = Document.find(params[:assignment][:document_id])
-    @assignment.document_id = @document.id
+    unless params[:assignment][:document_id].blank?
+      @document = Document.find(params[:assignment][:document_id]) 
+      @assignment.document_id = @document.id
+    end  
     if @assignment.save      
       #@response = {}
       @response = @assignment.as_api_response(:backbone)
