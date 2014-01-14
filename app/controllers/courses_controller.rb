@@ -14,7 +14,7 @@ class CoursesController < ApplicationController
   end
 	
   def show
-    my_aspect_id = current_user.role == "teacher" ? params[:id] ? get_my_teacher_aspect_id(params[:id])
+    my_aspect_id = current_user.role == "teacher" ? params[:id] : get_my_teacher_aspect_id(params[:id])
   	@all_course_modules = Content.where(:aspect_id => my_aspect_id).order(:created_at)
     Rails.logger.info(@all_course_modules.to_json)
   	all_course_modules_guid = @all_course_modules.map{|a| a.id}
@@ -54,7 +54,7 @@ class CoursesController < ApplicationController
     end
     @user_aspect.id
   end
-  
+
   def format_course(all_courses)
     @data_dict = {}
     unless all_courses.nil?
