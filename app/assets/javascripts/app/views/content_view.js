@@ -13,7 +13,7 @@ app.views.Content = app.views.Base.extend({
       documents: this.documents(),
       assignments: this.assignments(),
       quiz : this.quiz(),
-      student : (app.currentUser.get('role') != "teacher")
+      student : !(app.currentUser.get('role') == "teacher")
     });
   },
 
