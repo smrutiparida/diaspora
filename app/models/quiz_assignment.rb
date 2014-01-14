@@ -4,7 +4,9 @@ class QuizAssignment < ActiveRecord::Base
   acts_as_api
   api_accessible :backbone do |t|
     t.add :id    
-    t.add :submission_date              
+    t.add :submission_date
+    t.add :title
+    t.add :total_marks             
   end 
 
   belongs_to :quiz, :foreign_key => :quiz_id, :primary_key => :id
@@ -17,8 +19,8 @@ class QuizAssignment < ActiveRecord::Base
     quiz_assignment = self.new
     quiz_assignment.quiz_id = params[:quiz_id]
     quiz_assignment.submission_date = DateTime.strptime(params[:submission_date],'%d/%m/%Y')
-    quiz_assignment.author = params[:author]
-    quiz_assignment.diaspora_handle = quiz_assignment.author.diaspora_handle
+    #quiz_assignment.author = params[:author]
+    quiz_assignment.diaspora_handle = params[:diaspora_handle]
 
     quiz_assignment
   end
