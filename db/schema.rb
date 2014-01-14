@@ -403,6 +403,8 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
     t.string   "diaspora_handle"
     t.string   "status_message_guid"
     t.string   "guid",                                   :null => false
+    t.integer  "author_id",                              :null => false   
+    t.integer  "comments_count"    
   end
 
   create_table "quiz_assessments", :force => true do |t|
