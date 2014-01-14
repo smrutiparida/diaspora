@@ -47,7 +47,7 @@ class CoursesController < ApplicationController
   def get_my_teacher_aspect_id(student_aspect_id)
     aspect = Aspect.find(student_aspect_id)
     contacts_in_aspect = aspect.contacts.includes(:aspect_memberships).all    
-    teacher_in_contact = User.where(:id => contacts_in_aspect, :role => 'teacher').first
+    teacher_in_contact = User.includes(:person, :profile).where(:id => contacts_in_aspect, 'profile.role' => 'teacher').first
     
     unless teacher_in_contact.blank?
       @user_aspect = teacher_in_contact.aspects.where(:name => aspect.name).first
