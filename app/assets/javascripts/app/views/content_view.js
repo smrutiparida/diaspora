@@ -51,7 +51,9 @@ app.views.Content = app.views.Base.extend({
     //alert("app.views.Content:Presenter:documents");
     var quizzes = this.model.get("quiz_assignments")    
     if(!quizzes || quizzes.length == 0) { return }    
-    //alert(quizzes[0].icon);  
+      
+    quizzes[0].teacher = "none";
+    alert(quizzes[0].teacher);
     return quizzes[0];
   },
 
