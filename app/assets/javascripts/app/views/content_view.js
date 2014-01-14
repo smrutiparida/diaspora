@@ -107,12 +107,7 @@ app.views.Content = app.views.Base.extend({
 });
 
 app.views.StatusMessage = app.views.Content.extend({
-  templateName : "status-message",
-  postRenderTemplate : function(){
-    if (app.currentUser.get('role') == "teacher"){
-      $('.submit-course-module').hide();
-    }
-  }
+  templateName : "status-message"
 });
 
 app.views.ExpandedStatusMessage = app.views.StatusMessage.extend({
