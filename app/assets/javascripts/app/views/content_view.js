@@ -103,18 +103,22 @@ app.views.Content = app.views.Base.extend({
   postRenderTemplate : function(){
     //alert("app.views.Content:Presenter:postRenderTemplate");
     _.defer(_.bind(this.collapseOversized, this))
-    if (app.currentUser.get('role') != "teacher"){
-      $('.submit-course-module').show();
-    }
   }
 });
 
 app.views.StatusMessage = app.views.Content.extend({
-  templateName : "status-message"
+  templateName : "status-message",
+  postRenderTemplate : function(){
+
+  }
 });
 
 app.views.ExpandedStatusMessage = app.views.StatusMessage.extend({
   postRenderTemplate : function(){
+    if (app.currentUser.get('role') != "teacher"){
+      alert('here');
+      $('.submit-course-module').show();
+    }
   }
 });
 
