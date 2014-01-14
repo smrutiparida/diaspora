@@ -30,7 +30,7 @@ class QuizAssignment < ActiveRecord::Base
     end
   end
   def getuser()
-    return "none"
+    return current_user.role == "teacher" ? "none" : "inline"
   end
   def submonth(date = nil)    
     if date
