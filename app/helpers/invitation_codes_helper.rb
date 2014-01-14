@@ -32,7 +32,7 @@ module InvitationCodesHelper
           current_user.share_with(existing_member, new_aspect)
         end 
 
-        user_id_in_contact = person_in_contacts.map {|a| a.owner_id)
+        user_id_in_contact = person_in_contacts.map {|a| a.owner_id)}
         user_in_contacts = User.where(:id => user_id_in_contact)
         user_in_contacts.each do |existing_user|
           user_aspect = existing_user.aspects.where(:name => @aspect.name).first
