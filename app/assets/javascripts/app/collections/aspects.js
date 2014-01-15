@@ -21,6 +21,6 @@ app.collections.Aspects = Backbone.Collection.extend({
 
   toSentence: function(){
     var separator = Diaspora.I18n.t("comma") + ' ';
-    return this.selectedAspects('name').join(separator).replace(/,\s([^,]+)$/, ' ' + Diaspora.I18n.t("and") + ' $1') || Diaspora.I18n.t("my_aspects");
+    return this.selectedAspects('name').join(separator).replace(/,\s([^,]+)$/, ' ' + Diaspora.I18n.t("and") + ' $1') || "All Groups";
   }
 })
