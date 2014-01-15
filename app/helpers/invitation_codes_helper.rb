@@ -41,6 +41,7 @@ module InvitationCodesHelper
           end
         
           render :partial => 'aspects/add_contact_course', :locals => {:inviter => inviter.person, :aspect => @inviter_aspect}
+        end  
       else
         #a admin inviter can only invite a teacher. SO here it goes.
         @profile_attrs = {}
