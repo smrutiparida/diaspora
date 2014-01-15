@@ -11,7 +11,7 @@ module InvitationCodesHelper
 
   def invited_by_message
     inviter = current_user.invited_by
-    if inviter.present?
+    if inviter.present? and !inviter.admin?
      
       invitation_details = Invitation.where(:sender_id => inviter.id, :identifier => current_user.email).first
       unless invitation_details.blank?
@@ -42,5 +42,6 @@ module InvitationCodesHelper
         render :partial => 'aspects/add_contact_course', :locals => {:inviter => inviter.person, :aspect => @inviter_aspect}
       end  
     end
+    render :nothing => true
   end
 end
