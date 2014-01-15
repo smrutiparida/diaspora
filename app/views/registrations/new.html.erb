@@ -3,17 +3,15 @@
 
     <div class="row">
         <div class="span4" id="image-container">
-            <%= image_tag('signupimages@2x_mini.jpg', :id => "collage") %>
+            <span style='display:none;'></span>
         </div>
 
         <div class="span8">
-            <h1 id="create-something-text">
+            <h1 id="create-something-text" style='display:none;'>
               <%= t('.hey_make').html_safe %>
             </h1>
 
-            <h3 id="diaspora-hearts">
-              <%= t('.diaspora') %>
-            </h3>
+            <h3 id="diaspora-hearts">LMNOP</h3>
 
             <h4 id="sign-up-text">
               <%= t('.sign_up') %>
@@ -27,7 +25,7 @@
                     </label>
 
                     <div class="controls">
-                        <%= f.email_field :email, :placeholder => "luke@hoth.net", :title => t('registrations.new.enter_email'), :required => true %>
+                        <%= f.email_field :email, :placeholder => "your email address..", :title => t('registrations.new.enter_email'), :required => true %>
                     </div>
                   </div>
 
@@ -37,7 +35,7 @@
                       </label>
 
                       <div class="controls">
-                        <%= f.text_field :username, :placeholder => "jedi_guy", :title => t('registrations.new.enter_username'), :required => true, :pattern => "[A-Za-z0-9_]+" %>
+                        <%= f.text_field :username, :placeholder => "unique name..", :title => t('registrations.new.enter_username'), :required => true, :pattern => "[A-Za-z0-9_]+" %>
                       </div>
                   </div>
 
