@@ -11,37 +11,43 @@ module InvitationCodesHelper
 
   def invited_by_message
     inviter = current_user.invited_by
-    if inviter.present? and !inviter.admin?
+    if inviter.present? 
+      if !inviter.admin?
      
-      invitation_details = Invitation.where(:sender_id => inviter.id, :identifier => current_user.email).first
-      unless invitation_details.blank?
-      
-        #@aspect = Aspect.find(invitation_details.aspect_id) 
-        @inviter_aspect = inviter.aspects.find(invitation_details.aspect_id)
-        @contacts_in_aspect = @inviter_aspect.contacts.includes(:aspect_memberships, :person => :profile).all
-      
-        inviter.share_with(current_user.person, @inviter_aspect)
+        invitation_details = Invitation.where(:sender_id => inviter.id, :identifier => current_user.email).first
+        unless invitation_details.blank?
         
-        new_aspect = current_user.aspects.create(:name => @inviter_aspect.name, :folder => "Classroom")
-        current_user.share_with(inviter.person, new_aspect)
+          #@aspect = Aspect.find(invitation_details.aspect_id) 
+          @inviter_aspect = inviter.aspects.find(invitation_details.aspect_id)
+          @contacts_in_aspect = @inviter_aspect.contacts.includes(:aspect_memberships, :person => :profile).all
         
-        #contacts_in_aspect = @aspect.contacts.includes(:aspect_memberships).all
-        all_person_guid = @contacts_in_aspect.map{|a| a.person_id}   
-        person_in_contacts = Person.where(:id => all_person_guid)
-        person_in_contacts.each do |existing_member|
-          current_user.share_with(existing_member, new_aspect)
-        end 
+          inviter.share_with(current_user.person, @inviter_aspect)
+          
+          new_aspect = current_user.aspects.create(:name => @inviter_aspect.name, :folder => "Classroom")
+          current_user.share_with(inviter.person, new_aspect)
+          
+          #contacts_in_aspect = @aspect.contacts.includes(:aspect_memberships).all
+          all_person_guid = @contacts_in_aspect.map{|a| a.person_id}   
+          person_in_contacts = Person.where(:id => all_person_guid)
+          person_in_contacts.each do |existing_member|
+            current_user.share_with(existing_member, new_aspect)
+          end 
 
-        user_id_in_contact = person_in_contacts.map {|a| a.owner_id}
-        user_in_contacts = User.where(:id => user_id_in_contact)
-        user_in_contacts.each do |existing_user|
-          user_aspect = existing_user.aspects.where(:name => @inviter_aspect.name).first
-          existing_user.share_with(current_user.person, user_aspect) unless user_aspect.blank?
-        end
-      
-        render :partial => 'aspects/add_contact_course', :locals => {:inviter => inviter.person, :aspect => @inviter_aspect}
-      end  
-    end
+          user_id_in_contact = person_in_contacts.map {|a| a.owner_id}
+          user_in_contacts = User.where(:id => user_id_in_contact)
+          user_in_contacts.each do |existing_user|
+            user_aspect = existing_user.aspects.where(:name => @inviter_aspect.name).first
+            existing_user.share_with(current_user.person, user_aspect) unless user_aspect.blank?
+          end
+        
+          render :partial => 'aspects/add_contact_course', :locals => {:inviter => inviter.person, :aspect => @inviter_aspect}
+      else
+        #a admin inviter can only invite a teacher. SO here it goes.
+        @profile_attrs = {}
+        @profile_attrs[:role] = 'teacher'
+        current_user.update_profile(@profile_attrs)   
+      end
+    end  
     render :nothing => true
   end
 end
