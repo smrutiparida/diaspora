@@ -17,6 +17,7 @@ app.views.AspectsList = app.views.Base.extend({
     this.$('a[rel*=facebox]').facebox();
     if(app.currentUser.get('role') != "teacher"){
        $('#teacher-create-course').hide();
+       $('#aspects_list .modify_aspect').hide();
     }
 
     this.updateStreamTitle();
