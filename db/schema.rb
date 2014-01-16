@@ -232,7 +232,7 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
 
   add_index "o_embed_caches", ["url"], :name => "index_o_embed_caches_on_url", :length => {"url"=>255}
 
-  create table "courses", :force => true do |t|
+  create_table "courses", :force => true do |t|
     t.string   "type"
     t.integer  "post_id"
     t.integer  "module_id"
@@ -240,7 +240,8 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
     t.datetime "updated_at",                            :null => false
   end
 
-  create table "contents", :force => true do |t|
+
+  create_table "contents", :force => true do |t|
     t.string   "name"
     t.integer  "aspect_id"
     t.datetime "created_at",                            :null => false
