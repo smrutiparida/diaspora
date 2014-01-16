@@ -105,7 +105,7 @@ class AspectsController < ApplicationController
     #who is the teacher? Role table has persoon_id with role = teacher and contacts table has person_id and user_id
     aspect = current_user.aspects.where(:id => params[:id]).includes(:contacts).first
     @person = nil
-    if current_user.role != "teacher" and aspect.folder != "Classroom"
+    if current_user.role != "teacher" and aspect.folder == "Classroom"
       contacts_in_aspect = aspect.contacts.includes(:aspect_memberships).all    
       person_id_list = person_in_contacts.map{|a| a.person_id}
       person_in_contacts = Person.where(:id => person_id_list)
