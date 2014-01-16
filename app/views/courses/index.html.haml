@@ -31,7 +31,8 @@
     #conversation_show{:style => 'padding-right:10px;'}      
       #no_conversation_text
         = "No Session to show."
-        = link_to "Add your first one", '/contents/new', :id => 'module-button', :class => 'button creation', :rel => 'facebox'         
+        - if current_user.role == "teacher"
+          = link_to "Add your first one", '/contents/new', :id => 'module-button', :class => 'button creation', :rel => 'facebox'         
 
 - if current_user.role == "teacher"
   = render :partial => 'courses/edit'
