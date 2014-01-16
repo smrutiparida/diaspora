@@ -104,27 +104,26 @@ class AspectsController < ApplicationController
   def teacher
     #who is the teacher? Role table has persoon_id with role = teacher and contacts table has person_id and user_id
     aspect = current_user.aspects.where(:id => params[:id]).includes(:contacts).first
-    contacts_in_aspect = aspect.contacts.includes(:aspect_memberships).all    
-    person_in_contacts = Person.where(:id => contacts_in_aspect)
-    #contacts_in_aspect_map = contacts_in_aspect.map{|a| a.person.id}
-    
-    teacher_info = Role.where(:person_id => person_in_contacts, :name => 'teacher').first
-    unless teacher_info.nil?
-      @person = Person.find(teacher_info.person_id)
-      unless @person.nil?
-        @contact_id =current_user.contacts.where(:person_id => @person.id).first
-      end
-    end    
+    @person = nil
+    if current_user.role != "teacher" and aspect.folder != "Classroom"
+      contacts_in_aspect = aspect.contacts.includes(:aspect_memberships).all    
+      person_in_contacts = Person.where(:id => contacts_in_aspect)
 
-    if @person.nil?
-      render :json => {}
-    else  
-      respond_to do |format|
-        format.json do
-          render :json => HovercardPresenter.new(@person, @contact_id.id)
-        end
+      person_in_contacts.each do |p|
+        if p.profile.role == "teacher"
+          @person = p
+          @contact_id =current_user.contacts.where(:person_id => @person.id).first
+          break
+        end  
+      end    
+    end
+
+    respond_to do |format|
+      format.json do
+        render :json => @person.nil? ? {} : HovercardPresenter.new(@person, @contact_id.id)
       end
-    end  
+    end
+  
   end  
   
   def toggle_contact_visibility
