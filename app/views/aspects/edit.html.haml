@@ -14,8 +14,8 @@
         = aspect.text_field :name, :maxlength => 20
         = aspect.submit t('.update'), 'data-disable-with' => t('.updating'), :class => 'button'
 
-  - if @contacts.count > 0
-    = render 'shared/contact_list', :aspect => @aspect, :contacts => @contacts
+  
+  = render 'shared/contact_list', :aspect => @aspect, :contacts => @contacts
 
   .bottom_submit_section
     = button_to t('delete'), @aspect, :method => "delete", :data => { :confirm => t('.confirm_remove_aspect') }, :class => 'button delete'
