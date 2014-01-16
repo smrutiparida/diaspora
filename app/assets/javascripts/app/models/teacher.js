@@ -18,7 +18,7 @@ app.models.Teacher = Backbone.Model.extend({
     //var respItems = this.parse(resp);
     if(this.attributes.id)
     {
-      alert("teacher came");
+      
       $('#teacher_thubmnail').show();
       app.teacherView = new app.views.Teacher({attributes:this.attributes});
       $('#aspect_teacher').html(app.teacherView.render().el);

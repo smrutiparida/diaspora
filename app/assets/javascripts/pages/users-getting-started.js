@@ -33,15 +33,29 @@ Diaspora.Pages.UsersGettingStarted = function() {
       $(this).addClass("active_input");
     });
 
+    $("#profile_last_name").bind("change", function(){
+      $(this).data("cachedValue", $(this).val());
+      $('#edit_profile').submit();
+      $('#gs-name-form-spinner').removeClass("hidden");
+    });
+
+    $("#profile_last_name").bind("blur", function(){
+      $(this).removeClass("active_input");
+    });
+
+    $("#profile_last_name").bind("focus", function(){
+      $(this).addClass("active_input");
+    });
+
     $("#awesome_button").bind("click", function(evt){
       var confirmMessage = Diaspora.I18n.t("getting_started.no_tags");
       var message = Diaspora.I18n.t("getting_started.preparing_your_stream");
       var confirmation = true;
 
-      if ($("#as-selections-tags").find(".as-selection-item").length <= 0) {
-        message = Diaspora.I18n.t("getting_started.alright_ill_wait");
-        confirmation = confirm(confirmMessage);
-      }
+      //if ($("#as-selections-tags").find(".as-selection-item").length <= 0) {
+      //  message = Diaspora.I18n.t("getting_started.alright_ill_wait");
+      //  confirmation = confirm(confirmMessage);
+      //}
 
       Diaspora.page.flashMessages.render({success: true, notice: message});
       return confirmation;

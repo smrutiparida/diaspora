@@ -28,22 +28,13 @@
       %fieldset
         = label_tag 'profile[first_name]', t('profiles.edit.your_name')
         = text_field_tag 'profile[first_name]', current_user.first_name
+        = label_tag 'profile[last_name]', t('profiles.edit.your_name')
+        = text_field_tag 'profile[last_name]', current_user.last_name
         = image_tag 'ajax-loader.gif', :id => "gs-name-form-spinner", :class => "hidden"
         = label_tag :your_photo, t('profiles.edit.your_photo')
         = render 'photos/new_profile_photo', :aspect => :getting_started, :person => current_user.person
 
-    %h2
-      = t('.what_are_you_in_to')
-
-    %p
-      = t('.hashtag_explanation')
-
-    = form_tag(tag_followings_path, :method => 'get', :class => "tag_input search_form") do
-      %fieldset
-        = label_tag 'follow_tags', t('.hashtag_suggestions')
-        #tags_list
-          = text_field_tag 'follow_tags', nil, :class => "nostrap"
-
+    
     .awesome
       = link_to "Take me to lmnop »", stream_path, :id => "awesome_button", :class => "button creation"
 
