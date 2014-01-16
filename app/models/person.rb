@@ -186,6 +186,7 @@ class Person < ActiveRecord::Base
         "#{first_name.to_s.strip}".strip
       else
         "#{first_name.to_s.strip} #{last_name.to_s.strip}".strip
+    end    
   end
 
   def first_name
