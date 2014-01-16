@@ -42,7 +42,7 @@ en:
   next: "next"
   previous: "previous"
   _comments: "Comments"
-  all_aspects: "All Aspects"
+  all_aspects: "All Groups"
   no_results: "No Results Found"
   _contacts: "Contacts"
   welcome: "Welcome!"
@@ -146,30 +146,30 @@ en:
       video_title:
         unknown: "Unknown Video Title"
   aspects:
-    zero: "no aspects"
-    one: "1 aspect"
-    two: "%{count} aspects"
-    few: "%{count} aspects"
-    many: "%{count} aspects"
-    other: "%{count} aspects"
-    contacts_visible: "Contacts in this aspect will be able to see each other."
-    contacts_not_visible: "Contacts in this aspect will not be able to see each other."
+    zero: "no groups"
+    one: "1 group"
+    two: "%{count} groups"
+    few: "%{count} groups"
+    many: "%{count} groups"
+    other: "%{count} groups"
+    contacts_visible: "Contacts in this group will be able to see each other."
+    contacts_not_visible: "Contacts in this group will not be able to see each other."
     edit:
-      make_aspect_list_visible: "make contacts in this aspect visible to each other?"
-      remove_aspect: "Delete this aspect"
-      confirm_remove_aspect: "Are you sure you want to delete this aspect?"
+      make_aspect_list_visible: "make contacts in this group visible to each other?"
+      remove_aspect: "Delete this group"
+      confirm_remove_aspect: "Are you sure you want to delete this group?"
       add_existing: "Add an existing contact"
       visibility: "Visibility"
       done: "Done"
       rename: "rename"
-      aspect_list_is_visible: "Contacts in this aspect are able to see each other."
-      aspect_list_is_not_visible: "Contacts in this aspect are not able to see each other."
+      aspect_list_is_visible: "Contacts in this group are able to see each other."
+      aspect_list_is_not_visible: "Contacts in this group are not able to see each other."
       update: "update"
       updating: "updating"
     aspect_contacts:
       done_editing: "done editing"
     show:
-      edit_aspect: "edit aspect"
+      edit_aspect: "edit group"
     no_posts_message:
       start_talking: "Nobody has said anything yet!"
     no_contacts_message:
@@ -186,30 +186,30 @@ en:
       view_all_community_spotlight: "See all community spotlight"
       view_all_contacts: "View all contacts"
       no_contacts: "You don't have any contacts here yet."
-      manage_your_aspects: "Manage your aspects."
+      manage_your_aspects: "Manage your groups."
     new:
       name: "Name"
       create: "Create"
     create:
-      success: "Your new aspect %{name} was created"
-      failure: "Aspect creation failed."
+      success: "Your new group %{name} was created"
+      failure: "Group creation failed."
     destroy:
       success: "%{name} was successfully removed."
       failure: "%{name} is not empty and could not be removed."
     update:
-      success: "Your aspect, %{name}, has been successfully edited."
-      failure: "Your aspect, %{name}, had too long name to be saved."
+      success: "Your group, %{name}, has been successfully edited."
+      failure: "Your group, %{name}, had too long name to be saved."
     move_contact:
       failure: "didn't work %{inspect}"
       success: "Person moved to new aspect"
       error: "Error moving contact: %{inspect}"
     add_to_aspect:
-      failure: "Failed to add contact to aspect."
-      success: "Successfully added contact to aspect."
+      failure: "Failed to add contact to group."
+      success: "Successfully added contact to group."
     helper:
       remove: "remove"
-      aspect_not_empty: "Aspect not empty"
-      are_you_sure: "Are you sure you want to delete this aspect?"
+      aspect_not_empty: "Group not empty"
+      are_you_sure: "Are you sure you want to delete this group?"
     seed:
       family: "Family"
       work: "Work"
@@ -270,9 +270,9 @@ en:
 
   aspect_memberships:
     destroy:
-      success: "Successfully removed person from aspect"
-      failure: "Failed to remove person from aspect"
-      no_membership: "Could not find the selected person in that aspect"
+      success: "Successfully removed person from group"
+      failure: "Failed to remove person from group"
+      no_membership: "Could not find the selected person in that group"
 
   bookmarklet:
     heading: "Bookmarklet"
@@ -310,7 +310,7 @@ en:
     index:
       add_to_aspect: "add contacts to %{name}"
       start_a_conversation: "Start a conversation"
-      add_a_new_aspect: "Add a new aspect"
+      add_a_new_aspect: "Add a new group"
       title: "Contacts"
       your_contacts: "Your Contacts"
       no_contacts: "Looks like you need to add some contacts!"
@@ -322,7 +322,7 @@ en:
       all_contacts: "All Contacts"
       only_sharing_with_me: "Only sharing with me"
       remove_person_from_aspect: "Remove %{person_name} from \"%{aspect_name}\""
-      many_people_are_you_sure: "Are you sure you want to start a private conversation with more than %{suggested_limit} contacts? Posting to this aspect may be a better way to contact them."
+      many_people_are_you_sure: "Are you sure you want to start a private conversation with more than %{suggested_limit} contacts? Posting to this group may be a better way to contact them."
     spotlight:
       community_spotlight: "Community Spotlight"
       suggest_member: "Suggest a member"
@@ -569,7 +569,7 @@ en:
     new:
       language: "Language"
       invite_someone_to_join: "Invite someone to join Groupify!"
-      if_they_accept_info: "if they accept, they will be added to the aspect you invited them."
+      if_they_accept_info: "if they accept, they will be added to the group you invited them."
       comma_separated_plz: "You can enter multiple email addresses separated by commas."
       check_out_groupify: "Hey! You should check out groupify*"
       to: "To"
@@ -582,7 +582,7 @@ en:
         zero:  "No invites left on this code"
         one:  "One invite left on this code"
         other:  "%{count} invites left on this code"
-      aspect: "Aspect"
+      aspect: "Group"
       already_invited: "The following people have not accepted your invitation:"
       resend: "Resend"
       check_out_groupify: "Check out Groupify!"
@@ -610,7 +610,7 @@ en:
       whats_new: "what's new?"
       toggle: "toggle mobile"
       public_feed: "Public Groupify Feed for %{name}"
-      your_aspects: "your aspects"
+      your_aspects: "your groups"
       back_to_top: "Back to top"
       source_package: "download the source code package"
 
@@ -762,7 +762,7 @@ en:
     show:
       has_not_shared_with_you_yet: "%{name} has not shared any posts with you yet!"
       incoming_request: "%{name} wants to share with you"
-      return_to_aspects: "Return to your aspects page"
+      return_to_aspects: "Return to your groups page"
       to_accept_or_ignore: "to accept or ignore it."
       does_not_exist: "Person does not exist!"
       not_connected: "You are not sharing with this person"
@@ -786,7 +786,7 @@ en:
       gender: "Gender"
       born: "Birthday"
       photos: "Photos"
-      in_aspects: "in aspects"
+      in_aspects: "in groups"
       remove_from: "Remove %{name} from %{aspect}?"
       assignments: "Assignments"
       quizzes : "Quizzes"
@@ -797,7 +797,7 @@ en:
       is_sharing: "%{name} is sharing with you"
       is_not_sharing: "%{name} is not sharing with you"
     aspect_list:
-      edit_membership: "edit aspect membership"
+      edit_membership: "edit group membership"
     add_contact_small:
       add_contact_from_tag: "add contact from tag"
     add_contact:
@@ -922,7 +922,7 @@ en:
       existing: "Existing contacts"
     destroy:
       success: "You are now sharing."
-      error: "Please select an aspect!"
+      error: "Please select a group!"
       ignore: "Ignored contact request."
     create:
       sending: "Sending"
@@ -1055,7 +1055,7 @@ en:
       via: "via %{link}"
       via_mobile: "via mobile"
       ignore_user: "Ignore %{name}"
-      ignore_user_description: "Ignore and remove user from all aspects?"
+      ignore_user_description: "Ignore and remove user from all groups?"
       hide_and_mute: "Hide and mute post"
       like: "Like"
       unlike: "Unlike"
@@ -1065,7 +1065,7 @@ en:
       show: "show"
     footer:
       logged_in_as: "logged in as %{name}"
-      your_aspects: "your aspects"
+      your_aspects: "your groups"
   status_messages:
     new:
       mentioning: "Mentioning: %{person}"
@@ -1203,7 +1203,7 @@ en:
       getting_started: 'New User Prefrences'
       following: "Following Settings"
       auto_follow_back: "Automatically follow back if someone follows you"
-      auto_follow_aspect: "Aspect for automatically followed users:"
+      auto_follow_aspect: "Group for automatically followed users:"
 
       close_account:
         dont_go: "Hey, please don't go!"
