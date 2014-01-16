@@ -994,8 +994,8 @@ en:
       add_to_aspect: "Add contact"
       toggle:
         zero: "Add contact"
-        one: "In %{count} aspect"
-        other: "In %{count} aspects"
+        one: "In %{count} group"
+        other: "In %{count} groups"
     publisher:
       posting: "Posting..."
       share: "Share"
