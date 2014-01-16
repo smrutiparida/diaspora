@@ -107,7 +107,7 @@ class AspectsController < ApplicationController
     @person = nil
     if current_user.role != "teacher" and aspect.folder == "Classroom"
       contacts_in_aspect = aspect.contacts.includes(:aspect_memberships).all    
-      person_id_list = person_in_contacts.map{|a| a.person_id}
+      person_id_list = contacts_in_aspect.map{|a| a.person_id}
       person_in_contacts = Person.where(:id => person_id_list)
 
 
