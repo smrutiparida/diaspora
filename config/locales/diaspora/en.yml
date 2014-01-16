@@ -265,7 +265,7 @@ en:
 
     aspect_stream:
       stay_updated: "Stay Updated"
-      stay_updated_explanation: "Your main stream is populated with all of your contacts, tags you follow, and posts from some creative members of the community."
+      stay_updated_explanation: "The wall is populated with all your course updates, assignments and quiz informations and posts from fellow mates from the group."
       make_something: "Make something"
 
   aspect_memberships:
@@ -1035,8 +1035,8 @@ en:
     reshare:
       reshare: "Reshare"
     public_explain:
-      control_your_audience: "Control your Audience"
-      new_user_welcome_message: "Use #hashtags to classify your posts and find people who share your interests.  Call out awesome people with @Mentions"
+      control_your_audience: "Groups you are part of"
+      new_user_welcome_message: "You are part of course group to which you are invited by the teacher. Also you can create your own private groups for regular discussions."
       visibility_dropdown: "Use this dropdown to change visibility of your post.  (We suggest you make this first one public.)"
       title: "Set up connected services"
       share: "Share"
