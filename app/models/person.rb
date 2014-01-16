@@ -180,7 +180,7 @@ class Person < ActiveRecord::Base
 
   def self.name_from_attrs(first_name, last_name, diaspora_handle)
     if first_name.blank?
-      diaspora_handle.split('@').first
+      diaspora_handle.split('@').first.camelize
     else
       if last_name.blank?
         "#{first_name.to_s.strip}".strip
