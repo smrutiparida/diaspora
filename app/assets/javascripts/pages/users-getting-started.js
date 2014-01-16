@@ -14,8 +14,11 @@ Diaspora.Pages.UsersGettingStarted = function() {
       var firstNameField = $("#profile_first_name");
       firstNameField.val(firstNameField.data("cachedValue"));
 
+      var lastNameField = $("#profile_last_name");
+      lastNameField.val(lastNameField.data("cachedValue"));
+
       /* flash message prompt */
-      var message = Diaspora.I18n.t("getting_started.hey", {'name': $("#profile_first_name").val()});
+      var message = Diaspora.I18n.t("getting_started.hey", {'name': $("#profile_first_name").val() + " " + $("#profile_last_name").val()});
       Diaspora.page.flashMessages.render({success: true, notice: message});
     });
 
