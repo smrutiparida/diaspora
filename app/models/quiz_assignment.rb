@@ -44,6 +44,7 @@ class QuizAssignment < ActiveRecord::Base
     quiz_assignment.submission_date = DateTime.strptime(params[:submission_date],'%d/%m/%Y')
     #quiz_assignment.author = params[:author]
     quiz_assignment.diaspora_handle = params[:diaspora_handle]
+    quiz_assignment.public = params[:public] if params[:public]
 
     quiz_assignment
   end

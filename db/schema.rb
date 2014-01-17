@@ -406,6 +406,7 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
     t.string   "guid",                                   :null => false
     t.integer  "author_id",                              :null => false   
     t.integer  "comments_count"    
+    t.boolean  "public",              :default => false, :null => false
   end
 
   create_table "quiz_assessments", :force => true do |t|
