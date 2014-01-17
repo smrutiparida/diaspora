@@ -51,7 +51,8 @@ class AspectMembershipsController < ApplicationController
     @person = Person.find(params[:person_id])
     @aspect = current_user.aspects.where(:id => params[:aspect_id]).first
 
-    @contact = current_user.share_with(@person, @aspect)
+    
+    @contact = (current_user.role == "teacher" and @aspect.folder == "Classroom") ? create_and_share_aspect(current_user, @person.owner, @aspect) : current_user.share_with(@person, @aspect)
 
     if @contact.present?
       flash.now[:notice] =  I18n.t('aspects.add_to_aspect.success')
