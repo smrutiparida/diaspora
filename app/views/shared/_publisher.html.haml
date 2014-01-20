@@ -81,11 +81,12 @@
             #publisher-images
               #file-upload.btn{:title => t('.upload_photos')}
                 = image_tag 'icons/camera.png', :alt => t('.upload_photos').titleize
-          
+              #document-upload{}
+                = image_tag 'icons/plus.png', :alt => t('.upload_photos').titleize
           #file_upload_wrapper.status-message-area{:style =>"display:none;border:1px sold #ccc"}                   
             %div
               %ul{:style =>"padding:0px;margin:0px;border:1px solid #ccc;"}
-                %li#document-upload{:style =>"list-style:none;display:inline-block;width:42%;border-right:1px solid #ccc;padding:18px;vertical-align:middle;" }
+                %li{:style =>"list-style:none;display:inline-block;width:42%;border-right:1px solid #ccc;padding:18px;vertical-align:middle;" }
                   %span{:style => "display:block;text-alight:center;" }
                     = "Upload a file"
                 %li#library-file{:style => "list-style:none;display:inline-block;width:45%;vertical-align:middle;"}
