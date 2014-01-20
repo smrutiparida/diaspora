@@ -17,10 +17,10 @@ class Document < ActiveRecord::Base
     t.add :size
     t.add :processed_doc, :as  => :name
     t.add lambda { |document|
-            document.icon(:processed_doc)
+            document.icon(document.processed_doc)
           }, :as => :icon
     t.add lambda { |document|
-            document.get_url(:remote_path, :remote_name)
+            document.get_url(document.remote_path, document.remote_name)
           }, :as => :url    
   end
 
