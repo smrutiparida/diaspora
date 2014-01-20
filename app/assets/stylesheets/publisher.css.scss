@@ -107,16 +107,24 @@
   }
 
   #document-upload,#library-file,#assignment-upload {
-    bottom: 1px !important;
+   
     display: inline-block;
     margin: 0;
     cursor: pointer;
-    width: 80px;    
+     
     position: relative;
     overflow: hidden;
     direction: ltr;
-    height:100%;
+  
+    &:hover {
+      color: $text-dark-grey;
+      cursor: pointer;
 
+      img {
+        @include opacity(0.8);
+      }
+    }
+    
     img {
       @include opacity(0.4);
       vertical-align: center;

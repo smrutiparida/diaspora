@@ -70,6 +70,7 @@
           #publisher_textarea_wrapper.status-message-area
             = link_to(content_tag(:div, nil, :class => 'icons-deletelabel'), "#", :id => "hide_publisher", :title => t('.discard_post'))
             %ul#photodropzone
+            %ul#documentdropzone
             - if current_user.getting_started?
               = status.text_area :fake_text, :rows => 2, :value => h(publisher_formatted_text), :tabindex => 1, :placeholder => "#{t('contacts.index.start_a_conversation')}...",
                 :title => popover_with_close_html( '1. ' + t('shared.public_explain.share') ),
@@ -81,7 +82,7 @@
             #publisher-images
               #file-upload.btn{:title => t('.upload_photos')}
                 = image_tag 'icons/camera.png', :alt => t('.upload_photos').titleize
-              #document-upload{}
+              #document-upload{:style=>"bottom: 3px !important;position: absolute !important;right: 35px;"}
                 = image_tag 'icons/plus.png', :alt => t('.upload_photos').titleize
           #file_upload_wrapper.status-message-area{:style =>"display:none;border:1px sold #ccc"}                   
             %div
@@ -92,7 +93,7 @@
                 %li#library-file{:style => "list-style:none;display:inline-block;width:45%;vertical-align:middle;"}
                   %span{:style => "display:block;text-align:center;"}  
                     = "Add from Library"            
-            %ul#documentdropzone     
+                 
 
           - if current_user.role == "teacher"
             #assignment_wrapper.status-message-area{:style =>"display:none;border:1px sold #ccc"}         

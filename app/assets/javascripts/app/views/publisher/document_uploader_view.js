@@ -5,7 +5,7 @@
 
 app.views.DocumentUploader = Backbone.View.extend({
 
-  allowedExtensions: ['pdf', 'doc', 'docx', 'txt', 'ppt', 'ppts'],
+  allowedExtensions: ['pdf', 'doc', 'docx', 'ppt', 'pptx', 'pps', 'ppsx', 'odt', 'xls', 'xlsx', 'rtf', 'txt', 'csv', 'tsv', 'xml', 'html'],
   sizeLimit: 4194304,  // bytes
 
   initialize: function() {

@@ -134,7 +134,7 @@ app.views.Publisher = Backbone.View.extend({
       },
       "aspect_ids" : serializedForm["aspect_ids[]"],
       "photos" : serializedForm["photos[]"],
-      "documents" : serializedForm["documents[]"],
+      "Document" : serializedForm["documents[]"],
       "services" : serializedForm["services[]"],
       "location_address" : $("#location_address").val(),
       "location_coords" : serializedForm["location[coords]"],
