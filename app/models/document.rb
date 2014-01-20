@@ -18,7 +18,10 @@ class Document < ActiveRecord::Base
     t.add :processed_doc, :as  => :name
     t.add lambda { |document|
             document.icon(:processed_doc)
-          }, :as => :icon    
+          }, :as => :icon
+    t.add lambda { |document|
+            document.get_url(:remote_path, :remote_name)
+          }, :as => :url    
   end
 
   mount_uploader :unprocessed_doc, UnprocessedDocument
@@ -119,16 +122,19 @@ class Document < ActiveRecord::Base
     end
   end
 
-  def icon(name = nil)
+  def icon(name)
     extension = "broken"
-    if name
+    unless name.blank?
       temp = name.to_s.rindex('.') 
       extension = temp ? name.to_s.slice(temp+1,name.to_s.length) : "broken"      
     end
 
     "/assets/facebox/" + extension + ".png"      
   end
-
+  
+  def get_url(path,name)
+    return path + name
+  end  
   def mutable?
     true
   end

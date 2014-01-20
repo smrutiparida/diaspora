@@ -211,7 +211,8 @@ app.views.Publisher = Backbone.View.extend({
       documents.push(
         {
           "icon":"/assets/facebox/" + extension + ".png",
-          "name": file
+          "name": file,
+          "url": "#"
         }
       );
     });
