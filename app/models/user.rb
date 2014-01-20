@@ -384,10 +384,10 @@ class User < ActiveRecord::Base
     #self.aspects.create(:name => "Mathematics", :folder => "Classroom")
     #self.aspects.create(:name => "Science", :folder => "Classroom")
     #self.aspects.create(:name => "Social Science", :folder => "Classroom")
-    #self.aspects.create(:name => "Poetry")
-    #self.aspects.create(:name => "Music")
-    #self.aspects.create(:name => "Dance")
-    #self.aspects.create(:name => "Computer")
+    self.aspects.create(:name => "Sports")
+    self.aspects.create(:name => "Music")
+    self.aspects.create(:name => "Dramatics")
+    self.aspects.create(:name => "Computer")
 
     #aq = self.aspects.create(:name => I18n.t('aspects.seed.acquaintances'))
 
