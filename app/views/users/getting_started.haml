@@ -31,6 +31,10 @@
         = label_tag 'profile[last_name]', "Last name"
         = text_field_tag 'profile[last_name]', current_user.last_name
         = image_tag 'ajax-loader.gif', :id => "gs-name-form-spinner", :class => "hidden"
+        %br
+        %h4
+          = "Are you a "
+        = select_tag "profile[role]", "<option>Student</option><option>Teacher</option>".html_safe
         = label_tag :your_photo, t('profiles.edit.your_photo')
         = render 'photos/new_profile_photo', :aspect => :getting_started, :person => current_user.person
 

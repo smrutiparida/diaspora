@@ -5,7 +5,7 @@
 - if current_user.role != "teacher"
   .section#teacher_thubmnail{:style => 'display:none;'}
     .title
-      .icons-plus
+      .icons-mail
       %h5.title-header
         = "My Teacher"
     .content#aspect_teacher
@@ -37,6 +37,21 @@
         %br                      
     - else
       = "No assignmentss present"  
+
+- if AppConfig.settings.invitations.open?
+  .section
+    .title
+      .icons-plus
+      %h5.title-header
+        = t('shared.invitations.invite_your_friends')
+    .content
+      = render "shared/invitations"
+
+.section
+  .title
+  %ul.content
+    = render "shared/links"
+
 -#
   .section
     .title

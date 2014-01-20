@@ -24,11 +24,5 @@
           = t('invitations.create.note_already_sent', :emails => @valid_emails) unless @valid_emails.empty?
         %br
 
-        %h4
-          = t('.language')
-        = select_tag('email_inviter[locale]',  options_from_collection_for_select(available_language_options, "second", "first", :selected => current_user.language))
-        = hidden_field_tag 'email_inviter[aspect]',params[:aspect]
-        %br
-
         %p
           = submit_tag t('.send_an_invitation'), :disable_with => t('.sending_invitation')

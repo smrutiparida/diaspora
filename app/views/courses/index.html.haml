@@ -23,9 +23,11 @@
       = "Course Content"     
 
   #conversation_inbox
-    .stream.conversations  
-      = render :partial => 'courses/course', :collection => @courses
-
+    .stream.conversations
+      - if @courses.count > 0  
+        = render :partial => 'courses/course', :collection => @courses
+      - else
+        = "No Course present."
 .span-15.prepend-5.last
   .stream_container
     #conversation_show{:style => 'padding-right:10px;'}      

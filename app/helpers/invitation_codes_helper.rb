@@ -15,8 +15,10 @@ module InvitationCodesHelper
       if !inviter.admin?
      
         invitation_details = Invitation.where(:sender_id => inviter.id, :identifier => current_user.email).first
-        unless invitation_details.blank?
-        
+        if invitation_details.blank?
+          contact = current_user.contact_for(inviter.person) || Contact.new 
+          render :partial => 'people/add_contact', :locals => {:inviter => inviter.person, :contact => contact}
+        else
           #@aspect = Aspect.find(invitation_details.aspect_id) 
           @inviter_aspect = inviter.aspects.find(invitation_details.aspect_id)
           create_and_share_aspect(inviter, current_user, @inviter_aspect)

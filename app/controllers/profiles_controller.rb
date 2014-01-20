@@ -38,7 +38,7 @@ class ProfilesController < ApplicationController
     munge_tag_string
 
     #checkbox tags wtf
-    @profile_attrs[:searchable] ||= false
+    @profile_attrs[:searchable] ||= true
     @profile_attrs[:nsfw] ||= false
 
     if params[:photo_id]

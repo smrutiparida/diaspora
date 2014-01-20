@@ -60,24 +60,22 @@ class InvitationsController < ApplicationController
     new_set = []
     
     unless valid_emails.empty?      
-      opts = {}
-      opts[:sender] = current_user
-      opts[:aspect] = Aspect.find(inviter_params[:aspect])
+      unless params[:aspect].blank?
+        opts = {}
+        opts[:sender] = current_user
+        opts[:aspect] = Aspect.find(inviter_params[:aspect])
 
-      users_on_pod = User.where(:email => emails, :invitation_token => nil)
+        users_on_pod = User.where(:email => emails, :invitation_token => nil)
 
-      #share with anyone whose email you entered who is on the pod
-      #opts[:sender].share_with(u.person, opts[:aspect])
-      users_on_pod.each{|u| create_and_share_aspect(current_user, u, opts[:aspect])}
+        #share with anyone whose email you entered who is on the pod
+        #opts[:sender].share_with(u.person, opts[:aspect])
+        users_on_pod.each{|u| create_and_share_aspect(current_user, u, opts[:aspect])}
 
-      emails.each do |e|
-        user = users_on_pod.find{|u| u.email == e}
-        Invitation.create(opts.merge(:identifier => e, :recipient => user))
-      end
-      #Invitation.batch_invite(valid_emails, opts)  
-      #all_local_invitations.each do |i|
-      #  new_set.push(i.identifier) if i.recipient_id.blank?
-      #end
+        emails.each do |e|
+          user = users_on_pod.find{|u| u.email == e}
+          Invitation.create(opts.merge(:identifier => e, :recipient => user))
+        end
+      end  
       Workers::Mail::InviteEmail.perform_async(valid_emails.join(','),
                                                current_user.id,
                                                inviter_params)

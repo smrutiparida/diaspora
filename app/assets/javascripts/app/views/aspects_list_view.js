@@ -13,7 +13,12 @@ app.views.AspectsList = app.views.Base.extend({
   },
 
   postRenderTemplate: function() {
+    total_courses = 0
     this.collection.each(this.appendAspect, this);
+    if(total_courses == 0)
+    {
+       $("#aspects_list > *:last").before('<li><div class="icons-check_yes_ok"></div><span>No Courses</span></li>');
+    }
     this.$('a[rel*=facebox]').facebox();
     if(app.currentUser.get('role') != "teacher"){
        $('#teacher-create-course').hide();
@@ -30,6 +35,7 @@ app.views.AspectsList = app.views.Base.extend({
       $("#aspects_list > *:last").before(new app.views.Aspect({
         model: aspect, attributes: {'data-aspect_id': aspect.get('id')}
       }).render().el);  
+      total_courses += 1;
     }
     else
     {

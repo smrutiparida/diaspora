@@ -63,7 +63,7 @@ en:
               taken: "is already taken."
         person:
           attributes:
-            groupify_handle:
+            diaspora_handle:
               taken: "is already taken."
         contact:
           attributes:
@@ -231,12 +231,12 @@ en:
 
       new_here:
         title: "Welcome New Users"
-        follow: "Follow %{link} and welcome new users to groupify*!"
+        follow: "Follow %{link} and welcome new users to lmnop!"
         learn_more: "Learn more"
 
       help:
         need_help: "Need Help?"
-        here_to_help: "The Groupify community is here!"
+        here_to_help: "The lmnop community is here!"
         do_you: "Do you:"
         have_a_question: "... have a %{link}?"
         tag_question: "question"
@@ -568,16 +568,16 @@ en:
       note_already_sent: "Invitations have already been sent to: %{emails}"
     new:
       language: "Language"
-      invite_someone_to_join: "Invite someone to join Groupify!"
+      invite_someone_to_join: "Invite someone to join LMNOP!"
       if_they_accept_info: "if they accept, they will be added to the group you invited them."
       comma_separated_plz: "You can enter multiple email addresses separated by commas."
-      check_out_groupify: "Hey! You should check out groupify*"
+      check_out_groupify: "Hey! You should check out lmnop"
       to: "To"
       personal_message: "Personal message"
       send_an_invitation: "Send an invitation"
       sending_invitation: "Sending invitation..."
       send_invitation: "Send invitation"
-      paste_link: "Share this link with your friends to invite them to groupify*, or email them the link directly."
+      paste_link: "Share this link with your friends to invite them to lmnop, or email them the link directly."
       codes_left:
         zero:  "No invites left on this code"
         one:  "One invite left on this code"
@@ -585,7 +585,7 @@ en:
       aspect: "Group"
       already_invited: "The following people have not accepted your invitation:"
       resend: "Resend"
-      check_out_groupify: "Check out Groupify!"
+      check_out_diaspora: "Check out lmnop!"
     check_token:
       not_found: "Invitation token not found"
     edit:
@@ -692,7 +692,7 @@ en:
 
   notifier:
     a_post_you_shared: "a post."
-    email_sent_by_groupify: "This email was sent by lmnop. If you'd like to stop getting emails like this,"
+    email_sent_by_diaspora: "This email was sent by lmnop. If you'd like to stop getting emails like this,"
     click_here: "click here"
     hello: "Hello %{name}!"
     thanks: "Thanks,"
@@ -876,7 +876,7 @@ en:
       your_location: "Your location"
       your_photo: "Your photo"
       update_profile: "Update Profile"
-      allow_search: "Allow for people to search for you within Groupify"
+      allow_search: "Allow for people to search for you within Lmnop"
       edit_profile: "Edit profile"
       you_are_nsfw: "You have marked yourself not safe for work, your content will not show up in people who have opted out of seeing objectionable content's streams."
       you_are_safe_for_work: "You have marked yourself as safe for work, this means you agree the content you post will agree with the community guidelines."
@@ -896,7 +896,7 @@ en:
       enter_password: "Enter a password (six character minimum)"
       enter_password_again: "Enter the same password as before"
       hey_make: "HEY,<br/>MAKE<br/>SOMETHING."
-      groupify: "<3 groupify*"
+      groupify: "<3 lmnop"
       sign_up: "SIGN UP"
       email: "EMAIL"
       username: "USERNAME"
@@ -913,7 +913,7 @@ en:
       unhappy: "Unhappy?"
       update: "Update"
       cancel_my_account: "Cancel my account"
-    closed: "Signups are closed on this Groupify pod."
+    closed: "Signups are closed on this Lmnop."
     invalid_invite: "The invite link you provided is no longer valid!"
 
   requests:
@@ -970,7 +970,7 @@ en:
     failure:
       error: "there was an error connecting that service"
     inviter:
-      join_me_on_groupify: "Join me on groupify*"
+      join_me_on_diaspora: "Join me on lmnop"
       click_link_to_accept_invitation: "Follow this link to accept your invitation"
     finder:
       fetching_contacts: "Groupify is populating your %{service} friends, please check back in a few minutes."
@@ -1016,10 +1016,10 @@ en:
         i_like: "I'm interested in %{tags}. "
         invited_by: "Thanks for the invite, "
     add_contact:
-      enter_a_groupify_username: "Enter a Groupify username:"
-      your_groupify_username_is: "Your Groupify username is: %{groupify_handle}"
+      enter_a_diaspora_username: "Enter a Lmnop username:"
+      your_diaspora_username_is: "Your Lmnop username is: %{diaspora_handle}"
       create_request: "Find by Groupify ID"
-      groupify_handle: "groupify@pod.org"
+      diaspora_handle: "groupify@pod.org"
       know_email: "Know their email address? You should invite them"
       add_new_contact: "Add a new contact"
     invitations:
@@ -1027,7 +1027,7 @@ en:
       invite_someone: "Invite someone"
       invitations_left: "%{count} left"
       dont_have_now: "You don't have any right now, but more invites are coming soon!"
-      invites_closed: "Invites are currently closed on this Groupify pod"
+      invites_closed: "Invites are currently closed on this Lmnop pod"
       invite_your_friends: "Invite your friends"
       from_facebook: "From Facebook"
       by_email: "By email"
@@ -1184,7 +1184,7 @@ en:
       character_minimum_expl: "must be at least six characters"
       download_xml: "download my xml"
       download_photos: "download my photos"
-      your_handle: "Your Groupify ID"
+      your_handle: "Your Lmnop ID"
       your_email: "Your email"
       edit_account: "Edit account"
       receive_email_notifications: "Receive email notifications when..."
@@ -1226,12 +1226,12 @@ en:
       wrong_password: "The entered password didn't match your current password."
     getting_started:
       well_hello_there: "Well, hello there!"
-      community_welcome: "Groupify's community is happy to have you aboard!"
+      community_welcome: "LMNOP community is happy to have you aboard!"
 
-      awesome_take_me_to_groupify: "Awesome! Take me to groupify*"
+      awesome_take_me_to_diaspora: "Awesome! Take me to Lmnop"
 
       who_are_you: "Who are you?"
-      connect_to_facebook: "We can speed things up a bit by %{link} to Groupify. This will pull your name and photo, and enable cross-posting."
+      connect_to_facebook: "We can speed things up a bit by %{link} to Lmnop. This will pull your name and photo, and enable cross-posting."
       connect_to_facebook_link: "hooking up your Facebook account"
 
       what_are_you_in_to: "What are you into?"

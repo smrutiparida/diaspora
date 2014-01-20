@@ -17,6 +17,9 @@ Diaspora.Pages.UsersGettingStarted = function() {
       var lastNameField = $("#profile_last_name");
       lastNameField.val(lastNameField.data("cachedValue"));
 
+      var roleField = $("#profile_role");
+      roleField.val(roleField.data("cachedValue"));
+
       /* flash message prompt */
       var message = Diaspora.I18n.t("getting_started.hey", {'name': $("#profile_first_name").val() + " " + $("#profile_last_name").val()});
       Diaspora.page.flashMessages.render({success: true, notice: message});
@@ -48,6 +51,12 @@ Diaspora.Pages.UsersGettingStarted = function() {
 
     $("#profile_last_name").bind("focus", function(){
       $(this).addClass("active_input");
+    });
+
+   $("#profile_role").bind("change", function(){
+      $(this).data("cachedValue", $(this).val());
+      $('#edit_profile').submit();
+      $('#gs-name-form-spinner').removeClass("hidden");
     });
 
     $("#awesome_button").bind("click", function(evt){

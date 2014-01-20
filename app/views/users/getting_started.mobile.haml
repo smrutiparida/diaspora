@@ -63,7 +63,13 @@
         %span.saved{:class => "hidden"}
           = image_tag 'icons/check_yes_ok.png'
           = t(".saved")
-
+        
+        %br
+        %h4
+          = "Are you a "
+        = select_tag "profile[role]", "<option>Student</option><option>Teacher</option>".html_safe
+        
+        %br
         = label_tag :your_photo, t('profiles.edit.your_photo'), :class => "bootstrapped"
         = render 'photos/new_profile_photo', :aspect => :getting_started, :person => current_user.person
 
