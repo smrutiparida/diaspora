@@ -69,7 +69,7 @@ class InvitationsController < ApplicationController
 
         #share with anyone whose email you entered who is on the pod
         #opts[:sender].share_with(u.person, opts[:aspect])
-        users_on_pod.each{|u| create_and_share_aspect(current_user, u, opts[:aspect])}
+        users_on_pod.each{|u| create_and_share_aspect(current_user, u, opts[:aspect]) unless current_user.email == u.email}
 
         emails.each do |e|
           user = users_on_pod.find{|u| u.email == e}
