@@ -24,5 +24,8 @@
           = t('invitations.create.note_already_sent', :emails => @valid_emails) unless @valid_emails.empty?
         %br
 
+        = hidden_field_tag 'email_inviter[aspect]', params[:aspect].blank? ? "" : params[:aspect]
+
+
         %p
           = submit_tag t('.send_an_invitation'), :disable_with => t('.sending_invitation')
