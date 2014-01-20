@@ -60,7 +60,7 @@ class InvitationsController < ApplicationController
     new_set = []
     
     unless valid_emails.empty?      
-      unless params[:aspect].blank?
+      unless inviter_params[:aspect].blank?
         opts = {}
         opts[:sender] = current_user
         opts[:aspect] = Aspect.find(inviter_params[:aspect])
