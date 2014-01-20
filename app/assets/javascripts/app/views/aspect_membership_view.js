@@ -156,6 +156,7 @@ app.views.AspectMembership = Backbone.View.extend({
       return Diaspora.I18n.t('aspect_dropdown.all_aspects');
     }
 
-    return Diaspora.I18n.t('aspect_dropdown.toggle', { 'count':cnt.toString() });
+    //return Diaspora.I18n.t('aspect_dropdown.toggle', { 'count':cnt.toString() });
+    return "In " + cnt.toString() + " Groups"
   }
 });

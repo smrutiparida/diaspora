@@ -30,7 +30,8 @@ var AspectsDropdown = {
         Diaspora.page.flashMessages.render({success: true, notice: message});
       }
     }else {
-      replacement = Diaspora.I18n.t('aspect_dropdown.toggle', { count: number.toString()})
+      replacement = "In " + number.toString() + " Groups"
+      //replacement = Diaspora.I18n.t('aspect_dropdown.toggle', { count: number.toString()})
     }
 
     button.text(replacement + ' ▼');

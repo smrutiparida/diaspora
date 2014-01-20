@@ -107,7 +107,7 @@
   }
 
   #document-upload,#library-file,#assignment-upload {
-   
+    position: absolute !important;
     display: inline-block;
     margin: 0;
     cursor: pointer;
@@ -124,7 +124,7 @@
         @include opacity(0.8);
       }
     }
-    
+
     img {
       @include opacity(0.4);
       vertical-align: center;
