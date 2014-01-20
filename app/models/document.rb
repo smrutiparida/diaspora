@@ -133,7 +133,7 @@ class Document < ActiveRecord::Base
   end
   
   def get_url(path,name)
-    return path + name
+    return path.to_s + name.to_s
   end  
   def mutable?
     true
