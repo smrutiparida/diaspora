@@ -25,9 +25,9 @@
                 %div.selected.docthumbselected
                 %div{:style => "padding:5px;"}
                   - temp_val = document.processed_doc ? document.processed_doc.slice(document.processed_doc.rindex('.')+1,document.processed_doc.length) : "broken"
-                  = link_to image_tag('/assets/facebox/' + temp_val +'.png',:class => 'thumb_small'), document.unprocessed_doc.url
+                  = link_to image_tag('/assets/facebox/' + temp_val +'.png',:class => 'thumb_small'), "http://issuu.com/lmnoppub/docs/" + document.remote_name
                 %p  
-                  = link_to document.processed_doc, document.unprocessed_doc.url
+                  = link_to document.processed_doc, "http://issuu.com/lmnoppub/docs/" + document.remote_name
       - if @documents.blank?
         #no-file-message
           %h3
