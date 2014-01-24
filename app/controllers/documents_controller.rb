@@ -172,6 +172,8 @@ class DocumentsController < ApplicationController
     Rails.logger.info(@document.to_json)
     if @document.save
       aspects = current_user.aspects_from_ids(params[:document][:aspect_ids])
+      
+      create_view(@document)
 
       unless @document.pending
         if @document.public
