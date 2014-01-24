@@ -213,7 +213,7 @@ class DocumentsController < ApplicationController
  
   def create_view(document)
     params = doc_upload_params(document)
-    params['action'] = "issuu.document.url_upload"
+    params[:action] = "issuu.document.url_upload"
     Rails.logger.info(params.to_json)
     upload_issuu(params)
   end
@@ -221,9 +221,8 @@ class DocumentsController < ApplicationController
   def upload_issuu(params)   
     require "uri"
     require "net/http"
-    post_params = {'apiKey' => API_KEY, 'action' => "issuu.document.url_upload"}
-    post_params['signature'] = generate_signature(params)
-    x = Net::HTTP.post_form(URI.parse('http://api.issuu.com/1_0'), post_params)
+    #post_params = {:apiKey => API_KEY, :action => "issuu.document.url_upload"}
+    x = Net::HTTP.post_form(URI.parse('http://api.issuu.com/1_0'), params.merge(:signature => generate_signature(params)))
     Rails.logger.info(x.body)
   end
 
@@ -234,11 +233,11 @@ class DocumentsController < ApplicationController
   end
   
   def doc_upload_params(document)
-    predefined_params = {'apiKey' => API_KEY, 'commentsAllowed' => false, 'downloadable' => false, 'access' => 'private', 'ratingsAllowed' => false, 'format' => 'json'}
-    predefined_params['slurpUrl'] = document.remote_path + document.remote_name
-    predefined_params['name'] = document.remote_name
-    predefined_params['title'] = document.processed_doc
-    predefined_params['type'] = "002000" #refers to book. We need to explore what happens when the tpe is posted as report/article/magazine
+    predefined_params = {:apiKey => API_KEY, 'commentsAllowed' => false, :downloadable => false, :access => 'private', :ratingsAllowed => false, :format => 'json'}
+    predefined_params[:slurpUrl] = document.remote_path + document.remote_name
+    predefined_params[:name] = document.remote_name
+    predefined_params[:title] = document.processed_doc
+    predefined_params[:type] = "002000" #refers to book. We need to explore what happens when the tpe is posted as report/article/magazine
     #predefined_params['folderIds'] 
     predefined_params
   end
