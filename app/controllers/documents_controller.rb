@@ -221,7 +221,7 @@ class DocumentsController < ApplicationController
   def upload_issuu(params)   
     require "uri"
     require "net/http"
-    post_params = {'api_key' => API_KEY, 'action' => "issuu.document.url_upload"}
+    post_params = {'apiKey' => API_KEY, 'action' => "issuu.document.url_upload"}
     post_params['signature'] = generate_signature(params)
     x = Net::HTTP.post_form(URI.parse('http://api.issuu.com/1_0'), post_params)
     Rails.logger.info(x.body)
@@ -233,7 +233,7 @@ class DocumentsController < ApplicationController
   end
   
   def doc_upload_params(document)
-    predefined_params = {'api_key' => API_KEY, 'commentsAllowed' => false, 'downloadable' => false, 'access' => 'private', 'ratingsAllowed' => false, 'format' => 'json'}
+    predefined_params = {'apiKey' => API_KEY, 'commentsAllowed' => false, 'downloadable' => false, 'access' => 'private', 'ratingsAllowed' => false, 'format' => 'json'}
     predefined_params['slurpUrl'] = document.remote_path + document.remote_name
     predefined_params['name'] = document.remote_name
     predefined_params['title'] = document.processed_doc
