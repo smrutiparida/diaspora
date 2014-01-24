@@ -215,7 +215,7 @@ class DocumentsController < ApplicationController
     params = doc_upload_params(document)
     params['action'] = "issuu.document.url_upload"
     Rails.logger.info(params.to_json)
-    post_issuu(params)
+    upload_issuu(params)
   end
 
   def upload_issuu(params)   
@@ -237,7 +237,7 @@ class DocumentsController < ApplicationController
     predefined_params['slurpUrl'] = document.remote_path + document.remote_name
     predefined_params['name'] = document.remote_name
     predefined_params['title'] = document.processed_doc
-    predefined_params['type'] = 002000 #refers to book. We need to explore what happens when the tpe is posted as report/article/magazine
+    predefined_params['type'] = "002000" #refers to book. We need to explore what happens when the tpe is posted as report/article/magazine
     #predefined_params['folderIds'] 
     predefined_params
   end
