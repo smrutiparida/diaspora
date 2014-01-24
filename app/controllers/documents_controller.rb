@@ -172,11 +172,11 @@ class DocumentsController < ApplicationController
     @document = current_user.build_post(:document, params[:document])
     Rails.logger.info("Before saving")
     Rails.logger.info(@document.to_json)
+    return_stage = create_view(@document)
+    @document.tmp_old_id = return_stage['document']['documentId'] if return_stage['stat'] == 'ok'
     if @document.save
       aspects = current_user.aspects_from_ids(params[:document][:aspect_ids])
       
-      create_view(@document)
-
       unless @document.pending
         if @document.public
           current_user.add_to_streams(@document, aspects)
@@ -224,6 +224,8 @@ class DocumentsController < ApplicationController
     #post_params = {:apiKey => API_KEY, :action => "issuu.document.url_upload"}
     x = Net::HTTP.post_form(URI.parse('http://api.issuu.com/1_0'), params.merge(:signature => generate_signature(params)))
     Rails.logger.info(x.body)
+    json = JSON.parse x.body
+    return json['rsp']['_content']
   end
 
   def generate_signature(params)
