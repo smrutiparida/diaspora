@@ -227,17 +227,19 @@ class DocumentsController < ApplicationController
   end
 
   def generate_signature(params)
-    string_to_sign = "#{API_SECRET}#{params.sort_by {|k| k.to_s }.to_s}"
+    string_to_sign = "#{API_SECRET}"
+    params.sort_by {|k| k.to_s }.each{|k,v| string_to_sign += k.to_s + v.to_s}
+    #{API_SECRET}#{params.sort_by {|k| k.to_s }.to_s}"
     Rails.logger.info(string_to_sign)
     Digest::MD5.hexdigest(string_to_sign)
   end
   
   def doc_upload_params(document)
-    predefined_params = {:apiKey => API_KEY, 'commentsAllowed' => false, :downloadable => false, :access => 'private', :ratingsAllowed => false, :format => 'json'}
+    predefined_params = {:apiKey => API_KEY, :commentsAllowed => false, :downloadable => false, :access => 'private', :ratingsAllowed => false, :format => 'json'}
     predefined_params[:slurpUrl] = document.remote_path + document.remote_name
     predefined_params[:name] = document.remote_name
     predefined_params[:title] = document.processed_doc
-    predefined_params[:type] = "002000" #refers to book. We need to explore what happens when the tpe is posted as report/article/magazine
+    #predefined_params[:type] = "002000" #refers to book. We need to explore what happens when the tpe is posted as report/article/magazine
     #predefined_params['folderIds'] 
     predefined_params
   end
