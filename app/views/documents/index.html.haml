@@ -33,7 +33,7 @@
                   %p  
                     = link_to document.processed_doc, document.unprocessed_doc.url, :target => "_blank"
                 - else  
-                  %div.issuuembed{:style => "padding:5px;", :"data-configid" => document.issuu_id }
+                  %div.issuuembed{:style => "padding:5px;", :"data-configid" => "10578794/6464098" }
                     - temp_val = document.processed_doc ? document.processed_doc.slice(document.processed_doc.rindex('.')+1,document.processed_doc.length) : "broken"
                     -#
                       = link_to image_tag('/assets/facebox/' + temp_val +'.png',:class => 'thumb_small'), "http://issuu.com/lmnoppub/docs/" + document.remote_name, :target => "_blank"
