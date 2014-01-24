@@ -173,9 +173,9 @@ class DocumentsController < ApplicationController
     Rails.logger.info("Before saving")
     Rails.logger.info(@document.to_json)
     return_stage = create_view(@document)
-    Rails.logger.info(return_stage['_content']['stat'])
+    Rails.logger.info(return_stage['stat'])
     Rails.logger.info(return_stage)
-    @document.tmp_old_id = return_stage['_content']['document']['documentId'] if return_stage['_content']['stat'] == 'ok'
+    @document.tmp_old_id = return_stage['_content']['document']['documentId'] if return_stage['stat'] == 'ok'
     if @document.save
       aspects = current_user.aspects_from_ids(params[:document][:aspect_ids])
       
