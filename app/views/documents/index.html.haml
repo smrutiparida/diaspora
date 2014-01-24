@@ -1,4 +1,7 @@
 
+- content_for :head do
+  = javascript_include_tag "http//e.issuu.com/embed.js", :async => true
+
 - content_for :page_title do
   = "My Files"
 :css
@@ -23,16 +26,25 @@
             - for document in @documents
               %div.hoverable.docthumbnail
                 %div.selected.docthumbselected
-                %div{:style => "padding:5px;"}
-                  - temp_val = document.processed_doc ? document.processed_doc.slice(document.processed_doc.rindex('.')+1,document.processed_doc.length) : "broken"
-                  = link_to image_tag('/assets/facebox/' + temp_val +'.png',:class => 'thumb_small'), "http://issuu.com/lmnoppub/docs/" + document.remote_name, :target => "_blank"
-                %p  
-                  = link_to document.processed_doc, "http://issuu.com/lmnoppub/docs/" + document.remote_name, :target => "_blank"
+                - if document.issuu_id.blank?
+                  %div{:style => "padding:5px;"}
+                    - temp_val = document.processed_doc ? document.processed_doc.slice(document.processed_doc.rindex('.')+1,document.processed_doc.length) : "broken"
+                    = link_to image_tag('/assets/facebox/' + temp_val +'.png',:class => 'thumb_small'), document.unprocessed_doc.url, :target => "_blank"
+                  %p  
+                    = link_to document.processed_doc, document.unprocessed_doc.url, :target => "_blank"
+                - else  
+                  %div.issuuembed{:style => "padding:5px;", :"data-configid" => document.issuu_id }
+                    - temp_val = document.processed_doc ? document.processed_doc.slice(document.processed_doc.rindex('.')+1,document.processed_doc.length) : "broken"
+                    -#
+                      = link_to image_tag('/assets/facebox/' + temp_val +'.png',:class => 'thumb_small'), "http://issuu.com/lmnoppub/docs/" + document.remote_name, :target => "_blank"
+                  %p  
+                    = link_to document.processed_doc, "http://issuu.com/lmnoppub/docs/" + document.remote_name, :target => "_blank"
       - if @documents.blank?
         #no-file-message
           %h3
             = "Store your personal documents here."
         
 :javascript
-  $('#file-upload').addClass("creation");    
-          
+  $('#file-upload').addClass("creation");   
+  
+

@@ -20,7 +20,7 @@ class Document < ActiveRecord::Base
             document.icon(document.processed_doc)
           }, :as => :icon
     t.add lambda { |document|
-            document.get_url(document.remote_path, document.remote_name)
+            document.get_url(document.remote_path, document.remote_name,document.issuu_id)
           }, :as => :url    
   end
 
@@ -132,9 +132,8 @@ class Document < ActiveRecord::Base
     "/assets/facebox/" + extension + ".png"      
   end
   
-  def get_url(path,name)
-    return "http://issuu.com/lmnoppub/docs/" + name.to_s
-    #return path.to_s + name.to_s
+  def get_url(path,name,issuu_id)
+    return issuu_id.blank? ? path.to_s + name.to_s : "http://issuu.com/lmnoppub/docs/" + name.to_s
   end  
   def mutable?
     true
