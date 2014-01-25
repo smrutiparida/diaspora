@@ -238,7 +238,10 @@ class DocumentsController < ApplicationController
       x = return_obj.body
     else
       params.merge(:signature => generate_signature(params))
-      x = Net::HTTP.get(URI.parse(API_URL), "?".concat(params.collect { |k,v| "#{k}=#{v.to_s}" }.join('&')))
+      begin
+        x = Net::HTTP.get(API_URL, "?".concat(params.collect { |k,v| "#{k.to_s}=#{v.to_s}" }.join('&')))
+      rescue Exception=>e
+        Rails.logger.info(e)      
     end  
     Rails.logger.info(x)
     json = JSON.parse x
@@ -248,8 +251,6 @@ class DocumentsController < ApplicationController
   def generate_signature(params)
     string_to_sign = "#{API_SECRET}"
     params.sort_by {|k| k.to_s }.each{|k,v| string_to_sign += k.to_s + v.to_s}
-    #{API_SECRET}#{params.sort_by {|k| k.to_s }.to_s}"
-    Rails.logger.info(string_to_sign)
     Digest::MD5.hexdigest(string_to_sign)
   end
   
