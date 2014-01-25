@@ -238,7 +238,7 @@ class DocumentsController < ApplicationController
       x = return_obj.body
     else
       begin
-        params.merge(:signature => generate_signature(params))
+        params[:signature] = generate_signature(params)
         Rails.logger.info(params.to_json)
         x = Net::HTTP.get("api.issuu.com", "/1_0?".concat(params.collect { |k,v| "#{k.to_s}=#{v.to_s}" }.join('&')))
       rescue Exception=>e
