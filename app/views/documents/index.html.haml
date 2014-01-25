@@ -50,12 +50,12 @@
   $(".issuuembed").hide();   
   $( ".docthumbnail" ).hover(
   function() {
-      $( this ).find( ".thumbsmall" ).hide();
-      $( this ).find(".issuuembed").show();
+      $( this ).find(".issuuembed").fadeIn(100);
+      $( this ).find( ".thumbsmall" ).fadeOut(500); 
     }, function() {
-      $( this ).find(".issuuembed").hide();
-      $( this ).find( ".thumbsmall" ).show();
-    }
+      $( this ).find(".issuuembed").fadeOut(100);
+      $( this ).find( ".thumbsmall" ).fadeIn(500);
+  }
   );
   
 
