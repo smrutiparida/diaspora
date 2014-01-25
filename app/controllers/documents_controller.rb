@@ -40,7 +40,7 @@ class DocumentsController < ApplicationController
           Rails.logger.info(document.issuu_id)
           json_set.each do |x|
             Rails.logger.info(x['documentEmbed']['dataConfigId']) 
-            if x['documentEmbed']['dataConfigId'] == document.issuu_id
+            if x['documentEmbed']['documentId'] == document.issuu_id
               @document_issuu_set[document.issuu_id] = x['documentEmbed']['dataConfigId'] 
               Rails.logger.info(x['documentEmbed']['dataConfigId'])
             end  
