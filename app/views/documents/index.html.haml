@@ -51,11 +51,11 @@
   $( ".docthumbnail" ).hover(
   function() {
       $( this ).find(".issuuembed").show();
-      $( this ).find( ".thumb_doc" ).fadeOut(2000); 
+      $( this ).find( ".thumb_doc" ).hide(); 
     }, function() {
-      $( this ).find(".issuuembed").fadeOut(2000);
-      $( this ).find( ".thumb_doc" ).fadeIn(2000);
+      $( this ).find(".issuuembed").hide();
+      $( this ).find( ".thumb_doc" ).fadeIn(1000);
   }
   );
-  
+  window.onIssuuReadersLoaded = function() {$(".issuuembed").hide();};
 
