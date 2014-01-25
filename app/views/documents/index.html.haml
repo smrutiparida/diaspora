@@ -26,13 +26,7 @@
             - for document in @documents
               %div.hoverable.docthumbnail
                 %div.selected.docthumbselected
-                - if document.issuu_id.blank?
-                  %div{:style => "padding:5px;"}
-                    - temp_val = document.processed_doc ? document.processed_doc.slice(document.processed_doc.rindex('.')+1,document.processed_doc.length) : "broken"
-                    = link_to image_tag('/assets/facebox/' + temp_val +'.png',:class => 'thumb_small'), document.unprocessed_doc.url, :target => "_blank"
-                  %p  
-                    = link_to document.processed_doc, document.unprocessed_doc.url, :target => "_blank"
-                - else
+                - if !document.issuu_id.blank? and @document_issuu_set.has_hey?(document.issuu_id)
                   .issuuembed{:"data-configid" => @document_issuu_set[document.issuu_id] }
                   %div.thumb_doc  
                     %div{:style => "padding:5px;"}
@@ -40,6 +34,12 @@
                       = link_to image_tag('/assets/facebox/' + temp_val +'.png',:class => 'thumb_small'), "http://issuu.com/lmnoppub/docs/" + document.remote_name, :target => "_blank"
                     %p  
                       = link_to document.processed_doc, "http://issuu.com/lmnoppub/docs/" + document.remote_name, :target => "_blank"
+                - else
+                  %div{:style => "padding:5px;"}
+                    - temp_val = document.processed_doc ? document.processed_doc.slice(document.processed_doc.rindex('.')+1,document.processed_doc.length) : "broken"
+                    = link_to image_tag('/assets/facebox/' + temp_val +'.png',:class => 'thumb_small'), document.unprocessed_doc.url, :target => "_blank"
+                  %p  
+                    = link_to document.processed_doc, document.unprocessed_doc.url, :target => "_blank"
       - if @documents.blank?
         #no-file-message
           %h3
