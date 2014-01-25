@@ -231,14 +231,13 @@ class DocumentsController < ApplicationController
   def upload_issuu(params,type)   
     require "uri"
     require "net/http"
-    require 'cgi'
+
     x = nil
     if type == "post"
       x = Net::HTTP.post_form(URI.parse(API_URL), params.merge(:signature => generate_signature(params)))
     else
       params.merge(:signature => generate_signature(params))
-      Rails.logger.info("i am here")  
-      x = Net::HTTP.get(URI.parse(API_URL), "?".concat(params.collect { |k,v| "#{k}=#{CGI::escape(v.to_s)}" }.join('&')))
+      x = Net::HTTP.get(URI.parse(API_URL), "?".concat(params.collect { |k,v| "#{k}=#{v.to_s}" }.join('&')))
     end  
     Rails.logger.info(x.body)
     json = JSON.parse x.body
