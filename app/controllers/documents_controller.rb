@@ -30,6 +30,17 @@ class DocumentsController < ApplicationController
     end
             
     @documents = Document.where(:diaspora_handle => current_user.diaspora_handle, :folder => @folder).order(:updated_at)  
+    @document_issuu_set = {}
+    return_stage = get_embed_id()
+    Rails.logger.info(return_stage)
+    if return_stage['stat'] == 'ok'
+      json_set = return_stage['_content']['result']['_content']
+      @documents.each do |document|
+        unless document.issuu_id.blank?
+          json_set.each { |x| @document_issuu_set[document.issuu_id] = x['documentEmbed']['dataConfigId'] if x['documentEmbed']['dataConfigId'] == document.issuu_id }          
+        end  
+      end   
+    end
     #@folder_list = Document.select(:folder).distinct
     #below logic valid for students. For teachers the logic will be different.
     #if @teacher
@@ -174,12 +185,8 @@ class DocumentsController < ApplicationController
     Rails.logger.info("Before saving")
     Rails.logger.info(@document.to_json)
     return_stage = create_view(@document)
-    if return_stage['stat'] == 'ok'
-      return_stage = get_embed_id(return_stage['_content']['document']['documentId'])
-      Rails.logger.info(return_stage['stat'])
-      Rails.logger.info(return_stage)
-      @document.issuu_id = return_stage['_content']['result']['_content'][0]['documentEmbed']['dataConfigId'] if return_stage['stat'] == 'ok'
-    end  
+    @document.issuu_id = return_stage['_content']['document']['documentId'] if return_stage['stat'] == 'ok'
+        
     if @document.save
       aspects = current_user.aspects_from_ids(params[:document][:aspect_ids])
 
@@ -217,8 +224,8 @@ class DocumentsController < ApplicationController
     end
   end
  
-  def get_embed_id(documentId)
-    params = {:action => "issuu.document_embeds.list", :apiKey => API_KEY, :documentId => documentId, :format => "json"}
+  def get_embed_id()
+    params = {:action => "issuu.document_embeds.list", :apiKey => API_KEY, :format => "json"}
     upload_issuu(params,"get") 
   end
 

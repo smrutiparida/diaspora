@@ -33,7 +33,7 @@
                   %p  
                     = link_to document.processed_doc, document.unprocessed_doc.url, :target => "_blank"
                 - else
-                  .issuuembed{:"data-configid" => document.issuu_id }
+                  .issuuembed{:"data-configid" => @document_issuu_set[document.issuu_id] }
                   %div.thumb_doc  
                     %div{:style => "padding:5px;"}
                       - temp_val = document.processed_doc ? document.processed_doc.slice(document.processed_doc.rindex('.')+1,document.processed_doc.length) : "broken"
