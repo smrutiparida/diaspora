@@ -241,7 +241,8 @@ class DocumentsController < ApplicationController
       begin
         x = Net::HTTP.get(API_URL, "?".concat(params.collect { |k,v| "#{k.to_s}=#{v.to_s}" }.join('&')))
       rescue Exception=>e
-        Rails.logger.info(e)      
+        Rails.logger.info(e)
+      end        
     end  
     Rails.logger.info(x)
     json = JSON.parse x
