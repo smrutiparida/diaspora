@@ -26,7 +26,7 @@
             - for document in @documents
               %div.hoverable.docthumbnail
                 %div.selected.docthumbselected
-                - if !document.issuu_id.blank? and @document_issuu_set.has_hey?(document.issuu_id)
+                - if !document.issuu_id.blank? and @document_issuu_set.has_key?(document.issuu_id)
                   .issuuembed{:"data-configid" => @document_issuu_set[document.issuu_id] }
                   %div.thumb_doc  
                     %div{:style => "padding:5px;"}
