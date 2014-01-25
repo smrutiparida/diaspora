@@ -234,13 +234,14 @@ class DocumentsController < ApplicationController
 
     x = nil
     if type == "post"
-      x = Net::HTTP.post_form(URI.parse(API_URL), params.merge(:signature => generate_signature(params)))
+      return_obj = Net::HTTP.post_form(URI.parse(API_URL), params.merge(:signature => generate_signature(params)))
+      x = return_obj.body
     else
       params.merge(:signature => generate_signature(params))
       x = Net::HTTP.get(URI.parse(API_URL), "?".concat(params.collect { |k,v| "#{k}=#{v.to_s}" }.join('&')))
     end  
-    Rails.logger.info(x.body)
-    json = JSON.parse x.body
+    Rails.logger.info(x)
+    json = JSON.parse x
     return json['rsp']
   end
 
