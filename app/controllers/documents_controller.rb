@@ -218,7 +218,7 @@ class DocumentsController < ApplicationController
   end
  
   def get_embed_id(documentId)
-    params = {:action => "issuu.document_embeds.list", :apiKey => API_KEY, :documentId => documentId }
+    params = {:action => "issuu.document_embeds.list", :apiKey => API_KEY, :documentId => documentId, :format => "json"}
     upload_issuu(params,"get") 
   end
 
@@ -237,8 +237,9 @@ class DocumentsController < ApplicationController
       return_obj = Net::HTTP.post_form(URI.parse(API_URL), params.merge(:signature => generate_signature(params)))
       x = return_obj.body
     else
-      params.merge(:signature => generate_signature(params))
       begin
+        params.merge(:signature => generate_signature(params))
+        Rails.logger.info(params.to_json)
         x = Net::HTTP.get("api.issuu.com", "/1_0?".concat(params.collect { |k,v| "#{k.to_s}=#{v.to_s}" }.join('&')))
       rescue Exception=>e
         Rails.logger.info(e)
