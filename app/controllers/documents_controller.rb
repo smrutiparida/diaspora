@@ -7,6 +7,7 @@ class DocumentsController < ApplicationController
 
   API_KEY = "wo753emrs8l2o0vesjaoxti5n3r9cyvi" 
   API_SECRET = "rmu2dklxoz5htmul2gkhpk6j40qrqx0d"
+  API_URL = "http://api.issuu.com/1_0"
   respond_to :html, :json
 
   def show
@@ -173,12 +174,15 @@ class DocumentsController < ApplicationController
     Rails.logger.info("Before saving")
     Rails.logger.info(@document.to_json)
     return_stage = create_view(@document)
-    Rails.logger.info(return_stage['stat'])
-    Rails.logger.info(return_stage)
-    @document.issuu_id = return_stage['_content']['document']['documentId'] if return_stage['stat'] == 'ok'
+    if return_stage['stat'] == 'ok'
+      return_stage = get_embed_id(return_stage['_content']['document']['documentId'])
+      Rails.logger.info(return_stage['stat'])
+      Rails.logger.info(return_stage)
+      @document.issuu_id = return_stage['_content']['result']['_content'][0]['documentEmbed']['dataConfigId'] if return_stage['stat'] == 'ok'
+    end  
     if @document.save
       aspects = current_user.aspects_from_ids(params[:document][:aspect_ids])
-      
+
       unless @document.pending
         if @document.public
           current_user.add_to_streams(@document, aspects)
@@ -213,18 +217,27 @@ class DocumentsController < ApplicationController
     end
   end
  
+  def get_embed_id(documentId)
+    params = {:action => "issuu.document_embeds.list", :apiKey => API_KEY, :documentId => documentId }
+    upload_issuu(params,"get") 
+  end
+
   def create_view(document)
     params = doc_upload_params(document)
     params[:action] = "issuu.document.url_upload"
-    Rails.logger.info(params.to_json)
-    upload_issuu(params)
+    upload_issuu(params,"post")
   end
 
-  def upload_issuu(params)   
+  def upload_issuu(params,type)   
     require "uri"
     require "net/http"
-    #post_params = {:apiKey => API_KEY, :action => "issuu.document.url_upload"}
-    x = Net::HTTP.post_form(URI.parse('http://api.issuu.com/1_0'), params.merge(:signature => generate_signature(params)))
+    require 'cgi'
+    x = nil
+    if type == "post"
+      x = Net::HTTP.post_form(URI.parse(API_URL), params.merge(:signature => generate_signature(params)))
+    else
+      x = Net::HTTP.get(URI.parse(API_URL), "?".concat(params.collect { |k,v| "#{k}=#{CGI::escape(v.to_s)}" }.join('&')))
+    end  
     Rails.logger.info(x.body)
     json = JSON.parse x.body
     return json['rsp']
