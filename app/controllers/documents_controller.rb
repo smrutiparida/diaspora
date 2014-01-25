@@ -239,7 +239,7 @@ class DocumentsController < ApplicationController
     else
       params.merge(:signature => generate_signature(params))
       begin
-        x = Net::HTTP.get("http://api.issuu.com", "/1_0?".concat(params.collect { |k,v| "#{k.to_s}=#{v.to_s}" }.join('&')))
+        x = Net::HTTP.get("api.issuu.com", "/1_0?".concat(params.collect { |k,v| "#{k.to_s}=#{v.to_s}" }.join('&')))
       rescue Exception=>e
         Rails.logger.info(e)
       end        
