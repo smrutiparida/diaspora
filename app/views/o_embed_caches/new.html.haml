@@ -5,26 +5,25 @@
         %h5{:style => 'margin-bottom:0px;display:inline;'}
           = "Select Module"   
         = select_tag "course[module_id]", options_from_collection_for_select(@modules, "id", "name")          
-        = hidden_field_tag "course[type]", "OEmbedCache"
+        = hidden_field_tag "course[type]", "StatusMessage"
         = hidden_field_tag "course[post_id]", nil
     
     #create_assignment
 
-      = form_for OEmbedCache.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |embed|
+      = form_for StatusMessage.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |embed|
         
         %h5{:style => 'margin-bottom:0px;'}
-          = "Title"    
-        = text_field_tag 'o_embed_cache[data]', nil, :placeholder => 'Text..', :size => '50'
-        - if !params[:header]
-          %h5{:style => 'margin-bottom:0px;'}
-            = "Link"    
-          = text_field_tag 'o_embed_cache[url]', nil, :placeholder => 'Link..', :size => '50'
-        - else
-          = hidden_field_tag 'o_embed_cache[url]', nil
+          = "Text/ Video / Link"    
+        = text_area_tag 'status_message[text]', nil, :placeholder => 'Text..', :rows => 3
+        = hidden_field_tag "aspect_ids[]", params[:a_id]
         %p
           = embed.submit "Add to session", 'data-disable-with' => "In Progress..", :class => 'button creation'
 
 
+:javascript
+  $(function() {
+    $("#create_assignment").bind('ajax:success', function(){ $('#course_post_id').val(response.id);$('#new_course').submit();});
+  });
   
 
 
