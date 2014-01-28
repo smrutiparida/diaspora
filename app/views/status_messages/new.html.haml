@@ -7,7 +7,7 @@
 #new_status_message_pane
   .span-15.last
     - if @person.blank?
-      = render :partial => 'shared/publisher', :locals => { :aspect => @aspect, :aspect_ids => @aspect_ids}    
+      = render :partial => 'shared/publisher', :locals => { :aspect => @aspect, :aspect_ids => @aspect_ids, :selected_aspects => nil}    
     -else
       #facebox_header
         %h3
