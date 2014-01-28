@@ -17,7 +17,6 @@ if(response.success && response.type != "StatusMessage"){
 else
 {
    $.facebox.close();
-    Diaspora.page.flashMessages.render({ 'success':'success', 'notice':'Content added to module. Page refreshing.' });
-    $.getScript("/courses/<%= @course_content.aspect_id %>");
-  }, "json"); 
+   Diaspora.page.flashMessages.render({ 'success':'success', 'notice':'Content added to module. Page refreshing.' });
+   $.getScript("/courses/<%= @course_content.aspect_id %>");
 }
