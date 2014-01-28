@@ -79,14 +79,14 @@ class CoursesController < ApplicationController
           temp.push(course.type)
           file = Document.find(course.post_id)
           temp.push("<a target='_blank' href='"+ file.remote_path + file.remote_name + "'>" + file.processed_doc + "</a>")
-        elsif course.type == "OEmbedCache"
-          extern_link = OEmbedCache.find(course.post_id)
-          if extern_link.url.blank?
+        elsif course.type == "StatusMessage"
+          extern_link = Post.find(course.post_id)
+          if extern_link.o_embed_cache_id.blank?
             temp.push("Text")
-            temp.push(extern_link.data)
+            temp.push(extern_link.text)
           else
             temp.push("Link")  
-            temp.push("<a target='_blank' href='"+ extern_link.url + "'>" + extern_link.data + "</a>")
+            temp.push("<a target='_blank' href='"+ extern_link.text + "'>" + extern_link.text+ "</a>")
           end  
         end  
         @data_dict[course.module_id].push(temp)

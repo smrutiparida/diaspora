@@ -10,7 +10,7 @@
     
     #create_assignment
 
-      = form_for StatusMessage.new, html: {:'data-type' => 'json',class: "new_conversation form_do_not_clear"}, remote: true do |embed|
+      = form_for StatusMessage.new, html: {class: "new_conversation form_do_not_clear"}, remote: true do |embed|
         
         %h5{:style => 'margin-bottom:0px;'}
           = "Text/ Video / Link"    
@@ -18,11 +18,5 @@
         = hidden_field_tag "aspect_ids[]", params[:a_id]
         %p
           = embed.submit "Add to session", 'data-disable-with' => "In Progress..", :class => 'button creation'
-
-
-:javascript
-  $(function() {
-    $("#create_assignment").bind('ajax:success', function(){ $('#course_post_id').val(response.id);$('#new_course').submit();});
-  });
   
 

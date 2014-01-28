@@ -79,6 +79,7 @@ class StatusMessagesController < ApplicationController
         format.html { redirect_to :back }
         format.mobile { redirect_to stream_path }
         format.json { render :json => PostPresenter.new(@status_message, current_user), :status => 201 }
+        format.js
       end
     else
       respond_to do |format|
