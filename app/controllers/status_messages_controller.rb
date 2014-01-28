@@ -29,8 +29,8 @@ class StatusMessagesController < ApplicationController
         render :layout => nil
       end
     else
-      @aspect = params[:a_id].blank? ? :all : Aspect.where(:id => params[:a_id]) 
-      @aspects = current_user.aspects
+      @aspect = :all
+      @aspects = params[:a_id].blank? ? current_user.aspects : Aspect.where(:id => params[:a_id]) 
       @aspect_ids = @aspects.map{ |a| a.id }
       gon.aspect_ids = @aspect_ids
     end
