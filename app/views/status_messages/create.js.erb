@@ -1,3 +1,2 @@
-var response = <%= raw @response.to_json %>;
-$('#course_post_id').val(response.id);
+$('#course_post_id').val(<%= @status_message.id %>);
 $('#new_course').submit();
