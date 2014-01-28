@@ -16,6 +16,7 @@ class StatusMessagesController < ApplicationController
   # Called when a user clicks "Mention" on a profile page
   # @param person_id [Integer] The id of the person to be mentioned
   def new
+    @person = nil
     if params[:person_id] && @person = Person.where(:id => params[:person_id]).first
       @aspect = :profile
       @contact = current_user.contact_for(@person)
@@ -28,7 +29,7 @@ class StatusMessagesController < ApplicationController
         render :layout => nil
       end
     else
-      @aspect = :all
+      @aspect = params[:a_id].blank? ? :all : Aspect.find(params[:a_id]) 
       @aspects = current_user.aspects
       @aspect_ids = @aspects.map{ |a| a.id }
       gon.aspect_ids = @aspect_ids
