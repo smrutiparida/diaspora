@@ -134,7 +134,8 @@ class Document < ActiveRecord::Base
   end
   
   def get_url(path,name,issuu_id)
-    return issuu_id.blank? ? path.to_s + name.to_s : "http://issuu.com/lmnoppub/docs/" + name.to_s
+    #return issuu_id.blank? ? path.to_s + name.to_s : "http://issuu.com/lmnoppub/docs/" + name.to_s
+    return path.to_s + name.to_s
   end  
   def mutable?
     true

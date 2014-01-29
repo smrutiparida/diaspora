@@ -367,6 +367,7 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
     t.integer  "size"
     t.string   "folder",              :default => "Miscellaneous", :null => false
     t.string   "issuu_id"
+    t.string   "issuu_data_id"
   end
 
   add_index "documents", ["status_message_guid"], :name => "index_documents_on_status_message_guid"

@@ -26,8 +26,8 @@
             - for document in @documents
               %div.hoverable.docthumbnail
                 %div.selected.docthumbselected
-                - if !document.issuu_id.blank?
-                  .issuuembed{:"data-configid" => document.issuu_id }
+                - if !document.issuu_data_id.blank?
+                  .issuuembed{:"data-configid" => document.issuu_data_id }
                   %div.thumb_doc  
                     %div{:style => "padding:5px;"}
                       - temp_val = document.processed_doc ? document.processed_doc.slice(document.processed_doc.rindex('.')+1,document.processed_doc.length) : "broken"
