@@ -17,6 +17,9 @@
 {{#if documents}}
   <div class="photo_attachments">
     {{#each documents}}
+      {{#if issuu_id}}
+        <div class="issuuembed" data-configid="{{issuu_id}}"></div>
+      {{/if}}
       <a href="{{url}}" target="_blank">
         <img src="{{icon}}" class="stream-photo thumb_small" rel="lightbox">
         <span>{{name}}</span>

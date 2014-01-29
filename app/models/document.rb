@@ -15,12 +15,13 @@ class Document < ActiveRecord::Base
     t.add :created_at
     t.add :author
     t.add :size
+    t.add :issuu_id
     t.add :processed_doc, :as  => :name
     t.add lambda { |document|
             document.icon(document.processed_doc)
           }, :as => :icon
     t.add lambda { |document|
-            document.get_url(document.remote_path, document.remote_name,document.issuu_id)
+            document.get_url(document.remote_path, document.remote_name, document.issuu_id)
           }, :as => :url    
   end
 

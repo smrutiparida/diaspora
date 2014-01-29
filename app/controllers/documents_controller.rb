@@ -30,17 +30,17 @@ class DocumentsController < ApplicationController
     end
             
     @documents = Document.where(:diaspora_handle => current_user.diaspora_handle, :folder => @folder).order(:updated_at)  
-    @document_issuu_set = {}
-    return_stage = get_embed_id()
-    Rails.logger.info(return_stage)
-    if return_stage['stat'] == 'ok'
-      json_set = return_stage['_content']['result']['_content']
-      @documents.each do |document|
-        unless document.issuu_id.blank?
-          json_set.each { |x| @document_issuu_set[document.issuu_id] = x['documentEmbed']['dataConfigId'] if x['documentEmbed']['documentId'] == document.issuu_id }          
-        end  
-      end   
-    end
+    #@document_issuu_set = {}
+    #return_stage = get_embed_id()
+    #Rails.logger.info(return_stage)
+    #if return_stage['stat'] == 'ok'
+    #  json_set = return_stage['_content']['result']['_content']
+    #  @documents.each do |document|
+    #    unless document.issuu_id.blank?
+    #      json_set.each { |x| @document_issuu_set[document.issuu_id] = x['documentEmbed']['dataConfigId'] if x['documentEmbed']['documentId'] == document.issuu_id }          
+    #    end  
+    #  end   
+    #end
     #@folder_list = Document.select(:folder).distinct
     #below logic valid for students. For teachers the logic will be different.
     #if @teacher
@@ -183,8 +183,8 @@ class DocumentsController < ApplicationController
     @document = current_user.build_post(:document, params[:document])
  
     return_stage = create_view(@document)
-    @document.issuu_id = return_stage['_content']['document']['documentId'] if return_stage['stat'] == 'ok'
-    request_embed_creation(@document.issuu_id) unless @document.issuu_id.blank?
+    return_stage = request_embed_creation(return_stage['_content']['document']['documentId']) if return_stage['stat'] == 'ok'
+    @document.issuu_id = return_stage['_content']['documentEmbed']['dataConfigId']) if return_stage['stat'] == 'ok'
         
     if @document.save
       aspects = current_user.aspects_from_ids(params[:document][:aspect_ids])
