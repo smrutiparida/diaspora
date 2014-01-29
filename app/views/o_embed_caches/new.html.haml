@@ -14,7 +14,7 @@
         
         %h5{:style => 'margin-bottom:0px;'}
           = "Text/ Video / Link"    
-        = text_area_tag 'status_message[text]', nil, :placeholder => 'Text..', :rows => 3
+        = text_area_tag 'status_message[text]', nil, :placeholder => 'Type Text, Youtube Video URL or other link..', :rows => 3
         = hidden_field_tag "aspect_ids[]", params[:a_id]
         %p
           = embed.submit "Add to session", 'data-disable-with' => "In Progress..", :class => 'button creation'
