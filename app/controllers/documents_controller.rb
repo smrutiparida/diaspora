@@ -184,7 +184,7 @@ class DocumentsController < ApplicationController
  
     return_stage = create_view(@document)
     if return_stage['stat'] == 'ok'
-      @document.issuu_id = return_stage['_content']['document']['documentId']) 
+      @document.issuu_id = return_stage['_content']['document']['documentId']
       return_stage = request_embed_creation(@document.issuu_id) 
       @document.issuu_data_id = return_stage['_content']['documentEmbed']['dataConfigId'] if return_stage['stat'] == 'ok'
     end
