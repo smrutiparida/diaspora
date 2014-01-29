@@ -18,7 +18,15 @@
   <div class="photo_attachments">
     {{#each documents}}
       {{#if issuu_id}}
-        <div class="issuuembed" data-configid="{{issuu_id}}"></div>
+        <div>
+          <object style="width:100%;height:100%">
+            <param name="movie" value="http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf?mode=mini&documentId=081219132433-764a1eafce5141fda136d10d58bd45f5" />
+            <param name="allowfullscreen" value="true"/>
+            <param name="menu" value="false"/>
+            <param name="wmode" value="transparent"/>
+            <embed src="http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf" type="application/x-shockwave-flash" allowfullscreen="true" menu="false" wmode="transparent" style="width:100%;height:100%" flashvars="mode=mini&documentId=081219132433-764a1eafce5141fda136d10d58bd45f5" />
+          </object>
+        </div>
       {{/if}}
       <a href="{{url}}" target="_blank">
         <img src="{{icon}}" class="stream-photo thumb_small" rel="lightbox">
