@@ -184,7 +184,7 @@ class DocumentsController < ApplicationController
  
     return_stage = create_view(@document)
     return_stage = request_embed_creation(return_stage['_content']['document']['documentId']) if return_stage['stat'] == 'ok'
-    @document.issuu_id = return_stage['_content']['documentEmbed']['dataConfigId']) if return_stage['stat'] == 'ok'
+    @document.issuu_id = return_stage['_content']['documentEmbed']['dataConfigId'] if return_stage['stat'] == 'ok'
         
     if @document.save
       aspects = current_user.aspects_from_ids(params[:document][:aspect_ids])
