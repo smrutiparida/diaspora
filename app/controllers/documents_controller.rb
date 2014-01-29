@@ -166,8 +166,7 @@ class DocumentsController < ApplicationController
       Tempfile.send(:define_method, "content_type") {return att_content_type}
       Tempfile.send(:define_method, "original_filename") {return file_name}
       Tempfile.send(:define_method, "content_length") {return att_content_length}
-      Rails.logger.info("inside file handler")
-      Rails.logger.info(file.to_json)
+
       file
     end
   end
@@ -182,10 +181,10 @@ class DocumentsController < ApplicationController
     params[:document][:user_file] = file_handler(params)
     
     @document = current_user.build_post(:document, params[:document])
-    Rails.logger.info("Before saving")
-    Rails.logger.info(@document.to_json)
+ 
     return_stage = create_view(@document)
     @document.issuu_id = return_stage['_content']['document']['documentId'] if return_stage['stat'] == 'ok'
+    request_embed_creation(@document.issuu_id) unless @document.issuu_id.blank?
         
     if @document.save
       aspects = current_user.aspects_from_ids(params[:document][:aspect_ids])
@@ -224,6 +223,10 @@ class DocumentsController < ApplicationController
     end
   end
  
+  def request_embed_creation(documentID)
+    params = {:action => "issuu.document_embed.add", :apiKey => API_KEY, :documentId => documentID, :readerStartPage => 1, :width => 100, :height => 100, :format => "json"}
+    upload_issuu(params,"post") 
+  end
   def get_embed_id()
     params = {:action => "issuu.document_embeds.list", :apiKey => API_KEY, :format => "json"}
     upload_issuu(params,"get") 
@@ -241,8 +244,12 @@ class DocumentsController < ApplicationController
 
     x = nil
     if type == "post"
-      return_obj = Net::HTTP.post_form(URI.parse(API_URL), params.merge(:signature => generate_signature(params)))
-      x = return_obj.body
+      begin
+        return_obj = Net::HTTP.post_form(URI.parse(API_URL), params.merge(:signature => generate_signature(params)))
+        x = return_obj.body
+      rescue Exception=>e
+        Rails.logger.info(e)
+      end  
     else
       begin
         params[:signature] = generate_signature(params)
