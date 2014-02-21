@@ -70,20 +70,20 @@
     = include_mixpanel_guid
     %div#conversejs
   
-  :javascript
-    require(['converse'], function (converse) {
-      converse.initialize({
-          allow_contact_requests : true,
-          allow_muc : true,
-          auto_list_rooms: false,
-          auto_connect : true,
-          auto_subscribe: false,
-          bosh_service_url: 'http://ec2-54-238-230-79.ap-northeast-1.compute.amazonaws.com', // Please use this connection manager only for testing purposes
-          hide_muc_server: false,
-          debug: true,
-          i18n: locales.en, // Refer to ./locale/locales.js to see which locales are supported
-          prebind: false,
-          show_controlbox_by_default: true,
-          xhr_user_search: false
+    :javascript
+      require(['converse'], function (converse) {
+        converse.initialize({
+            allow_contact_requests : true,
+            allow_muc : true,
+            auto_list_rooms: false,
+            auto_connect : true,
+            auto_subscribe: false,
+            bosh_service_url: 'http://ec2-54-238-230-79.ap-northeast-1.compute.amazonaws.com', // Please use this connection manager only for testing purposes
+            hide_muc_server: false,
+            debug: true,
+            i18n: locales.en, // Refer to ./locale/locales.js to see which locales are supported
+            prebind: false,
+            show_controlbox_by_default: true,
+            xhr_user_search: false
+        });
       });
-    });
