@@ -81,6 +81,8 @@ module Diaspora
       validation.js
       debug.js
       jSlots.js
+      assessment.js
+      grade.js 
 
       blueprint.css
       bootstrap.css

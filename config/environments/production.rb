@@ -3,6 +3,7 @@ Diaspora::Application.configure do
 
   # Code is not reloaded between requests
   config.cache_classes = true
+  #config.action_view.cache_template_loading = false
 
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
@@ -31,7 +32,7 @@ Diaspora::Application.configure do
   # config.force_ssl = true
 
   # See everything in the log (default is :info)
-  # config.log_level = :debug
+  config.log_level = :debug
 
   # Prepend all log lines with the following tags
   # config.log_tags = [ :subdomain, :uuid ]
