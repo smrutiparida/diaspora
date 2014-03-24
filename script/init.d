@@ -6,7 +6,7 @@
 #
 
 PROC_NAME=Diaspora
-DIASPORA_HOME=/home/diaspora/groupify
+DIASPORA_HOME=/home/diaspora/diaspora
 # Change the user to whichever user you need
 RUN_AS_USER=diaspora
 startup="cd $DIASPORA_HOME; ./script/server"
