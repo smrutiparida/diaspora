@@ -36,7 +36,7 @@ app.views.Feedback = app.views.Base.extend({
 
   resharePost : function(evt) {
     if(evt) { evt.preventDefault(); }
-    if(!window.confirm(Diaspora.I18n.t("reshares.post", {name: this.model.reshareAuthor().name}))) { return }
+    //if(!window.confirm(Diaspora.I18n.t("reshares.post", {name: this.model.reshareAuthor().name}))) { return }
     this.model.interactions.reshare();
   },
 

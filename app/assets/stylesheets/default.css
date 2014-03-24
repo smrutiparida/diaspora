@@ -17,4 +17,5 @@
 *= require vendor/jquery.ui.tabs
 *= require vendor/jquery.ui.datepicker
 *= require vendor/jquery.ui.accordion
+*= require vendor/converse.min
 */

@@ -13,13 +13,14 @@
   = "tags_show"
 
 #leftNavBar
-  %h3
-    = t('people', :count => @stream.tagged_people_count)
+  -#
+    %h3
+      = t('people', :count => @stream.tagged_people_count)
 
-  .side_stream.stream
-    = render :partial => 'people/index', :locals => {:people => @stream.tagged_people}
+    .side_stream.stream
+      = render :partial => 'people/index', :locals => {:people => @stream.tagged_people}
 
-  %br
+    %br
 
   - if user_signed_in?
     = render "tags/followed_tags_listings"
