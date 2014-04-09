@@ -15,8 +15,9 @@
     .icons-mail
     %h5.title-header
       = "Show Only"
-  %ul.content
-    = render "shared/links"  
+  %div{:style => "padding-bottom: 65px;"}    
+    %ul.content
+      = render "shared/links"  
 
 - if AppConfig.settings.invitations.open?
   .section
