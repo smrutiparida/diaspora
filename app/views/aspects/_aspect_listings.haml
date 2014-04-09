@@ -4,9 +4,10 @@
 
 = link_to "Courses", aspects_path, :class => 'hoverable', :rel => 'backbone', :data => {:stream => 'aspects'}, :id => 'mandatory_groups'
 %ul#aspects_list
-
-= link_to "Personal Groups", aspects_path, :class => 'hoverable'
-%ul#personal_aspects_list
   %li.hoverable
     = link_to  '+ Create a Group', 'aspects/new?type=', :rel => 'facebox', :class => 'selectable new_aspect'
+
+-#
+  = link_to "Personal Groups", aspects_path, :class => 'hoverable'
+  %ul#personal_aspects_list
   
