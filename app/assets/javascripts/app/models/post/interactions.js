@@ -128,6 +128,7 @@ app.models.Post.Interactions = Backbone.Model.extend({
 
   userCanReshare : function(){
     //alert("app.models.Post.Interactions:userCanReshare");
+    return false;
     var isReshare = this.post.get("post_type") == "Reshare"
       , rootExists = (isReshare ? this.post.get("root") : true)
       , publicPost = this.post.get("public")
