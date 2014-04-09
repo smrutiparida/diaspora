@@ -7,36 +7,16 @@
     .title
       .icons-mail
       %h5.title-header
-        = "My Teacher"
+        = "My Instructor"
     .content#aspect_teacher
   
 .section
   .title
-    .icons-question
+    .icons-mail
     %h5.title-header
-      = "Quizzes"
-  .content
-    - if @quizzes and @quizzes.length > 0
-      - for quiz in @quizzes        
-        = quiz.title
-        = " " 
-        = time_ago_in_words(quiz.created_at)
-        %br                
-    -else
-      = "No quizzes present"
-
-.section
-  .title
-    .icons-bookmark
-    %h5.title-header
-      = "Open Assignments"
-  .content
-    - if @assignments and @assignments.length > 0      
-      - for assignment in @assignments
-        = link_to assignment.name[0..30], "assignment_assessments/" + assignment.id.to_s
-        %br                      
-    - else
-      = "No assignmentss present"  
+      = "View"
+  %ul.content
+    = render "shared/links"  
 
 - if AppConfig.settings.invitations.open?
   .section
@@ -48,14 +28,41 @@
       = render "shared/invitations"
 
 .section
-  .title
-    .icons-mail
-    %h5.title-header
-      = "Important Links"
-  %ul.content
-    = render "shared/links"
+    .title
+      .icons-bookmark
+      %h5.title-header
+        = "Contributors"
+    .content
+    
 
 -#
+  .section
+    .title
+      .icons-question
+      %h5.title-header
+        = "View"
+    .content
+      - if @quizzes and @quizzes.length > 0
+        - for quiz in @quizzes        
+          = quiz.title
+          = " " 
+          = time_ago_in_words(quiz.created_at)
+          %br                
+      -else
+        = "No quizzes present"
+
+  .section
+    .title
+      .icons-bookmark
+      %h5.title-header
+        = "Open Assignments"
+    .content
+      - if @assignments and @assignments.length > 0      
+        - for assignment in @assignments
+          = link_to assignment.name[0..30], "assignment_assessments/" + assignment.id.to_s
+          %br                      
+      - else
+        = "No assignmentss present"
   .section
     .title
       .icons-plus
