@@ -15,9 +15,10 @@
 #left_pane
   #left_pane_header
     %h3
-      .right
-        = link_to t('.new_message'), new_conversation_path, :class => 'button', :rel => 'facebox'
-      = t('.inbox')
+      -#
+        .right
+          = link_to t('.new_message'), new_conversation_path, :class => 'button', :rel => 'facebox'
+      = "Private Messages"
 
   #conversation_inbox
     .stream.conversations

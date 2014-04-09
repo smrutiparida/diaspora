@@ -1,6 +1,6 @@
 %li= link_to 'All Questions', "/grades"
 %li= link_to 'New Questions', "/grades"
-%li= link_to 'I Answered', "/grades"
+%li= link_to 'I have Answered', "/grades"
 - if current_user.role != "teacher"
   %li= link_to 'Answered by Instructor', "/grades"
 %li= link_to 'Resolved', "/grades"

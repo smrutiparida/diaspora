@@ -281,15 +281,15 @@ en:
     explanation: "Post to Groupify from anywhere by bookmarking this link => %{link}."
 
   comments:
-    zero: "no comments"
-    one: "1 comment"
-    two: "%{count} comments"
-    few: "%{count} comments"
-    many: "%{count} comments"
-    other: "%{count} comments"
+    zero: "no answers"
+    one: "1 answer"
+    two: "%{count} answers"
+    few: "%{count} answers"
+    many: "%{count} answers"
+    other: "%{count} answers"
     new_comment:
-      comment: "Comment"
-      commenting: "Commenting..."
+      comment: "Answer"
+      commenting: "Answering..."
 
   reactions:
     zero: "0 reactions"
@@ -309,7 +309,7 @@ en:
       people_sharing: "People sharing with you:"
     index:
       add_to_aspect: "add contacts to %{name}"
-      start_a_conversation: "Start a conversation"
+      start_a_conversation: "Ask a question"
       add_a_new_aspect: "Add a new group"
       title: "Contacts"
       your_contacts: "Your Contacts"
@@ -331,9 +331,9 @@ en:
     index:
       message_inbox: "Message Inbox"
       new_message: "New Message"
-      no_conversation_selected: "no conversation selected"
+      no_conversation_selected: "no questions selected"
       create_a_new_message: "create a new message"
-      no_messages: "no messages"
+      no_messages: "No Questions"
       inbox: "Inbox"
     conversation:
       participants: "Participants"
@@ -1057,9 +1057,9 @@ en:
       ignore_user: "Ignore %{name}"
       ignore_user_description: "Ignore and remove user from all groups?"
       hide_and_mute: "Hide and mute post"
-      like: "Like"
-      unlike: "Unlike"
-      dislike: "Dislike"
+      like: "Upvote"
+      unlike: "Downvote"
+      dislike: "Downvote"
       shared_with: "Shared with: %{aspect_names}"
       nsfw: "This post has been flagged as NSFW by its author. %{link}"
       show: "show"

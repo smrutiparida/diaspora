@@ -3,6 +3,8 @@
 </a>
 <div>{{teacher.name}}</div>
 <br/>
-<a href="#" class="button" onclick="jQuery.facebox(function() {$.get('/conversations/teacher_new?contact_id={{teacher.contact}}', function(data) { $.facebox(data) })});return false;">Ask Doubt</a>
-<a href="#" class="" onclick="">Ask Anonymously</a>
-<a href="#" class="" onclick="">Send a Private Message</a>
+<div>
+<a href="#" class="button" onclick="jQuery.facebox(function() {$.get('/conversations/teacher_new?contact_id={{teacher.contact}}', function(data) { $.facebox(data) })});return false;">Ask Question</a>
+</div><br/>
+<div><a href="#" class="" onclick="">Ask Anonymously</a></div>
+<div><a href="#" class="" onclick="">Send a Private Message</a></div>
