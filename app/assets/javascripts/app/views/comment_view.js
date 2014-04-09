@@ -11,6 +11,9 @@ app.views.Comment = app.views.Content.extend({
 
   initialize : function(options){
     this.templateName = options.templateName || this.templateName
+    if(app.currentUser.get('role') != "teacher"){
+      this.className += " teacher_comment"
+    }
     this.model.on("change", this.render, this)
   },
 
