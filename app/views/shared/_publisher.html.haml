@@ -60,7 +60,7 @@
               %i 
                 = "Post a Quiz"
       
-#publisher{:class => ((aspect == :profile || publisher_open) ? "mention_popup" : "closed")}
+#publisher{:class => ((aspect == :profile || publisher_open) ? "mention_popup" : "closed"),:style=>'display:none;'}
   .content_creation
     = form_for(StatusMessage.new) do |status|
       = status.error_messages
