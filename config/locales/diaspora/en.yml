@@ -577,7 +577,7 @@ en:
       send_an_invitation: "Send an invitation"
       sending_invitation: "Sending invitation..."
       send_invitation: "Send invitation"
-      paste_link: "Share this link with your friends to invite them to lmnop, or email them the link directly."
+      paste_link: "Share this link with other instructors to invite them to use lmnop, or email them the link directly."
       codes_left:
         zero:  "No invites left on this code"
         one:  "One invite left on this code"
@@ -1024,14 +1024,14 @@ en:
       add_new_contact: "Add a new contact"
     invitations:
       invites: "Invites"
-      invite_someone: "Invite someone"
+      invite_someone: "Invite an instructor"
       invitations_left: "%{count} left"
       dont_have_now: "You don't have any right now, but more invites are coming soon!"
       invites_closed: "Invites are currently closed on this Lmnop pod"
-      invite_your_friends: "Invite your friends"
+      invite_your_friends: "Spread the word"
       from_facebook: "From Facebook"
       by_email: "By email"
-      share_this: "Share this link via email, blog, or favorite social network!"
+      share_this: "Share this link via email to let other instrutors know about LMNOP!"
     reshare:
       reshare: "Reshare"
     public_explain:

@@ -22,9 +22,11 @@ app.models.Teacher = Backbone.Model.extend({
       $('#teacher_thubmnail').show();
       app.teacherView = new app.views.Teacher({attributes:this.attributes});
       $('#aspect_teacher').html(app.teacherView.render().el);
-    }
+    },
 
-    
+    getHandle:function(){
+      return this.attributes ? this.attributes.handle : "";
+    }
     //if(respItems && (respItems.author || respItems.length == 0)) {
     //  this.trigger("allItemsLoaded", this);
     //}

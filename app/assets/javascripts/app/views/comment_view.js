@@ -11,10 +11,12 @@ app.views.Comment = app.views.Content.extend({
 
   initialize : function(options){
     this.templateName = options.templateName || this.templateName
-    if(app.currentUser.get('role') != "teacher"){
-      this.className += " teacher_comment"
-    }
+ 
     this.model.on("change", this.render, this)
+    console.log("came to teacherComment" + this.model.get("author").diaspora_id + " " + app.teacherModel.getHandle());
+    if(this.model.get("author").diaspora_id == app.teacherModel.getHandle()){
+      this.className += " teacher_comment";
+    }
   },
 
   presenter : function() {
@@ -34,6 +36,11 @@ app.views.Comment = app.views.Content.extend({
 
   canRemove : function() {
     return app.currentUser.authenticated() && (this.ownComment() || this.postOwner())
+  },
+
+  teacherComment : function(){
+
+    return t;
   }
 });
 

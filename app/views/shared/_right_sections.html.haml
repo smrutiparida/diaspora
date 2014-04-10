@@ -19,14 +19,15 @@
     %ul.content
       = render "shared/links"  
 
-- if AppConfig.settings.invitations.open?
-  .section
-    .title
-      .icons-plus
-      %h5.title-header
-        = t('shared.invitations.invite_your_friends')
-    .content
-      = render "shared/invitations"
+- if current_user.role == "teacher"
+  - if AppConfig.settings.invitations.open?
+    .section
+      .title
+        .icons-plus
+        %h5.title-header
+          = t('shared.invitations.invite_your_friends')
+      .content
+        = render "shared/invitations"
 
 .section
   .title
