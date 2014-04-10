@@ -6,7 +6,7 @@
       <div class="bd">
         {{#unless likes_fetched}}
           <a href="#" class="expand_likes grey">
-            {{likesCount}} Likes
+            {{t "stream.likes" count=likesCount}}
           </a>
 
         {{else}}
