@@ -70,19 +70,19 @@ app.Router = Backbone.Router.extend({
     
     this.stream();
     
-    app.tagFollowings = new app.collections.TagFollowings();
-    this.followedTagsView = new app.views.TagFollowingList({collection: app.tagFollowings});
-    $("#tags_list").replaceWith(this.followedTagsView.render().el);
-    this.followedTagsView.setupAutoSuggest();
+    //app.tagFollowings = new app.collections.TagFollowings();
+    //this.followedTagsView = new app.views.TagFollowingList({collection: app.tagFollowings});
+    //$("#tags_list").replaceWith(this.followedTagsView.render().el);
+    //this.followedTagsView.setupAutoSuggest();
 
-    app.tagFollowings.reset(gon.preloads.tagFollowings);
+    //app.tagFollowings.reset(gon.preloads.tagFollowings);
 
-    if(name) {
-      var followedTagsAction = new app.views.TagFollowingAction(
-            {tagText: decodeURIComponent(name).toLowerCase()}
-          );
-      $("#author_info").prepend(followedTagsAction.render().el)
-    }
+    //if(name) {
+    //  var followedTagsAction = new app.views.TagFollowingAction(
+    //        {tagText: decodeURIComponent(name).toLowerCase()}
+    //      );
+    //  $("#author_info").prepend(followedTagsAction.render().el)
+    //}
     this.hideInactiveStreamLists();
   },
 
