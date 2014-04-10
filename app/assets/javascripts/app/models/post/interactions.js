@@ -2,7 +2,8 @@
 
 app.models.Post.Interactions = Backbone.Model.extend({
   url : function(){
-    return this.post.url() + "/interactions"
+    //return this.post.url() + "/interactions"
+    return "/posts/interactions"
   },
 
   initialize : function(options){
