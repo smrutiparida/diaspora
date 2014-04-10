@@ -2,14 +2,13 @@
 
 app.models.Post.Interactions = Backbone.Model.extend({
   url : function(){
-    //return this.post.url() + "/interactions"
-    return "/posts/interactions"
+    return this.post.url() + "/interactions"
   },
 
   initialize : function(options){
     //alert("app.models.Post.Interactions:initialize");
     this.post = options.post
-    this.comments = new app.collections.Comments(this.get("comments"), {post : this.post})
+    this.comments = new app.collections.Comments(this.get("comments"), {post : this.post});
     this.likes = new app.collections.Likes(this.get("likes"), {post : this.post});
     this.reshares = new app.collections.Reshares(this.get("reshares"), {post : this.post});
   },
