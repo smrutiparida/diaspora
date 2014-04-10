@@ -34,7 +34,9 @@
         return "";
       }
     }
-    console.log(translatedMessage + " " + views.count);
+    if(views && typeof views.count !== "undefined"){
+      console.log(translatedMessage + " " + views.count);
+    }
     return _.template(translatedMessage, views || {});
    }
  };
