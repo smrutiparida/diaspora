@@ -96,10 +96,10 @@ en:
       hide: "Hide"
       public: "Public"
       limited: "Limited"
-      like: "Like"
-      unlike: "Unlike"
+      like: "Upvote"
+      unlike: "Downvote"
       reshare: "Reshare"
-      comment: "Comment"
+      comment: "Answer"
       original_post_deleted: "Original post deleted by author."
       show_nsfw_post: "Show post"
       show_nsfw_posts: "Show all"
@@ -108,9 +108,9 @@ en:
       unfollow: "Unfollow"
 
       likes:
-        zero: "<%= count %> Likes"
-        one: "<%= count %> Like"
-        other: "<%= count %> Likes"
+        zero: "<%= count %> Upvotes"
+        one: "<%= count %> Upvote"
+        other: "<%= count %> Upvotes"
 
       reshares:
         zero: "<%= count %> Reshares"
@@ -118,9 +118,9 @@ en:
         other: "<%= count %> Reshares"
 
       more_comments:
-        zero: "Show <%= count %> more comments"
-        one: "Show <%= count %> more comment"
-        other: "Show <%= count %> more comments"
+        zero: "Show <%= count %> more answers"
+        one: "Show <%= count %> more answer"
+        other: "Show <%= count %> more answers"
 
       followed_tag:
         title: "#Followed Tags"
