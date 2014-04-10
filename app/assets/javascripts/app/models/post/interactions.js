@@ -34,12 +34,12 @@ app.models.Post.Interactions = Backbone.Model.extend({
   likesCount : function(){
 
     //return (this.get("fetched") ? this.likes.models.length : this.get("likes_count") )
-    if (this.get("fetched"){
+    if (this.get("fetched")){
       console.log( this.likes.models.length);
       return  this.likes.models.length;
     }
     else {
-      console.log("second " + this.get("likes_count");)
+      console.log("second " + this.get("likes_count"));
       return  this.get("likes_count");
     }  
      
