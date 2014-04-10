@@ -16,7 +16,7 @@
    },
 
    t: function(item, views) {
-    console.log(item + " " + views);
+
     var items = item.split("."),
       translatedMessage,
       nextNamespace;
@@ -34,7 +34,7 @@
         return "";
       }
     }
-
+    console.log(translatedMessage + " " + views.count);
     return _.template(translatedMessage, views || {});
    }
  };
