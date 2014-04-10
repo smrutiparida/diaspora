@@ -16,6 +16,7 @@
    },
 
    t: function(item, views) {
+    console.log(item + " " + views);
     var items = item.split("."),
       translatedMessage,
       nextNamespace;
