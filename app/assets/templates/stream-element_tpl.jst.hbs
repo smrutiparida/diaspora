@@ -1,7 +1,7 @@
 <div class="media">
 
   {{#with author}}
-    {{if author.name == "Anonymous"}}
+    {{#if checkAnonymity author.name}}
       <span class="img">
         {{{personImage this "small" "small"}}}
       </span>
@@ -32,7 +32,7 @@
     
     <div>
       {{#with author}}
-        {{#if name == "Anonymous"}}
+        {{#if checkAnonymity author.name}}
           <span class="author">{{name}}</span>
         {{else}}  
           <a href="/people/{{guid}}" class="author {{{hovercardable this}}}">{{name}}</a>

@@ -44,3 +44,7 @@ Handlebars.registerHelper('personImage', function(person, size, imageClass) {
 Handlebars.registerHelper('localTime', function(timestamp) {
   return new Date(timestamp).toLocaleString();
 });
+
+Handlebars.registerHelper('checkAnonymity', function(name) {
+  return (name == "Anonymous")
+});
