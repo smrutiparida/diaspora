@@ -13,8 +13,8 @@ app.views.Comment = app.views.Content.extend({
     this.templateName = options.templateName || this.templateName
  
     this.model.on("change", this.render, this)
-    console.log("came to teacherComment" + this.model.get("author").diaspora_id + " " + app.teacherModel + " " + app.teacherView);
-    if(this.model.get("author").diaspora_id == app.teacherModel.getHandle()){
+    console.log("came to teacherComment" + this.model.get("author").diaspora_id + " " + this.model.get("parent").diaspora_id + " " + app.teacherModel.get("handle"));
+    if(this.model.get("parent").diaspora_id == app.teacherModel.get("handle")){
       this.className += " teacher_comment";
     }
   },
