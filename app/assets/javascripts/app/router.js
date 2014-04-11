@@ -94,6 +94,9 @@ app.Router = Backbone.Router.extend({
   },
 
   aspects_stream : function(){
+    app.teacherModel = new app.models.Teacher
+    app.teacherModel.get_teacher(ids);
+    
     var ids = app.aspects.selectedAspects('id');
     app.stream = new app.models.StreamAspects([], { aspects_ids: ids });
     app.stream.fetch();
@@ -107,8 +110,6 @@ app.Router = Backbone.Router.extend({
     $("#main_stream").html(app.page.render().el);
     $('#selected_aspect_contacts .content').html(streamFacesView.render().el);
     
-    app.teacherModel = new app.models.Teacher
-    app.teacherModel.get_teacher(ids);
     //app.teacherModel.fetch();
     //alert(app.teacherModel.toJSON());
     //app.teacherView = new app.views.Teacher({attributes:app.teacherModel.attributes});
