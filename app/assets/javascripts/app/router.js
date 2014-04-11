@@ -93,11 +93,12 @@ app.Router = Backbone.Router.extend({
     this.aspects_stream();
   },
 
-  aspects_stream : function(){
+  aspects_stream : function(){    
+    var ids = app.aspects.selectedAspects('id');
+
     app.teacherModel = new app.models.Teacher
     app.teacherModel.get_teacher(ids);
     
-    var ids = app.aspects.selectedAspects('id');
     app.stream = new app.models.StreamAspects([], { aspects_ids: ids });
     app.stream.fetch();
 
