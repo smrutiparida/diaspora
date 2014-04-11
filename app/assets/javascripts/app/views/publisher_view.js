@@ -288,7 +288,7 @@ app.views.Publisher = Backbone.View.extend({
 
     if($('#user_anonymity').val() == 'true'){
       console.log("marking anonymous")
-      previewMessage["author"] = {}
+      previewMessage["author"] = {"name":"Anonymous","avatar": { "small":"/assets/user/default.png"}}
     }
 
     if(app.stream) {
