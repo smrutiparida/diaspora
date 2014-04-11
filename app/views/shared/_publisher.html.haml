@@ -167,6 +167,7 @@
           %button{ :class => 'button post_preview_button'}
             = t('.preview') 
 
+          = hidden_field_tag 'user_anonymity', "False"
           = status.submit "Submit Question", :disabled => publisher_hidden_text.blank?, :class => 'button creation', :tabindex => 2
 
           .facebox_content
