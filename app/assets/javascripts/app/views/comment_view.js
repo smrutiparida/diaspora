@@ -33,6 +33,7 @@ app.views.Comment = app.views.Content.extend({
   presenter : function() {
     return _.extend(this.defaultPresenter(), {
       canRemove: this.canRemove(),
+      teacherComment : this.teacherComment(), 
       text : app.helpers.textFormatter(this.model.get("text"), this.model)
     })
   },
