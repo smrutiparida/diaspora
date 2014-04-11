@@ -12,20 +12,22 @@ app.views.Comment = app.views.Content.extend({
   initialize : function(options){
     this.templateName = options.templateName || this.templateName
  
-    this.model.on("change", this.render, this)
-    console.log("came to teacherComment" + this.model.get("author").diaspora_id + " " + this.model.get("parent").author.diaspora_id)
-    if(app.teacherModel){
-      console.log(app.teacherModel.attributes)
-      console.log(app.teacherModel.get("handle"));
-      console.log(app.teacherModel);
-      console.log(app.teacherModel.handle);
-      console.log(app.teacherModel.toJSON());  
-    }
     
-    if(this.model.get("author").diaspora_id == app.teacherModel.attributes.handle){
+    //console.log("came to teacherComment" + this.model.get("author").diaspora_id + " " + this.model.get("parent").author.diaspora_id)
+    //if(app.teacherModel){
+    //  console.log(app.teacherModel.attributes)
+    //  console.log(app.teacherModel.get("handle"));
+    //  console.log(app.teacherModel);
+    //  console.log(app.teacherModel.handle);
+    //  console.log(app.teacherModel.toJSON());  
+    //}
+    
+    if(this.model.get("author").diaspora_id == app.teacherModel.get("handle")){
       console.log("came")
-      this.className += " teacher_comment";
+      this.className = this.className + " teacher_comment";
     }
+
+    this.model.on("change", this.render, this)
   },
 
   presenter : function() {
