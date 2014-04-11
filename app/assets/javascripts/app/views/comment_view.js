@@ -22,10 +22,10 @@ app.views.Comment = app.views.Content.extend({
     //  console.log(app.teacherModel.toJSON());  
     //}
     
-    if(this.model.get("author").diaspora_id == app.teacherModel.get("handle")){
-      console.log("came")
-      this.className = this.className + " teacher_comment";
-    }
+    //if(this.model.get("author").diaspora_id == app.teacherModel.get("handle")){
+    //  console.log("came")
+    //  this.className = this.className + " teacher_comment";
+    //}
 
     this.model.on("change", this.render, this)
   },
@@ -50,8 +50,10 @@ app.views.Comment = app.views.Content.extend({
   },
 
   teacherComment : function(){
-
-    return t;
+    if(this.model.get("author").diaspora_id == app.teacherModel.get("handle")){
+      return true;
+    }
+    return false;
   }
 });
 
