@@ -51,9 +51,10 @@ app.views.Comment = app.views.Content.extend({
 
   teacherComment : function(){
     if(this.model.get("author").diaspora_id == app.teacherModel.get("handle")){
+      console.log("came")
       return true;
     }
-    return false;
+    return true;
   }
 });
 
