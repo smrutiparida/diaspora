@@ -14,8 +14,8 @@ app.views.Comment = app.views.Content.extend({
  
     this.model.on("change", this.render, this)
     console.log("came to teacherComment" + this.model.get("author").diaspora_id + " " + this.model.get("parent").author.diaspora_id)
-    console.log(app.teacherModel.attributes);
-    console.log(app.teacherModel.get("attributes");
+    console.log(app.teacherModel.attributes)
+    console.log(app.teacherModel.get("attributes"));
     if(this.model.get("author").diaspora_id == app.teacherModel.attributes.handle){
       console.log("came")
       this.className += " teacher_comment";
