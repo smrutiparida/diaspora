@@ -284,7 +284,7 @@ app.views.Publisher = Backbone.View.extend({
       "title" : serializedForm["status_message[text]"],
       "address" : $("#location_address").val(),
       "interactions" : {"likes":[],"reshares":[],"comments_count":0,"likes_count":0,"reshares_count":0},
-      "user_anonymity": Boolean(serializedForm["user_anonymity"])
+      "user_anonymity": serializedForm["user_anonymity"]
     }
 
     if(app.stream) {

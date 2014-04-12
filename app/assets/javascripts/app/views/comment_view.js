@@ -51,7 +51,7 @@ app.views.Comment = app.views.Content.extend({
 
       //remove comment area
       //change background color
-      this.appendClass("teacher_comment");
+      this.appendClass("endorse_comment");
     },
 
   ownComment : function() {
