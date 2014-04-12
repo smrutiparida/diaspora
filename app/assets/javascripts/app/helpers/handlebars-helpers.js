@@ -65,12 +65,20 @@ Handlebars.registerHelper('anonymityString', function(author, type) {
   
   if(author.name == "Anonymous"){
     console.log("step 3");  
-    return _.template('<span class="<%= class_name %>"> <%= htmlStr %> </span>');   
+    return _.template('<span class="<%= class_name %>"> <%= htmlStr %> </span>', {
+      'class_name': class_name,
+      'htmlStr': htmlStr
+    });
   }
   else {
     console.log("step 4");
-    htmlStr = Handlebars.helpers['personImage'].call(this, author);
+  
     hoverStr = Handlebars.helpers['hovercardable'].call(this, author);
-    return _.template('<a href="/people/<%= author.guid %>" class="<%= class_name %> <%= hoverStr %>"> <%= htmlStr %></a>');  
+    return _.template('<a href="/people/<%= guid %>" class="<%= class_name %> <%= hoverStr %>"> <%= htmlStr %></a>', {
+      'guid': author.guid,
+      'class_name': class_name,
+      'htmlStr': htmlStr,
+      'hoverStr': hoverStr
+    });  
   }
 });
