@@ -57,7 +57,7 @@ Handlebars.registerHelper('anonymityString', function(author, type, make_anonymo
   var class_name = "plain";
 
   if (type == "img"){
-    htmlStr = !make_anonymous ? Handlebars.helpers['personImage'].call(this, author) : _.template('<img src="/assets/user/default.png" class="avatar small" title="Anonymous" />');
+    htmlStr = !make_anonymous ? Handlebars.helpers['personImage'].call(this, author) : _.template('<img src="/assets/user/default.png" class="avatar small" title="Anonymous" />',{});
     class_name = "img";
   } 
 
