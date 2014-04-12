@@ -1,7 +1,8 @@
 <div class="media">
-  
-  {{anonymityString author "img"}}
-  
+  {{#with author}}
+    {{{anonymityString author "img"}}}
+  {{/with}}
+
   <div class="bd">
     {{#if loggedIn}}
       <div class="controls">
@@ -21,8 +22,9 @@
     {{/if}}
     
     <div>
-      {{anonymityString author "plain"}}
-      
+      {{#with author}}
+        {{{anonymityString this "plain"}}}
+      {{/with}}
 
       <span class="details grey">
         -

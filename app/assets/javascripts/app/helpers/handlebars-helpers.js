@@ -50,23 +50,26 @@ Handlebars.registerHelper('localTime', function(timestamp) {
 Handlebars.registerHelper('anonymityString', function(author, type) {
   /* we return here if person.avatar is blank, because this happens when a
    * user is unauthenticated.  we don't know why this happens... */
-  if( _.isUndefined(author.person) ) { return }
+  console.log("step 1");
+  if( _.isUndefined(author.avatar) ) { return }
 
   var htmlStr = author.name;
   var class_name = "plain";
-
+  
   if(type == "img"){
+    console.log("step 2");
     class_name = "img";
-    htmlStr = Handlebars.helpers['personImage'].call(this);
+    htmlStr = Handlebars.helpers['personImage'].call(author);
   }  
   
   if(author.name == "Anonymous"){
-    
+    console.log("step 3");  
     return _.template('<span class="<%= class_name %>"> <%= htmlStr %> </span>');   
   }
   else {
-    htmlStr = Handlebars.helpers['personImage'].call(this);
-    hoverStr = Handlebars.helpers['hovercardable'].call(this);
+    console.log("step 4");
+    htmlStr = Handlebars.helpers['personImage'].call(author);
+    hoverStr = Handlebars.helpers['hovercardable'].call(author);
     return _.template('<a href="/people/<%= author.guid %>" class="<%= class_name %> <%= hoverStr %>"> <%= htmlStr %></a>');  
   }
 });
