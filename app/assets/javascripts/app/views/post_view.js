@@ -4,6 +4,7 @@ app.views.Post = app.views.Base.extend({
     return _.extend(this.defaultPresenter(), {
       authorIsCurrentUser : this.authorIsCurrentUser(),
       showPost : this.showPost(),
+      anonymousPost : this.anonymousPost(),
       text : app.helpers.textFormatter(this.model.get("text"), this.model)
     })
   },
@@ -20,7 +21,7 @@ app.views.Post = app.views.Base.extend({
 
   anonymousPost : function() {
     console.log("anonymous testing");
-    return this.model.get("user_anonymity")
+    return this.model.get("user_anonymity");
   }
 }, { //static methods below
 
