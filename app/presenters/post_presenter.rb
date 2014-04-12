@@ -38,6 +38,7 @@ class PostPresenter
         :frame_name => @post.frame_name || template_name,
         :root => root,
         :title => title,
+        :user_anonymity => @post.user_anonymity,
         :next_post => next_post_path,
         :previous_post => previous_post_path,
         :address => @post.address,
