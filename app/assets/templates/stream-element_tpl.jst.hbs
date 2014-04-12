@@ -1,6 +1,6 @@
 <div class="media">
   
-  {{anonymityString author}}
+  {{anonymityString author "img"}}
   
   <div class="bd">
     {{#if loggedIn}}
@@ -21,13 +21,8 @@
     {{/if}}
     
     <div>
-      {{#with author}}
-        {{#if checkAnonymity author.name}}
-          <span class="author">{{name}}</span>
-        {{else}}  
-          <a href="/people/{{guid}}" class="author {{{hovercardable this}}}">{{name}}</a>
-        {{/if}}
-      {{/with}}
+      {{anonymityString author "plain"}}
+      
 
       <span class="details grey">
         -
