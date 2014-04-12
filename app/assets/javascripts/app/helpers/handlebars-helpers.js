@@ -53,11 +53,8 @@ Handlebars.registerHelper('anonymityString', function(author, type, make_anonymo
 
   if( _.isUndefined(author) ) { return }
 
-  var htmlStr =  _.template('<img src="/assets/user/default.png" class="avatar small" title="Anonymous" />');
-  var class_name = "plain";
-  
-  (type == "img") ? class_name = "img";
-  !make_anonymous ? htmlStr = Handlebars.helpers['personImage'].call(this, author);
+  var htmlStr = !make_anonymous ? Handlebars.helpers['personImage'].call(this, author) : _.template('<img src="/assets/user/default.png" class="avatar small" title="Anonymous" />');
+  var class_name = (type == "img") ? "img" : "plain";
   
   if(make_anonymous){
     console.log("step 3");  
