@@ -47,23 +47,19 @@ Handlebars.registerHelper('localTime', function(timestamp) {
 
 
 
-Handlebars.registerHelper('anonymityString', function(author, type) {
+Handlebars.registerHelper('anonymityString', function(author, type, make_anonymous) {
   /* we return here if person.avatar is blank, because this happens when a
    * user is unauthenticated.  we don't know why this happens... */
-  console.log("step 1");
-  console.log(author);
+
   if( _.isUndefined(author) ) { return }
 
-  var htmlStr = author.name;
+  var htmlStr =  _.template('<img src="/assets/user/default.png" class="avatar small" title="Anonymous" />');
   var class_name = "plain";
   
-  if(type == "img"){
-    console.log("step 2");
-    class_name = "img";
-    htmlStr = Handlebars.helpers['personImage'].call(this, author);
-  }  
+  (type == "img") ? class_name = "img";
+  !make_anonymous ? htmlStr = Handlebars.helpers['personImage'].call(this, author);
   
-  if(author.name == "Anonymous"){
+  if(make_anonymous){
     console.log("step 3");  
     return _.template('<span class="<%= class_name %>"> <%= htmlStr %> </span>', {
       'class_name': class_name,

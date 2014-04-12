@@ -16,6 +16,11 @@ app.views.Post = app.views.Base.extend({
   showPost : function() {
     //alert("app.views.Post:showPost");
     return (app.currentUser.get("showNsfw")) || !this.model.get("nsfw")
+  },
+
+  anonymousPost : function() {
+    console.log("anonymous testing");
+    return this.model.get("user_anonymity")
   }
 }, { //static methods below
 

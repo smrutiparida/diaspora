@@ -46,6 +46,7 @@ class StatusMessagesController < ApplicationController
     #s_ids.push(params[:aspect_ids])
     #Rails.logger.info(*params[:aspect_ids])
     params[:status_message][:aspect_ids] = [*params[:aspect_ids]]
+    params[:status_message][:user_anonymity] = (params[:user_anonymity] == "true") ? true : false
     normalize_public_flag!
     services = [*params[:services]].compact
 

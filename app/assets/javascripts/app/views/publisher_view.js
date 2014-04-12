@@ -131,7 +131,7 @@ app.views.Publisher = Backbone.View.extend({
     statusMessage.save({
       "status_message" : {
         "text" : serializedForm["status_message[text]"],
-        "user_anonymity" : serializedForm["status_message[user_anonymity]"]
+        "user_anonymity" : serializedForm["user_anonymity"]
       },
       "aspect_ids" : serializedForm["aspect_ids[]"],
       "photos" : serializedForm["photos[]"],
@@ -283,12 +283,8 @@ app.views.Publisher = Backbone.View.extend({
       "frame_name" : "status",
       "title" : serializedForm["status_message[text]"],
       "address" : $("#location_address").val(),
-      "interactions" : {"likes":[],"reshares":[],"comments_count":0,"likes_count":0,"reshares_count":0}
-    }
-
-    if($('#user_anonymity').val() == 'true'){
-      console.log("marking anonymous")
-      previewMessage["author"] = {"name":"Anonymous","avatar": { "small":"/assets/user/default.png"}}
+      "interactions" : {"likes":[],"reshares":[],"comments_count":0,"likes_count":0,"reshares_count":0},
+      "user_anonymity": Boolean(serializedForm["user_anonymity"])
     }
 
     if(app.stream) {
