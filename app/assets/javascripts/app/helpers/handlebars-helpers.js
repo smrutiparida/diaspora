@@ -50,7 +50,7 @@ Handlebars.registerHelper('localTime', function(timestamp) {
 Handlebars.registerHelper('anonymityString', function(author) {
   /* we return here if person.avatar is blank, because this happens when a
    * user is unauthenticated.  we don't know why this happens... */
-  if( _.isUndefined(author.person.avatar) ) { return }
+  if( _.isUndefined(author.person) ) { return }
   
   if(author.name == "Anonymous"){
     htmlStr = Handlebars.helpers['personImage'].call(this, "small", "small");
