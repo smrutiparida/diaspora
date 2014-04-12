@@ -45,6 +45,18 @@ Handlebars.registerHelper('localTime', function(timestamp) {
   return new Date(timestamp).toLocaleString();
 });
 
-Handlebars.registerHelper('checkAnonymity', function(name) {
-  return (name == "Anonymous")
+
+
+Handlebars.registerHelper('anonymityString', function(author) {
+  /* we return here if person.avatar is blank, because this happens when a
+   * user is unauthenticated.  we don't know why this happens... */
+  if(author.name == "Anonymous"){
+    htmlStr = Handlebars.helpers['personImage'].call(this, "small", "small");
+    return _.template('<span class="img"> <%= htmlStr %> </span>')    
+  }
+  else {
+    htmlStr = Handlebars.helpers['personImage'].call(this);
+    hoverStr = Handlebars.helpers['hovercardable'].call(this);
+    return _.template('<a href="/people/<%= author.guid %>" class="img <%= hoverStr %>"> <%= htmlStr %></a>')     
+  }
 });
