@@ -149,7 +149,7 @@ app.models.Post.Interactions = Backbone.Model.extend({
     return publicPost && app.currentUser.authenticated() && userIsNotAuthor && userIsNotRootAuthor && notReshared;
   },
 
-  resolvedPost:function(){
+  isPostResolved:function(){
     return this.post.get("is_post_resolved");
   },
 });
