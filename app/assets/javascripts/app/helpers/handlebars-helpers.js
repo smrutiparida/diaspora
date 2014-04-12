@@ -60,7 +60,7 @@ Handlebars.registerHelper('anonymityString', function(author, type) {
   if(type == "img"){
     console.log("step 2");
     class_name = "img";
-    htmlStr = Handlebars.helpers['personImage'].call(author);
+    htmlStr = Handlebars.helpers['personImage'].call(this, author);
   }  
   
   if(author.name == "Anonymous"){
@@ -69,8 +69,8 @@ Handlebars.registerHelper('anonymityString', function(author, type) {
   }
   else {
     console.log("step 4");
-    htmlStr = Handlebars.helpers['personImage'].call(author);
-    hoverStr = Handlebars.helpers['hovercardable'].call(author);
+    htmlStr = Handlebars.helpers['personImage'].call(this, author);
+    hoverStr = Handlebars.helpers['hovercardable'].call(this, author);
     return _.template('<a href="/people/<%= author.guid %>" class="<%= class_name %> <%= hoverStr %>"> <%= htmlStr %></a>');  
   }
 });
