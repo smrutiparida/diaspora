@@ -29,7 +29,7 @@ app.views.Post = app.views.Base.extend({
   
 
   authorIsCurrentUserAndTeacher:function(){
-    return app.currentUser.authenticated() && this.model.get("author").diaspora_id == app.teacherModel.get("handle")
+    return app.currentUser.authenticated() && app.currentUser.get('role') == "teacher"
   }
 }, { //static methods below
 
