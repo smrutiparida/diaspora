@@ -51,7 +51,8 @@ Handlebars.registerHelper('anonymityString', function(author, type) {
   /* we return here if person.avatar is blank, because this happens when a
    * user is unauthenticated.  we don't know why this happens... */
   console.log("step 1");
-  if( _.isUndefined(author.avatar) ) { return }
+  console.log(author);
+  if( _.isUndefined(author) ) { return }
 
   var htmlStr = author.name;
   var class_name = "plain";
