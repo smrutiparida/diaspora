@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
     t.datetime "updated_at",                                                :null => false
     t.integer  "likes_count",                           :default => 0,      :null => false
     t.string   "commentable_type",        :limit => 60, :default => "Post", :null => false
+    t.boolean  "is_endorsed",                           :default => false
   end
 
   add_index "comments", ["author_id"], :name => "index_comments_on_person_id"

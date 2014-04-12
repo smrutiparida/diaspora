@@ -5,6 +5,8 @@ app.views.Post = app.views.Base.extend({
       authorIsCurrentUser : this.authorIsCurrentUser(),
       showPost : this.showPost(),
       anonymousPost : this.anonymousPost(),
+      resolvedPost:this.model.interactions.resolvedPost(),
+      authorIsCurrentUserAndTeacher: this.authorIsCurrentUserAndTeacher(),
       text : app.helpers.textFormatter(this.model.get("text"), this.model)
     })
   },
@@ -22,6 +24,12 @@ app.views.Post = app.views.Base.extend({
   anonymousPost : function() {
     console.log("anonymous testing");
     return this.model.get("user_anonymity");
+  },
+
+  
+
+  authorIsCurrentUserAndTeacher:function(){
+    return app.currentUser.authenticated() && this.model.get("author").id == app.user().id && this.model.get("author").diaspora_id == app.teacherModel.get("handle")
   }
 }, { //static methods below
 

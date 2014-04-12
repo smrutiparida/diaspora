@@ -29,6 +29,13 @@ class CommentsController < ApplicationController
     end
   end
 
+  def update
+    @comment = Comment.find(params[:c_id])
+    @comment.is_endorsed = !@comment.is_endorsed
+    @comment.save
+    render :nothing => true, :status => 202
+  end
+
   def destroy
     @comment = Comment.find(params[:id])
     if current_user.owns?(@comment) || current_user.owns?(@comment.parent)

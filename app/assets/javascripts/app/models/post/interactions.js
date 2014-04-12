@@ -147,5 +147,9 @@ app.models.Post.Interactions = Backbone.Model.extend({
       , notReshared = !this.userReshare();
 
     return publicPost && app.currentUser.authenticated() && userIsNotAuthor && userIsNotRootAuthor && notReshared;
-  }
+  },
+
+  resolvedPost:function(){
+    return this.post.get("is_post_resolved");
+  },
 });

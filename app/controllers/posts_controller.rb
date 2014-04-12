@@ -82,9 +82,12 @@ class PostsController < ApplicationController
   end
 
   def update
-    find_current_user_post(params[:id])
-    @post.favorite = !@post.favorite
-    @post.save
+    if params[:type] == "resolve"
+      find_post(params[:post_id])
+      @post.is_post_resolved = !@post.is_post_resolved
+    #find_current_user_post(params[:id])
+    #@post.favorite = !@post.favorite
+      @post.save
     render :nothing => true, :status => 202
   end
 

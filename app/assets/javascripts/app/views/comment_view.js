@@ -5,7 +5,8 @@ app.views.Comment = app.views.Content.extend({
 
   events : function() {
     return _.extend({}, app.views.Content.prototype.events, {
-      "click .comment_delete": "destroyModel"
+      "click .comment_delete": "destroyModel",
+      "click .comment_best": "endorseComment"
     });
   },
 
@@ -38,6 +39,21 @@ app.views.Comment = app.views.Content.extend({
     })
   },
 
+  endorseComment : function(evt) {
+      if(evt) { evt.preventDefault(); }
+      $.ajax({
+        url : "/comments/",
+        type : "PUT",
+        data : {
+          c_id : this.model.id,
+        }
+      })
+
+      //remove comment area
+      //change background color
+      this.appendClass("teacher_comment");
+    },
+
   ownComment : function() {
     return app.currentUser.authenticated() && this.model.get("author").diaspora_id == app.currentUser.get("diaspora_id")
   },
@@ -47,7 +63,11 @@ app.views.Comment = app.views.Content.extend({
   },
 
   canRemove : function() {
-    return app.currentUser.authenticated() && (this.ownComment() || this.postOwner())
+    return app.currentUser.authenticated() && (this.ownComment() || this.isTeacher())
+  },
+
+  isTeacher:function(){
+    return this.model.get("parent").author.diaspora_id == app.teacherModel.get("handle")
   },
 
   teacherComment : function(){

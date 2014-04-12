@@ -21,7 +21,8 @@ app.views.StreamPost = app.views.Post.extend({
 
     "click .remove_post": "destroyModel",
     "click .hide_post": "hidePost",
-    "click .block_user": "blockUser"
+    "click .block_user": "blockUser",
+    "click .mark_resolved": "resolvePost",
   },
 
   tooltipSelector : ".timeago, .post_scope, .block_user, .delete",
@@ -110,6 +111,26 @@ app.views.StreamPost = app.views.Post.extend({
     })
 
     this.remove();
+  },
+
+  resolvePost : function(evt) {
+    if(evt) { evt.preventDefault(); }
+    
+
+    $.ajax({
+      url : "/posts/",
+      type : "PUT",
+      data : {
+        post_id : this.model.id,
+        type : "resolve"
+      }
+    })
+
+    //remove comment area
+    //change background color
+    //this.$el.addClass("comment_endorsed");
+    this.$(".focusCommentTextarea").hide();
+    this.$(".comment_box").hide();
   },
 
   focusCommentTextarea: function(evt){
