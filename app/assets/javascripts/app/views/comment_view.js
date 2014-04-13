@@ -43,7 +43,7 @@ app.views.Comment = app.views.Content.extend({
   endorseComment : function(evt) {
       if(evt) { evt.preventDefault(); }
       $.ajax({
-        url : "/comments/", + c_id : this.model.id 
+        url : "/comments/" + this.model.id,
         type : "PUT",
         data : {
           c_id : this.model.id,
