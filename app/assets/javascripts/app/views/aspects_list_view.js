@@ -56,6 +56,7 @@ app.views.AspectsList = app.views.Base.extend({
         $(this).find('.icons-check_yes_ok').removeClass('selected');
       });
     } else {
+      console.log("selecting all aspects");
       this.collection.selectAll();
       aspects.each(function(i){
         $(this).find('.icons-check_yes_ok').addClass('selected');
