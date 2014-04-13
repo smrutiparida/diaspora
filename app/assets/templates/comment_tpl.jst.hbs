@@ -9,17 +9,21 @@
 {{else}}
   <div class="bd">
 {{/if}}
-    {{#if canRemove}}
-      <div class="controls">
+
+    <div class="controls">
+      {{#if canRemove}}
         <a href="#" class="delete comment_delete" title="{{t "delete"}}">
           <div alt="Deletelabel" class="icons-deletelabel" />
         <a/>
+      {{/if}}
+      {{#if canEndorse}}  
         <a href="#" class="ignore comment_best" title="Mark as Correct Answer">
           <div alt="BestAnswer" class="icons-ignorelabel" />
         <a/>
-      </div>
-    {{/if}}
+      {{/if}}  
+    </div>
 
+    
     {{#with author}}
       <a href="/people/{{guid}}" class="author author-name {{hovercardable this}}">
         {{name}}
