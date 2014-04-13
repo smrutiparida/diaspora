@@ -42,7 +42,7 @@ app.views.Comment = app.views.Content.extend({
   endorseComment : function(evt) {
       if(evt) { evt.preventDefault(); }
       $.ajax({
-        url : "/comments/",
+        url : "/comments/", + c_id : this.model.id 
         type : "PUT",
         data : {
           c_id : this.model.id,
@@ -63,15 +63,19 @@ app.views.Comment = app.views.Content.extend({
   },
 
   canRemove : function() {
-    return app.currentUser.authenticated() && (this.ownComment() || this.isTeacher())
+    return app.currentUser.authenticated() && this.ownComment()
+  },
+
+  canEndorse: function(){
+    return app.currentUser.authenticated() && this.isTeacher()
   },
 
   isTeacher:function(){
     return this.model.get("parent").author.diaspora_id == app.teacherModel.get("handle")
   },
 
-  teacherComment : function(){
-    if(this.model.get("author").diaspora_id == app.teacherModel.get("handle")){
+  teacherCommentORendorsedComment : function(){
+    if((this.model.get("author").diaspora_id == app.teacherModel.get("handle")) || this.model.is_endorsed){
       return true;
     }
     return false;

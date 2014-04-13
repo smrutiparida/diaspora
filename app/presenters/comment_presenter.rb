@@ -9,7 +9,8 @@ class CommentPresenter < BasePresenter
       :guid => @comment.guid,
       :text  => @comment.text,
       :author => @comment.author.as_api_response(:backbone),
-      :created_at => @comment.created_at
+      :created_at => @comment.created_at,
+      :is_endorsed => @comment.is_endorsed
     }
   end
 end
