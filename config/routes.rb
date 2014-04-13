@@ -31,7 +31,7 @@ Diaspora::Application.routes.draw do
 
     resources :likes, :only => [:create, :destroy, :index ]
     resources :participations, :only => [:create, :destroy, :index]
-    resources :comments, :only => [:new, :create, :destroy, :index, :update]
+    resources :comments, :only => [:new, :create, :destroy, :index]
   end
 
   get 'p/:id' => 'posts#show', :as => 'short_post'
@@ -40,6 +40,10 @@ Diaspora::Application.routes.draw do
   # roll up likes into a nested resource above
   resources :comments, :only => [:create, :destroy] do
     resources :likes, :only => [:create, :destroy, :index]
+  end
+
+  resources :comments do
+    put :update
   end
 
   # Streams
