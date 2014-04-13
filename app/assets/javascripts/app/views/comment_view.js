@@ -76,7 +76,7 @@ app.views.Comment = app.views.Content.extend({
   },
 
   teacherCommentORendorsedComment : function(){
-    if(this.model.get("author").diaspora_id == app.teacherModel.get("handle")){
+    if(app.currentUser.authenticated() && this.model.get("author").diaspora_id == app.teacherModel.get("handle")){
       return true;
     }
     return false;
