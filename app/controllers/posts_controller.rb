@@ -88,6 +88,7 @@ class PostsController < ApplicationController
     #find_current_user_post(params[:id])
     #@post.favorite = !@post.favorite
       @post.save
+    end  
     render :nothing => true, :status => 202
   end
 
