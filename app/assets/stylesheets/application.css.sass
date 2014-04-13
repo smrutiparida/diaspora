@@ -408,12 +408,23 @@ ul.as-selections
       .comment_delete
         @include transition(opacity)
         @include opacity(0)
+
+      .comment_best
+        @include transition(opacity)
+        @include opacity(0)
+    
     &:hover
       .controls
         .comment_delete
           @include opacity(0.3)
         .comment_delete:hover
           @include opacity(1)
+        
+        .comment_best
+          @include opacity(0.3)
+        .comment_best:hover
+          @include opacity(1)
+        
 
   .youtube-player, .vimeo-player
     :border none
