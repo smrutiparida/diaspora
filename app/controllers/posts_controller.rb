@@ -83,7 +83,7 @@ class PostsController < ApplicationController
 
   def update
     if params[:type] == "resolve"
-      find_post(params[:post_id])
+      find_post()
       @post.is_post_resolved = !@post.is_post_resolved
     #find_current_user_post(params[:id])
     #@post.favorite = !@post.favorite
