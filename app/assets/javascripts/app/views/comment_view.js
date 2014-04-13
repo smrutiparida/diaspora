@@ -68,10 +68,6 @@ app.views.Comment = app.views.Content.extend({
   },
 
   canEndorse: function(){
-    return app.currentUser.authenticated() && this.isTeacher()
-  },
-
-  isTeacher:function(){
     return app.currentUser.authenticated() && app.currentUser.get('role') == "teacher"
   },
 
