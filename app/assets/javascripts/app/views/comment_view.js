@@ -35,7 +35,7 @@ app.views.Comment = app.views.Content.extend({
     return _.extend(this.defaultPresenter(), {
       canRemove: this.canRemove(),
       canEndorse: this.canEndorse(),
-      teacherComment : this.teacherCommentORendorsedComment(), 
+      teacherCommentORendorsedComment : this.teacherCommentORendorsedComment(), 
       text : app.helpers.textFormatter(this.model.get("text"), this.model)
     })
   },
@@ -72,9 +72,11 @@ app.views.Comment = app.views.Content.extend({
   },
 
   teacherCommentORendorsedComment : function(){
+    console.log(this.model.is_endorsed);
     if(app.currentUser.authenticated() && (this.model.get("author").diaspora_id == app.teacherModel.get("handle") || this.model.is_endorsed)){
       return true;
     }
+    console.log("came");
     return false;
   }
 });
