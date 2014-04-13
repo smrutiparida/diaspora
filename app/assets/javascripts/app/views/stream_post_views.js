@@ -118,7 +118,7 @@ app.views.StreamPost = app.views.Post.extend({
     
 
     $.ajax({
-      url : "/posts/",
+      url : "/posts/42",
       type : "PUT",
       data : {
         post_id : this.model.id,
