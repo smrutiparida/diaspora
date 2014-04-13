@@ -5,7 +5,7 @@ app.views.Post = app.views.Base.extend({
       authorIsCurrentUser : this.authorIsCurrentUser(),
       showPost : this.showPost(),
       anonymousPost : this.anonymousPost(),
-      resolvedPost:this.model.interactions.resolvedPost(),
+      isPostResolved:this.model.interactions.isPostResolved(),
       authorIsCurrentUserAndTeacher: this.authorIsCurrentUserAndTeacher(),
       text : app.helpers.textFormatter(this.model.get("text"), this.model)
     })
