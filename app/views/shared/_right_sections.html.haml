@@ -9,12 +9,21 @@
       %h5.title-header
         = "My Instructor"
     .content#aspect_teacher
+
+.section
+  .title
+    .icons-mail
+    %h5.title-header
+      = "Sessions List"
+  %div#sessions_list
+    = link_to "Add a Session", "/contents/new", :class => "button", :rel => 'facebox', :id => 'session-button'
+
   
 .section
   .title
     .icons-mail
     %h5.title-header
-      = "Show Only"
+      = "Filters"
   %div 
     %ul.content
       = render "shared/links"  

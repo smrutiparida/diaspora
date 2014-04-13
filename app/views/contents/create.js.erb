@@ -1,3 +1,4 @@
 $.facebox.close();
-Diaspora.page.flashMessages.render({ 'success':'success', 'notice':'A new module added to course' });
-$.getScript("/courses/<%= @new_module.aspect_id %>");
+Diaspora.page.flashMessages.render({ 'success':'success', 'notice':'<%= @new_module.name %> session added to course' });
+//$.getScript("/courses/<%= @new_module.aspect_id %>");
+$('#sessions_list > *:last').before('<a href="#" class="filter-sessoion" data-aspect="<%= @new_module.aspect_id %>"><%= @new_module.name %></a>');	
