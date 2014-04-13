@@ -72,7 +72,7 @@ app.views.Comment = app.views.Content.extend({
   },
 
   isTeacher:function(){
-    return this.model.get("parent").author.diaspora_id == app.teacherModel.get("handle")
+    return app.currentUser.authenticated() && app.currentUser.get('role') == "teacher"
   },
 
   teacherCommentORendorsedComment : function(){
