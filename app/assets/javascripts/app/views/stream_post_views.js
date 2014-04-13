@@ -128,7 +128,7 @@ app.views.StreamPost = app.views.Post.extend({
     //remove comment area
     //change background color
     //this.$el.addClass("comment_endorsed");
-    this.$(".focusCommentTextarea").hide();
+    this.$(".new_comment_form_wrapper").addClass("hidden");
     this.$(".comment_box").hide();
   },
 
