@@ -18,7 +18,7 @@ app.models.Sessions = Backbone.Model.extend({
       console.log(this);
       console.log(this.attributes)
       //app.sessionsView = new app.views.Sessions({sessions:this.attributes});
-      tmp = "";
+      var tmpl = "";
       for (var key in this.attributes) {
         console.log(this.attributes[key]);
         console.log(this.attributes[key].content);
