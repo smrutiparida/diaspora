@@ -15,8 +15,10 @@ app.models.Sessions = Backbone.Model.extend({
     //var respItems = this.parse(resp);
     if(this.attributes)
     {
+      console.log(this);
+      console.log(this.attributes)
       app.sessionsView = new app.views.Sessions({sessions:this.attributes});
-      $('##sessions_list').prepend(app.sessionsView.render().el);
+      $('#sessions_list').prepend(app.sessionsView.render().el);
     }
   }
 });
