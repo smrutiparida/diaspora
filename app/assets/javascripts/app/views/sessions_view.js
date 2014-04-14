@@ -4,10 +4,14 @@ app.views.Sessions = app.views.Base.extend({
 
   className : "sessions",
 
-
+  tagName : "li",
 
   presenter : function() {
-    return {sessions : this.sessions}
+    console.log(this.sessions);
+    return _.extend(this.defaultPresenter(), {
+      sessions : this.sessions
+    })
+    
   }
 
 
