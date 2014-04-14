@@ -15,8 +15,10 @@
     .icons-mail
     %h5.title-header
       = "Sessions List"
-  %div#sessions_list
-    = link_to "Add a Session", "/contents/new", :class => "button", :rel => 'facebox', :id => 'session-button'
+  %br    
+  %div
+    %ul#sessions_list
+      %li= link_to "Add a Session", "/contents/new", :class => "button", :rel => 'facebox', :id => 'session-button'
 
   
 .section

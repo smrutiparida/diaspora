@@ -1,6 +1,6 @@
 class ContentsController < ApplicationController
 
-  before_filter :authenticate_user!, :only => [:index, :show, :new,:show]
+  before_filter :authenticate_user!, :only => [:index, :show, :new, :create]
   respond_to :html, :json, :js
 
   def index    
