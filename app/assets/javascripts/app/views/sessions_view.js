@@ -7,9 +7,9 @@ app.views.Sessions = app.views.Base.extend({
   tagName : "li",
 
   presenter : function() {
-    console.log(this.options.sessions);
+    console.log(this.options.sessions.content);
     return _.extend(this.defaultPresenter(), {
-      sessions : this.options.sessions
+      sessions : this.options.sessions.content
     })
     
   }
