@@ -17,8 +17,17 @@ app.models.Sessions = Backbone.Model.extend({
     {
       console.log(this);
       console.log(this.attributes)
-      app.sessionsView = new app.views.Sessions({sessions:this.attributes});
-      $('#sessions_list').prepend(app.sessionsView.render().el);
+      //app.sessionsView = new app.views.Sessions({sessions:this.attributes});
+      tmp = "";
+      for (var key in this.attributes) {
+        console.log(this.attributes[key]);
+        console.log(this.attributes[key].content);
+        console.log(this.attributes[key].content.name);
+      
+        var ele = this.attributes[key].content;
+        tmpl = tmpl + _.template('<li><a href="#" class="filter-sessoion" data-aspect="<%= aspect_id %>"><%= name %></a></li>',{'aspect_id':ele.aspect_id,'name':ele.name});  
+      }
+      $('#sessions_list').prepend(tmpl);
     }
   }
 });
