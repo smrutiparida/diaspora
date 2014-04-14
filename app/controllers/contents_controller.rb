@@ -13,10 +13,12 @@ class ContentsController < ApplicationController
     my_aspect_id = current_user.role == "teacher" ? params[:id] : get_my_teacher_aspect_id(params[:id])
     @all_course_modules = Content.where(:aspect_id => my_aspect_id).order(:created_at)
     
-    format.json {
-      render :json => @all_course_modules.to_json
-    }
-     
+    respond_to do |format|
+      format.json do
+        render :json => @all_course_modules.to_json
+      end
+    end
+       
   end
 
   def new   
