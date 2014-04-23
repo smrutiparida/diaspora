@@ -6,7 +6,7 @@ app.views.Session = app.views.Base.extend({
   className: "sessionname",
 
   events: {
-    'click sessionname': 'filterBySession'
+    'click .sessionname': 'filterBySession'
   },
 
   filterBySession: function(evt) {
