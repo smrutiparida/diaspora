@@ -16,6 +16,7 @@ app.views.Session = app.views.Base.extend({
     //this.$el.find('.icons-check_yes_ok').addClass('selected');
     //alert("called");
     app.aspectSessionId = $(this).attr('data-id');
+    console.log(app.aspectSessionId)
     app.router.aspects_stream();
   },
 

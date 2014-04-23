@@ -19,6 +19,8 @@ app.models.StreamAspects = app.models.Stream.extend({
     if(this.isFetching()){ return false }
     var url = this.url();
     var ids = this.aspects_ids;
+    console.log("inside stream aspect")
+    console.log(this.session_id)
     this.deferred = this.items.fetch({
         add : true,
         url : url,
