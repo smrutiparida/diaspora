@@ -10,7 +10,7 @@ app.views.Session = app.views.Base.extend({
   },
 
   filterBySession: function(evt) {
-    if (evt) { evt.preventDefault(); };
+    //if (evt) { evt.preventDefault(); };
     //this.model.toggleSelected();    
     //$('.all_aspects').find('.icons-check_yes_ok').removeClass('selected');
     //this.$el.find('.icons-check_yes_ok').addClass('selected');
