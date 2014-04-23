@@ -3,10 +3,10 @@ app.views.Session = app.views.Base.extend({
 
   tagName: "li",
 
-  className: "sessions-names",
+  className: "sessionname",
 
   events: {
-    'click session-names': 'filterBySession'
+    'click sessionname': 'filterBySession'
   },
 
   filterBySession: function(evt) {
