@@ -8,6 +8,7 @@ app.models.StreamAspects = app.models.Stream.extend({
     var collectionClass = options && options.collection || app.collections.Posts;
     this.items = new collectionClass([], this.collectionOptions());
     this.aspects_ids = options.aspects_ids;
+    this.session_id = option.session_id;
   },
 
   basePath : function(){
@@ -21,7 +22,7 @@ app.models.StreamAspects = app.models.Stream.extend({
     this.deferred = this.items.fetch({
         add : true,
         url : url,
-        data : { 'a_ids': ids }
+        data : { 'a_ids': ids, 's_id': this.session_id }
     }).done(_.bind(this.triggerFetchedEvents, this))
   }
 });
