@@ -3,6 +3,8 @@ app.views.Session = app.views.Base.extend({
 
   tagName: "li",
 
+  className: "sessions-names",
+
   events: {
     'click session-names': 'filterBySession'
   },
@@ -18,7 +20,7 @@ app.views.Session = app.views.Base.extend({
 
   presenter : function() {
     console.log("came to the presenter");
-    console.log(this.model);
+    console.log(this.attributes);
     return _.extend(this.defaultPresenter(), {
       session : this.attributes
     })
