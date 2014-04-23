@@ -8,7 +8,7 @@ app.models.StreamAspects = app.models.Stream.extend({
     var collectionClass = options && options.collection || app.collections.Posts;
     this.items = new collectionClass([], this.collectionOptions());
     this.aspects_ids = options.aspects_ids;
-    this.session_id = option.session_id;
+    this.session_id = options.session_id;
   },
 
   basePath : function(){
