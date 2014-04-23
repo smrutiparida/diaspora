@@ -17,8 +17,8 @@ app.views.Session = app.views.Base.extend({
   },
 
   presenter : function() {
-    Console.log("came to the presenter");
-    Console.log(this.model);
+    console.log("came to the presenter");
+    console.log(this.model);
     return _.extend(this.defaultPresenter(), {
       session : this.model
     })
