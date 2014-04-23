@@ -22,7 +22,7 @@ app.models.Sessions = Backbone.Model.extend({
         var ele = this.attributes[key].content;
         tmpl = tmpl + _.template('<li class="sessions-names"><a href="#" class="filter-sessoion" data-aspect="<%= aspect_id %>"><%= name %></a></li>',{'aspect_id':ele.aspect_id,'name':ele.name});  
       }
-      $('#sessions_list').prepend(tmpl);
+      $('#sessions_list').html(tmpl);
     }
   }
 });
