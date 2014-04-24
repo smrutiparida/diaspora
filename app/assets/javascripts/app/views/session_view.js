@@ -18,7 +18,7 @@ app.views.Session = app.views.Base.extend({
 
     $("#content_id").replaceWith(
       $("<input/>", {
-        name: "s_id",
+        name: "content_id",
         type: "hidden",
         value: app.aspectContentId,
         id: "content_id"
@@ -32,7 +32,7 @@ app.views.Session = app.views.Base.extend({
     if(typeof app.aspectContentId === "undefined"){
       return false;
     }
-    else if(app.aspectContentId === this.attributes.id){
+    else if(parseInt(app.aspectContentId) == this.attributes.id){
       return true;
     }
     return false;
