@@ -42,4 +42,18 @@ class ContentsController < ApplicationController
   def content_params
     params.require(:content).permit(:name, :a_id)
   end
+
+  def get_my_teacher_aspect_id(student_aspect_id)
+    aspect = Aspect.find(student_aspect_id)
+    contacts_in_aspect = aspect.contacts.includes(:aspect_memberships).all    
+    all_person_guid = contacts_in_aspect.map{|a| a.person_id}
+    
+    teacher_in_contact = Person.joins(:profile).where('profiles.person_id' => all_person_guid, 'profiles.role' => 'teacher').first
+    
+    unless teacher_in_contact.blank?
+      @user_aspect = teacher_in_contact.owner.aspects.where(:name => aspect.name).first
+    end
+    @user_aspect.id
+  end
+  
 end
