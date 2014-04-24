@@ -19,7 +19,21 @@ app.views.Session = app.views.Base.extend({
     console.log(this.item)
     app.aspectSessionId = this.item.attr('data-id');
     console.log(app.aspectSessionId)
+    
     app.router.aspects_stream();
+    
+    $('#sessions_list').find('.sessionname').removeClass('selected');
+    this.item.addClass('selected');
+
+    $("#session_id").replaceWith(
+      $("<input/>", {
+        name: "s_id",
+        type: "hidden",
+        value: app.aspectSessionId,
+        id: "session_id"
+      })
+    );
+
   },
 
   presenter : function() {

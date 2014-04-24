@@ -69,7 +69,11 @@ class StatusMessagesController < ApplicationController
       @status_message.photos.each do |photo|
         current_user.dispatch_post(photo)
       end
-
+      
+      #add status message to a course
+      course_params = {:post_id => @status_message.id, :type => "Post", :module_id => params[:s_id]}
+      current_user.build_post(:course, course_params).save
+      
       current_user.participate!(@status_message)
 
       if coming_from_profile_page? && !own_profile_page? # if this is a post coming from a profile page

@@ -55,18 +55,28 @@ class StreamsController < ApplicationController
     end
     
     
-    #below logic valid for students. For teachers the logic will be different.
-    if params[:a_id]
-      all_my_posts = Post.joins(:aspect_visibilities).where(
-          :aspect_visibilities => {:aspect_id => params[:a_id]})
-    else
-      all_my_posts = Post.joins(:aspect_visibilities).where(
-          :aspect_visibilities => {:aspect_id => current_user.aspect_ids})  
-    end  
-    all_my_post_guid = all_my_posts.map{|a| a.guid}
+    #below logic will filter courses by modules
+    all_aspects = params[:a_ids] 
+    if all_aspects.length > 0
+      my_aspect_id = current_user.role == "teacher" ? all_aspects[0] : get_my_teacher_aspect_id(all_aspects[0])
+      @all_course_modules = Content.where(:aspect_id => my_aspect_id).order(:created_at)
+      Rails.logger.info(@all_course_modules.to_json)
+      all_course_modules_guid = @all_course_modules.map{|a| a.id}
+      all_my_courses = Course.where(:module_id => all_course_modules_guid).order(:module_id)
+      @stream.stream_posts.each |p| do
+        ele_array = all_my_courses.select { |ele|  ele.post_id == p.id }
+        @stream.stream_posts.delete(p) if ele_array.length == 0
+      end    
+    end      
+    #      :aspect_visibilities => {:aspect_id => params[:a_id]})
+    #else
+    #  all_my_posts = Post.joins(:aspect_visibilities).where(
+    #      :aspect_visibilities => {:aspect_id => current_user.aspect_ids})  
+    #end  
+    #all_my_post_guid = all_my_posts.map{|a| a.guid}
     
-    @assignments = Assignment.where(:status_message_guid => all_my_post_guid, :is_result_published => false)
-    @quizzes = QuizAssignment.where(:status_message_guid => all_my_post_guid)
+    @assignments = nil #Assignment.where(:status_message_guid => all_my_post_guid, :is_result_published => false)
+    @quizzes = nil #QuizAssignment.where(:status_message_guid => all_my_post_guid)
     
     respond_with do |format|
       format.html { render 'streams/main_stream' }
