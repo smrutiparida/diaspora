@@ -58,6 +58,7 @@ class StreamsController < ApplicationController
     #below logic will filter courses by modules
     all_aspects = (session[:a_ids] || []) 
     if all_aspects.length > 0
+      temp = []
       my_aspect_id = current_user.role == "teacher" ? all_aspects[0] : get_my_teacher_aspect_id(all_aspects[0])
       @all_course_modules = Content.where(:aspect_id => my_aspect_id).order(:created_at)
       Rails.logger.info(@all_course_modules.to_json)
@@ -65,8 +66,9 @@ class StreamsController < ApplicationController
       all_my_courses = Course.where(:module_id => all_course_modules_guid).order(:module_id)
       @stream.stream_posts.each do |p|
         ele_array = all_my_courses.select { |ele|  ele.post_id == p.id }
-        @stream.stream_posts.delete(p) if ele_array.length == 0
+        temp.push(p) if ele_array.length > 0
       end    
+      @stream.stream_posts = temp;
     end      
     #      :aspect_visibilities => {:aspect_id => params[:a_id]})
     #else
