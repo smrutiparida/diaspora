@@ -63,7 +63,7 @@ class StreamsController < ApplicationController
       Rails.logger.info(@all_course_modules.to_json)
       all_course_modules_guid = @all_course_modules.map{|a| a.id}
       all_my_courses = Course.where(:module_id => all_course_modules_guid).order(:module_id)
-      @stream.stream_posts.each |p| do
+      @stream.stream_posts.each do |p|
         ele_array = all_my_courses.select { |ele|  ele.post_id == p.id }
         @stream.stream_posts.delete(p) if ele_array.length == 0
       end    
