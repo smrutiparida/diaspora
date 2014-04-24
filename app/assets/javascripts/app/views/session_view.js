@@ -16,6 +16,8 @@ app.views.Session = app.views.Base.extend({
     app.router.aspects_stream();
     
     $('#sessions_list').find('.sessionname').removeClass('selected');
+    console.log("printing the parent")
+    console.log(this.item.parent())
     this.item.parent().addClass('selected');
 
     $("#content_id").replaceWith(
