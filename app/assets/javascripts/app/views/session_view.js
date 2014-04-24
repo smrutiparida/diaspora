@@ -15,11 +15,7 @@ app.views.Session = app.views.Base.extend({
     app.aspectContentId = this.item.attr('data-id');
     app.router.aspects_stream();
     
-    $('#sessions_list').find('.sessionname').removeClass('selected');
-    console.log("printing the parent")
-    
-    this.item.parent().attr('class', 'sessionname selected');
-    console.log(this.item.parent())
+
     $("#content_id").replaceWith(
       $("<input/>", {
         name: "s_id",
@@ -31,9 +27,21 @@ app.views.Session = app.views.Base.extend({
 
   },
 
+  isSessionSelected : function(){
+    console.log(this.attributes);
+    if(typeof app.aspectContentId === "undefined"){
+      return false;
+    }
+    else if(app.aspectContentId === this.attributes.id){
+      return true;
+    }
+    return false;
+  },
+
   presenter : function() {
     return _.extend(this.defaultPresenter(), {
-      session : this.attributes
+      session : this.attributes,
+      isSessionSelected : this.isSessionSelected()
     })
   }
 });

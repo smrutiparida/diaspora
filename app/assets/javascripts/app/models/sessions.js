@@ -25,8 +25,12 @@ app.models.Sessions = Backbone.Model.extend({
         var tempSessionView = new app.views.Session({attributes: ele});
         console.log(tempSessionView)
         $("#sessions_list").append(tempSessionView.render().el);  
+
         //tmpl = tmpl + _.template('<li class="sessions-names"><a href="#" class="filter-sessoion" data-aspect="<%= aspect_id %>"><%= name %></a></li>',{'aspect_id':ele.aspect_id,'name':ele.name});  
       }
+
+    
+    
       //$('#sessions_list').html(tmpl);
     }
   }

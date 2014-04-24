@@ -1,1 +1,5 @@
-<a href="#" class="filter-session" data-aspect="{{session.aspect_id}}" data-id="{{session.id}}">{{session.name}}</a>
+{{#if isSessionSelected}}
+  <a href="#" class="selected filter-session" data-aspect="{{session.aspect_id}}" data-id="{{session.id}}">{{session.name}}</a>
+{{else}}
+  <a href="#" class="filter-session" data-aspect="{{session.aspect_id}}" data-id="{{session.id}}">{{session.name}}</a>
+{{/if}}  
