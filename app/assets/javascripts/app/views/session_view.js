@@ -17,9 +17,9 @@ app.views.Session = app.views.Base.extend({
     
     $('#sessions_list').find('.sessionname').removeClass('selected');
     console.log("printing the parent")
+    
+    this.item.parent().attr('class', 'sessionname selected');
     console.log(this.item.parent())
-    this.item.parent().addClass('selected');
-
     $("#content_id").replaceWith(
       $("<input/>", {
         name: "s_id",
