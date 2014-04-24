@@ -119,7 +119,7 @@
               %ul#quizdropzone  
 
                
-      = hidden_field_tag 's_id', "all", :id => 'session_id'
+
       - if publisher_public
         = hidden_field_tag 'aspect_ids[]', "public"
       - elsif all_aspects_selected?(selected_aspects)
@@ -167,6 +167,7 @@
           %button{ :class => 'button post_preview_button'}
             = t('.preview') 
 
+          = hidden_field_tag 'content_id', "all", :id => 'content_id'
           = hidden_field_tag 'user_anonymity', "false"
           = status.submit "Submit Question", :disabled => publisher_hidden_text.blank?, :class => 'button creation', :tabindex => 2
 

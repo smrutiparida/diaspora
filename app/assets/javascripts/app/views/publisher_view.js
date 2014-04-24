@@ -131,7 +131,8 @@ app.views.Publisher = Backbone.View.extend({
     statusMessage.save({
       "status_message" : {
         "text" : serializedForm["status_message[text]"],
-        "user_anonymity" : serializedForm["user_anonymity"]
+        "user_anonymity" : serializedForm["user_anonymity"],
+        "content_id" : serializedForm["content_id"]
       },
       "aspect_ids" : serializedForm["aspect_ids[]"],
       "photos" : serializedForm["photos[]"],
@@ -284,7 +285,8 @@ app.views.Publisher = Backbone.View.extend({
       "title" : serializedForm["status_message[text]"],
       "address" : $("#location_address").val(),
       "interactions" : {"likes":[],"reshares":[],"comments_count":0,"likes_count":0,"reshares_count":0},
-      "user_anonymity": serializedForm["user_anonymity"]
+      "user_anonymity": serializedForm["user_anonymity"],
+      "content_id": serializedForm["content_id"]
     }
 
     if(app.stream) {

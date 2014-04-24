@@ -8,7 +8,6 @@ app.models.StreamAspects = app.models.Stream.extend({
     var collectionClass = options && options.collection || app.collections.Posts;
     this.items = new collectionClass([], this.collectionOptions());
     this.aspects_ids = options.aspects_ids;
-    this.session_id = options.session_id;
   },
 
   basePath : function(){
@@ -19,12 +18,11 @@ app.models.StreamAspects = app.models.Stream.extend({
     if(this.isFetching()){ return false }
     var url = this.url();
     var ids = this.aspects_ids;
-    console.log("inside stream aspect")
-    console.log(this.session_id)
+
     this.deferred = this.items.fetch({
         add : true,
         url : url,
-        data : { 'a_ids': ids, 's_id': this.session_id }
+        data : { 'a_ids': ids}
     }).done(_.bind(this.triggerFetchedEvents, this))
   }
 });

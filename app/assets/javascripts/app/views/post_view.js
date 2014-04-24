@@ -5,10 +5,21 @@ app.views.Post = app.views.Base.extend({
       authorIsCurrentUser : this.authorIsCurrentUser(),
       showPost : this.showPost(),
       anonymousPost : this.anonymousPost(),
+      isPostForTheSession: this.isPostForTheSession(),
+      isPostForTheType: this.isPostForTheType(),
       isPostResolved:this.model.interactions.isPostResolved(),
       authorIsCurrentUserAndTeacher: this.authorIsCurrentUserAndTeacher(),
       text : app.helpers.textFormatter(this.model.get("text"), this.model)
     })
+  },
+
+  
+  isPostForTheSession: function(){
+    return this.model.get("content_id") == app.aspectContentId || this.model.get("content_id") == "all"
+  },
+
+  isPostForTheType: function(){
+
   },
 
   authorIsCurrentUser : function() {

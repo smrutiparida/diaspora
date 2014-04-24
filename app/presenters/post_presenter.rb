@@ -39,6 +39,7 @@ class PostPresenter
         :root => root,
         :title => title,
         :user_anonymity => @post.user_anonymity,
+        :content_id => @post.content_id,
         :is_post_resolved => @post.is_post_resolved,
         :next_post => next_post_path,
         :previous_post => previous_post_path,

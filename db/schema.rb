@@ -481,6 +481,7 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
     t.integer  "open_graph_cache_id"
     t.boolean  "user_anonymity",                      :default => false
     t.boolean  "is_post_resolved",                    :default => false
+    t.string   "content_id",                          :default => "all",        :null => false
   end
 
   add_index "posts", ["author_id", "root_guid"], :name => "index_posts_on_author_id_and_root_guid", :unique => true

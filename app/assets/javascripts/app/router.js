@@ -96,12 +96,10 @@ app.Router = Backbone.Router.extend({
   aspects_stream : function(){    
     var ids = app.aspects.selectedAspects('id');
 
-    var sessionID = app.aspectSessionId;
-
     app.teacherModel = new app.models.Teacher
     app.teacherModel.get_teacher(ids);
     
-    app.stream = new app.models.StreamAspects([], { aspects_ids: ids, session_id: sessionID });
+    app.stream = new app.models.StreamAspects([], { aspects_ids: ids});
     app.stream.fetch();
 
     app.page = new app.views.Stream({model : app.stream});
@@ -116,13 +114,7 @@ app.Router = Backbone.Router.extend({
     $('#session-button').attr('href', '/contents/new?a_id=' + ids[0]);   
     var sessionsView = new app.models.Sessions
     sessionsView.getSessions(ids);
-    app.aspectSessionId = null;
-    //app.teacherModel.fetch();
-    //alert(app.teacherModel.toJSON());
-    //app.teacherView = new app.views.Teacher({attributes:app.teacherModel.attributes});
-    //$('#aspect_teacher').html(app.teacherView.el);
-
-
+    
     this.hideInactiveStreamLists();
   },
 

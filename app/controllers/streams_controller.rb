@@ -54,28 +54,26 @@ class StreamsController < ApplicationController
       @stream ||= stream_klass.new(current_user, :max_time => max_time)
     end
     
-    temp = @stream.stream_posts.map { |p| p}
-
+    
     #below logic will filter courses by modules
-    all_aspects = (session[:a_ids] || []) 
-    if all_aspects.length > 0
-      temp = []
-      my_aspect_id = current_user.role == "teacher" ? all_aspects[0] : get_my_teacher_aspect_id(all_aspects[0])
-      @all_course_modules = Content.where(:aspect_id => my_aspect_id).order(:created_at)
-      Rails.logger.info(@all_course_modules.to_json)
-      all_course_modules_guid = @all_course_modules.map{|a| a.id}
-      all_my_courses = Course.where(:module_id => all_course_modules_guid).order(:module_id)
+    #all_aspects = (session[:a_ids] || []) 
+    #if all_aspects.length > 0
+    #  temp = []
+    #  my_aspect_id = current_user.role == "teacher" ? all_aspects[0] : get_my_teacher_aspect_id(all_aspects[0])
+    #  @all_course_modules = Content.where(:aspect_id => my_aspect_id).order(:created_at)
+    #  Rails.logger.info(@all_course_modules.to_json)
+    #  all_course_modules_guid = @all_course_modules.map{|a| a.id}
+    #  all_my_courses = Course.where(:module_id => all_course_modules_guid).order(:module_id)
       
-      ls = temp.select { |ele| all_my_courses.include? ele.id }
-      
-      temp = ls
+    #  temp = @stream.stream_posts.map.select { |ele| all_my_courses.include? ele.id }
+       
 
       #@stream.stream_posts.map! do |p|
       #  ele_array = all_my_courses.select { |ele|  ele.post_id == p.id }
       #  delete(p) if ele_array.length == 0
       #end    
       #@stream.stream_posts = temp;
-    end      
+    #end      
     #      :aspect_visibilities => {:aspect_id => params[:a_id]})
     #else
     #  all_my_posts = Post.joins(:aspect_visibilities).where(
@@ -89,7 +87,7 @@ class StreamsController < ApplicationController
     respond_with do |format|
       format.html { render 'streams/main_stream' }
       format.mobile { render 'streams/main_stream' }
-      format.json { render :json => temp.each {|p| LastThreeCommentsDecorator.new(PostPresenter.new(p, current_user)) }}
+      format.json { render :json => @stream.stream_posts.map {|p| LastThreeCommentsDecorator.new(PostPresenter.new(p, current_user)) }}
     end
   end
 

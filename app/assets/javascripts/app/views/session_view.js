@@ -10,35 +10,26 @@ app.views.Session = app.views.Base.extend({
   },
 
   filterBySession: function(evt) {
-    //if (evt) { evt.preventDefault(); };
-    //this.model.toggleSelected();    
-    //$('.all_aspects').find('.icons-check_yes_ok').removeClass('selected');
-    //this.$el.find('.icons-check_yes_ok').addClass('selected');
-    //alert("called");
-    this.item = $(evt.target);
-    console.log(this.item)
-    app.aspectSessionId = this.item.attr('data-id');
-    console.log(app.aspectSessionId)
     
+    this.item = $(evt.target);
+    app.aspectContentId = this.item.attr('data-id');
     app.router.aspects_stream();
     
     $('#sessions_list').find('.sessionname').removeClass('selected');
     this.item.addClass('selected');
 
-    $("#session_id").replaceWith(
+    $("#content_id").replaceWith(
       $("<input/>", {
         name: "s_id",
         type: "hidden",
-        value: app.aspectSessionId,
-        id: "session_id"
+        value: app.aspectContentId,
+        id: "content_id"
       })
     );
 
   },
 
   presenter : function() {
-    //console.log("came to the presenter");
-    //console.log(this.attributes);
     return _.extend(this.defaultPresenter(), {
       session : this.attributes
     })
