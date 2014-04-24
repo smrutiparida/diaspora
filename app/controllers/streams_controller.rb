@@ -56,7 +56,7 @@ class StreamsController < ApplicationController
     
     
     #below logic will filter courses by modules
-    all_aspects = params[:a_ids] 
+    all_aspects = (session[:a_ids] || []) 
     if all_aspects.length > 0
       my_aspect_id = current_user.role == "teacher" ? all_aspects[0] : get_my_teacher_aspect_id(all_aspects[0])
       @all_course_modules = Content.where(:aspect_id => my_aspect_id).order(:created_at)
