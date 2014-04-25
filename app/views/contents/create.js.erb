@@ -1,4 +1,12 @@
 $.facebox.close();
 Diaspora.page.flashMessages.render({ 'success':'success', 'notice':'<%= @new_module.name %> session added to course' });
 //$.getScript("/courses/<%= @new_module.aspect_id %>");
-$('#sessions_list > *:last').before('<li><a href="#" class="filter-session" data-aspect="<%= @new_module.aspect_id %>"><%= @new_module.name %></a></li>');	
+$('#sessions_list').append('<li><a href="#" class="filter-session" data-aspect="<%= @new_module.aspect_id %>"><%= @new_module.name %></a></li>');	
+$("#content_id").replaceWith(
+  $("<input/>", {
+    name: "content_id",
+	type: "hidden",
+	value: <%= @new_module.id %>,
+	id: "content_id"
+  })
+); 
