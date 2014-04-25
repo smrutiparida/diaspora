@@ -7,11 +7,11 @@ Handlebars.registerHelper('imageUrl', function(path){
 });
 
 Handlebars.registerHelper('linkToPerson', function(context, block) {
-  var html = "<a href=\"/people/" + context.guid + "\" class=\"author-name ";
+  var html = "<span href=\"/people/" + context.guid + "\" class=\"author-name ";
       html += Handlebars.helpers.hovercardable(context);
       html += "\">";
       html += block.fn(context);
-      html += "</a>";
+      html += "</span>";
 
   return html
 });
