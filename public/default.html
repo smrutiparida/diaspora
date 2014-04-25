@@ -1,293 +1,275 @@
+<style type="text/css">
+    body {
+            margin-top: 0px;
+            margin-left: 0px;
+            margin-right: 0px;
+            background-color: white;
+           
+            background-size: cover;
+            background-position: center center;
+            background-size: cover;
+            -webkit-background-size: cover;
+            padding: 0px;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            background-repeat: no-repeat;
+    }
 
-                <style type="text/css">
-                        body {
-                                margin-top: 0px;
-                                margin-left: 0px;
-                                margin-right: 0px;
-                                background-color: white;
-                                background-image: url('<%= asset_path 'home.jpg' %>');
-                                background-size: cover;
-                                background-position: center center;
-                                background-size: cover;
-                                -webkit-background-size: cover;
-                                padding: 0px;
-                                font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-                                font-size: 14px;
-                                background-repeat: no-repeat;
-                        }
+    #navbar-top{
 
-                        #navbar-top{
+            background: rgba(0,0,0,0.65);
+            border-bottom: 1px solid #585858;
 
-                                background: rgba(0,0,0,0.65);
-                                border-bottom: 1px solid #585858;
+    }
 
-                        }
+    #homepage-header {
+            /* Hack to hide the header */
+            -webkit-box-shadow:none;
+            -moz-box-shadow:none;
+            box-shadow:none;
+            border:none;
+            background:none;
+            -webkit-font-smoothing: antialiased;
+            margin: 0px auto;
+            left: 0px;
+            padding: 15px 0px;
+    }
 
-                        #homepage-header {
-                                /* Hack to hide the header */
-                                -webkit-box-shadow:none;
-                                -moz-box-shadow:none;
-                                box-shadow:none;
-                                border:none;
-                                background:none;
-                                -webkit-font-smoothing: antialiased;
-                                margin: 0px auto;
-                                left: 0px;
-                                padding: 15px 0px;
-                        }
+    .btn{
+            margin-top: 50px;
+    }
 
-                        .btn{
-                                margin-top: 50px;
-                        }
+    .top-navbar-list{
+            list-style: none;
+            float: left;
+    }
 
-                        .top-navbar-list{
-                                list-style: none;
-                                float: left;
-                        }
+    footer h3 {
+            margin-bottom: 25px;
+            text-align: center;
+    }
 
-                        footer h3 {
-                                margin-bottom: 25px;
-                                text-align: center;
-                        }
+    footer {
 
-                        footer {
+    }
 
-                        }
-
-                        .banner h2 {
-                                font-size: 24 px;
-                                line-height: 110%;
-                                font-weight: normal;
-                        }
+    .banner h2 {
+            font-size: 24 px;
+            line-height: 110%;
+            font-weight: normal;
+    }
 
 
-                        #name-logo {
-                                font-size: 40px;
-                                font-weight: bold;
-                                text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
-                                margin-left: 10px;
-                                color: white;
-                                text-decoration: none;
-                        }
-
+    #name-logo {
+            font-size: 40px;
+            font-weight: bold;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+            margin-left: 10px;
+            color: white;
+            text-decoration: none;
+    }
 
 
 
 
 
-                        #banner {
-                                background: black;
-                                width:60%;
-                                height:300px;
-                                position: relative;
-                                margin-top: 75px;
-                                            left: 20%;
-                                border-radius: 6px;
-                        }
 
-                        #top-bar{
-                                display: none;
-                                list-style: none;
-                                text-align: right;
-                                float: right;
-                        }
+    #banner {
+            background: black;
+            width:60%;
+            height:300px;
+            position: relative;
+            margin-top: 75px;
+                        left: 20%;
+            border-radius: 6px;
+    }
 
-                        #page {
-                    width: 900px;
-                    max-width: 1200px;
-                                margin: 0 auto;
-                        }
+    #top-bar{
+           
+            list-style: none;
+            text-align: right;
+            float: right;
+    }
 
-                        #links {
-                                margin: 0;
-                                padding: 0;
-                                text-align: center;
-                        }
+    #page {
+            width: 900px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-image: url('<%= asset_path 'home.jpg' %>');
+            height:320px;
+    }
 
-                        #links .section {
-                                margin: 0;
-                                padding: 0;
-                                display: inline-block;
-                                vertical-align: top;
-                                width: 24%;
-                                max-width: 24%;
-                        }
+    #links {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+    }
 
-                        #change-page {
-                                color: #999;
-                                text-align: center;
-                                font-style: italic;
-                        }
+    #links .section {
+            margin: 0;
+            padding: 0;
+            display: inline-block;
+            vertical-align: top;
+            width: 24%;
+            max-width: 24%;
+    }
 
-                        .helpful {
-                                cursor: help;
-                        }
+    #change-page {
+            color: #999;
+            text-align: center;
+            font-style: italic;
+    }
 
-                        .top-navbar-list > a {
-                                color: #ffffff;
-                                margin: 0;
-                                text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
-                                float: none;
-                                padding: 10px 15px 10px;
-                                text-decoration: none;
-                        }
+    .helpful {
+            cursor: help;
+    }
 
-
-
-
-                        .static-text{
-                                float: left;
-                        }
-
-                        #video-player {
-                                display: none;
-                                float: right;
-                                margin: 50px auto;
-                                position: relative;
-                                top: 125px;
-                                z-index: 1;
-                                display: inline;
-                                border: 5px solid #fff;
-                                -moz-border-radius: 3px;
-                                -webkit-border-radius: 3px;
-                                border-radius: 3px;
-                                -moz-box-shadow: 1px 1px 3px #000;
-                                -webkit-box-shadow: 1px 1px 3px #000;
-                                box-shadow: 1px 1px 3px #000;
-
-
-                        }
-
-                        #left-content{
-                                color: white;
-
-                                width: 84%;
-
-                         position: relative;
-                                top: 23px;
-                                left:7%;
-                        }
-
-                        #left-content h2 {
-                                font-size: 24px;
-                        }
-
-
-
-                        .empower {
-                                padding-top: 27px;
-                                display: inline-block;
-                                float: left;
-                                list-style: none;
-                                margin: 0 0 0 10px;
-                        }
-
-                        li {
-                                list-style: none;
-                                display: inline;
-                                line-height: 20px;
-                        }
+    .top-navbar-list > a {
+            color: #ffffff;
+            margin: 0;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+            float: none;
+            padding: 10px 15px 10px;
+            text-decoration: none;
+    }
 
 
 
 
+    .static-text{
+            float: left;
+    }
 
-                </style>
-
-                <script type="text/javascript">
-                        min_width = 800;
-                        max_width = 1200;
-                        function adjust_content_size(min_width, max_width, aspect_ratio, net_width, net_height) {
-                            debug.log(net_width, net_height, min_width, max_width);
-                            net_width = net_width > min_width ? net_width : min_width;
-                            net_width = net_width < max_width ? net_width : max_width;
-                            debug.log(net_width, net_height);
-                            var desired_height = (net_width * aspect_ratio[1]) / aspect_ratio[0];
-                            var desired_width = (net_height * aspect_ratio[0]) / aspect_ratio[1];
-                            debug.log(desired_width, desired_height);
-                                                                           if (desired_height <= net_height) {
-                                desired_width = net_width;
-                            }
-                            else if (desired_width < min_width) {
-                                desired_width = min_width;
-                                desired_height = (min_width * aspect_ratio[1])/ aspect_ratio[0];
-                            }
-                            else if (desired_width > max_width) {
-                                desired_width = max_width;
-                                desired_height = (max_width * aspect_ratio[1])/ aspect_ratio[0];
-                            }
-                            else {
-                                desired_height = net_height;
-                            }
-
-                            return [desired_width, desired_height];
-                        }
-
-                        function set_width_height() {
-                    var desired = adjust_content_size(min_width, max_width, aspect_ratio, $(window).width() * 0.80, $(window).height() - 125);
-                    var desired_width = desired[0];
-                    var desired_height = desired[1];
-
-                    if (desired_width != $('#page').width()) {
-                        $('#page').width(desired_width);
-                    }
-                    $('#homepage-header').width(desired_width);
-                    //$('#banner').height(desired_height * 0.60);
-
-                }
-
-                aspect_ratio = [1.932, 1];
-
-                        $(document).ready(function() {
-                                $(window).resize(set_width_height);
-                                set_width_height();
-                                //$('#empower1').jSlots({time:10000, loops:3});
-
-                        });
-                                                
-
-                </script>
+    #video-player {
+            display: none;
+            float: right;
+            margin: 50px auto;
+            position: relative;
+            top: 125px;
+            z-index: 1;
+            display: inline;
+            border: 5px solid #fff;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+            -moz-box-shadow: 1px 1px 3px #000;
+            -webkit-box-shadow: 1px 1px 3px #000;
+            box-shadow: 1px 1px 3px #000;
 
 
-                <div id="navbar-top">
-                        <header id="homepage-header">
-                                <ul id="top-bar">
-                                        <li class="top-navbar-list">
-                                                <a href="login">What</a>
-                                        </li>
-                                        <li class="top-navbar-list">
-                                                <a href="/jobs/">Why</a>
-                                        </li>
-                                        
-                                        <li class="top-navbar-list">
-                                                <a href="/press/">Contact Us</a>
-                                        </li>
-                        </ul>
+    }
 
-                                <a id="name-logo" href="home">lmnop</a>
-                        </header>
-                </div>
-                <div id="page" class="container">
+    #left-content{
+            color: white;
 
-                        <div id="banner">
+            width: 84%;
 
-                                <div id="left-content">
-                                        <h1 style="text-align:center;font-size:40px;">LMNOP</h1>
-                                        <h2 style="text-align:center;font-size:14px;">A new generation product for online learning needs.</h2>
-                                        <p style="line-height:20px;text-align:center;">We created LMNOP to redefine learning. Our social platform helps students and teachers interact online and provides them a way to aggregate all their learning resources in one place. Our SaaS product also helps teachers and institutes manage course fully or partially online.</p>
-                                        <a href="/users/sign_in" class="btn btn-info btn-large" style="margin-left:43%;margin-top:10px;">Login</a>
-                                        <div style="text-align:center;font-size:11px;margin-top:5px;">*Invite only</div>
-                                </div>
+     position: relative;
+            top: 23px;
+            left:7%;
+    }
 
-                                         
-                        </div>
+    #left-content h2 {
+            font-size: 24px;
+    }
 
-                  
-                </div>
 
-                <footer>
-                        <ul id="links" style="margin-top:5px;">
-                          <li><a href="http://blog.lmnop.in/" title="Blog" style="color:white;" target="_blank">Blog</a></li>
-                        </ul>
-                </footer>
+
+    .empower {
+            padding-top: 27px;
+            display: inline-block;
+            float: left;
+            list-style: none;
+            margin: 0 0 0 10px;
+    }
+
+    li {
+            list-style: none;
+            display: inline;
+            line-height: 20px;
+    }
+</style>
+
+<script type="text/javascript">
+    min_width = 800;
+    max_width = 1200;
+    function adjust_content_size(min_width, max_width, aspect_ratio, net_width, net_height) {
+        debug.log(net_width, net_height, min_width, max_width);
+        net_width = net_width > min_width ? net_width : min_width;
+        net_width = net_width < max_width ? net_width : max_width;
+        debug.log(net_width, net_height);
+        var desired_height = (net_width * aspect_ratio[1]) / aspect_ratio[0];
+        var desired_width = (net_height * aspect_ratio[0]) / aspect_ratio[1];
+        debug.log(desired_width, desired_height);
+                                                       if (desired_height <= net_height) {
+            desired_width = net_width;
+        }
+        else if (desired_width < min_width) {
+            desired_width = min_width;
+            desired_height = (min_width * aspect_ratio[1])/ aspect_ratio[0];
+        }
+        else if (desired_width > max_width) {
+            desired_width = max_width;
+            desired_height = (max_width * aspect_ratio[1])/ aspect_ratio[0];
+        }
+        else {
+            desired_height = net_height;
+        }
+
+        return [desired_width, desired_height];
+    }
+
+    function set_width_height() {
+        
+        var desired = adjust_content_size(min_width, max_width, aspect_ratio, $(window).width() * 0.80, $(window).height() - 125);
+        var desired_width = desired[0];
+        var desired_height = desired[1];
+
+        if (desired_width != $('#page').width()) {
+            $('#page').width(desired_width);
+        }
+        $('#homepage-header').width(desired_width);
+        //$('#banner').height(desired_height * 0.60);
+    }
+
+aspect_ratio = [1.932, 1];
+
+    $(document).ready(function() {
+            $(window).resize(set_width_height);
+            set_width_height();
+            //$('#empower1').jSlots({time:10000, loops:3});
+
+    });                            
+</script>
+
+<div id="navbar-top">
+    <header id="homepage-header">
+        <ul id="top-bar">
+            <li class="top-navbar-list">
+              <a href="login">Login</a>
+            </li>                                   
+            <li class="top-navbar-list">
+              <a href="/press/">Contact Us</a>
+            </li>
+        </ul>
+        <a id="name-logo" href="home">lmnop</a>
+    </header>
+</div>
+
+<div id="page" class="container">
+    <div id="banner">
+        <div id="left-content">
+            <h1 style="text-align:center;font-size:40px;">LMNOP</h1>
+            <h2 style="text-align:center;font-size:14px;">A new generation product for online learning needs.</h2>
+            <p style="line-height:20px;text-align:center;">We created LMNOP to redefine learning. Our social platform helps students and teachers interact online and provides them a way to aggregate all their learning resources in one place. Our SaaS product also helps teachers and institutes manage course fully or partially online.</p>
+            <a href="/users/sign_in" class="btn btn-info btn-large" style="margin-left:43%;margin-top:10px;">Login</a>
+            <div style="text-align:center;font-size:11px;margin-top:5px;">*Invite only</div>
+        </div>                    
+    </div>  
+</div>
+<footer>
+    <ul id="links" style="margin-top:5px;">
+      <li><a href="http://blog.lmnop.in/" title="Blog" style="color:white;" target="_blank">Blog</a></li>
+    </ul>
+</footer>
                                                     
