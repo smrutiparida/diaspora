@@ -2,11 +2,9 @@
   {{#if isPostForTheType}}
     <div class="media">
      
-      {{#unless anonymousPost}}
-        {{{anonymityString author "img" "false"}}}
-      {{else}}  
-        {{{anonymityString author "img" "true"}}}
-      {{/unless}}
+     
+        {{{anonymityString author "img" anonymousPost}}}
+      
 
       <div class="bd">
         {{#if loggedIn}}
@@ -23,11 +21,8 @@
         {{/if}}
         
         <div>
-          {{#unless anonymousPost}}
-            {{{anonymityString author "plain" "false"}}}
-          {{else}}  
-            {{{anonymityString author "plain" "true"}}}
-          {{/unless}}      
+          
+            {{{anonymityString author "plain" anonymousPost}}}
           
 
           <span class="details grey">
