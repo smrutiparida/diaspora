@@ -43,9 +43,9 @@ app.views.Post = app.views.Base.extend({
   },
 
   anonymousPost : function() {
-    return this.model.get("user_anonymity") || this.model.get("user_anonymity") === "true" ? true : false;
     console.log("user anonymity")
     console.log(this.model.get("user_anonymity"));
+    return this.model.get("user_anonymity") || this.model.get("user_anonymity") === "true" ? true : false;
   },
 
   
