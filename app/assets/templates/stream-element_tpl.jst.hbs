@@ -3,7 +3,7 @@
     <div class="media">
      
       {{#if anonymousPost}}
-        {{{anonymityString author "img" "true"}}}
+        {{{anonymityString author "img" "false"}}}
       {{else}}  
         {{{anonymityString author "img" "false"}}}
       {{/if}}
@@ -24,7 +24,7 @@
         
         <div>
           {{#if anonymousPost}}
-            {{{anonymityString author "plain" "true"}}}
+            {{{anonymityString author "plain" "false"}}}
           {{else}}  
             {{{anonymityString author "plain" "false"}}}
           {{/if}}      
