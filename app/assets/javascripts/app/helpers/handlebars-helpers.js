@@ -20,6 +20,8 @@ Handlebars.registerHelper('linkToPerson', function(context, block) {
 // allow hovercards for users that are not the current user.
 // returns the html class name used to trigger hovercards.
 Handlebars.registerHelper('hovercardable', function(person) {
+  //banning hovercards
+  return '';
   if( app.currentUser.get('guid') != person.guid ) {
     return 'hovercardable';
   }
@@ -72,7 +74,7 @@ Handlebars.registerHelper('anonymityString', function(author, type, make_anonymo
     console.log("step 4");
   
     hoverStr = Handlebars.helpers['hovercardable'].call(this, author);
-    return _.template('<a href="/people/<%= guid %>" class="<%= class_name %> <%= hoverStr %>"> <%= htmlStr %></a>', {
+    return _.template('<span href="/people/<%= guid %>" class="<%= class_name %> <%= hoverStr %>"> <%= htmlStr %></span>', {
       'guid': author.guid,
       'class_name': class_name,
       'htmlStr': htmlStr,
