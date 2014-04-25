@@ -1,10 +1,11 @@
-{{#if isPostForTheSession}}
-  {{#if isPostForTheType}}
+
     <div class="media">
      
-     
-        {{{anonymityString author "img" anonymousPost}}}
-      
+      {{#if anonymousPost}}
+        {{{anonymityString author "img" true}}}
+      {{else}}  
+        {{{anonymityString author "img" false}}}
+      {{/if}}
 
       <div class="bd">
         {{#if loggedIn}}
@@ -21,8 +22,11 @@
         {{/if}}
         
         <div>
-          
-            {{{anonymityString author "plain" anonymousPost}}}
+          {{#if anonymousPost}}
+            {{{anonymityString author "plain" true}}}
+          {{else}}  
+            {{{anonymityString author "plain" false}}}
+          {{/if}}      
           
 
           <span class="details grey">
@@ -74,5 +78,4 @@
         {{/if}}
 
       </div>
-  {{/if}}    
-{{/if}}
+ 
