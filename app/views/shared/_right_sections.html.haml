@@ -18,7 +18,8 @@
      
   %div
     %ul#sessions_list.content
-  = link_to "Add a Session", "/contents/new", :class => "button", :rel => 'facebox', :id => 'session-button'
+  - if current_user.role == "teacher"  
+    = link_to "Add a Session", "/contents/new", :class => "button", :rel => 'facebox', :id => 'session-button'
 
   
 .section
@@ -27,7 +28,7 @@
     %h5.title-header
       = "Filters"
   %div 
-    %ul.content
+    %ul.content#filters_list
       = render "shared/links"  
 
 - if current_user.role == "teacher"

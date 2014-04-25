@@ -19,7 +19,17 @@ app.views.Post = app.views.Base.extend({
   },
 
   isPostForTheType: function(){
-
+    if(app.questionFilter == 'question-all'){
+      return true;
+    }
+    else if(app.questionFilter == 'question-resolved' && this.model.get("is_post_resolved")) {
+      return true;
+    }   
+    else if (app.questionFilter == 'question-unresolved' && !this.model.get("is_post_resolved")){
+      return true;
+    }
+    
+    return false;
   },
 
   authorIsCurrentUser : function() {

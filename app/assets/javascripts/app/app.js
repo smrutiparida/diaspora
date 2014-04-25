@@ -41,6 +41,8 @@ var app = {
     this.setupBackboneLinks();
     this.setupGlobalViews();
     this.setupDisabledLinks();
+    this.setupFilter();
+    this.setupSession();
   },
 
   hasPreload : function(prop) {
@@ -120,6 +122,38 @@ var app = {
     $("a.disabled").click(function(event) {
       event.preventDefault();
     });
+  },
+
+  setupFilter: function() {
+    
+    app.questionFilter = 'question-all'
+    $('#question-all').addClass('selected');
+    $('.question-filters').click(function(){
+       app.questionFilter = $(this).attr('id');
+       $(".question-filters").removeClass('selected');
+       $(this).addClass('selected');
+       app.router.aspects_stream();
+    });
+  },
+
+  setupSession:function(){
+    var ids = app.aspects.selectedAspects('id');
+    if (ids.length > 0){
+      app.aspectContentId = ids[0];  
+    }
+    else {
+      app.aspectContentId = 'all';   
+    }
+    
+    $("#content_id").replaceWith(
+      $("<input/>", {
+        name: "content_id",
+        type: "hidden",
+        value: app.aspectContentId,
+        id: "content_id"
+      })
+    );
+
   },
 };
 

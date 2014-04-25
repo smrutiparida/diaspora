@@ -1,7 +1,8 @@
-%li= link_to 'All Questions', "/grades"
-%li= link_to 'New Questions', "/grades"
-%li= link_to 'I have Answered', "/grades"
-- if current_user.role != "teacher"
-  %li= link_to 'Answered by Instructor', "/grades"
-%li= link_to 'Resolved', "/grades"
-%li= link_to 'Unresolved', "/grades"
+%li= link_to 'All Questions', "#", :class => 'question-filters', :id => 'question-all'
+%li= link_to 'Resolved', "#", :class => 'question-filters', :id => 'question-resolved'
+%li= link_to 'Unresolved', "#", :class => 'question-filters', :id => 'question-unresolved'
+-#
+  %li= link_to 'New Questions', "/grades"
+  %li= link_to 'I have Answered', "/grades"
+  - if current_user.role != "teacher"
+    %li= link_to 'Answered by Instructor', "/grades"
