@@ -28,7 +28,7 @@ app.views.Post = app.views.Base.extend({
     else if (app.questionFilter == 'question-unresolved' && !this.model.get("is_post_resolved")){
       return true;
     }
-    
+
     return false;
   },
 
@@ -43,8 +43,8 @@ app.views.Post = app.views.Base.extend({
   },
 
   anonymousPost : function() {
-    console.log("anonymous testing");
-    return this.model.get("user_anonymity") == "true" ? true : false;
+    return this.model.get("user_anonymity") ? true : false;
+    console.log(this.model.get("user_anonymity"));
   },
 
   
