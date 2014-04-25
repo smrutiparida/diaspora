@@ -34,7 +34,7 @@
       });
     });
 
--#
+
   %h3
     = t('profiles.edit.your_public_profile')
 
@@ -50,14 +50,15 @@
 
   %br
 
-%h4
-  = t('profiles.edit.your_tags')
+  -#
+    %h4
+      = t('profiles.edit.your_tags')
 
-= text_field_tag 'profile[tag_string]', "", :placeholder => t('profiles.edit.your_tags_placeholder')
+    = text_field_tag 'profile[tag_string]', "", :placeholder => t('profiles.edit.your_tags_placeholder')
 
-%br
+  %br
 
--#
+
   %h4
     = t('profiles.edit.your_photo')
 

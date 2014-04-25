@@ -7,11 +7,11 @@ Handlebars.registerHelper('imageUrl', function(path){
 });
 
 Handlebars.registerHelper('linkToPerson', function(context, block) {
-  var html = "<span href=\"/people/" + context.guid + "\" class=\"author-name ";
+  var html = "<a href=\"/people/" + context.guid + "\" class=\"author-name ";
       html += Handlebars.helpers.hovercardable(context);
       html += "\">";
       html += block.fn(context);
-      html += "</span>";
+      html += "</a>";
 
   return html
 });
@@ -74,7 +74,7 @@ Handlebars.registerHelper('anonymityString', function(author, type, make_anonymo
     console.log("step 4");
   
     hoverStr = Handlebars.helpers['hovercardable'].call(this, author);
-    return _.template('<span href="/people/<%= guid %>" class="<%= class_name %> <%= hoverStr %>"> <%= htmlStr %></span>', {
+    return _.template('<a href="/people/<%= guid %>" class="<%= class_name %> <%= hoverStr %>"> <%= htmlStr %></a>', {
       'guid': author.guid,
       'class_name': class_name,
       'htmlStr': htmlStr,
