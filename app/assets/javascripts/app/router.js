@@ -111,9 +111,9 @@ app.Router = Backbone.Router.extend({
     $("#main_stream").html(app.page.render().el);
     $('#selected_aspect_contacts .content').html(streamFacesView.render().el);
 
-    
+
     $('#session-button').attr('href', '/contents/new?a_id=' + ids[0]);   
-    var sessionsView = new app.models.Sessions
+    var sessionsView = new app.models.Sessions;
     sessionsView.getSessions(ids);
     
     this.hideInactiveStreamLists();
