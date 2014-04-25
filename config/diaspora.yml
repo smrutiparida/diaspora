@@ -270,12 +270,12 @@ configuration: ## Section
     enable: true
     
     ## Sender address used in mail send by Diaspora
-    sender_address: 'welcome@lmnop.in<ubuntu@ip-172-31-27-101.ap-northeast-1.compute.internal>'
+    sender_address: 'welcome@lmnop.in'
     
     ## This selects which mailer should be used. Take 'smtp' for a smtp
     ## connection, 'sendmail' to use the sendmail binary or
     ## 'messagebus' to use the messagebus service.
-    method: 'sendmail'
+    method: 'messagebus'
     
     ## Ignore if method isn't 'smtp'
     smtp: ## Section

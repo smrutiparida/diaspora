@@ -42,7 +42,7 @@ var app = {
     this.setupGlobalViews();
     this.setupDisabledLinks();
     this.setupFilter();
-    this.setupSession();
+    //this.setupSession();
   },
 
   hasPreload : function(prop) {
@@ -134,27 +134,6 @@ var app = {
        $(this).addClass('selected');
        app.router.aspects_stream();
     });
-  },
-
-  setupSession:function(){
-    if(app.currentUser.authenticated() && !(typeof app.aspects === "undefined")) {
-      var ids = app.aspects.selectedAspects('id');
-      if (ids.length > 0){
-        app.aspectContentId = ids[0];  
-      }
-      else {
-        app.aspectContentId = 'all';   
-      }
-      
-      $("#content_id").replaceWith(
-        $("<input/>", {
-          name: "content_id",
-          type: "hidden",
-          value: app.aspectContentId,
-          id: "content_id"
-        })
-      );
-    }  
   },
 };
 
