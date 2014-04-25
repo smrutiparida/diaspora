@@ -17,8 +17,9 @@
 
     #navbar-top{
 
-            background: rgba(0,0,0,0.65);
-            border-bottom: 1px solid #585858;
+            background: #49afcd;
+            opacity: 0.8;
+            border-bottom: 1px solid #49afcd;
 
     }
 
@@ -75,20 +76,28 @@
 
 
     #banner {
-            background: black;
-            width:60%;
-            height:300px;
-            position: relative;
-            margin-top: 75px;
-                        left: 20%;
-            border-radius: 6px;
+        background: black;
+        width:60%;
+        height:300px;
+        position: relative;
+        margin-top: 75px;
+        left: 20%;
+        border-radius: 6px;
     }
 
     #top-bar{
-           
-            list-style: none;
-            text-align: right;
-            float: right;
+        margin-top: 10px;
+        list-style: none;
+        text-align: right;
+        float: right;
+    }
+
+    #blog-link{
+        font-size: 15px;
+        color: white;
+        text-decoration: underline;
+        vertical-align: middle;
+        margin-left: 20px;
     }
 
     .container{
@@ -173,14 +182,13 @@
             line-height: 1.1em;
             text-shadow: 0 0 24px rgba(0,0,0,0.5),0 0 64px rgba(0,0,0,0.25),0 2px rgba(0,0,0,0.75);
             width: 84%;
-
-     position: relative;
-            top: 23px;
+            position: relative;
+            top: 198px;
             left:7%;
     }
 
     #left-content h2 {
-            font-size: 48px;
+            font-size: 40px;
     }
 
 
@@ -268,11 +276,17 @@ aspect_ratio = [1.932, 1];
 <div class="container">
     <div id="page">
         <div id="left-content">
-            <h2 style="">Ask after-class Q&amp;A to instructor online,</h2>
-            <h3>Sometimes anonymously. <a href="/blog" style="color:#49afcd">Know More »</a></h3>
+            <h2 style="">Ask after-class Q&amp;A to your instructor online,</h2>
+            <h3>Sometimes anonymously. <a id="blog-link" href="/blog" style="color:#49afcd">Know More »</a></h3>
         </div>                    
     </div>
 </div>    
+<div class="container">
+    <div>
+       <p style="line-height:20px;text-align:center;">We created LMNOP to redefine learning. Our social platform helps students and teachers interact online and provides them a way to aggregate all their learning resources in one place. Our SaaS product also helps teachers and institutes manage course fully or partially online.</p>
+        <a href="/users/sign_in" class="btn btn-info btn-large" style="margin-left:43%;margin-top:10px;">Login</a>             
+    </div>
+</div>  
 <footer>
     <ul id="links" style="margin-top:5px;">
       <li><a href="http://blog.lmnop.in/" title="Blog" style="color:white;" target="_blank">Blog</a></li>
