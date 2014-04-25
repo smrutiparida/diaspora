@@ -568,8 +568,8 @@ en:
       note_already_sent: "Invitations have already been sent to: %{emails}"
     new:
       language: "Language"
-      invite_someone_to_join: "Invite someone to join LMNOP!"
-      if_they_accept_info: "if they accept, they will be added to the group you invited them."
+      invite_someone_to_join: "Invitation!"
+      if_they_accept_info: "if they accept, they will be added to the course you invited them."
       comma_separated_plz: "You can enter multiple email addresses separated by commas."
       check_out_groupify: "Hey! You should check out lmnop"
       to: "To"
