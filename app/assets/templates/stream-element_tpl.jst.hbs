@@ -1,4 +1,5 @@
-
+{{#if isPostForTheSession}}
+  {{#if isPostForTheType}}
     <div class="media">
      
       {{#if anonymousPost}}
@@ -78,4 +79,5 @@
         {{/if}}
 
       </div>
- 
+  {{/if}}    
+{{/if}}
