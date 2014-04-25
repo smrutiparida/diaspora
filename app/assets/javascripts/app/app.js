@@ -137,23 +137,24 @@ var app = {
   },
 
   setupSession:function(){
-    var ids = app.aspects.selectedAspects('id');
-    if (ids.length > 0){
-      app.aspectContentId = ids[0];  
-    }
-    else {
-      app.aspectContentId = 'all';   
-    }
-    
-    $("#content_id").replaceWith(
-      $("<input/>", {
-        name: "content_id",
-        type: "hidden",
-        value: app.aspectContentId,
-        id: "content_id"
-      })
-    );
-
+    if(app.currentUser.authenticated()) {
+      var ids = app.aspects.selectedAspects('id');
+      if (ids.length > 0){
+        app.aspectContentId = ids[0];  
+      }
+      else {
+        app.aspectContentId = 'all';   
+      }
+      
+      $("#content_id").replaceWith(
+        $("<input/>", {
+          name: "content_id",
+          type: "hidden",
+          value: app.aspectContentId,
+          id: "content_id"
+        })
+      );
+    }  
   },
 };
 

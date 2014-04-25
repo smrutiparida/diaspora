@@ -13,6 +13,10 @@ class StreamsController < ApplicationController
 
   def aspects
     aspect_ids = (session[:a_ids] || [])
+    if aspect_ids.empty?
+      all_aspects = current_user.aspects
+      aspect_ids.push(all_aspects.first) unless all_aspects.empty?
+    end
     @stream = Stream::Aspect.new(current_user, aspect_ids,
                                  :max_time => max_time)
     stream_responder

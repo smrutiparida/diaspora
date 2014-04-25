@@ -5,14 +5,14 @@
 - if current_user.role != "teacher"
   .section#teacher_thubmnail{:style => 'display:none;'}
     .title
-      .icons-mail
+      .icons-question
       %h5.title-header
         = "My Instructor"
     .content#aspect_teacher
 
 .section
   .title
-    .icons-mail
+    .icons-plus
     %h5.title-header
       = "Sessions List"
      
@@ -24,7 +24,7 @@
   
 .section
   .title
-    .icons-mail
+    .icons-plus
     %h5.title-header
       = "Filters"
   %div 
@@ -35,7 +35,7 @@
   - if AppConfig.settings.invitations.open?
     .section
       .title
-        .icons-plus
+        .icons-mail
         %h5.title-header
           = t('shared.invitations.invite_your_friends')
       .content
@@ -47,6 +47,7 @@
     %h5.title-header
       = "Contributors"
   .content
+    = "Coming Soon"
     
 
 -#
