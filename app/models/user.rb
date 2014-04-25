@@ -379,15 +379,15 @@ class User < ActiveRecord::Base
   end
 
   def seed_aspects
-    #self.aspects.create(:name => "English", :folder => "Classroom")
-    #self.aspects.create(:name => "Hindi", :folder => "Classroom")
-    #self.aspects.create(:name => "Mathematics", :folder => "Classroom")
+    #self.aspects.create(:name => "Course 1", :folder => "Classroom")
+    #self.aspects.create(:name => "Course 2", :folder => "Classroom")
+    #self.aspects.create(:name => "Course 3", :folder => "Classroom")
     #self.aspects.create(:name => "Science", :folder => "Classroom")
     #self.aspects.create(:name => "Social Science", :folder => "Classroom")
-    self.aspects.create(:name => "Friends")
-    self.aspects.create(:name => "Close Friends")
-    self.aspects.create(:name => "Classmates")
-    self.aspects.create(:name => "Acquaintances")
+    #self.aspects.create(:name => "Friends")
+    #self.aspects.create(:name => "Close Friends")
+    #self.aspects.create(:name => "Classmates")
+    #self.aspects.create(:name => "Acquaintances")
 
     #aq = self.aspects.create(:name => I18n.t('aspects.seed.acquaintances'))
 

@@ -137,7 +137,7 @@ var app = {
   },
 
   setupSession:function(){
-    if(app.currentUser.authenticated()) {
+    if(app.currentUser.authenticated() && !(typeof app.aspects === "undefined")) {
       var ids = app.aspects.selectedAspects('id');
       if (ids.length > 0){
         app.aspectContentId = ids[0];  

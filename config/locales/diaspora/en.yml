@@ -265,7 +265,7 @@ en:
 
     aspect_stream:
       stay_updated: "Stay Updated"
-      stay_updated_explanation: "The wall is populated with all your course updates, assignments and quiz informations and posts from fellow mates from the group."
+      stay_updated_explanation: "The left side lists down all of your courses. Go ahead add your first course. Use the edit course link to invite students to your course."
       make_something: "Make something"
 
   aspect_memberships:
