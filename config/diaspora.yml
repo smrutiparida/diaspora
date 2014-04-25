@@ -316,7 +316,7 @@ configuration: ## Section
       #exim_fix: true
     
     ## Ignore if method isn't 'messagebus'
-    #message_bus_api_key: 'abcdef'
+    message_bus_api_key: 'abcdef'
   
   ## Settings around Diasporas capabilities to post to services
   services: ## Section
