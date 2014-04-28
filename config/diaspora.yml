@@ -275,7 +275,7 @@ configuration: ## Section
     ## This selects which mailer should be used. Take 'smtp' for a smtp
     ## connection, 'sendmail' to use the sendmail binary or
     ## 'messagebus' to use the messagebus service.
-    method: 'messagebus'
+    method: 'sendmail'
     
     ## Ignore if method isn't 'smtp'
     smtp: ## Section
@@ -316,7 +316,7 @@ configuration: ## Section
       #exim_fix: true
     
     ## Ignore if method isn't 'messagebus'
-    message_bus_api_key: 'abcdef'
+    #message_bus_api_key: 'abcdef'
   
   ## Settings around Diasporas capabilities to post to services
   services: ## Section
