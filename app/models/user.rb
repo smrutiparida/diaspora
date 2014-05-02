@@ -455,7 +455,9 @@ class User < ActiveRecord::Base
   def no_person_with_same_username
     diaspora_id = "#{self.username}#{User.diaspora_id_host}"
     if self.username_changed? && Person.exists?(:diaspora_handle => diaspora_id)
-      errors[:base] << 'That username has already been taken'
+      #commenting the below line of code as the error message is already getting printed.      
+      #errors[:base] << 'That username has already been taken'
+      errors[:base] << ' '
     end
   end
 
