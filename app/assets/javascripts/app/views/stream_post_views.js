@@ -23,6 +23,7 @@ app.views.StreamPost = app.views.Post.extend({
     "click .hide_post": "hidePost",
     "click .block_user": "blockUser",
     "click .mark_resolved": "resolvePost",
+    "click .mark_open": "unresolvePost",
   },
 
   tooltipSelector : ".timeago, .post_scope, .block_user, .delete",
@@ -130,6 +131,23 @@ app.views.StreamPost = app.views.Post.extend({
     //this.$el.addClass("comment_endorsed");
     this.$(".new_comment_form_wrapper").addClass("hidden");
     this.$(".comment_box").hide();
+  },
+
+  unresolvePost : function(evt) {
+    if(evt) { evt.preventDefault(); }
+    
+
+    $.ajax({
+      url : "/posts/" + this.model.id,
+      type : "PUT",
+      data : {
+        type : "unresolve"
+      }
+    })
+
+    
+    this.$(".new_comment_form_wrapper").removeClass("hidden");
+    this.$(".comment_box").show();
   },
 
   focusCommentTextarea: function(evt){

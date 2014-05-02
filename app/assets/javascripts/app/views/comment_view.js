@@ -52,7 +52,7 @@ app.views.Comment = app.views.Content.extend({
 
       //remove comment area
       //change background color
-      this.appendClass("endorse_comment");
+      this.$('.bd').toggleClass("endorse_comment");
     },
 
   ownComment : function() {
