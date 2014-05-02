@@ -15,7 +15,8 @@ app.views.Post = app.views.Base.extend({
 
   
   isPostForTheSession: function(){
-    return this.model.get("content_id") == app.aspectContentId || this.model.get("content_id") == "all"
+    console.log(this.model.get("content_id") + " " + app.aspectContentId)
+    return parseInt(this.model.get("content_id")) == app.aspectContentId || this.model.get("content_id") == "all"
   },
 
   isPostForTheType: function(){
