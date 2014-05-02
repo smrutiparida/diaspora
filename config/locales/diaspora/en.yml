@@ -1036,10 +1036,10 @@ en:
       reshare: "Reshare"
     public_explain:
       control_your_audience: "Groups you are part of"
-      new_user_welcome_message: "You are part of course group to which you are invited by the teacher. Also you can create your own private groups for regular discussions."
+      new_user_welcome_message: "The wall display all the Q&A conduted between the teacher and all students. Teachers can mark an answer correct for class reference. Also a discussion can be marked as resolved by a teacher. If you are a student, go ahead ask your first question."
       visibility_dropdown: "Use this dropdown to change visibility of your post.  (We suggest you make this first one public.)"
       title: "Set up connected services"
-      share: "Share"
+      share: "Your Q&A Wall"
       outside: "Public messages will be available for others outside of lmnop to see."
       logged_in: "logged in to %{service}"
       manage: "Manage connected services"

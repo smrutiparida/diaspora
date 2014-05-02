@@ -73,7 +73,7 @@
             %ul#documentdropzone
             - if current_user.getting_started?
               = status.text_area :fake_text, :rows => 2, :value => h(publisher_formatted_text), :tabindex => 1, :placeholder => "#{t('contacts.index.start_a_conversation')}...",
-                :title => popover_with_close_html( '1. ' + t('shared.public_explain.share') ),
+                :title => popover_with_close_html( t('shared.public_explain.share') ),
                 'data-content' => t('shared.public_explain.new_user_welcome_message')
             - else
               = status.text_area :fake_text, :rows => 2, :value => h(publisher_formatted_text), :tabindex => 1, :placeholder => "#{t('contacts.index.start_a_conversation')}..."
@@ -141,7 +141,7 @@
             %a{ :href => "#question_mark_pane", :class => 'question_mark', :rel => 'facebox', :title => t('shared.public_explain.manage') }
               .icons-monotone_wrench_settings
 
-          .dropdown{ ! current_user.getting_started? ? {:class => "hang_right",:style=>'display:none;'} : { :class => "hang_right", :title => popover_with_close_html("2. #{t('shared.public_explain.control_your_audience')}"), 'data-content'=> t('shared.public_explain.visibility_dropdown'),:style=>'display:none;'} }
+          .dropdown{ ! current_user.getting_started? ? {:class => "hang_right",:style=>'display:none;'} : { :class => "hang_right", :style=>'display:none;'} }
             .button.toggle.publisher
               - if publisher_public
                 = t('public')
