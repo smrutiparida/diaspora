@@ -91,6 +91,7 @@ app.Router = Backbone.Router.extend({
     this.aspects_list =  new app.views.AspectsList({ collection: app.aspects });
     this.aspects_list.render();
     this.aspects_stream();
+    this.update_sessions();
   },
 
   aspects_stream : function(){    
@@ -111,16 +112,17 @@ app.Router = Backbone.Router.extend({
     $("#main_stream").html(app.page.render().el);
     $('#selected_aspect_contacts .content').html(streamFacesView.render().el);
 
-
+    this.hideInactiveStreamLists();
+  },
+  
+  update_sessions:function(){
     $('#session-button').attr('href', '/contents/new?a_id=' + ids[0]);
     $("#sessions_list").remove();
     $('.all_aspects').find('.icons-check_yes_ok.selected').siblings(":last").after("<ul id='sessions_list' class='content' style='display:none;'></ul>");
     var sessionsView = new app.models.Sessions;
     sessionsView.getSessions(ids);
-    
-    this.hideInactiveStreamLists();
   },
-
+  
   hideInactiveStreamLists: function() {
     if(this.aspects_list && Backbone.history.fragment != "aspects")
       this.aspects_list.hideAspectsList();

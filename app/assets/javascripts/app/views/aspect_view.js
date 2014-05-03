@@ -15,6 +15,9 @@ app.views.Aspect = app.views.Base.extend({
     $('.all_aspects').find('.icons-check_yes_ok').removeClass('selected');
     this.$el.find('.icons-check_yes_ok').addClass('selected');
     app.router.aspects_stream();
+
+    app.router.update_sessions();
+
   },
 
   presenter : function() {
