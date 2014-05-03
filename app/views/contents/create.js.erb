@@ -3,9 +3,9 @@ Diaspora.page.flashMessages.render({ 'success':'success', 'notice':'<%= @new_mod
 //$.getScript("/courses/<%= @new_module.aspect_id %>");
 //$('<li class="sessionname"><a href="#" class="filter-session" data-aspect="<%= @new_module.aspect_id %>"><%= @new_module.name %></a></li>')
 
-
-var tempSessionView = new app.views.Session({attributes: <%= raw @new_module.to_json %>.content});
-$("#session-button").insertBefore(tempSessionView.render().el);
+var response = <%= raw @new_module.to_json %>
+var tempSessionView = new app.views.Session({attributes: response.content});
+$(tempSessionView.render().el).insertBefore("#session-button");
 
 $("#content_id").replaceWith(
   $("<input/>", {
