@@ -28,11 +28,11 @@ app.views.Session = app.views.Base.extend({
   },
 
   isSessionSelected : function(){
-    console.log(this.attributes);
+    console.log(this.attributes.id);
     if(typeof app.aspectContentId === "undefined"){
       return false;
     }
-    else if(parseInt(app.aspectContentId) == this.attributes.id){
+    else if(app.aspectContentId.toString() == this.attributes.id.toString()){
       return true;
     }
     return false;
