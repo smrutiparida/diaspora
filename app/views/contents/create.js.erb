@@ -4,7 +4,7 @@ Diaspora.page.flashMessages.render({ 'success':'success', 'notice':'<%= @new_mod
 //$('<li class="sessionname"><a href="#" class="filter-session" data-aspect="<%= @new_module.aspect_id %>"><%= @new_module.name %></a></li>')
 
 
-var tempSessionView = new app.views.Session({attributes: <%= raw @new_module.content.to_json %>});
+var tempSessionView = new app.views.Session({attributes: <%= raw @new_module.to_json %>.content});
 $("#session-button").insertBefore(tempSessionView.render().el);
 
 $("#content_id").replaceWith(
