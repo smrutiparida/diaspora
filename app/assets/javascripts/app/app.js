@@ -71,6 +71,14 @@ var app = {
 
   setupUser: function() {
     app.currentUser = app.user(window.gon.user) || new app.models.User();
+    var flag = 0;
+    _.each(app.currentUser.get('aspects'),function(ele,index,list){
+      $(ele)[0].selected = false
+      if($(ele)[0].folder == "Classroom" && flag ==0){
+        $(ele)[0].selected = true;
+        flag = 1;
+      }
+    })
   },
 
   setupHeader: function() {

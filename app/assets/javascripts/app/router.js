@@ -112,7 +112,9 @@ app.Router = Backbone.Router.extend({
     $('#selected_aspect_contacts .content').html(streamFacesView.render().el);
 
 
-    $('#session-button').attr('href', '/contents/new?a_id=' + ids[0]);   
+    $('#session-button').attr('href', '/contents/new?a_id=' + ids[0]);
+    $("#sessions_list").remove();
+    $('.all_aspects').find('.icons-check_yes_ok').append("<ul id='sessions_list' class='content'></ul>");
     var sessionsView = new app.models.Sessions;
     sessionsView.getSessions(ids);
     

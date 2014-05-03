@@ -17,7 +17,7 @@
       = "Sessions List"
      
   %div
-    %ul#sessions_list.content
+    
   - if current_user.role == "teacher"  
     = link_to "Add a Session", "/contents/new", :class => "button", :rel => 'facebox', :id => 'session-button'
 
