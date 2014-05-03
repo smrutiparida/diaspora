@@ -25,7 +25,7 @@ app.models.Sessions = Backbone.Model.extend({
         app.aspectContentId = ele.id;
         //tmpl = tmpl + _.template('<li class="sessions-names"><a href="#" class="filter-sessoion" data-aspect="<%= aspect_id %>"><%= name %></a></li>',{'aspect_id':ele.aspect_id,'name':ele.name});  
       }
-      $("#sessions_list").slidedown();
+      $("#sessions_list").slideDown();
 
       $("#content_id").replaceWith(
         $("<input/>", {
