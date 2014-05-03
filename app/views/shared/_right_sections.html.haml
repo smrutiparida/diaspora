@@ -9,18 +9,6 @@
       %h5.title-header
         = "My Instructor"
     .content#aspect_teacher
-
-.section
-  .title
-    .icons-plus
-    %h5.title-header
-      = "Sessions List"
-     
-  %div
-    
-  - if current_user.role == "teacher"  
-    = link_to "Add a Session", "/contents/new", :class => "button", :rel => 'facebox', :id => 'session-button'
-
   
 .section
   .title

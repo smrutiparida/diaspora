@@ -116,13 +116,14 @@ app.Router = Backbone.Router.extend({
   },
   
   update_sessions:function(){
+    var ids = app.aspects.selectedAspects('id');
     $('#session-button').attr('href', '/contents/new?a_id=' + ids[0]);
     $("#sessions_list").remove();
     $('.all_aspects').find('.icons-check_yes_ok.selected').siblings(":last").after("<ul id='sessions_list' class='content' style='display:none;'></ul>");
     var sessionsView = new app.models.Sessions;
     sessionsView.getSessions(ids);
   },
-  
+
   hideInactiveStreamLists: function() {
     if(this.aspects_list && Backbone.history.fragment != "aspects")
       this.aspects_list.hideAspectsList();

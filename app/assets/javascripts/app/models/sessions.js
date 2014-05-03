@@ -25,6 +25,17 @@ app.models.Sessions = Backbone.Model.extend({
         app.aspectContentId = ele.id;
         //tmpl = tmpl + _.template('<li class="sessions-names"><a href="#" class="filter-sessoion" data-aspect="<%= aspect_id %>"><%= name %></a></li>',{'aspect_id':ele.aspect_id,'name':ele.name});  
       }
+      
+      if(app.currentUser.get('role') == "teacher"){
+        $("#sessions_list").append(
+          $("<a/>", {
+            name: "Add a Session",
+            href: "/contents/new",
+            id: "session-button"
+          }).facebox();
+        );           
+      }
+
       $("#sessions_list").slideDown();
 
       $("#content_id").replaceWith(
