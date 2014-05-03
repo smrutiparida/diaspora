@@ -25,15 +25,16 @@ app.models.Sessions = Backbone.Model.extend({
         app.aspectContentId = ele.id;
         //tmpl = tmpl + _.template('<li class="sessions-names"><a href="#" class="filter-sessoion" data-aspect="<%= aspect_id %>"><%= name %></a></li>',{'aspect_id':ele.aspect_id,'name':ele.name});  
       }
-      
-      if(app.currentUser.get('role') == "teacher"){
-        $("#sessions_list").append(
-          $("<a/>", {
-            name: "Add a Session",
-            href: "/contents/new",
-            id: "session-button"
-          }).facebox();
-        );           
+
+      if(app.currentUser.get('role') == "teacher")
+      {        
+        $("<a></a>", {
+          name: "Add a Session",
+          href: "/contents/new",
+          id: "session-button"
+        })
+        .facebox()
+        .appendTo("#sessions_list");
       }
 
       $("#sessions_list").slideDown();
