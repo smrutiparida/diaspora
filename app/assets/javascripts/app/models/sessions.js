@@ -29,7 +29,7 @@ app.models.Sessions = Backbone.Model.extend({
       if(app.currentUser.get('role') == "teacher")
       {        
         $("<a></a>", {
-          value: "+ Add a Session",
+          text: "+ Add a Session",
           href: "/contents/new",
           id: "session-button",
           rel: "facebox"

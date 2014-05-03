@@ -13,7 +13,8 @@ app.views.Session = app.views.Base.extend({
     
     this.item = $(evt.target);
     app.aspectContentId = this.item.attr('data-id');
-    $('#sessions_list').find('.icons-check_yes_ok').removeClass('selected');
+    
+    $('#sessions_list').find('.filter-session').removeClass('selected');
     this.item.addClass('selected');
     app.router.aspects_stream();
     
