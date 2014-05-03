@@ -29,12 +29,12 @@ app.models.Sessions = Backbone.Model.extend({
       if(app.currentUser.get('role') == "teacher")
       {        
         $("<a></a>", {
-          name: "Add a Session",
+          value: "+ Add a Session",
           href: "/contents/new",
-          id: "session-button"
+          id: "session-button",
+          rel: "facebox"
         })
-        .facebox()
-        .appendTo("#sessions_list");
+        .appendTo("#sessions_list").facebox();
       }
 
       $("#sessions_list").slideDown();
