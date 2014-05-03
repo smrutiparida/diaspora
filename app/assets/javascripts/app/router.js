@@ -114,7 +114,7 @@ app.Router = Backbone.Router.extend({
 
     $('#session-button').attr('href', '/contents/new?a_id=' + ids[0]);
     $("#sessions_list").remove();
-    $('.all_aspects').find('.icons-check_yes_ok.selected').append("<ul id='sessions_list' class='content'></ul>");
+    $('.all_aspects').find('.icons-check_yes_ok.selected').append("<ul id='sessions_list' class='content' style='display:none;'></ul>");
     var sessionsView = new app.models.Sessions;
     sessionsView.getSessions(ids);
     

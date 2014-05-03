@@ -17,18 +17,15 @@ app.models.Sessions = Backbone.Model.extend({
     if(this.attributes)
     {
       $("#sessions_list").empty();
-      //app.sessionsView = new app.views.Sessions({sessions:this.attributes});
-      //var tmpl = "";
+      
       for (var key in this.attributes) {
         var ele = this.attributes[key].content;
-        console.log("came to adding session")
-        console.log(ele);
         var tempSessionView = new app.views.Session({attributes: ele});
-        console.log(tempSessionView)
         $("#sessions_list").append(tempSessionView.render().el);  
         app.aspectContentId = ele.id;
         //tmpl = tmpl + _.template('<li class="sessions-names"><a href="#" class="filter-sessoion" data-aspect="<%= aspect_id %>"><%= name %></a></li>',{'aspect_id':ele.aspect_id,'name':ele.name});  
       }
+      $("#sessions_list").slidedown();
 
       $("#content_id").replaceWith(
         $("<input/>", {
