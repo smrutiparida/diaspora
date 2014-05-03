@@ -36,6 +36,7 @@ app.views.Comment = app.views.Content.extend({
       canRemove: this.canRemove(),
       canEndorse: this.canEndorse(),
       teacherCommentORendorsedComment : this.teacherCommentORendorsedComment(), 
+      isEndorsedComment : this.isEndorsedComment(),
       text : app.helpers.textFormatter(this.model.get("text"), this.model)
     })
   },
@@ -50,9 +51,11 @@ app.views.Comment = app.views.Content.extend({
         }
       })
 
+      
       //remove comment area
       //change background color
-      this.$('.bd').toggleClass("endorse_comment");
+      this.$('.bd').toggleClass("teacher_comment");
+      this.$('.comment_best').attr('title','Undo');
     },
 
   ownComment : function() {
@@ -72,12 +75,15 @@ app.views.Comment = app.views.Content.extend({
   },
 
   teacherCommentORendorsedComment : function(){
-    console.log(this.model.get("is_endorsed"));
+    //console.log(this.model.get("is_endorsed"));
     if(app.currentUser.authenticated() && (this.model.get("author").diaspora_id == app.teacherModel.get("handle") || this.model.get("is_endorsed"))){
       return true;
     }
-    console.log("came");
+    //console.log("came");
     return false;
+  },
+  isEndorsedComment : function(){ 
+    return this.model.get("is_endorsed")
   }
 });
 

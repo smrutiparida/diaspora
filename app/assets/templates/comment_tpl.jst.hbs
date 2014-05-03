@@ -16,10 +16,16 @@
           <div alt="Deletelabel" class="icons-deletelabel" />
         <a/>
       {{/if}}
-      {{#if canEndorse}}  
-        <a href="#" class="endorse comment_best" title="Mark as Correct Answer">
-          <div alt="BestAnswer" class="icons-check_yes_ok_lighter" />
-        <a/>
+      {{#if canEndorse}}
+        {{#if isEndorsedComment}}
+          <a href="#" class="endorse comment_best" title="Undo Correct Answer">
+            <div alt="CorrectAnswer" class="icons-monotone_wrench_settings" />
+          <a/>
+        {{else}}
+          <a href="#" class="endorse comment_best" title="Mark as Correct Answer">
+            <div alt="BestAnswer" class="icons-check_yes_ok_lighter" />
+          <a/>
+        {{/if}}  
       {{/if}}  
     </div>
 
