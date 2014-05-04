@@ -3,7 +3,7 @@
             margin-top: 0px;
             margin-left: 0px;
             margin-right: 0px;
-            background-color: white;
+            background-color: #efefef;
            
             background-size: cover;
             background-position: center center;
@@ -209,6 +209,29 @@
         line-height: 38px;
         font-size: 18px;
     }
+    .row{
+        margin-left: -12.5px;
+        margin-right: -12.5px;
+    }
+
+    row>.col-4 {
+        padding-left: 12.5px;
+        padding-right: 12.5px;
+    }
+
+    .col-4 {
+        width: 33.33333%;
+        float: left;
+        position: relative;
+        min-height: 1px;
+    }
+
+    .text-copy {
+        font-size: 15px;
+    }
+    .text-special {
+        font-family: Shift,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
 </style>
 
 <script type="text/javascript">
@@ -273,29 +296,42 @@ aspect_ratio = [1.932, 1];
               <a href="/press/">Contact Us</a>
             </li>
         </ul>
-        <a id="name-logo" href="home">lmnop</a>
+        <a id="name-logo" href="/">lmnop</a>
     </header>
 </div>
 <div class="container">
     <div id="page">
         <div id="left-content">
-            <h2 style="">Ask after-class Q&amp;A to your instructor online,</h2>
-            <h3>Sometimes anonymously. <a id="blog-link" href="/blog">Know More »</a></h3>
+            <h2 style="">Ask questions after classes to your instructors online,</h2>
+            <h3>sometimes anonymously. <a id="blog-link" href="http://blog.lmnop.in" target="_blank">Know More »</a></h3>
         </div>     
         <div>
-            <div style="width:50%;float:left;">
-               <h2 style="color:#49afcd;">What Students can do,</h2>
-               <ul>
-                    <li class="feature-list">- Ask questions to the teacher after the class hours.</li><br/>
-                    <li class="feature-list">- All class can participate in a Q&A session, students may answer for themselves.</li><br/>
-                    <li class="feature-list">- Students can remain anonymous with their doubts.</li><br/>
-                    <li class="feature-list">- Answer once for whole class.</li><br/>
-                    <li class="feature-list">- Single place to revise course during exam.</li><br/>
-                </ul>                
+            <div style="">
+               <h2 style="color:#49afcd;font-size:24px;">LMNOP for students,</h2>
+               <p>Below are few reasons why LMNOP should be introduced in each class</p>                
             </div>
-            <div style="text-align:center;width:50%;float:right;">
-                <a href="/users/sign_up" class="btn btn-info btn-large" style="margin-left:-32%;margin-top:100px;">Signup as a Teacher</a>
-            </div>
+            <div class="row">
+                <div class="col-4 text-copy">
+                  <h3 class="text-special">Clear Doubts</h3>
+                  <p>Students can ask questions to teachers after classes.</p>
+                </div>
+                <div class="col-4 text-copy">
+                  <h3 class="text-special">Student Participation</h3>
+                  <p>The entire class can participate in a Q and A session. Students can answer for others.</p>
+                </div>
+                <div class="col-4 text-copy">
+                  <h3 class="text-special">Stay Anonymous</h3>
+                  <p>Students can choose to remain anonymous with their doubts.</p>
+                </div>
+                <div class="col-4 text-copy">
+                  <h3 class="text-special">Answer Once</h3>
+                  <p>Answer once for whole class.</p>
+                </div>
+                <div class="col-4 text-copy">
+                  <h3 class="text-special">Course Revision</h3>
+                  <p>A one stop source to revise all your concepts before exam.</p>
+                </div>
+              </div>                                                                
         </div>                        
     </div>     
 </div>    
@@ -306,3 +342,5 @@ aspect_ratio = [1.932, 1];
     </ul>
 </footer>
                                                     
+
+
