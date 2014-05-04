@@ -90,6 +90,7 @@ app.Router = Backbone.Router.extend({
     app.aspects = new app.collections.Aspects(app.currentUser.get('aspects'));
     this.aspects_list =  new app.views.AspectsList({ collection: app.aspects });
     this.aspects_list.render();
+    app.aspectContentId = "all";
     this.aspects_stream();
     this.update_sessions();
   },
@@ -117,7 +118,7 @@ app.Router = Backbone.Router.extend({
   
   update_sessions:function(){
     var ids = app.aspects.selectedAspects('id');
-    $('#session-button').attr('href', '/contents/new?a_id=' + ids[0]);
+    //$('#session-button').attr('href', '/contents/new?a_id=' + ids[0]);
     $("#sessions_list").remove();
     $('.all_aspects').find('.icons-check_yes_ok.selected').siblings(":last").after("<ul id='sessions_list' class='content' style='display:none;'></ul>");
     var sessionsView = new app.models.Sessions;

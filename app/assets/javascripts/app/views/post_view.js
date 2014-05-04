@@ -17,7 +17,7 @@ app.views.Post = app.views.Base.extend({
   isPostForTheSession: function(){
     var c_id = this.model.get("content_id").toString()
     var app_c_id = app.aspectContentId.toString()
-    return ((c_id == app_c_id) || (c_id == "all"))
+    return ((c_id == app_c_id) || (c_id == "all") || (app_c_id == "all"))
   },
 
   isPostForTheType: function(){
