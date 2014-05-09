@@ -275,7 +275,8 @@ configuration: ## Section
     ## This selects which mailer should be used. Take 'smtp' for a smtp
     ## connection, 'sendmail' to use the sendmail binary or
     ## 'messagebus' to use the messagebus service.
-    method: 'sendmail'
+    ## 'sendgrid' to use sendgrid service
+    method: 'sendgrid'
     
     ## Ignore if method isn't 'smtp'
     smtp: ## Section
@@ -317,6 +318,11 @@ configuration: ## Section
     
     ## Ignore if method isn't 'messagebus'
     #message_bus_api_key: 'abcdef'
+
+    sendgrid: ##section
+      user_name:'azure_1b50bb61b342fd1d3e7f5ed655cd7e54@azure.com'
+      password:'8OSqEd27X7wdKsK'
+      domain:'lmnop.in'
   
   ## Settings around Diasporas capabilities to post to services
   services: ## Section

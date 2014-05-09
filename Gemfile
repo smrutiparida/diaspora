@@ -55,7 +55,8 @@ gem 'rails-i18n',           '0.7.4'
 # Mail
 
 gem 'markerb',             '1.0.1'
-gem 'messagebus_ruby_api', '1.0.3'
+#gem 'messagebus_ruby_api', '1.0.3'
+gem 'mail'
 
 # Parsing
 
