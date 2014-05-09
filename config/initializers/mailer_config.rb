@@ -21,7 +21,7 @@ Diaspora::Application.configure do
         puts "You need to set your messagebus api key if you are going to use the message bus service. no mailer is now configured"
       end
     elsif AppConfig.mail.method == "sendgrid"
-      config.action_mailer.delivery_method = Sendgrid::Mailer.new(AppConfig.mail.sendgrid.user_name, AppConfig.mail.sendgrid.password, AppConfig.mail.sendgrid.domain)
+      #config.action_mailer.delivery_method = Sendgrid::Mailer.new(AppConfig.mail.sendgrid.user_name, AppConfig.mail.sendgrid.password, AppConfig.mail.sendgrid.domain)
       config.action_mailer.raise_delivery_errors = true
     elsif AppConfig.mail.method == "smtp"
       config.action_mailer.delivery_method = :smtp

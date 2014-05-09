@@ -1,18 +1,7 @@
 module Sendgrid
   class Mailer
-    def initialize(user_name, password, domain)
-      Mail.defaults do
-        delivery_method :smtp,
-        {
-          :address   => "smtp.sendgrid.net",
-          :port      => 587,
-          :user_name => user_name,
-          :password  => password,
-          :authentication => 'plain',
-          :enable_starttls_auto => true,
-          :domain    => domain # I usually set this as an env. var too
-        }
-      end
+    def initialize()
+      
     end  
 
     attr_accessor :settings
@@ -27,6 +16,18 @@ module Sendgrid
     end
 
     def deliver!(message)
+      Mail.defaults do
+        delivery_method :smtp,
+        {
+          :address   => "smtp.sendgrid.net",
+          :port      => 587,
+          :user_name => AppConfig.mail.sendgrid.user_name,
+          :password  => AppConfig.mail.sendgrid.password,
+          :authentication => 'plain',
+          :enable_starttls_auto => true,
+          :domain    => AppConfig.mail.sendgrid.domain
+        }
+      end
       begin
         Mail.deliver do
           from AppConfig.mail.sender_address
