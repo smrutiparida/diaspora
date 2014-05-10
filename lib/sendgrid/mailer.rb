@@ -16,6 +16,7 @@ module Sendgrid
     end
 
     def deliver!(message)
+      Rails.logger.info(AppConfig.mail.sendgrid.user_name)
       Mail.defaults do
         delivery_method :smtp,
         {

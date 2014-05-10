@@ -276,37 +276,37 @@ configuration: ## Section
     ## connection, 'sendmail' to use the sendmail binary or
     ## 'messagebus' to use the messagebus service.
     ## 'sendgrid' to use sendgrid service
-    method: 'sendgrid'
+    method: 'smtp'
     
     ## Ignore if method isn't 'smtp'
     smtp: ## Section
       ## Host and port of the smtp server handling outgoing mail.
       ## This should match the common name of the certificate
       ## the SMTP server sends. If he sends one.
-      #host: 'smtp.example.org'
-      #port: 587
+      host: 'smtp.sendgrid.net'
+      port: 587
       
       ## Authentication required to send mail. Use one of 'plain',
       ## 'login' or 'cram_md5'. Use 'none' if server does not support
       ## authentication
-      #authentication: 'plain'
+      authentication: 'plain'
       
       ## Credentials to log in to the SMTP server - may be necessary if
       ## authentication is not 'none'
-      #username: 'changeme'
-      #password: 'changeme'
+      username: 'azure_1b50bb61b342fd1d3e7f5ed655cd7e54@azure.com'
+      password: '8OSqEd27X7wdKsK'
       
       ## Automatically enable TLS? Ignored if authentication is set to none
-      #starttls_auto: true
+      starttls_auto: false
       
       ## The domain for the HELO command if needed
-      #domain: 'smtp.example.org'
+      domain: 'dev.lmnop.in'
       
       ## OpenSSL verify mode used when connecting to a
       ## SMTP server with TLS. Set this to none if you have
       ## a self signed certificate. Possible values:
       ## 'none', 'peer', 'client_once', 'fail_if_no_peer_cert'
-      #openssl_verify_mode: 'none'
+      openssl_verify_mode: 'none'
     
     ## Ignore if method isn't 'sendmail'
     sendmail: ## Section
