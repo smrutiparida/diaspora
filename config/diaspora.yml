@@ -322,7 +322,7 @@ configuration: ## Section
     sendgrid: ##section
       user_name:'azure_1b50bb61b342fd1d3e7f5ed655cd7e54@azure.com'
       password:'8OSqEd27X7wdKsK'
-      domain:'dev.lmnop.in'
+      domain:'lmnop.in'
   
   ## Settings around Diasporas capabilities to post to services
   services: ## Section

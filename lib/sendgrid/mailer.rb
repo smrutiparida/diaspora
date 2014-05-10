@@ -24,7 +24,7 @@ module Sendgrid
           :user_name => AppConfig.mail.sendgrid.user_name,
           :password  => AppConfig.mail.sendgrid.password,
           :authentication => 'plain',
-          :enable_starttls_auto => true,
+          :enable_starttls_auto => false,
           :domain    => AppConfig.mail.sendgrid.domain
         }
       end
