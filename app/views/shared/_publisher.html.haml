@@ -169,7 +169,7 @@
 
           = hidden_field_tag 'content_id', "all", :id => 'content_id'
           = hidden_field_tag 'user_anonymity', "false"
-          = status.submit "Submit Question", :disabled => publisher_hidden_text.blank?, :class => 'button creation', :tabindex => 2
+          = status.submit "Submit Question", :disabled => publisher_hidden_text.blank?, :class => 'button creation', :tabindex => 2, :id => 'status-submit-button'
 
           .facebox_content
             #question_mark_pane
