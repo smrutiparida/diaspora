@@ -29,7 +29,7 @@ module Sendgrid
         }
       end
       begin
-        Mail.deliver do
+        mail = Mail.deliver do
           from AppConfig.mail.sender_address
           to message.to.first
           subject message.subject
@@ -41,9 +41,11 @@ module Sendgrid
             body message.body.to_s
           end
         end
+        Rails.logger.info(mail)
       rescue => e
         raise "Email send error #{e.message}"
       end  
+      
     end
   end
 end  
