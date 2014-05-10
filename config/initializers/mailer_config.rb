@@ -1,7 +1,7 @@
 #   Copyright (c) 2010-2011, Diaspora Inc.  This file is
 #   licensed under the Affero General Public License version 3 or later.  See
 #   the COPYRIGHT file.
-require Rails.root.join('lib', 'sendgrid', 'mailer')
+require Rails.root.join('lib', 'messagebus', 'mailer')
 
 Diaspora::Application.configure do
   config.action_mailer.default_url_options = {
@@ -20,9 +20,13 @@ Diaspora::Application.configure do
       else
         puts "You need to set your messagebus api key if you are going to use the message bus service. no mailer is now configured"
       end
-    elsif AppConfig.mail.method == "sendgrid"
-      #config.action_mailer.delivery_method = Sendgrid::Mailer.new(AppConfig.mail.sendgrid.user_name, AppConfig.mail.sendgrid.password, AppConfig.mail.sendgrid.domain)
-      config.action_mailer.raise_delivery_errors = true
+    elsif AppConfig.mail.method == "sendmail"
+      config.action_mailer.delivery_method = :sendmail
+      sendmail_settings = {
+        location: AppConfig.mail.sendmail.location.get
+      }
+      sendmail_settings[:arguments] = "-i" if AppConfig.mail.sendmail.exim_fix?
+      config.action_mailer.sendmail_settings = sendmail_settings
     elsif AppConfig.mail.method == "smtp"
       config.action_mailer.delivery_method = :smtp
       smtp_settings = {
