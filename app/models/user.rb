@@ -352,7 +352,7 @@ class User < ActiveRecord::Base
   def self.build(opts = {})
     Rails.logger.info(opts)
     Rails.logger.info(opts[:person])
-    Rails.logger.info(opts[:person][:profile])
+    Rails.logger.info(opts.except(:person))
     u = User.new(opts.except(:person))
     u.setup(opts)
     u
