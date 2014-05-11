@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
     t.integer  "order_id"
     t.string   "folder"
     t.integer  "admin_id"
+    t.string   "code"
   end
 
   add_index "aspects", ["user_id", "contacts_visible"], :name => "index_aspects_on_user_id_and_contacts_visible"

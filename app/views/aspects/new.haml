@@ -15,6 +15,13 @@
       = aspect.label :name , t('.name')
       = aspect.text_field :name, :maxlength => 50
 
+    %p
+      = "Course Code is :"
+      = aspect.label :code, '________', :id=>'course_code'
+      = hidden_field_tag "aspect[code]", '', :id => 'course_hidden_code'
+    %p
+      = "Share this code in class for students to join your course."
+
     -#
       %p.checkbox_select
         = aspect.label :contacts_visible, "make contacts in this group visible to each other?"

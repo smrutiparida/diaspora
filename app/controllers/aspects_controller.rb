@@ -151,6 +151,6 @@ class AspectsController < ApplicationController
   end
 
   def aspect_params
-    params.require(:aspect).permit(:name, :contacts_visible, :order_id, :folder, :admin_id)
+    params.require(:aspect).permit(:name, :contacts_visible, :order_id, :folder, :admin_id, :code)
   end
 end

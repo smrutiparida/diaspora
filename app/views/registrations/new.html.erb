@@ -33,6 +33,17 @@
                   </div>
 
                   <div class="control-group">
+                    <label class="control-label" for="user_person_profile_role">
+                        INSTITUTION
+                    </label>
+
+                    <div class="controls">
+                        <%= select_tag "user[person[profile[location]]]", "<option value='PSBB, Chennai'>PSBB, Chennai</option><option value='NITK, Surathkal'>NITK, Surathkal</option>".html_safe, :style => 'border:none;margin:5px;' %>
+                        
+                    </div>
+                  </div>
+
+                  <div class="control-group">
                     <label class="control-label" for="user_email">
                         <%= t('.email') %>
                     </label>
