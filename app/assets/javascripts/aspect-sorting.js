@@ -34,13 +34,15 @@ $(document).ready(function() {
   });
 
   $('#aspect_name').on('keypress', function(){
+    console.log("called")
     var short_form = createShortForm($('#aspect_name').val())
     var d = new Date();
     var n = d.getFullYear();
     var course_code = short_form + n.toString();
+    console.log(course_code);
     $('#course_code').text(course_code);
     $('#course_hidden_code').val(course_code);
   });
-  
+
 });
 
