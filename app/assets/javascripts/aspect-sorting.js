@@ -33,14 +33,14 @@ $(document).ready(function() {
     helper: 'clone'
   });
 
-  $('#aspect_name').keypress(function(){
+  $('#aspect_name').on('keypress', function(){
     var short_form = createShortForm($('#aspect_name').val())
     var d = new Date();
     var n = d.getFullYear();
     var course_code = short_form + n.toString();
     $('#course_code').text(course_code);
     $('#course_hidden_code').val(course_code);
-
   });
+  
 });
 
