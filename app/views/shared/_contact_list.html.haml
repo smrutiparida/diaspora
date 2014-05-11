@@ -4,30 +4,33 @@
 
 - if @contacts.count > 0
   .contact_list_controls
-    = search_field_tag :contact_search, "", id: "contact_list_search", class: 'contact_list_search', results: 5, placeholder: t('.all_contacts')
-    - if current_user.role == "teacher"
-      %div{:style => 'float:right;padding-top:7px;'}
-        = link_to 'Invite a Student', '#', :onclick => "$.facebox({ajax: '/users/invitations?aspect=' + $(this).attr('data-id')});", :style => 'margin-right:5px;', :'data-id' => aspect.id.to_s 
-        %span{:style => 'margin-right:10px;'} OR
+    = search_field_tag :contact_search, "", id: "contact_list_search", class: 'contact_list_search', results: 5, placeholder: 'Search enrolled students'
+    -#
+      - if current_user.role == "teacher"
+        %div{:style => 'float:right;padding-top:7px;'}
+          = link_to 'Invite a Student', '#', :onclick => "$.facebox({ajax: '/users/invitations?aspect=' + $(this).attr('data-id')});", :style => 'margin-right:5px;', :'data-id' => aspect.id.to_s 
+          %span{:style => 'margin-right:10px;'} OR
 
 
-    = t('contacts', count: @aspect_contacts_count)
-
+    = t('Students Enrolled', count: @aspect_contacts_count)
+  
   .contact_list.searchable
     %ul.contacts
       - for contact in contacts
-        %li.contact{:data=>{:contact_id=>contact.id}}
-          = person_image_tag contact.person
-          %h4.name
-            = link_to contact.person.name, contact.person
-          .right
-            = aspect_membership_button(aspect, contact, contact.person)
+        - if is_contact_aspect_member(aspect, contact)
+          %li.contact{:data=>{:contact_id=>contact.id}}
+            = person_image_tag contact.person
+            %h4.name
+              = link_to contact.person.name, contact.person
+            .right
+              = aspect_membership_button(aspect, contact, contact.person)
 - else
   .contact_list_controls
-    - if current_user.role == "teacher"
-      %div{:style => 'float:right;padding-top:7px;'}
-        = link_to 'Invite a Student', '#', :onclick => "$.facebox({ajax: '/users/invitations?aspect=' + $(this).attr('data-id')});", :style => 'margin-right:5px;', :'data-id' => aspect.id.to_s 
-    
+    -#
+      - if current_user.role == "teacher"
+        %div{:style => 'float:right;padding-top:7px;'}
+          = link_to 'Invite a Student', '#', :onclick => "$.facebox({ajax: '/users/invitations?aspect=' + $(this).attr('data-id')});", :style => 'margin-right:5px;', :'data-id' => aspect.id.to_s 
+      
     = "No Students in the course."
 
 
