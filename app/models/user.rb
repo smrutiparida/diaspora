@@ -34,6 +34,7 @@ class User < ActiveRecord::Base
   serialize :hidden_shareables, Hash
 
   has_one :person, :foreign_key => :owner_id
+  accepts_nested_attributes_for :person
   delegate :guid, :public_key, :posts, :photos, :owns?, :image_url,
            :diaspora_handle, :name, :public_url, :profile, :url,
            :first_name, :last_name, :gender, :participations, :role, to: :person
