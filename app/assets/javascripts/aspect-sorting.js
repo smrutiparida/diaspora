@@ -33,7 +33,7 @@ $(document).ready(function() {
     helper: 'clone'
   });
 
-  $('#aspect_name').on('keypress', function(){
+  $('#aspect_name').live('keypress', function(){
     console.log("called")
     var short_form = createShortForm($('#aspect_name').val())
     var d = new Date();
