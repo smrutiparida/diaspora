@@ -9,7 +9,10 @@ function createShortForm(text_string){
   {
     for(var i =0; i < res.length; i++)
     {
-      text_code += res[i].substring(0,1);
+      if(text_code != "")
+      {
+        text_code += res[i].substring(0,1);
+      }
     }
   }
   else
@@ -33,7 +36,7 @@ $(document).ready(function() {
     helper: 'clone'
   });
 
-  $('#aspect_name').live('keypress', function(){
+  $('#aspect_name').live('keyup', function(){
     console.log("called")
     var short_form = createShortForm($('#aspect_name').val())
     var d = new Date();
