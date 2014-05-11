@@ -349,6 +349,7 @@ class User < ActiveRecord::Base
 
   ###Helpers############
   def self.build(opts = {})
+    Rails.logger.info(opts)
     u = User.new(opts.except(:person))
     u.setup(opts)
     u

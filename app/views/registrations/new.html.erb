@@ -19,6 +19,18 @@
 
             <%= form_for(resource, :validate => true, :url => registration_path(resource_name), :html => {:class => "form-horizontal block-form", :autocomplete => "off"}) do |f| %>
                 <fieldset>
+                  
+        
+                  <div class="control-group">
+                    <label class="control-label" for="user_person_profile_role">
+                        I am a 
+                    </label>
+
+                    <div class="controls">
+                        = select_tag "user[person[profile[role]]]", "<option value='student'>Student</option><option value='teacher'>Teacher</option>".html_safe
+                    </div>
+                  </div>
+
                   <div class="control-group">
                     <label class="control-label" for="user_email">
                         <%= t('.email') %>
@@ -58,6 +70,7 @@
                         <%= f.password_field :password_confirmation, :placeholder => "••••••••", :title => t('registrations.new.enter_password_again'), :required => true, :pattern => "......+" %>
                     </div>
                   </div>
+
                   <%= invite_hidden_tag(invite) %>
                 </fieldset>
 

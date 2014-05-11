@@ -109,6 +109,7 @@ class Person < ActiveRecord::Base
   #   end
   # will not work!  The nil profile will be overriden with an empty one.
   def initialize(params={})
+    Rails.logger.info(params)
     profile_set = params.has_key?(:profile) || params.has_key?("profile")
     params[:profile_attributes] = params.delete(:profile) if params.has_key?(:profile) && params[:profile].is_a?(Hash)
     super
