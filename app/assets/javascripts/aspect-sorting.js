@@ -9,7 +9,7 @@ function createShortForm(text_string){
   {
     for(var i =0; i < res.length; i++)
     {
-      if(text_code != "")
+      if(res[i] != "")
       {
         text_code += res[i].substring(0,1);
       }
@@ -37,12 +37,16 @@ $(document).ready(function() {
   });
 
   $('#aspect_name').live('keyup', function(){
-    console.log("called")
+    
     var short_form = createShortForm($('#aspect_name').val())
     var d = new Date();
     var n = d.getFullYear();
-    var course_code = short_form + n.toString();
-    console.log(course_code);
+    var course_code = "";
+    if (short_form != "")
+    {
+      course_code = short_form + n.toString();
+    }
+    
     $('#course_code').text(course_code);
     $('#course_hidden_code').val(course_code);
   });
