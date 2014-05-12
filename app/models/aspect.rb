@@ -43,6 +43,7 @@ class Aspect < ActiveRecord::Base
         raise "Unknown shareable type '#{shareable.class.base_class.to_s}'"
     end
   end
-
+  
+  def name; "#{name} (#{code})";end
 end
 

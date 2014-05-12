@@ -51,5 +51,10 @@ $(document).ready(function() {
     $('#course_hidden_code').val(course_code);
   });
 
+  $('#teacher_select').live('change',function(){
+    $('.course_per_teacher').hide();
+    $('##teacher-label').show();
+    $('#teacher_select_' + $(this).val()).show();
+  });
 });
 

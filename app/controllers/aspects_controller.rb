@@ -114,11 +114,12 @@ class AspectsController < ApplicationController
     teacher_user_id_list = person_in_contacts.map{|a| a.owner_id}    
     all_aspects_of_teacher = Aspect.where(:user_id => teacher_user_id_list)
 
-    organised_list = all_aspects_of_teacher.all.group_by(&:user_id)
+    @organised_list = all_aspects_of_teacher.all.group_by(&:user_id)
     Rails.logger.info(organised_list)
-    all_teacher_info = person_in_contacts.map { |q| {:user_id => q.owner_id, :profile => q.name}}
+    @all_teacher_info = person_in_contacts.map { |q| {:user_id => q.owner_id, :profile => q.name}}
     Rails.logger.info(all_teacher_info)
-    render :json => { :teachers => all_teacher_info, :aspects => organised_list}
+    render :layout => false
+    #render :json => { :teachers => all_teacher_info, :aspects => organised_list}
   end
 
   def join  
