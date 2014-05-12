@@ -115,10 +115,10 @@ class AspectsController < ApplicationController
     all_aspects_of_teacher = Aspect.where(:user_id => teacher_user_id_list)
 
     @organised_list = all_aspects_of_teacher.all.group_by(&:user_id)
-    Rails.logger.info(@organised_list)
+    
     @all_teacher_info = person_in_contacts.map { |q| [ q.name , q.owner_id]}
     @all_teacher_info.insert(0,["Select A Teacher", "Select A Teacher"])
-    Rails.logger.info(@all_teacher_info)
+    
     render :layout => false
     #render :json => { :teachers => all_teacher_info, :aspects => organised_list}
   end
@@ -128,7 +128,10 @@ class AspectsController < ApplicationController
     aspect = Aspect.find(params[:a_id])
     create_and_share_aspect(teacher_user, current_user, aspect)
     flash[:notice] = I18n.t 'Course added successfully!', :name => aspect.name
-    render :json => { :id => aspect.id, :name => aspect.name }
+    respond_to do |format|
+      format.js
+    end 
+    #render :json => { :id => aspect.id, :name => aspect.name }
   end
   
   def teacher
