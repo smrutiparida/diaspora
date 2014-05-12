@@ -118,7 +118,7 @@ class AspectsController < ApplicationController
     Rails.logger.info(organised_list)
     all_teacher_info = person_in_contacts.map { |q| {:user_id => q.owner_id, :profile => q.name}}
     Rails.logger.info(all_teacher_info)
-    render :json => { :teachers => all_teacher_info.to_json, :aspects => organised_list.to_json}
+    render :json => { :teachers => all_teacher_info, :aspects => organised_list}
   end
 
   def join  
