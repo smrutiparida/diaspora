@@ -64,15 +64,13 @@ Handlebars.registerHelper('anonymityString', function(author, type, make_anonymo
   } 
 
   if(make_anonymous){
-    console.log("step 3"); 
     return _.template('<span class="<%= class_name %>"> <%= htmlStr %> </span>', {
       'class_name': class_name,
       'htmlStr': htmlStr
     });
   }
   else {
-    console.log("step 4");
-  
+
     hoverStr = Handlebars.helpers['hovercardable'].call(this, author);
     return _.template('<a href="/people/<%= guid %>" class="<%= class_name %> <%= hoverStr %>"> <%= htmlStr %></a>', {
       'guid': author.guid,

@@ -3,9 +3,12 @@
     {{ t "aspect_navigation.select_all" }}
   </a>
 </li>
-<li class="hoverable" id="teacher-create-course">
-  <a href="/aspects/new?type=Classroom" class="selectable new_aspect" rel="facebox">+ Create a Course</a>
-</li>
-<li class="hoverable" id="student-join-course">
-  <a href="/aspects/join" class="selectable new_aspect" rel="facebox">+ Join a Course</a>
-</li>
+{{#if IsUserTeacher}}
+  <li class="hoverable" id="teacher-create-course">
+    <a href="/aspects/new?type=Classroom" class="selectable new_aspect" rel="facebox">+ Create a Course</a>
+  </li>
+{{else}}	
+  <li class="hoverable" id="student-join-course">
+    <a href="/aspects/join" class="selectable new_aspect" rel="facebox">+ Join a Course</a>
+  </li>
+{{/if}}	
