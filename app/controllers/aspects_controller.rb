@@ -101,6 +101,33 @@ class AspectsController < ApplicationController
     render :json => { :id => @aspect.id, :name => @aspect.name }
   end
   
+  def add
+    #show all teachers in the college
+    #USing location attribute of profile to extract this.
+    #for each teacher show the list of courses he take
+    all_teachers = Profile.where(:role => 'teacher', :location => current_user.location)
+
+    person_id_list = all_teachers.map{|a| a.person_id}
+    person_in_contacts = Person.where(:id => person_id_list)
+    
+    teacher_user_id_list = person_in_contacts.map{|a| a.owner_id}    
+    all_aspects_of_teacher = Aspect.where(:user_id => teacher_user_id_list)
+
+    organised_list = all_aspects_of_teacher.all.group_by(&:user_id)
+    Rails.logger.info(organised_list)
+    all_teacher_info = teacher_user_id_list.map { |q| {:user_id => q.owner_id, :profile => q.name}}
+    Rails.logger.info(all_teacher_info)
+    render :json => { :teachers => all_teacher_info.to_json, :aspects => organised_list.to_json}
+  end
+
+  def join  
+    teacher_user = User.find(params[:id])
+    aspect = Aspect.find(params[:a_id])
+    create_and_share_aspect(teacher_user, current_user, aspect)
+    flash[:notice] = I18n.t 'Course added successfully!', :name => aspect.name
+    render :json => { :id => aspect.id, :name => aspect.name }
+  end
+  
   def teacher
     #who is the teacher? Role table has persoon_id with role = teacher and contacts table has person_id and user_id
     aspect = current_user.aspects.where(:id => params[:id]).includes(:contacts).first

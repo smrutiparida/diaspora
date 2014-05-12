@@ -20,9 +20,12 @@ app.views.AspectsList = app.views.Base.extend({
        $("#aspects_list > *:last").before('<li><div class="icons-check_yes_ok"></div><span>No Courses</span></li>');
     }
     this.$('a[rel*=facebox]').facebox();
-    if(app.currentUser.get('role') != "teacher"){
-       $('#teacher-create-course').hide();
-       $('#aspects_list .modify_aspect').hide();
+    if(app.currentUser.get('role') == "teacher"){
+       $('#student-join-course').hide();
+    }
+    else {
+      $('#teacher-create-course').hide();
+      $('#aspects_list .modify_aspect').hide(); 
     }
 
     this.updateStreamTitle();

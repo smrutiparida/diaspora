@@ -15,7 +15,8 @@
         = aspect.submit t('.update'), 'data-disable-with' => t('.updating'), :class => 'button'
     %span    
       = "Course code is:"
-      = @aspect.code 
+      %b
+        = @aspect.code 
       = ". Share this code with students." 
   
   = render 'shared/contact_list', :aspect => @aspect, :contacts => @contacts

@@ -65,6 +65,10 @@ Diaspora::Application.routes.draw do
   
   get 'aspects/teacher/:id' => 'aspects#teacher'
 
+  get 'aspects/add' => 'aspects#add'
+
+  post 'aspects/join' => 'aspects#join'
+
 
   get 'bookmarklet' => 'status_messages#bookmarklet'
 
