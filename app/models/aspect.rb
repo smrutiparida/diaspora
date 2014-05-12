@@ -45,7 +45,7 @@ class Aspect < ActiveRecord::Base
   end
   
   def name
-    "#{name} (#{code})"
+    name + ' (' + code + ')'
   end
 end
 
