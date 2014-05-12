@@ -105,8 +105,8 @@ class AspectsController < ApplicationController
     #show all teachers in the college
     #USing location attribute of profile to extract this.
     #for each teacher show the list of courses he take
-    Rails.logger.info(current_user.to_json)
-    all_teachers = Profile.where(:role => 'teacher', :location => current_user.location)
+    Rails.logger.info(current_user.person.to_json)
+    all_teachers = Profile.where(:role => 'teacher', :location => current_user.person.profile.location)
 
     person_id_list = all_teachers.map{|a| a.person_id}
     person_in_contacts = Person.where(:id => person_id_list)
