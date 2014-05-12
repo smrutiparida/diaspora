@@ -53,7 +53,7 @@ $(document).ready(function() {
 
   $('#teacher_select').live('change',function(){
     $('.course_per_teacher').hide();
-    $('##teacher-label').show();
+    $('#teacher-label').show();
     $('#teacher_select_' + $(this).val()).show();
   });
 });
