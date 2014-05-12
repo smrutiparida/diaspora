@@ -59,17 +59,14 @@ Diaspora::Application.routes.draw do
   get "commented" => "streams#commented", :as => "commented_stream"
   get "aspects" => "streams#aspects", :as => "aspects_stream"
 
+  get  'aspects/teacher/:id' => 'aspects#teacher'
+  get  'aspects/add' => 'aspects#add'
+  post 'aspects/join' => 'aspects#join'
+  
   resources :aspects do
     put :toggle_contact_visibility    
   end
   
-  get 'aspects/teacher/:id' => 'aspects#teacher'
-
-  get 'aspects/add' => 'aspects#add'
-
-  post 'aspects/join' => 'aspects#join'
-
-
   get 'bookmarklet' => 'status_messages#bookmarklet'
 
   resources :photos, :except => [:index, :show] do
