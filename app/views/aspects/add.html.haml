@@ -10,7 +10,8 @@
   %form{:action => '/aspects/join', :'data-remote' => true, :method => 'post' } 
     %p
       = "Select Teacher"
-      = select_tag "id", options_from_collection_for_select(@all_teacher_info, :first, :last), :id => 'teacher_select'
+      = select_tag "id", options_for_select(@all_teacher_info), :id => 'teacher_select'
+       
     
     %p
       %span#teacher-label.hidden
