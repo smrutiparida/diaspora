@@ -10,7 +10,7 @@
   %form{:action => '/aspects/join', :'data-remote' => true, :method => 'post' } 
     %p
       = "Select Teacher"
-      = select_tag "id", options_for_select(@all_teacher_info), :id => 'teacher_select'
+      = select_tag "id", options_for_select(@all_teacher_info, disabled: "Select A Teacher"), :id => 'teacher_select'
        
     
     %p
