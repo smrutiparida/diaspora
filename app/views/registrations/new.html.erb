@@ -27,8 +27,18 @@
                     </label>
 
                     <div class="controls">
-                        <%= select_tag "user[person[profile[role]]]", "<option value='student'>Student</option><option value='teacher'>Teacher</option>".html_safe, :style => 'border:none;margin:5px;' %>
+                        <%= select_tag "user[person[profile[role]]]", "<option value='student'>Student</option><option value='teacher'>Teacher</option><option value='teacher'>TA</option>".html_safe, :style => 'border:none;margin:5px;' :onchange => 'return ask_code_if_teacher(this);' %>
                         
+                    </div>
+                  </div>
+
+                  <div class="control-group" id="invitation-code-html" style="display:none">
+                    <label class="control-label" for="invite_token">
+                        INVITATION CODE
+                    </label>
+
+                    <div class="controls">
+                      <input name="invite[token]" type="text" size="30" value="" placeholder="your invitation code..">
                     </div>
                   </div>
 
@@ -92,3 +102,19 @@
     </div>
   </div>
 </div>
+<javascript>
+  function ask_code_if_teacher(ele)
+  {
+    if($('#invite_token').length < 1)
+    {
+      $(ele).val() == "teacher")
+      {
+        $('#invitation-code-html').show();
+      }
+      else
+      {
+        $('#invitation-code-html').hide(); 
+      }
+    }  
+  }
+</javascript>  
