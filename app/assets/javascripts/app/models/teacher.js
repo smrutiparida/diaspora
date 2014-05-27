@@ -3,8 +3,10 @@ app.models.Teacher = Backbone.Model.extend({
 
   get_teacher : function(ids) {
     //var teacher = new app.models.Teacher();
-    $('#teacher_thubmnail').hide();
-    this.deferred = this.fetch({url : this.urlRoot + ids[0]}).done(_.bind(this.triggerFetchedEvents, this))
+    if(ids.length > 0){
+      $('#teacher_thubmnail').hide();
+      this.deferred = this.fetch({url : this.urlRoot + ids[0]}).done(_.bind(this.triggerFetchedEvents, this))
+    }
     //return teacher;  
   },
 
