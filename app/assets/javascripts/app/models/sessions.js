@@ -2,8 +2,11 @@ app.models.Sessions = Backbone.Model.extend({
   urlRoot : "/contents/",
 
   getSessions : function(ids) {
-    app.aspectContentId = "all";
-    this.deferred = this.fetch({url : this.urlRoot + ids[0]}).done(_.bind(this.triggerFetchedEvents, this))
+    if(ids.length > 0)
+    {
+      app.aspectContentId = "all";
+      this.deferred = this.fetch({url : this.urlRoot + ids[0]}).done(_.bind(this.triggerFetchedEvents, this))
+    }
   },
 
   isFetching : function(){
