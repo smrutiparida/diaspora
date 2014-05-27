@@ -52,8 +52,9 @@
       = og_page_specific_tags(@post)
 
     = include_gon(:camel_case => true)
+
     
-    <script id="_webengage_script_tag" type="text/javascript">
+    :javascript
       var _weq = _weq || {};
       _weq['webengage.licenseCode'] = '~99199671';
       _weq['webengage.widgetVersion'] = "4.0";
@@ -66,7 +67,7 @@
         var _sNode = d.getElementById('_webengage_script_tag');
         _sNode.parentNode.insertBefore(_we, _sNode);
       })(document);
-    </script>
+
   %body
     = flash_messages
 
