@@ -19,16 +19,6 @@
     %ul.content#filters_list
       = render "shared/links"  
 
-- if current_user.role == "teacher"
-  - if AppConfig.settings.invitations.open?
-    .section
-      .title
-        .icons-mail
-        %h5.title-header
-          = t('shared.invitations.invite_your_friends')
-      .content
-        = render "shared/invitations"
-
 .section
   .title
     .icons-bookmark
@@ -39,6 +29,15 @@
     
 
 -#
+  - if current_user.role == "teacher"
+    - if AppConfig.settings.invitations.open?
+      .section
+        .title
+          .icons-mail
+          %h5.title-header
+            = t('shared.invitations.invite_your_friends')
+        .content
+          = render "shared/invitations"
   .section
     .title
       .icons-question

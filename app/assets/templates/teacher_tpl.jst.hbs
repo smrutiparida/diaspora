@@ -3,8 +3,8 @@
 </a>
 <div>{{teacher.name}}</div>
 <br/>
-<div><a href="#" class="button" onclick="$('#publisher').removeClass('anonymous').show();$('#user_anonymity').val('false');$('#status-submit-button').val('Submit Question');">Ask Question</a></div><br/>
-<div><a href="#" class="" onclick="$('#publisher').addClass('anonymous').show();$('#user_anonymity').val('true');$('#status-submit-button').val('Submit Anonymously')">Ask Anonymously</a></div>
+<div><a href="#" class="button" id="ask-question-button" onclick="$('#publisher').removeClass('anonymous').toggle();$('#user_anonymity').val('false');$('#status-submit-button').val('Submit Question');$('ask-question-button').toggleClass('creation');">Ask Question</a></div><br/>
+<div><a href="#" class="" onclick="$('#publisher').addClass('anonymous').show();$('#user_anonymity').val('true');$('#status-submit-button').val('Submit Anonymously');$('ask-question-button').removeClass('creation');">Ask Anonymously</a></div>
 
 <div>
 <a href="#" class="" onclick="jQuery.facebox(function() {$.get('/conversations/teacher_new?contact_id={{teacher.contact}}', function(data) { $.facebox(data) })});return false;">Send a Private Message</a>

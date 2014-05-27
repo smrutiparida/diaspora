@@ -10,7 +10,7 @@
 
     %meta{:charset => 'utf-8'}/
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
-    %meta{:name => "description", :content => "Social network for schools, colleges, educational institutions."}/
+    %meta{:name => "description", :content => "Ask questions after classes to your instructors online."}/
     %meta{:name => "author", :content => "Smruti Parida"}/
     %meta{:property => "og:site_name", :content => "lmnop"}/
 
@@ -52,7 +52,21 @@
       = og_page_specific_tags(@post)
 
     = include_gon(:camel_case => true)
-
+    
+    <script id="_webengage_script_tag" type="text/javascript">
+      var _weq = _weq || {};
+      _weq['webengage.licenseCode'] = '~99199671';
+      _weq['webengage.widgetVersion'] = "4.0";
+      
+      (function(d){
+        var _we = d.createElement('script');
+        _we.type = 'text/javascript';
+        _we.async = true;
+        _we.src = (d.location.protocol == 'https:' ? "https://ssl.widgets.webengage.com" : "http://cdn.widgets.webengage.com") + "/js/widget/webengage-min-v-4.0.js";
+        var _sNode = d.getElementById('_webengage_script_tag');
+        _sNode.parentNode.insertBefore(_we, _sNode);
+      })(document);
+    </script>
   %body
     = flash_messages
 
