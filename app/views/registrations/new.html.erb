@@ -27,7 +27,7 @@
                     </label>
 
                     <div class="controls">
-                        <%= select_tag "user[person[profile[role]]]", "<option value='student'>Student</option><option value='teacher'>Teacher</option><option value='teacher'>TA</option>".html_safe, :style => 'border:none;margin:5px;' :onchange => 'return ask_code_if_teacher(this);' %>
+                        <%= select_tag "user[person[profile[role]]]", "<option value='student'>Student</option><option value='teacher'>Teacher</option><option value='teacher'>TA</option>".html_safe, :style => 'border:none;margin:5px;', :onchange => 'return ask_code_if_teacher(this);' %>
                         
                     </div>
                   </div>
