@@ -2,7 +2,7 @@
   function ask_code_if_teacher(ele){
     if($('#invite_token').length < 1)
     {
-      ($(ele).val() == "teacher")
+      if($(ele).val() == "teacher")
       {
         $('#invitation-code-html').show();
       }
