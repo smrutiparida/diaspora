@@ -45,7 +45,7 @@ class Aspect < ActiveRecord::Base
   end
   
   def to_beautify
-    name + ' (' + code + ')'
+    name.to_s + ' (' + code.to_s + ')'
   end
 end
 
