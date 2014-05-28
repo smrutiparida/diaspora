@@ -3,7 +3,7 @@
 #   the COPYRIGHT file.
 
 class RegistrationsController < Devise::RegistrationsController
-  before_filter :check_registrations_open_or_vaild_invite!, only: [:new]
+  before_filter :check_registrations_open_or_vaild_invite!
   before_filter :check_valid_invite!, only: [:create]
 
   layout ->(c) { request.format == :mobile ? "application" : "with_header" }, :only => [:new]
@@ -39,7 +39,7 @@ class RegistrationsController < Devise::RegistrationsController
     return true if params[:user][:person][:profile][:role] == "student"
     return true if invite && invite.can_be_used?
     flash[:error] = t('registrations.invalid_invite')
-    redirect_to new_user_session_path
+    redirect_to new_user_registration_path
   end
 
   def check_registrations_open_or_vaild_invite!

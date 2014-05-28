@@ -160,7 +160,7 @@ class AspectsController < ApplicationController
     end
   
   end  
-  
+
   def toggle_contact_visibility
     @aspect = current_user.aspects.where(:id => params[:aspect_id]).first
 

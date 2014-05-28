@@ -1,0 +1,41 @@
+-#   Copyright (c) 2010-2011, Diaspora Inc.  This file is
+-#   licensed under the Affero General Public License version 3 or later.  See
+-#   the COPYRIGHT file.
+
+- content_for :head do
+  = javascript_include_tag :assessment
+  = javascript_include_tag "https://www.google.com/jsapi" 
+  = javascript_include_tag "https://www.google.com/uds/?file=visualization&amp;v=1.0&amp;packages=corechart,table"
+  = javascript_include_tag "https://www.google.com/uds/api/visualization/1.0/3e90177897a662843613f410c963722a/format+en,default+en,ui+en,table+en,corechart+en.I.js"
+  = stylesheet_link_tag "https://www.google.com/uds/api/visualization/1.0/3e90177897a662843613f410c963722a/ui+en,table+en.css"
+  
+- content_for :page_title do
+  = "Report"
+
+:css
+  footer{ display:none;}
+
+.span-15.prepend-9.last
+  .stream_container
+    #conversation_show
+      %div#chart_div
+      %div#table_div    
+
+:javascript
+  var data = new google.visualization.DataTable();
+  data.addColumn('string', 'Points');
+  data.addColumn('number', 'Count');
+  data.addRows(<%= @data.to_json.html_safe %>);
+  var options = {'title':'Class Performance',
+                 'width':400,
+                 'height':300};
+  var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+  chart.draw(data, options);
+
+  var data2 = new google.visualization.DataTable();
+  data2.addColumn('string', 'Name');
+  data2.addColumn('number', 'Marks');
+  data2.addRows(<%= @data2.to_json.html_safe %>);
+
+  var table = new google.visualization.Table(document.getElementById('table_div'));
+  table.draw(data2, {showRowNumber: true});

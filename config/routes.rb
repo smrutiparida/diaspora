@@ -119,6 +119,8 @@ Diaspora::Application.routes.draw do
   get 'assignment_assessments/performance' => 'assignment_assessments#performance'
   resources :assignment_assessments
 
+  resources :reports
+
   resources :quizzes
   
   resources :tags, :only => [:index]
