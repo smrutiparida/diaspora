@@ -2,7 +2,7 @@
 #   licensed under the Affero General Public License version 3 or later.  See
 #   the COPYRIGHT file.
 
-class AspectsController < ApplicationController
+class ReportsController < ApplicationController
   before_filter :authenticate_user!
 
   respond_to :html,
@@ -44,4 +44,4 @@ class AspectsController < ApplicationController
 	#  format.js
 	#end
   end  
-  
+end 
