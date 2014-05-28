@@ -17,12 +17,14 @@
 
 
 .stream_container  
+  %div#line_chart2_div
   %div#chart_div
   %h5
     = "Student Leaderboard"
+  %div#line_chart1_div
   %div#table_div
-  %div#line_chart1_div 
-  %div#line_chart2_div 
+   
+   
 
 :javascript
   var data4 = new google.visualization.DataTable();
@@ -32,7 +34,7 @@
   var options = {'title':'No Of Conversations Resolved (7 days Average)'}
   var chart = new google.visualization.LineChart(document.getElementById('line_chart2_div'));
   chart.draw(data4, options);
-  
+
   var data = new google.visualization.DataTable();
   data.addColumn('string', 'Questions');
   data.addColumn('number', 'Total');
