@@ -242,6 +242,17 @@ ActiveRecord::Schema.define(:version => 20130801063213) do
     t.datetime "updated_at",                            :null => false
   end
 
+  create_table "reports", :force => true do |t|
+    t.string   "name"
+    t.integer  "aspect_id"
+    t.integer  "person_id"
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.integer  "q_asked",               :default => 0,  :null => false                  
+    t.integer  "q_answered",            :default => 0,  :null => false                   
+    t.integer  "q_resolved",            :default => 0,  :null => false                  
+    t.integer  "q_score",               :default => 0,  :null => false                  
+  end
 
   create_table "contents", :force => true do |t|
     t.string   "name"

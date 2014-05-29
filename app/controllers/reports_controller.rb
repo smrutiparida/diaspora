@@ -11,9 +11,9 @@ class ReportsController < ApplicationController
 
   def show   
   	#@data =[['Work',     11],['Eat',      2], ['Commute',  2], ['Watch TV', 2],['Sleep',    7]]
-  	@data2 = [['Work',     11],['Eat',      2], ['Commute',  2], ['Watch TV', 2],['Sleep',    7]]
+  	@data2 = [] #[['Work',     11],['Eat',      2], ['Commute',  2], ['Watch TV', 2],['Sleep',    7]]
      
-	#@report_data = Report.find(params[:a_id])
+	
 	#data for the aspect id, rank all memebers based on data in aspect_assessments table
 	#columns needed -> aspect_id, person_id, person_name. qs_asked, qs_answered, answsers_marked_right
 	##@data_for_score_table = []
@@ -27,14 +27,18 @@ class ReportsController < ApplicationController
 	opened_info = Hash.new {|h,k| h[k] = 0}
 	user_anonymity_info = h = Hash.new {|h,k| h[k] = 0}
 	if current_user.role == "teacher"
-	  all_posts = Post.joins(:aspect_visibilities).where(:aspect_visibilities => {:aspect_id => params[:id]})
+	  all_posts = Post.joins(:aspect_visibilities).where(:aspect_visibilities => {:aspect_id => params[:id]})	  
 	  unless all_posts.nil?
 	    all_posts.each do |p|
-	      opened_info[p.created_at.beginning_of_week.strftime("%m-%d")] += 1
-	      resolve_info[p.updated_at.beginning_of_week.strftime("%m-%d")] += 1 if p.is_post_resolved
+	      opened_info[p.created_at.beginning_of_week.strftime("%e-%b")] += 1
+	      resolve_info[p.updated_at.beginning_of_week.strftime("%e-%b")] += 1 if p.is_post_resolved
 	      p.user_anonymity ? user_anonymity_info["Anonymous"] += 1 : user_anonymity_info["Public"] += 1  
 	    end
-	  end    
+	  end  
+	  report_data = Report.where(:aspect_id => params[:id])
+	  unless report_data.nil?
+	  	report_data.each { |r| @data2.push([r.name, r.q_asked, r.q_answered, r.q_resolved, r.score])}
+	  end 	
 	end
 
 	@data = []
