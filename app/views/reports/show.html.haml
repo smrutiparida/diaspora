@@ -15,26 +15,21 @@
 :css
   footer{ display:none;}
 
+#section_header
+  %h2
+    = "Reports"
 
 .stream_container  
   %div#line_chart2_div
   %div#chart_div
+  %div#line_chart1_div
   %h5
     = "Student Leaderboard"
-  %div#line_chart1_div
   %div#table_div
    
    
 
 :javascript
-  var data4 = new google.visualization.DataTable();
-  data4.addColumn('string', 'Week');
-  data4.addColumn('number', 'Questions');
-  data4.addRows(#{@data2.to_json.html_safe});
-  var options = {'title':'No Of Conversations Resolved (7 days Average)'}
-  var chart = new google.visualization.LineChart(document.getElementById('line_chart2_div'));
-  chart.draw(data4, options);
-
   var data = new google.visualization.DataTable();
   data.addColumn('string', 'Questions');
   data.addColumn('number', 'Total');
@@ -56,8 +51,16 @@
   var data3 = new google.visualization.DataTable();
   data3.addColumn('string', 'Week');
   data3.addColumn('number', 'Questions');
-  data3.addRows(#{@data2.to_json.html_safe});
+  data3.addRows(#{@data3.to_json.html_safe});
   var options = {'title':'No Of Questions Asked (7 days Average)'}
   var chart = new google.visualization.LineChart(document.getElementById('line_chart1_div'));
   chart.draw(data3, options);
+
+  var data4 = new google.visualization.DataTable();
+  data4.addColumn('string', 'Week');
+  data4.addColumn('number', 'Questions');
+  data4.addRows(#{@data4.to_json.html_safe});
+  var options = {'title':'No Of Conversations Resolved (7 days Average)'}
+  var chart = new google.visualization.LineChart(document.getElementById('line_chart2_div'));
+  chart.draw(data4, options);
 

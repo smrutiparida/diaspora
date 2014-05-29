@@ -10,14 +10,12 @@ class ReportsController < ApplicationController
              :json
 
   def show   
-  	@data =[['Work',     11],['Eat',      2], ['Commute',  2], ['Watch TV', 2],['Sleep',    7]]
+  	#@data =[['Work',     11],['Eat',      2], ['Commute',  2], ['Watch TV', 2],['Sleep',    7]]
   	@data2 = [['Work',     11],['Eat',      2], ['Commute',  2], ['Watch TV', 2],['Sleep',    7]]
-    respond_to do |format|
-	  format.html
-	end 
-	##@aspect_assessments = AspectAssessment.find(params[:a_id])
+     
+	#@report_data = Report.find(params[:a_id])
 	#data for the aspect id, rank all memebers based on data in aspect_assessments table
-	#columns needed -> aspect_id, person_id, qs_asked, qs_answered, answsers_marked_right, score, answers_resolved
+	#columns needed -> aspect_id, person_id, person_name. qs_asked, qs_answered, answsers_marked_right
 	##@data_for_score_table = []
 	##@status_assessment_table = StatusAssessment.find(params[:a_id])
 	#have resolved_Date and closed_date added to the POST table
@@ -25,23 +23,28 @@ class ReportsController < ApplicationController
 	##@data_for_open_conversations = []
 	##@data_for_closed_conversations = []
 	##@data_for_anonymous_questions = []
+	resolve_info = {}
+	opened_info = {}
+	user_anonymity_info = {}
+	if current_user.role == "teacher"
+	  all_posts = Post.joins(:aspect_visibilities).where(:aspect_visibilities => {:aspect_id => params[:id]})
+	  unless all_posts.nil?
+	    all_posts.each do |p|
+	      opened_info[p.created_at.beginning_of_week.strftime("%m-%d")] += 1
+	      resolve_info[p.updated_at.beginning_of_week.strftime("%m-%d")] += 1 if p.is_post_resolved
+	      p.user_anonymity ? user_anonymity_info["Anonymous"] += 1 : user_anonymity_info["Public"] += 1  
+	    end
+	  end    
+	end
 
-	##if current_user.role == "teacher"
-	##  @assignment_assessments = AssignmentAssessment.where(:assignment_id => @assignment.id)
-	##  unless @assignment_assessments.nil?
-	##    @assignment_assessments.each do |c|
-	##      c.is_checked ? @data2.push([c.diaspora_handle, c.points]) : next
-	##      @key = c.points.to_s + " marks"
-	##      @temp.has_key?(@key) ? @temp[@key] = @temp[@key] + 1 : @temp[@key] = 1          
-	##    end
-	##  end    
-	##end
-
-	##@temp.each { |key,value| @data.push([key, value])}
-	##Rails.logger.info(@data.to_json)
-	##Rails.logger.info(@data2.to_json)
-	##respond_to do |format|
-	##  format.js
-	##end
+	user_anonymity_info.each { |key,value| @data.push([key, value])}
+	opened_info.each { |key,value| @data3.push([key, value])}
+	resolve_info.each { |key,value| @data4.push([key, value])}
+	Rails.logger.info(@data.to_json)
+	Rails.logger.info(@data3.to_json)
+	Rails.logger.info(@data4.to_json)
+	respond_to do |format|
+	  format.html
+	end
   end  
 end 
