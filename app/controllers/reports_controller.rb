@@ -37,7 +37,7 @@ class ReportsController < ApplicationController
 	  end  
 	  report_data = Report.where(:aspect_id => params[:id])
 	  unless report_data.nil?
-	  	report_data.each { |r| @data2.push([r.name, r.q_asked, r.q_answered, r.q_resolved, r.score])}
+	  	report_data.each { |r| @data2.push([r.name, r.q_asked, r.q_answered, r.q_resolved, r.q_score])}
 	  end 	
 	end
 
