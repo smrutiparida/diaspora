@@ -55,4 +55,9 @@ module AspectsHelper
       concat content_tag(:div, nil, id: "contact_visibility_padlock", class: icon)
     end
   end
+
+  def is_contact_aspect_member(aspect, contact)
+    membership = contact.aspect_memberships.where(:aspect_id => aspect.id).first
+    return !membership.nil?
+  end  
 end
