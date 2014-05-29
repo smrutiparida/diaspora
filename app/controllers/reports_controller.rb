@@ -37,6 +37,9 @@ class ReportsController < ApplicationController
 	  end    
 	end
 
+	@data = []
+	@data3 = []
+	@data4 = []
 	user_anonymity_info.each { |key,value| @data.push([key, value])}
 	opened_info.each { |key,value| @data3.push([key, value])}
 	resolve_info.each { |key,value| @data4.push([key, value])}
