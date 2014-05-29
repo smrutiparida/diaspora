@@ -74,10 +74,12 @@ class StatusMessagesController < ApplicationController
       course_params = {:post_id => @status_message.id, :type => "Post", :module_id => params[:s_id]}
       current_user.build_post(:course, course_params).save
 
-      
-      report_obj = Report.find_by_aspect_id_and_person_id( aspects.first.id, current_user.person_id) || Report.new(:aspect_id => aspects.first.id, :person_id => current_user.person_id, :name => current_user.name, :q_asked => 0)
-      report_obj.q_asked += 1
-      report_obj.save
+      if current_user.role != "teacher"
+        report_obj = Report.find_by_aspect_id_and_person_id( aspects.first.id, current_user.person_id) || Report.new(:aspect_id => aspects.first.id, :person_id => current_user.person_id, :name => current_user.name, :q_asked => 0, :q_score => 0)
+        report_obj.q_asked += 1
+        report_obj.q_score += 1
+        report_obj.save
+      end  
       
       
       current_user.participate!(@status_message)

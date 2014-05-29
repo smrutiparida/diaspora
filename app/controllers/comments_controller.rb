@@ -18,6 +18,14 @@ class CommentsController < ApplicationController
     post = current_user.find_visible_shareable_by_id(Post, params[:post_id])
     @comment = current_user.comment!(post, params[:text]) if post
 
+    if current_user.role != "teacher"
+      aspect_set = current_user.aspects_with_shareable(Post, post.id)
+      report_obj = Report.find_by_aspect_id_and_person_id( aspect_set.first.id, current_user.person_id) || Report.new(:aspect_id => aspect_set.first.id, :person_id => current_user.person_id, :name => current_user.name, :q_answered => 0, :q_score => 0)
+      report_obj.q_answered += 1
+      report_obj.q_score += 1
+      report_obj.save
+    end
+
     if @comment
       respond_to do |format|
         format.json{ render :json => CommentPresenter.new(@comment), :status => 201 }
@@ -33,6 +41,14 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:c_id])
     @comment.is_endorsed = !@comment.is_endorsed
     @comment.save
+
+    aspect_set = current_user.aspects_with_shareable(Post, @comment.parent.id)
+    report_obj = Report.find_by_aspect_id_and_person_id(aspect_set.first.id, @comment.author_id)
+    unless report_obj.nil?
+      report_obj.q_resolved += 1
+      report_obj.q_score += 1
+      report_obj.save
+    end
     render :nothing => true, :status => 202
   end
 
