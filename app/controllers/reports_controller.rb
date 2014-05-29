@@ -23,9 +23,9 @@ class ReportsController < ApplicationController
 	##@data_for_open_conversations = []
 	##@data_for_closed_conversations = []
 	##@data_for_anonymous_questions = []
-	resolve_info = {}
-	opened_info = {}
-	user_anonymity_info = {}
+	resolve_info = Hash.new {|h,k| h[k] = 0}
+	opened_info = Hash.new {|h,k| h[k] = 0}
+	user_anonymity_info = h = Hash.new {|h,k| h[k] = 0}
 	if current_user.role == "teacher"
 	  all_posts = Post.joins(:aspect_visibilities).where(:aspect_visibilities => {:aspect_id => params[:id]})
 	  unless all_posts.nil?
