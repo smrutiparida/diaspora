@@ -48,6 +48,7 @@ class ReportsController < ApplicationController
 	opened_info.each { |key,value| @data3.push([key, value])}
 	resolve_info.each { |key,value| @data4.push([key, value])}
 	Rails.logger.info(@data.to_json)
+	Rails.logger.info(@data2.to_json)
 	Rails.logger.info(@data3.to_json)
 	Rails.logger.info(@data4.to_json)
 	respond_to do |format|
