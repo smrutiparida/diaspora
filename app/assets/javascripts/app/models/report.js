@@ -17,8 +17,9 @@ app.models.Report = Backbone.Model.extend({
     this.trigger("fetched", this);
     // all loaded?
     //var respItems = this.parse(resp);
-    Console.log(this.attributes)
-    Console.log(resp)
+    console.log(this.attributes)
+    console.log(resp)
+
     if(this.attributes.id)
     {
       app.reportView = new app.views.Report({attributes:this.attributes});
