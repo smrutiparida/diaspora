@@ -120,6 +120,7 @@ Diaspora::Application.routes.draw do
   resources :assignment_assessments
 
   resources :reports
+  get  'reports/snippet/:id' => 'reports#snippet'
 
   resources :quizzes
   

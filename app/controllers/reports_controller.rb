@@ -37,7 +37,7 @@ class ReportsController < ApplicationController
 	  end  
 	  report_data = Report.where(:aspect_id => params[:id])
 	  unless report_data.nil?
-	  	report_data.each { |r| @data2.push([r.name, r.q_asked, r.q_answered, r.q_resolved, r.q_score])}
+	  	report_data.each { |r| @data2.push([r.name, r.q_asked])}#, r.q_answered, r.q_resolved, r.q_score])}
 	  end 	
 	end
 
@@ -47,12 +47,18 @@ class ReportsController < ApplicationController
 	user_anonymity_info.each { |key,value| @data.push([key, value])}
 	opened_info.each { |key,value| @data3.push([key, value])}
 	resolve_info.each { |key,value| @data4.push([key, value])}
-	Rails.logger.info(@data.to_json)
-	Rails.logger.info(@data2.to_json)
-	Rails.logger.info(@data3.to_json)
-	Rails.logger.info(@data4.to_json)
+	#Rails.logger.info(@data.to_json)
+	#Rails.logger.info(@data2.to_json)
+	#Rails.logger.info(@data3.to_json)
+	#Rails.logger.info(@data4.to_json)
 	respond_to do |format|
 	  format.html
 	end
   end  
+  def snippet
+  	report_data = Report.where(:aspect_id => params[:id]).order('q_asked DESC').limit(5)
+  	respond_to do |format|
+	  format.json => @report_data.to_json
+	end
+  end
 end 
