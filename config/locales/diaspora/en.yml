@@ -726,13 +726,14 @@ en:
       message: |-
         Hello!
 
-        You have been invited to join lmnop!
+        You have been invited to lmnop!
+
+        Invitation Code %{invite_code}
 
         Click this link to get started
 
         [%{invite_url}][1]
 
-        Share this invitation code with other teachers. Code is %{invite_code}
 
         Love,
 
@@ -915,7 +916,7 @@ en:
       update: "Update"
       cancel_my_account: "Cancel my account"
     closed: "Signups are closed on this Lmnop."
-    invalid_invite: "The invite link you provided is no longer valid!"
+    invalid_invite: "The invitation is no longer valid!"
 
   requests:
     manage_aspect_contacts:

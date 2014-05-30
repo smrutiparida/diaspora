@@ -21,9 +21,10 @@ app.models.Sessions = Backbone.Model.extend({
     if(this.attributes)
     {
       $("#sessions_list").empty();
-      
+      console.log(this.attributes)
       for (var key in this.attributes) {
         var ele = this.attributes[key].content;
+        console.log(ele)
         var tempSessionView = new app.views.Session({attributes: ele});
         $("#sessions_list").append(tempSessionView.render().el);  
         //app.aspectContentId = ele.id;
