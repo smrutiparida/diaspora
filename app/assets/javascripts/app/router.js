@@ -125,7 +125,10 @@ app.Router = Backbone.Router.extend({
     $("#sessions_list").remove();
     $('.all_aspects').find('.icons-check_yes_ok.selected').siblings(":last").after("<ul id='sessions_list' class='content' style='display:none;'></ul>");
     var sessionsView = new app.models.Sessions;
-    sessionsView.getSessions(ids);
+    if(ids.length > 0){
+      sessionsView.getSessions(ids);  
+    }
+    
   },
 
   hideInactiveStreamLists: function() {

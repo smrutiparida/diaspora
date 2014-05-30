@@ -17,7 +17,9 @@ app.models.Sessions = Backbone.Model.extend({
     this.trigger("fetched", this);
     // all loaded?
     //var respItems = this.parse(resp);
-    var selected_aspect;
+    var ids = app.aspects.selectedAspects('id');
+    var selected_aspect = ids[0];
+    
     if(this.attributes)
     {
       $("#sessions_list").empty();
@@ -28,7 +30,6 @@ app.models.Sessions = Backbone.Model.extend({
         var tempSessionView = new app.views.Session({attributes: ele});
         $("#sessions_list").append(tempSessionView.render().el);  
         //app.aspectContentId = ele.id;
-        selected_aspect = ele.aspect_id;
         //tmpl = tmpl + _.template('<li class="sessions-names"><a href="#" class="filter-sessoion" data-aspect="<%= aspect_id %>"><%= name %></a></li>',{'aspect_id':ele.aspect_id,'name':ele.name});  
       }
 
