@@ -58,7 +58,7 @@ class ReportsController < ApplicationController
   def snippet
   	report_data = Report.where(:aspect_id => params[:id]).order('q_asked DESC').limit(5)
   	respond_to do |format|
-	  format.json => @report_data.to_json
+	  format.json => report_data.to_json
 	end
   end
 end 
