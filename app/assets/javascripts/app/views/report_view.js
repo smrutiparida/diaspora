@@ -1,7 +1,7 @@
 app.views.Teacher = app.views.Base.extend({
   templateName: "report",
   //tagName: "a",
-
+  
   presenter : function() {
     return _.extend(this.defaultPresenter(), {
       reports : this.attributes,

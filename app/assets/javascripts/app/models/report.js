@@ -17,14 +17,12 @@ app.models.Report = Backbone.Model.extend({
     this.trigger("fetched", this);
     // all loaded?
     //var respItems = this.parse(resp);
-    console.log(this.attributes)
-    console.log(resp)
-
-    if(this.attributes.id)
-    {
-      app.reportView = new app.views.Report({attributes:this.attributes});
-      $('#report_snippet').html(app.reportView.render().el);
-    }
+    
+    var reports = _.map(this.attributes, function(num, key){ return key; });
+    console.log(reports)
+    app.reportView = new app.views.Report({attributes:reports});
+    $('#report_snippet').html(app.reportView.render().el);
+    
   }
 
 
