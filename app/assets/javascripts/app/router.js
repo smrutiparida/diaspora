@@ -101,8 +101,8 @@ app.Router = Backbone.Router.extend({
     app.teacherModel = new app.models.Teacher
     app.teacherModel.get_teacher(ids);
 
-    app.reportModel = new app.models.Report
-    app.reportModel.get_report(ids);
+    //app.reportModel = new app.models.Report
+    //app.reportModel.get_report(ids);
     
     app.stream = new app.models.StreamAspects([], { aspects_ids: ids});
     app.stream.fetch();

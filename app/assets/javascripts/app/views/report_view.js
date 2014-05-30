@@ -23,3 +23,4 @@ app.views.Report = app.views.Base.extend({
   }
 });
 
+ 

@@ -39,7 +39,7 @@ configuration: ## Section
     ## However changing http to https is okay and has no consequences.
     ## If you do change it you have to start over as it's hardcoded into
     ## the database.
-    url: "http://social.lmnop.in/"
+    url: "http://www.lmnop.in/"
     
     ## Setting the bundle of certificate authorities (CA) certificates.
     ## This is operating system specific.
