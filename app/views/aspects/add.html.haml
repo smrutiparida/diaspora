@@ -15,7 +15,7 @@
     
     %p
       %span#teacher-label.hidden
-        = "Select Teacher"
+        = "Select Course"
       - @organised_list.each do |user_id,aspect_info|
         = select_tag "a_id", options_from_collection_for_select(aspect_info, "id", "to_beautify"), :id => 'teacher_select_' + user_id.to_s, :style=>'display:none', :class => 'course_per_teacher'
       
