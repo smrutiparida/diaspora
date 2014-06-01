@@ -76,7 +76,12 @@ app.views.Comment = app.views.Content.extend({
 
   teacherCommentORendorsedComment : function(){
     //console.log(this.model.get("is_endorsed"));
-    if(app.currentUser.authenticated() && (this.model.get("author").diaspora_id == app.teacherModel.get("handle") || this.model.get("is_endorsed"))){
+    var is_teachercomment = false;
+    if(typeof app.teacherModel != "undefined"){
+      is_teachercomment =  (this.model.get("author").diaspora_id == app.teacherModel.get("handle") )
+    }
+    
+    if(app.currentUser.authenticated() && ( is_teachercomment || this.model.get("is_endorsed"))){
       return true;
     }
     //console.log("came");
