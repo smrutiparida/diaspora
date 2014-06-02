@@ -11,12 +11,12 @@ module Workers
       #get all posts, all comments from a certain time and analyze each of them  
       #[asked,answered,resolved,score]
       insertion_array = []    
-      Rails.logger.info(aspects.to_s)
+      #Rails.logger.info(aspects.to_s)
       aspects.each do |aspect|    
-        Rails.logger.info(aspect.to_s)
+        Rails.logger.info(aspect[:id])
         all_my_students = Hash.new{ |h,k| h[k] = [0,0,0,0] }
-        all_reports = Report.where(:aspect_id => aspect.id).all
-        user.visible_shareables(Post,  {:by_members_of => aspect.id, :limit => 18446744073709551615}).each do |post|
+        all_reports = Report.where(:aspect_id => aspect[:id]).all
+        user.visible_shareables(Post,  {:by_members_of => aspect[:id], :limit => 18446744073709551615}).each do |post|
           if user_id != post.author_id
             post.comments.each do |comment|
               if comment.author_id != user_id
@@ -40,7 +40,7 @@ module Workers
           end
         end    
         all_my_students.each do |key, value_array|
-          insertion_array.push "(" + "'#{[user_name, aspect.id, key, value_array[0], value_array[1], value_array[2], value_array[3]].join(",")}'" + ")"
+          insertion_array.push "(" + "'#{[user_name, aspect[:id], key, value_array[0], value_array[1], value_array[2], value_array[3]].join(",")}'" + ")"
         end  
       end       
           
