@@ -182,12 +182,12 @@ class DocumentsController < ApplicationController
     
     @document = current_user.build_post(:document, params[:document])
  
-    return_stage = create_view(@document)
-    if return_stage['stat'] == 'ok'
-      @document.issuu_id = return_stage['_content']['document']['documentId']
-      return_stage = request_embed_creation(@document.issuu_id) 
-      @document.issuu_data_id = return_stage['_content']['documentEmbed']['dataConfigId'] if return_stage['stat'] == 'ok'
-    end
+    #return_stage = create_view(@document)
+    #if return_stage['stat'] == 'ok'
+    #  @document.issuu_id = return_stage['_content']['document']['documentId']
+    #  return_stage = request_embed_creation(@document.issuu_id) 
+    #  @document.issuu_data_id = return_stage['_content']['documentEmbed']['dataConfigId'] if return_stage['stat'] == 'ok'
+    #end
 
     if @document.save
       aspects = current_user.aspects_from_ids(params[:document][:aspect_ids])
