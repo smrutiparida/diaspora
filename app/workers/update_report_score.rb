@@ -6,11 +6,11 @@ module Workers
   class UpdateReportScore < Base
     sidekiq_options queue: :update_score
 
-    def perform(user)
+    def perform(user, aspects)
       #get all posts, all comments from a certain time and analyze each of them  
       #[asked,answered,resolved,score]
       insertion_array = []    
-      user.aspects.each do |aspect|    
+      aspects.each do |aspect|    
         all_my_students = Hash.new{ |h,k| h[k] = [0,0,0,0] }
         all_reports = Report.where(:aspect_id => aspect.id).all
         user.visible_shareables(Post,  {:by_members_of => aspect.id, :limit => 18446744073709551615}).each do |post|

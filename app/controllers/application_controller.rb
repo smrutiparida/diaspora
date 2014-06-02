@@ -128,7 +128,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    Workers::UpdateReportScore.perform_async(current_user) if current_user.role == "teacher"
+    Workers::UpdateReportScore.perform_async(current_user, current_user.aspects) if current_user.role == "teacher"
     stored_location_for(:user) || current_user_redirect_path
   end
 
