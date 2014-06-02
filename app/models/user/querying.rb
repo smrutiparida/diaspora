@@ -29,7 +29,7 @@ module User::Querying
 
     post_ids = klass.connection.select_values(visible_shareable_sql(klass, opts)).map { |id| id.to_i }
     #we think all post is public and can be seen by everyone else.
-    #post_ids += klass.connection.select_values("#{construct_public_followings_sql(opts).to_sql} LIMIT #{opts[:limit]}").map {|id| id.to_i }
+    post_ids += klass.connection.select_values("#{construct_public_followings_sql(opts).to_sql} LIMIT #{opts[:limit]}").map {|id| id.to_i }
   end
 
   def visible_shareable_sql(klass, opts={})
