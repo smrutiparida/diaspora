@@ -27,7 +27,8 @@ class ReportsController < ApplicationController
 	opened_info = Hash.new {|h,k| h[k] = 0}
 	user_anonymity_info = h = Hash.new {|h,k| h[k] = 0}
 	if current_user.role == "teacher"
-	  all_posts = Post.joins(:aspect_visibilities).where(:aspect_visibilities => {:aspect_id => params[:id]})	  
+	  #all_posts = Post.joins(:aspect_visibilities).where(:aspect_visibilities => {:aspect_id => params[:id]})	
+	  all_posts = current_user.visible_shareables(Post,  {:by_members_of => params[:id], :limit => 50})  
 	  unless all_posts.nil?
 	    all_posts.each do |p|
 	      opened_info[p.created_at.beginning_of_week.strftime("%e-%b")] += 1
