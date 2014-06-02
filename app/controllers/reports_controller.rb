@@ -58,7 +58,7 @@ class ReportsController < ApplicationController
   def snippet
   	reports = Report.where(:aspect_id => params[:id]).order('q_asked DESC').limit(5)
   	report_data = []
-  	report_data.each {|report| report_data.push({:name => report.name, :score => report.score})}
+  	reports.each {|report| report_data.push({:name => report.name, :score => report.score})}
 	respond_to do |format|
       format.json do
         render :json => report_data.to_json
