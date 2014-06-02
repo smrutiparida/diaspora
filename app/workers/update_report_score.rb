@@ -9,11 +9,11 @@ module Workers
     def perform(user_id, user_name, aspects)
       user = User.find(user_id)
       #get all posts, all comments from a certain time and analyze each of them  
-      #[asked,answered,resolved,score]
+      #[asked,answered,resolved,score,name]
       insertion_array = []    
       #Rails.logger.info(aspects.to_s)
       aspects.each do |aspect|    
-        Rails.logger.info(aspect)
+        #Rails.logger.info(aspect)
         all_my_students = Hash.new{ |h,k| h[k] = [0,0,0,0] }
         all_reports = Report.where(:aspect_id => aspect).all
         user.visible_shareables(Post,  {:by_members_of => aspect, :limit => 18446744073709551615}).each do |post|
@@ -22,10 +22,12 @@ module Workers
               if comment.author_id != user_id
                 all_my_students[comment.author_id][1] += 1
                 all_my_students[comment.author_id][2] += 1 if comment.is_endorsed
+                all_my_students[comment.author_id][4] = comment.author_name
               end
             end
             all_my_students[post.author_id][0] += 1
-            all_my_students[post.author_id][3] += post.likes_count + post.comments_count  
+            all_my_students[post.author_id][3] += post.likes_count + post.comments_count
+            all_my_students[post.author_id][4] = post.author_name
           end
         end
         #final_score calculation
@@ -40,7 +42,7 @@ module Workers
           end
         end    
         all_my_students.each do |key, value_array|
-          insertion_array.push "(" + [ "'" + user_name + "'", aspect, key, value_array[0], value_array[1], value_array[2], value_array[3]].join(",") + ")"
+          insertion_array.push "(" + [ "'" + value_array[4] + "'", aspect, key, value_array[0], value_array[1], value_array[2], value_array[3]].join(",") + ")"
         end  
       end       
       
