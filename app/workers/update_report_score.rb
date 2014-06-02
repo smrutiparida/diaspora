@@ -6,7 +6,8 @@ module Workers
   class UpdateReportScore < Base
     sidekiq_options queue: :update_score
 
-    def perform(user, aspects)
+    def perform(user_id, user_name, aspects)
+      user = User.find(user_id)
       #get all posts, all comments from a certain time and analyze each of them  
       #[asked,answered,resolved,score]
       insertion_array = []    
@@ -14,9 +15,9 @@ module Workers
         all_my_students = Hash.new{ |h,k| h[k] = [0,0,0,0] }
         all_reports = Report.where(:aspect_id => aspect.id).all
         user.visible_shareables(Post,  {:by_members_of => aspect.id, :limit => 18446744073709551615}).each do |post|
-          if user.id != post.author_id
+          if user_id != post.author_id
             post.comments.each do |comment|
-              if comment.author_id != user.id
+              if comment.author_id != user_id
                 all_my_students[comment.author_id][1] += 1
                 all_my_students[comment.author_id][2] += 1 if comment.is_endorsed
               end
@@ -37,7 +38,7 @@ module Workers
           end
         end    
         all_my_students.each do |key, value_array|
-          insertion_array.push "(" + "'#{[user.name, aspect.id, key, value_array[0], value_array[1], value_array[2], value_array[3]].join(",")}'" + ")"
+          insertion_array.push "(" + "'#{[user_name, aspect.id, key, value_array[0], value_array[1], value_array[2], value_array[3]].join(",")}'" + ")"
         end  
       end       
           
