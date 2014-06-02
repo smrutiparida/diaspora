@@ -31,7 +31,7 @@ app.views.Session = app.views.Base.extend({
   },
 
   isSessionSelected : function(){
-    console.log(this.attributes.id);
+    //console.log(this.attributes.id);
     if(typeof app.aspectContentId === "undefined"){
       return false;
     }
