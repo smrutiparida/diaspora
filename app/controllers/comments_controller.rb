@@ -18,8 +18,6 @@ class CommentsController < ApplicationController
     post = current_user.find_visible_shareable_by_id(Post, params[:post_id])
     @comment = current_user.comment!(post, params[:text]) if post
 
-    #Workers::UpdateReportScore.perform_async(self.id,"comment")
-
     if @comment
       respond_to do |format|
         format.json{ render :json => CommentPresenter.new(@comment), :status => 201 }
@@ -35,8 +33,6 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:c_id])
     @comment.is_endorsed = !@comment.is_endorsed
     @comment.save
-
-    #Workers::UpdateReportScore.perform_async(self.id,"resolve")
     
     render :nothing => true, :status => 202
   end
