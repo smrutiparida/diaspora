@@ -40,7 +40,7 @@ module Workers
           end
         end    
         all_my_students.each do |key, value_array|
-          insertion_array.push "(" + [user_name, aspect, key, value_array[0], value_array[1], value_array[2], value_array[3]].join(",") + ")"
+          insertion_array.push "(" + [ "'" + user_name + "'", aspect, key, value_array[0], value_array[1], value_array[2], value_array[3]].join(",") + ")"
         end  
       end       
           
