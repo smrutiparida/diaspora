@@ -41,9 +41,9 @@ module Workers
         end  
       end       
           
-      CONN = ActiveRecord::Base.connection    
+      conn = ActiveRecord::Base.connection    
       sql = "INSERT INTO reports (`name`, `aspect_id`, `person_id`, `q_asked`, `q_answered`, `q_resolved`, `q_score`) VALUES #{insertion_array.join(", ")}"
-      CONN.execute sql
+      conn.execute sql
     end
   end
 end
