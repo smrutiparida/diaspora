@@ -11,12 +11,15 @@ app.views.Report = app.views.Base.extend({
   },
 
   IsUserTeacher:function(){
-    return app.currentUser.get('role') == "teacher"
+    return_val = app.currentUser.get('role') == "teacher";
+    console.log(return_val)
+    return return_val;
   },
 
   getActiveAspect:function(){
   	var ids = app.aspects.selectedAspects('id')
   	if(ids.length > 0){
+      console.log(ids[0])
   		return ids[0]
   	}
   	return ""
