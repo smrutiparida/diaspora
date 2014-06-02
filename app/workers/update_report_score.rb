@@ -42,7 +42,7 @@ module Workers
           end
         end    
         all_my_students.each do |key, value_array|
-          insertion_array.push "(" + [ "'" + value_array[4] + "'", aspect, key, value_array[0], value_array[1], value_array[2], value_array[3], "'" + Time.now + "'", "'" + Time.now + "'"].join(",") + ")"
+          insertion_array.push "(" + [ "'" + value_array[4] + "'", aspect, key, value_array[0], value_array[1], value_array[2], value_array[3], "'" + Time.now.to_s + "'", "'" + Time.now.to_s + "'"].join(",") + ")"
         end  
       end       
       
