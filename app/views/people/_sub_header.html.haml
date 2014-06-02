@@ -14,10 +14,11 @@
 
   %h2
     = person.name
-  %span.diaspora_handle
-    = person.diaspora_handle
-
   -#  
+    %span.diaspora_handle
+      = person.diaspora_handle
+
+    
     .description
       - if !person.tag_string.blank? && user_signed_in?
         = Diaspora::Taggable.format_tags(person.profile.tag_string)
