@@ -11,7 +11,9 @@ module Workers
       #get all posts, all comments from a certain time and analyze each of them  
       #[asked,answered,resolved,score]
       insertion_array = []    
+      Rails.logger.info(aspects.to_s)
       aspects.each do |aspect|    
+        Rails.logger.info(aspect.to_s)
         all_my_students = Hash.new{ |h,k| h[k] = [0,0,0,0] }
         all_reports = Report.where(:aspect_id => aspect.id).all
         user.visible_shareables(Post,  {:by_members_of => aspect.id, :limit => 18446744073709551615}).each do |post|
