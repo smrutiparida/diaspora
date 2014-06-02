@@ -15,7 +15,7 @@ app.views.Post = app.views.Base.extend({
 
   
   isPostForTheSession: function(){
-    console.log("app.views.Post:isPostForTheSession");
+    //console.log("app.views.Post:isPostForTheSession");
     var c_id = this.model.get("content_id").toString()
     var app_c_id;
     if(typeof app.aspectContentId == "undefined"){
@@ -29,7 +29,7 @@ app.views.Post = app.views.Base.extend({
   },
 
   isPostForTheType: function(){
-    console.log("app.views.Post:isPostForTheType");
+    //console.log("app.views.Post:isPostForTheType");
     if(app.questionFilter == 'question-all'){
       return true;
     }
@@ -44,17 +44,17 @@ app.views.Post = app.views.Base.extend({
   },
 
   authorIsCurrentUser : function() {
-    console.log("app.views.Post:authorIsCurrentUser");
+    //console.log("app.views.Post:authorIsCurrentUser");
     return app.currentUser.authenticated() && this.model.get("author").id == app.user().id
   },
 
   showPost : function() {
-    console.log("app.views.Post:showPost");
+    //console.log("app.views.Post:showPost");
     return (app.currentUser.get("showNsfw")) || !this.model.get("nsfw")
   },
 
   anonymousPost : function() {
-    console.log("app.views.Post:anonymousPost");
+    //console.log("app.views.Post:anonymousPost");
     if(typeof this.model.get("user_anonymity") == "string"){
       return this.model.get("user_anonymity") == "true" ? true : false
     }
