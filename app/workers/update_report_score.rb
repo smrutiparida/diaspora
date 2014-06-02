@@ -43,10 +43,12 @@ module Workers
           insertion_array.push "(" + [ "'" + user_name + "'", aspect, key, value_array[0], value_array[1], value_array[2], value_array[3]].join(",") + ")"
         end  
       end       
-          
-      conn = ActiveRecord::Base.connection    
-      sql = "INSERT INTO reports (`name`, `aspect_id`, `person_id`, `q_asked`, `q_answered`, `q_resolved`, `q_score`) VALUES #{insertion_array.join(", ")}"
-      conn.execute sql
+      
+      if insertion_array.length > 0
+        conn = ActiveRecord::Base.connection    
+        sql = "INSERT INTO reports (`name`, `aspect_id`, `person_id`, `q_asked`, `q_answered`, `q_resolved`, `q_score`) VALUES #{insertion_array.join(", ")}"
+        conn.execute sql
+      end  
     end
   end
 end
