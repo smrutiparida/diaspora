@@ -42,7 +42,10 @@
 
   var data2 = new google.visualization.DataTable();
   data2.addColumn('string', 'Name');
-  data2.addColumn('number', 'Questions Asked');
+  data2.addColumn('number', 'Qs Asked');
+  data2.addColumn('number', 'Qs Answered');
+  data2.addColumn('number', 'Qs Resolved');
+  data2.addColumn('number', 'LMNOP Score');
   data2.addRows(#{@data2.to_json.html_safe});
 
   var table = new google.visualization.Table(document.getElementById('table_div'));
