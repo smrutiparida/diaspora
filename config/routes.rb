@@ -99,6 +99,8 @@ Diaspora::Application.routes.draw do
 
   resources :questions
 
+  
+  post 'providers/create' => 'providers#create'
   resources :providers
 
   get 'questions/clone/:id' => 'questions#clone'
