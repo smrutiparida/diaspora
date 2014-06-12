@@ -81,6 +81,8 @@ gem 'omniauth-twitter',  '1.0.0'
 gem 'twitter',           '4.8.1'
 gem 'omniauth-wordpress','0.2.0'
 
+#LTI
+gem 'ims-lti'
 # Tags
 
 gem 'acts-as-taggable-on', '2.4.1'
