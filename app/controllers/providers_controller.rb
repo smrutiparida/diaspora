@@ -12,6 +12,7 @@ class ProvidersController < ApplicationController
 
   	# Initialize TP object with OAuth creds and post parameters
 	provider = IMS::LTI::ToolProvider.new(@consumer_key, @consumer_secret, params)
+	request = Net::HTTP::Post.new('http://dev.lmnop.in/providers/create')
 
 	# Verify OAuth signature by passing the request object
 	if provider.valid_request?(request)
