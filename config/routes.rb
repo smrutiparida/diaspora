@@ -231,6 +231,7 @@ Diaspora::Application.routes.draw do
   controller :services do
     scope "/auth", :as => "auth" do
       match ':provider/callback' => :create
+      match 'oauth/callback' => :create
       match :failure
     end
     scope 'services' do
