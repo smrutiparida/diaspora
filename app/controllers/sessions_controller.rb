@@ -3,7 +3,7 @@
 #   the COPYRIGHT file.
 
 class SessionsController < Devise::SessionsController
-  skip_before_filter :verify_authenticity_token
+  
   layout "application", :only => [:new]
   before_filter -> { @css_framework = :bootstrap }, only: [:new]
 

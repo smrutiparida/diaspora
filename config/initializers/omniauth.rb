@@ -30,4 +30,8 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   if AppConfig.services.wordpress.enable?
     provider :wordpress, AppConfig.services.wordpress.client_id, AppConfig.services.wordpress.secret
   end
+
+  if AppConfig.services.oauth.enable?
+    provider :oauth, AppConfig.services.oauth.client_id, AppConfig.services.oauth.secret
+  end
 end
