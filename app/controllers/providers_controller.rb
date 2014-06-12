@@ -4,6 +4,7 @@
 
 class ProvidersController < ApplicationController
   skip_before_filter :verify_authenticity_token
+  respond_to :html
 
   def create
   	@consumer_key = 'lmnop-sandbox'
@@ -19,6 +20,7 @@ class ProvidersController < ApplicationController
 	  # handle invalid OAuth
 	  Rails.logger.info("invalid request")
 	end
+	redirect_to_origin
   end
 
   private	
