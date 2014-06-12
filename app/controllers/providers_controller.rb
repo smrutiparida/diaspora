@@ -9,6 +9,7 @@ class ProvidersController < ApplicationController
   def create
   	@consumer_key = 'lmnop-sandbox'
     @consumer_secret = 'lmnop123'
+    OAUTH_10_SUPPORT = true
 
   	# Initialize TP object with OAuth creds and post parameters
 	provider = IMS::LTI::ToolProvider.new(@consumer_key, @consumer_secret, params)
