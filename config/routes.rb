@@ -22,8 +22,6 @@ Diaspora::Application.routes.draw do
 
   resources :status_messages, :only => [:new, :create]
 
-  resources :providers
-
   resources :posts do
     member do
       get :next
@@ -100,6 +98,8 @@ Diaspora::Application.routes.draw do
   resources :quizzes
 
   resources :questions
+
+  resources :providers
 
   get 'questions/clone/:id' => 'questions#clone'
 

@@ -4,10 +4,11 @@
 
 class ProvidersController < ApplicationController
   skip_before_filter :verify_authenticity_token
-  @consumer_key = 'lmnop-sandbox'
-  @consumer_secret = 'lmnop123'
 
   def create
+  	@consumer_key = 'lmnop-sandbox'
+    @consumer_secret = 'lmnop123'
+
   	# Initialize TP object with OAuth creds and post parameters
 	provider = IMS::LTI::ToolProvider.new(@consumer_key, @consumer_secret, params)
 
