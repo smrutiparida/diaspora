@@ -12,36 +12,18 @@ class ProvidersController < ApplicationController
 
   	# Initialize TP object with OAuth creds and post parameters
 	provider = IMS::LTI::ToolProvider.new(@consumer_key, @consumer_secret, params)
-	Rails.logger.info(provider.to_json)
+
 	# Verify OAuth signature by passing the request object
 	if provider.valid_request?(request)
-	  Rails.logger.info("valid request")
 	  @user= User.find_by_email(provider.lis_person_contact_email_primary)
 	  unless @user.present?
-	    ##signs up using lis_person_contact_email_primary,roles, lis_person_name_given, lis_person_name_family, "tool_consumer_instance_guid" => ISB, username => email, password => RANDOM
-	    #{"username"=>"temp30", "email"=>"temp30@lmnop.in", "password"=>"temp123", "password_confirmation"=>"temp123", "person"=>{"profile"=>{"role"=>"student", "location"=>"PSBB, Chennai"}}}
 	    user_params = signup_params(provider)
 	  	@user = User.build(user_params)
-	    if @user.save
-	      if user_params[:person][:profile][:role] == 'teacher'
-	        self.aspects.create(:name => provider.context_title, :folder => "Classroom", :code => create_short_code(provider.context_title))
-	      #elsif user_params[:person][:profile][:role] = 'student'
-	      end    
-	      sign_in_and_redirect(:user, @user)
-	      Rails.logger.info("event=registration status=successful user=#{@user.diaspora_handle}")
-	    end   
-	  else
-	  	sign_in_and_redirect(:user, @user)
-	    Rails.logger.info("event=login status=successful user=#{@user.diaspora_handle}")	     
-      end
-	    ##if teacher
-	      ##creates the course
-	    ##if student  
-	      ##joins the course mapped to the moodle course_id
-	        ##if join fails, explain that course is not yet created by the instructore here    
-	   #elseif existing user
-	      #find user details by email
-	      #set devise token     
+	    @user.save
+	  end  
+	  create_or_join_course() 	    
+	  sign_in_and_redirect(:user, @user)
+	  Rails.logger.info("event=registration or signin status=successful user=#{@user.diaspora_handle}")   
 	else
 	  # handle invalid OAuth
 	  Rails.logger.info("invalid request")
@@ -73,12 +55,30 @@ class ProvidersController < ApplicationController
 
   private
   
-  def create_short_code(course_name)
+  def create_or_join_course(provider, user)
+  	user_aspect = user.aspects.where(:name => provider.context_title).first
+  	return if user_aspect
+  	      
+  	#a teacher is the first member in the course and others then joins it  
+    if provider.roles.include? 'instructor'
+	  ##creates the course, can not happen that it is already created by a student
+	  self.aspects.create(:name => provider.context_title, :folder => "Classroom", :code => create_short_code(provider.context_title))
+	elsif provider.roles.include? 'learner'
+      #joins the course mapped to the moodle course_id or create a course and joins it
+      teacher_aspect = Aspect.where(:code => create_short_code(provider.context_title))
+      if teacher_aspect
+      	teacher_user = User.find(teacher_aspect.user_id)
+        create_and_share_aspect(teacher_user, current_user, teacher_aspect)
+      end  
+    end
+  end
+
+  def create_short_code(course_name, id)
   	all_words = course_name.split
   	code = ""
   	all_words.each { |x| code += x.slice(0,1)}
   	code = course_name.slice(0,3) if code.length < 2
-  	code += Time.now.year
+  	code += id.to_s
   	code
   end
    	
