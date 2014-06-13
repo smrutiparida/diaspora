@@ -62,10 +62,10 @@ class ProvidersController < ApplicationController
   	#a teacher is the first member in the course and others then joins it  
     if provider.roles.include? 'instructor'
 	  ##creates the course, can not happen that it is already created by a student
-	  self.aspects.create(:name => provider.context_title, :folder => "Classroom", :code => create_short_code(provider.context_title))
+	  self.aspects.create(:name => provider.context_title, :folder => "Classroom", :code => create_short_code(provider.context_title, provider.context_id))
 	elsif provider.roles.include? 'learner'
       #joins the course mapped to the moodle course_id or create a course and joins it
-      teacher_aspect = Aspect.where(:code => create_short_code(provider.context_title))
+      teacher_aspect = Aspect.where(:code => create_short_code(provider.context_title, provider.context_id))
       if teacher_aspect
       	teacher_user = User.find(teacher_aspect.user_id)
         create_and_share_aspect(teacher_user, current_user, teacher_aspect)
