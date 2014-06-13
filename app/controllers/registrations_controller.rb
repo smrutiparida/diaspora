@@ -10,6 +10,7 @@ class RegistrationsController < Devise::RegistrationsController
   before_filter -> { @css_framework = :bootstrap }, only: [:new]
 
   def create
+    Rails.logger.info(user_params)
     @user = User.build(user_params)
     @user.process_invite_acceptence(invite) if invite.present?
 
