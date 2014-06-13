@@ -29,7 +29,10 @@ class ProvidersController < ApplicationController
 	      end    
 	      sign_in_and_redirect(:user, @user)
 	      Rails.logger.info("event=registration status=successful user=#{@user.diaspora_handle}")
-	    end    
+	    end   
+	  else
+	  	sign_in_and_redirect(:user, @user)
+	    Rails.logger.info("event=login status=successful user=#{@user.diaspora_handle}")	     
       end
 	    ##if teacher
 	      ##creates the course
