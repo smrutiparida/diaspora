@@ -81,7 +81,7 @@ class ProvidersController < ApplicationController
    	
   def signup_params(provider)
   	user_params = {}
-  	user_params[:username] = provider.lis_person_contact_email_primary
+  	user_params[:username] = provider.lis_person_contact_email_primary.split('@')[0] + "_isb"
   	user_params[:email] = provider.lis_person_contact_email_primary
   	token = SecureRandom.hex(6)
   	user_params[:password] = token
