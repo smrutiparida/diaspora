@@ -92,12 +92,14 @@ class ProvidersController < ApplicationController
       user_params[:person][:profile][:role] = 'teacher'
     elsif provider.roles.include? 'learner'    	
       user_params[:person][:profile][:role] = 'student'
+    end  
     if provider.lis_outcome_service_url == 'http://school.demo.moodle.net/mod/lti/service.php'
       user_params[:person][:profile][:location] = "ISB, Hyderabad"
+    end  
     user_params[:person][:profile][:first_name] = provider.lis_person_name_given
     user_params[:person][:profile][:last_name] = provider.lis_person_name_family
     user_params[:person][:profile][:full_name] = provider.lis_person_name_full
-  	return user_params
+  	user_params
   end	
   	
   	
