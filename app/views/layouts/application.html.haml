@@ -53,20 +53,28 @@
 
     = include_gon(:camel_case => true)
 
-    -#
-      :javascript{ :id=> '_webengage_script_tag'}
-        var _weq = _weq || {};
-        _weq['webengage.licenseCode'] = '~99199671';
-        _weq['webengage.widgetVersion'] = "4.0";
-        
-        (function(d){
-          var _we = d.createElement('script');
-          _we.type = 'text/javascript';
-          _we.async = true;
-          _we.src = (d.location.protocol == 'https:' ? "https://ssl.widgets.webengage.com" : "http://cdn.widgets.webengage.com") + "/js/widget/webengage-min-v-4.0.js";
-          var _sNode = d.getElementById('_webengage_script_tag');
-          _sNode.parentNode.insertBefore(_we, _sNode);
-        })(document);
+    :javascript
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-52179510-1', 'lmnop.in');
+      ga('send', 'pageview');
+
+    :javascript{ :id=> '_webengage_script_tag'}
+      var _weq = _weq || {};
+      _weq['webengage.licenseCode'] = '~99199671';
+      _weq['webengage.widgetVersion'] = "4.0";
+      
+      (function(d){
+        var _we = d.createElement('script');
+        _we.type = 'text/javascript';
+        _we.async = true;
+        _we.src = (d.location.protocol == 'https:' ? "https://ssl.widgets.webengage.com" : "http://cdn.widgets.webengage.com") + "/js/widget/webengage-min-v-4.0.js";
+        var _sNode = d.getElementById('_webengage_script_tag');
+        _sNode.parentNode.insertBefore(_we, _sNode);
+      })(document);
 
   %body
     = flash_messages

@@ -4,6 +4,7 @@
 
 class AspectsController < ApplicationController
   before_filter :authenticate_user!
+  protect_from_forgery :except => :join
 
   respond_to :html,
              :js,
