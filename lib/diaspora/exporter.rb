@@ -11,28 +11,6 @@ module Diaspora
   end
 
   module Exporters
-    module TEXT
-      def execute(user)
-        builder = Nokogiri::XML::Builder.new do |xml|
-          user_person_id = user.person_id
-          xml.export {
-            xml.posts {
-              user.visible_shareables(Post).find_all_by_author_id(user_person_id).each do |post|
-                post.comments.each do |comment|
-                  post_doc << comment.to_xml
-                end
-
-                xml.parent << post.to_xml
-              end              
-            }
-          }
-        end   
-        # This is a hack.  Nokogiri interprets *.to_xml as a string.
-        # we want to inject document objects, instead.  See lines: 25,35,40.
-        # Solutions?
-        CGI.unescapeHTML(builder.to_xml.to_s)   
-      end  
-    end  
     module XML
       def execute(user)
         builder = Nokogiri::XML::Builder.new do |xml|

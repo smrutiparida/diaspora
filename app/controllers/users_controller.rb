@@ -136,8 +136,25 @@ class UsersController < ApplicationController
   end
 
   def faq
-    exporter = Diaspora::Exporter.new(Diaspora::Exporters::TEXT)
-    send_data exporter.execute(current_user), :filename => "#{current_user.username}_diaspora_data.xml", :type => :xml
+    aspect = params[:a_id]
+    builder = Nokogiri::XML::Builder.new do |xml|
+      user_person_id = current_user.person_id
+      xml.export {
+        xml.posts {
+          current_user.visible_shareables(Post, {:by_members_of => aspect, :limit => 18446744073709551615}).each do |post|
+            post.comments.each do |comment|
+              post_doc << comment.to_xml
+            end
+
+            xml.parent << post.to_xml
+          end              
+        }
+      }
+    end   
+    # This is a hack.  Nokogiri interprets *.to_xml as a string.
+    # we want to inject document objects, instead.  See lines: 25,35,40.
+    # Solutions?
+    send_data CGI.unescapeHTML(builder.to_xml.to_s), :filename => "#{current_user.username}_diaspora_data.xml", :type => :xml
   end
 
   def export_photos
