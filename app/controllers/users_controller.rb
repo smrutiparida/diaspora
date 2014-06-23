@@ -135,6 +135,11 @@ class UsersController < ApplicationController
     send_data exporter.execute(current_user), :filename => "#{current_user.username}_diaspora_data.xml", :type => :xml
   end
 
+  def faq
+    exporter = Diaspora::Exporter.new(Diaspora::Exporters::TEXT)
+    send_data exporter.execute(current_user), :filename => "#{current_user.username}_diaspora_data.xml", :type => :xml
+  end
+
   def export_photos
     tar_path = PhotoMover::move_photos(current_user)
     send_data( File.open(tar_path).read, :filename => "#{current_user.id}.tar" )

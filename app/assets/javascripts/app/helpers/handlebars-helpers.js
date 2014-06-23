@@ -72,7 +72,7 @@ Handlebars.registerHelper('anonymityString', function(author, type, make_anonymo
   else {
 
     hoverStr = Handlebars.helpers['hovercardable'].call(this, author);
-    return _.template('<a href="/people/<%= guid %>" class="<%= class_name %> <%= hoverStr %>"> <%= htmlStr %></a>', {
+    return _.template('<span href="/people/<%= guid %>" class="<%= class_name %> <%= hoverStr %>"> <%= htmlStr %></span>', {
       'guid': author.guid,
       'class_name': class_name,
       'htmlStr': htmlStr,
