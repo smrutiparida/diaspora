@@ -142,6 +142,7 @@ class UsersController < ApplicationController
       xml.export {
         xml.posts {
           current_user.visible_shareables(Post, {:by_members_of => aspect, :limit => 18446744073709551615}).each do |post|
+            post_doc = post.to_xml
             post.comments.each do |comment|
               post_doc << comment.to_xml
             end
