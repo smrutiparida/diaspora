@@ -141,22 +141,22 @@ class UsersController < ApplicationController
       doc.html {
       user_person_id = current_user.person_id
         doc.body {
-          doc.span {
-            current_user.visible_shareables(Post, {:by_members_of => aspect, :limit => 18446744073709551615}).each do |post|
+          current_user.visible_shareables(Post, {:by_members_of => aspect, :limit => 18446744073709551615}).each do |post|
+            doc.span {            
               doc.h3 {
-                post.text
+                doc.text post.text
               }
               #post_doc = post.to_xml
               post.comments.each do |comment|
                 doc.p {
-                  comment.text
+                  doc.text comment.text
                 }
                 #post_doc << comment.to_xml
               end
 
               #xml.parent << post_doc
-            end              
-          }
+            }              
+          end
         }
       }  
     end   
