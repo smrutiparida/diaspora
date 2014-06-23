@@ -137,25 +137,33 @@ class UsersController < ApplicationController
 
   def faq
     aspect = params[:a_id]
-    builder = Nokogiri::XML::Builder.new do |xml|
+    builder = Nokogiri::HTML::Builder.new do |doc|
+      doc.html {
       user_person_id = current_user.person_id
-      xml.export {
-        xml.posts {
-          current_user.visible_shareables(Post, {:by_members_of => aspect, :limit => 18446744073709551615}).each do |post|
-            post_doc = post.to_xml
-            post.comments.each do |comment|
-              post_doc << comment.to_xml
-            end
+        doc.body {
+          doc.span {
+            current_user.visible_shareables(Post, {:by_members_of => aspect, :limit => 18446744073709551615}).each do |post|
+              doc.h3 {
+                post.text
+              }
+              #post_doc = post.to_xml
+              post.comments.each do |comment|
+                doc.p {
+                  comment.text
+                }
+                #post_doc << comment.to_xml
+              end
 
-            xml.parent << post_doc
-          end              
+              #xml.parent << post_doc
+            end              
+          }
         }
-      }
+      }  
     end   
     # This is a hack.  Nokogiri interprets *.to_xml as a string.
     # we want to inject document objects, instead.  See lines: 25,35,40.
     # Solutions?
-    send_data CGI.unescapeHTML(builder.to_xml.to_s), :filename => "#{current_user.username}_diaspora_data.xml", :type => :xml
+    send_data CGI.unescapeHTML(builder.to_html.to_s), :filename => "#{current_user.username}_diaspora_data.html", :type => :html
   end
 
   def export_photos
