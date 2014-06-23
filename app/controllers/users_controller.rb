@@ -137,25 +137,36 @@ class UsersController < ApplicationController
 
   def faq
     aspect = params[:a_id]
+    count = 1
+    flag = false
     builder = Nokogiri::HTML::Builder.new do |doc|
       doc.html {
       user_person_id = current_user.person_id
-        doc.body {
+        doc.body(:style => 'margin-left: 100px;margin-top: 30px;color: #444;line-height:25px;') {
+          doc.h1(:style => 'font-size:20px;line-height:20px;') {
+            doc.text 'FAQ'
+          }
           current_user.visible_shareables(Post, {:by_members_of => aspect, :limit => 18446744073709551615}).each do |post|
-            doc.span {            
-              doc.h3 {
-                doc.text post.text
-              }
-              #post_doc = post.to_xml
-              post.comments.each do |comment|
-                doc.p {
-                  doc.text comment.text
+            post.comments.each { |comment| flag = true if comment.is_endorsed }
+            if flag
+              doc.span {            
+                doc.h3(:style => 'font-size:16px;line-height:20px;') {
+                  doc.text count.to_s + ". " + post.text
                 }
-                #post_doc << comment.to_xml
-              end
+                #post_doc = post.to_xml
+                post.comments.each do |comment|
+                  if comment.is_endorsed
+                    doc.p(:style => 'font-size:13px;line-height:20px;') {
+                      doc.text "<i>Ans:</i>" + comment.text
+                    }
+                  end  
+                  #post_doc << comment.to_xml
+                end
 
-              #xml.parent << post_doc
-            }              
+                #xml.parent << post_doc
+              }
+            end                
+            flag = false
           end
         }
       }  
@@ -163,7 +174,7 @@ class UsersController < ApplicationController
     # This is a hack.  Nokogiri interprets *.to_xml as a string.
     # we want to inject document objects, instead.  See lines: 25,35,40.
     # Solutions?
-    send_data CGI.unescapeHTML(builder.to_html.to_s), :filename => "#{current_user.username}_diaspora_data.html", :type => :html
+    send_data CGI.unescapeHTML(builder.to_html.to_s), :filename => "#{current_user.username}_#{aspect}_faq.html", :type => :html
   end
 
   def export_photos
