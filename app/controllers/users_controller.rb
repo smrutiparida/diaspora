@@ -147,7 +147,7 @@ class UsersController < ApplicationController
               post_doc << comment.to_xml
             end
 
-            xml.parent post_doc
+            xml.parent << post_doc
           end              
         }
       }
