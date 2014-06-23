@@ -103,6 +103,10 @@ app.Router = Backbone.Router.extend({
 
     app.reportModel = new app.models.Report
     app.reportModel.get_report(ids);
+
+    if(ids.length > 0){
+      $('#download_link').attr("href", "/user/faq?a_id=" + ids[0])
+    }
     
     app.stream = new app.models.StreamAspects([], { aspects_ids: ids});
     app.stream.fetch();
