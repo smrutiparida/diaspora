@@ -38,15 +38,27 @@ $(document).ready(function() {
 
   $('#aspect_name').live('keyup', function(){
     
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
     var short_form = createShortForm($('#aspect_name').val())
     var d = new Date();
     var n = d.getFullYear();
+
+    var uniquePart = $('#course_code').text();
+    var uniqueNess = possible.charAt(Math.floor(Math.random() * possible.length)) + Math.floor((Math.random() * 100) + 1).toString();  
+    if(uniquePart != ""){
+      var part_array = uniquePart.split("-");
+      if(part_array.length > 1){
+        uniqueNess = part_array[1]
+      }
+    }
+
     var course_code = "";
     if (short_form != "")
     {
-      course_code = short_form + n.toString();
+      course_code = short_form + n.toString() + "-" + uniqueNess;
     }
-    
+
     $('#course_code').text(course_code);
     $('#course_hidden_code').val(course_code);
   });

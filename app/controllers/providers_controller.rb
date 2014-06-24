@@ -61,9 +61,9 @@ class ProvidersController < ApplicationController
   	      
   	#a teacher is the first member in the course and others then joins it  
     if provider.roles.include? 'instructor'
-	  ##creates the course, can not happen that it is already created by a student
-	  self.aspects.create(:name => provider.context_title, :folder => "Classroom", :code => create_short_code(provider.context_title, provider.context_id))
-	elsif provider.roles.include? 'learner'
+	    ##creates the course, can not happen that it is already created by a student
+	    self.aspects.create(:name => provider.context_title, :folder => "Classroom", :code => create_short_code(provider.context_title, provider.context_id))
+	  elsif provider.roles.include? 'learner'
       #joins the course mapped to the moodle course_id or create a course and joins it
       teacher_aspect = Aspect.where(:code => create_short_code(provider.context_title, provider.context_id))
       if teacher_aspect
@@ -78,7 +78,7 @@ class ProvidersController < ApplicationController
   	code = ""
   	all_words.each { |x| code += x.slice(0,1)}
   	code = course_name.slice(0,3) if code.length < 2
-  	code += id.to_s
+  	code += "-" + id.to_s
   	code
   end
    	
