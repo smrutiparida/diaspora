@@ -113,10 +113,11 @@
 
     .hidden#close_account_pane{:rel => 'facebox'}
       #inner_account_delete
-        %h1
+        %h2
           = t('.close_account.dont_go')
-        
-        .span-10
+        %p
+          = t('.close_account.make_diaspora_better')
+        .span-20
           %ul
             %li
               = t('.close_account.what_we_delete')

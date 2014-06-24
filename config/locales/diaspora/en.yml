@@ -1209,7 +1209,7 @@ en:
 
       close_account:
         dont_go: "Hey, please don't go!"
-        make_groupify_better: "We want you to help us make Groupify better, so you should help us out instead of leaving. If you do want to leave, we want you to know what happens next."
+        make_diaspora_better: "We want you to help us make LMNOP better, so you should help us out instead of leaving."
         mr_wiggles: 'Mr Wiggles will be sad to see you go'
         what_we_delete: "We will delete all of your posts and profile data. Your comments will hang around, but they would be associated with your LMNOP ID instead of your name."
         locked_out: "You will get signed out and locked out of your account."
