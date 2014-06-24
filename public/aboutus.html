@@ -1,0 +1,379 @@
+<style type="text/css">
+    body {
+            margin-top: 0px;
+            margin-left: 0px;
+            margin-right: 0px;
+            background-color: #efefef;
+           
+            background-size: cover;
+            background-position: center center;
+            background-size: cover;
+            -webkit-background-size: cover;
+            padding: 0px;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            background-repeat: no-repeat;
+    }
+
+    #navbar-top{
+
+            background: #39424e;
+            opacity: 0.8;
+            border-bottom: 1px solid #39424e;
+
+    }
+
+    #homepage-header {
+            /* Hack to hide the header */
+            -webkit-box-shadow:none;
+            -moz-box-shadow:none;
+            box-shadow:none;
+            border:none;
+            background:none;
+            -webkit-font-smoothing: antialiased;
+            margin: 0px auto;
+            left: 0px;
+            padding: 15px 0px;
+    }
+
+    .btn{
+            margin-top: 50px;
+    }
+
+    .top-navbar-list{
+            list-style: none;
+            float: left;
+    }
+
+    footer h3 {
+            margin-bottom: 25px;
+            text-align: center;
+    }
+
+    footer {
+        background-color: #39424e;
+    }
+
+    .banner h2 {
+            font-size: 24 px;
+            line-height: 110%;
+            font-weight: normal;
+    }
+
+
+    #name-logo {
+            font-size: 40px;
+            font-weight: bold;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+            margin-left: 10px;
+            color: white;
+            text-decoration: none;
+    }
+
+
+
+
+
+
+    #banner {
+        background: black;
+        width:60%;
+        height:300px;
+        position: relative;
+        margin-top: 75px;
+        left: 20%;
+        border-radius: 6px;
+    }
+
+    #top-bar{
+        margin-top: 7px;
+        list-style: none;
+        text-align: right;
+        float: right;
+    }
+
+    #blog-link{
+        font-size: 15px;
+        color: white;
+        text-decoration: underline;
+        vertical-align: middle;
+        margin-left: 20px;
+    }
+
+    .container{
+        background-image: url('<%= asset_path 'home.jpg' %>');
+        width: 100%;
+        height:350px;
+        opacity: 1;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+
+    #page {
+            width: 900px;
+            max-width: 1200px;
+            margin: 0 auto;
+            
+    }
+
+    #links {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+    }
+
+    #links .section {
+            margin: 0;
+            padding: 0;
+            display: inline-block;
+            vertical-align: top;
+            width: 24%;
+            max-width: 24%;
+    }
+
+    #change-page {
+            color: #999;
+            text-align: center;
+            font-style: italic;
+    }
+
+    .helpful {
+            cursor: help;
+    }
+
+    .top-navbar-list > a {
+            color: #ffffff;
+            margin: 0;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+            float: none;
+            padding: 7px 15px 7px;
+            text-decoration: none;
+            background: :#2a9ceb;
+            border-radius: 6px;
+    }
+
+
+
+
+    .static-text{
+            float: left;
+    }
+
+    #video-player {
+            display: none;
+            float: right;
+            margin: 50px auto;
+            position: relative;
+            top: 125px;
+            z-index: 1;
+            display: inline;
+            border: 5px solid #fff;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+            -moz-box-shadow: 1px 1px 3px #000;
+            -webkit-box-shadow: 1px 1px 3px #000;
+            box-shadow: 1px 1px 3px #000;
+
+
+    }
+
+    #left-content{
+            color: white;
+            line-height: 1.1em;
+            text-shadow: 0 0 24px rgba(0,0,0,0.5),0 0 64px rgba(0,0,0,0.25),0 2px rgba(0,0,0,0.75);
+            width: 84%;
+            margin-top: 180px;
+            height: 190px;
+    }
+
+    #left-content h2 {
+            font-size: 35px;
+    }
+
+
+
+    .empower {
+        padding-top: 27px;
+        display: inline-block;
+        float: left;
+        list-style: none;
+        margin: 0 0 0 10px;
+    }
+
+    li {
+        list-style: none;
+        display: inline;
+        line-height: 20px;
+    }
+    .feature-list{
+        line-height: 38px;
+        font-size: 18px;
+    }
+    .row{
+        margin-left: 0px;
+        margin-right: -12.5px;
+    }
+
+    .col-4 {
+        width: 33.33333%;
+        float: left;
+        position: relative;
+        min-height: 1px;
+    }
+
+    .text-copy {
+        font-size: 15px;
+    }
+    .text-special {
+        font-family: Shift,"Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 18px;
+    }
+    .list-layout {
+        padding-left: 0;
+        list-style: none;
+        margin-left: 0px;
+    }
+    .list-layout > li {
+        display: block;
+    }
+
+    footer > .row {
+        width: 78%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 12px;
+        margin-top: 20px;
+        padding-top: 20px;
+    }
+    .col-4 > h5 {
+        color: black;
+        margin-bottom: 5px;
+    }
+</style>
+
+<script type="text/javascript">
+    min_width = 800;
+    max_width = 1200;
+    function adjust_content_size(min_width, max_width, aspect_ratio, net_width, net_height) {
+        debug.log(net_width, net_height, min_width, max_width);
+        net_width = net_width > min_width ? net_width : min_width;
+        net_width = net_width < max_width ? net_width : max_width;
+        debug.log(net_width, net_height);
+        var desired_height = (net_width * aspect_ratio[1]) / aspect_ratio[0];
+        var desired_width = (net_height * aspect_ratio[0]) / aspect_ratio[1];
+        debug.log(desired_width, desired_height);
+                                                       if (desired_height <= net_height) {
+            desired_width = net_width;
+        }
+        else if (desired_width < min_width) {
+            desired_width = min_width;
+            desired_height = (min_width * aspect_ratio[1])/ aspect_ratio[0];
+        }
+        else if (desired_width > max_width) {
+            desired_width = max_width;
+            desired_height = (max_width * aspect_ratio[1])/ aspect_ratio[0];
+        }
+        else {
+            desired_height = net_height;
+        }
+
+        return [desired_width, desired_height];
+    }
+
+    function set_width_height() {
+        
+        var desired = adjust_content_size(min_width, max_width, aspect_ratio, $(window).width() * 0.80, $(window).height() - 125);
+        var desired_width = desired[0];
+        var desired_height = desired[1];
+
+        if (desired_width != $('#page').width()) {
+            $('#page').width(desired_width);
+        }
+        $('#homepage-header').width(desired_width);
+        //$('#banner').height(desired_height * 0.60);
+    }
+
+aspect_ratio = [1.932, 1];
+
+    $(document).ready(function() {
+            $(window).resize(set_width_height);
+            set_width_height();
+            //$('#empower1').jSlots({time:10000, loops:3});
+
+    });                            
+</script>
+
+<div id="navbar-top">
+    <header id="homepage-header">
+        <ul id="top-bar">
+            <li class="top-navbar-list">
+              <a href="/users/sign_in">Login</a>
+            </li>                                   
+            <li class="top-navbar-list">
+              <a href="/users/sign_up">Sign Up</a>
+            </li>
+        </ul>
+        <a id="name-logo" href="/">lmnop</a>
+    </header>
+</div>
+
+<div id="page">
+             
+    <div class="row">
+        
+        <div class="col-4 text-copy">
+          <img src="/static/images/smruti.jpg">  
+          <h3 class="text-special">Smruti Ranjan Parida, CoFounder</h3>
+          <div class="member_social">
+            <a href="http://www.facebook.com/smruti.parida"><img src="/static/images/FaceBook-icon.png" alt="Facebook" title="Facebook"></a>
+            <a href="http://in.linkedin.com/in/smrutiparida"><img src="/static/images/linkedin-icon.png" alt="LinkedIn" title="LinkedIn"></a>
+          </div>
+        </div>
+        <div class="col-4 text-copy">
+          <img src="/static/images/smruti.jpg">  
+          <h3 class="text-special">Srinivasan Narayan, CoFounder</h3>
+          <div class="member_social">
+            <a href="http://www.facebook.com/smruti.parida"><img src="/static/images/FaceBook-icon.png" alt="Facebook" title="Facebook"></a>
+            <a href="http://in.linkedin.com/in/smrutiparida"><img src="/static/images/linkedin-icon.png" alt="LinkedIn" title="LinkedIn"></a>
+          </div>
+        </div>
+        
+
+    </div>                                                                                               
+    <footer>
+        <div class="row">
+            <div class="col-4">
+              <h5>Connect with Us</h5>
+              <ul class="list-layout">
+                <li><a href="www.twitter.com">Twitter</a></li>
+                <li><a href="https://www.facebook.com/lmnop.in">Facebook</a></li>
+                <li><a href="mailto:welcome@lmnop.in" target="_top">Email Us</a></li>
+                <li>Phone- +91-9611594353/+91-9880845794</li>
+              </ul>
+            </div>
+            <div class="col-4">
+              <h5>Company</h5>
+              <ul class="list-layout">
+                <li><a href="http://blog.lmnop.in">Blog</a></li>        
+                <li><a href="/aboutus.html">Blog</a></li>        
+              </ul>
+            </div>
+            <div class="col-4">
+              <ul class="list-layout">
+                <li>LMNOP EduLabs Pvt Ltd</li>
+                <li>© 2014 LMNOP</li>
+              </ul>
+            </div>
+        </div>
+    </footer>    
+</div>    
+
+
+                                                    
+
+
+
+
+
