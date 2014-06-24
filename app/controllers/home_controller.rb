@@ -35,4 +35,9 @@ class HomeController < ApplicationController
 
     redirect_to :back
   end
+
+  def aboutus
+    @css_framework = :bootstrap # Hack, port site to one framework
+    render file: Rails.root.join("public", "aboutus.html"), layout: 'application'
+  end  
 end
