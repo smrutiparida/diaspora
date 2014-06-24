@@ -255,13 +255,13 @@ en:
         heading: "Connect to Cubbi.es"
         explanation: "Cubbi.es is the first Groupify application under development."
         learn_more: "Learn more"
-      groupify_id:
-        heading: "Groupify ID"
-        content_1: "Your Groupify ID is:"
-        content_2: "Give it to anyone and they'll be able to find you on Groupify."
+      diaspora_id:
+        heading: "LMNOP ID"
+        content_1: "Your LMNOP ID is:"
+        content_2: "Give it to anyone and they'll be able to find you on LMNOP."
       services:
         heading: "Connect Services"
-        content: "You can connect the following services to Groupify:"
+        content: "You can connect the following services to LMNOP:"
 
     aspect_stream:
       stay_updated: "Stay Updated"
@@ -277,8 +277,8 @@ en:
   bookmarklet:
     heading: "Bookmarklet"
     post_success: "Posted! Closing!"
-    post_something: "Post to Groupify"
-    explanation: "Post to Groupify from anywhere by bookmarking this link => %{link}."
+    post_something: "Post to LMNOP"
+    explanation: "Post to LMNOP from anywhere by bookmarking this link => %{link}."
 
   comments:
     zero: "no answers"
@@ -374,7 +374,7 @@ en:
     wiki: "wiki"
     markdown: "Markdown"
     here: "here"
-    foundation_website: "groupify website"
+    foundation_website: "lmnop website"
     third_party_tools: "third party tools"
     getting_started_tutorial: "'Getting started' tutorial series"
     getting_help: 
@@ -396,13 +396,13 @@ en:
       close_account_q: "How do I delete my seed (account)?"
       close_account_a: "Go to the bottom of your settings page and click the Close Account button."
       data_visible_to_podmin_q: "How much of my information can my pod administrator see?"
-      data_visible_to_podmin_a: "Communication *between* pods is always encrypted (using SSL and groupify*'s own transport encryption), but the storage of data on pods is not encrypted. If they wanted to, the database administrator for your pod (usually the person running the pod) could access all your profile data and everything that you post (as is the case for most websites that store user data). Running your own pod provides more privacy since you then control access to the database."
+      data_visible_to_podmin_a: "Communication *between* pods is always encrypted (using SSL and lmnop*'s own transport encryption), but the storage of data on pods is not encrypted. If they wanted to, the database administrator for your pod (usually the person running the pod) could access all your profile data and everything that you post (as is the case for most websites that store user data). Running your own pod provides more privacy since you then control access to the database."
       data_other_podmins_q: "Can the administrators of other pods see my information?"
       data_other_podmins_a: "Once you are sharing with someone on another pod, any posts you share with them and a copy of your profile data are stored (cached) on their pod, and are accessible to that pod's database administrator. When you delete a post or profile data it is deleted from your pod and any other pods where it had previously been stored."
     aspects:
       title: "Groups"
       what_is_an_aspect_q: "What is an aspect?"
-      what_is_an_aspect_a: "Aspects are the way you group your contacts on groupify*. An aspect is one of the faces you show to the world. It might be who you are at work, or who you are to your family, or who you are to your friends in a club you belong to."
+      what_is_an_aspect_a: "Aspects are the way you group your contacts on lmnop*. An aspect is one of the faces you show to the world. It might be who you are at work, or who you are to your family, or who you are to your friends in a club you belong to."
       who_sees_post_q: "When I post to an aspect, who sees it?"
       who_sees_post_a: "If you make a limited post, it will only be visible the people you have put in that aspect (or those aspects, if it is made to multiple aspects). Contacts you have that aren't in the aspect have no way of seeing the post, unless you've made it public. Only public posts will ever be visible to anyone who you haven't placed into one of your aspects."
       restrict_posts_i_see_q: "Can I restrict the posts I see to just those from certain aspects?"
@@ -440,7 +440,7 @@ en:
       find_people_q: "I just joined a pod, how can I find people to share with?"
       find_people_a: "Invite your friends using the email link in the side-bar. Follow #tags to discover others who share your interests, and add those who post things that interest you to an aspect. Shout out that you're #newhere in a public post."
       use_search_box_q: "How do I use the search box to find particular individuals?"
-      use_search_box_a: "If you know their full groupify* ID (e.g. username@podname.org), you can find them by searching for it. If you are on the same pod you can search for just their username. An alternative is to search for them by their profile name (the name you see on screen). If a search does not work the first time, try it again."
+      use_search_box_a: "If you know their full lmnop* ID (e.g. username@podname.org), you can find them by searching for it. If you are on the same pod you can search for just their username. An alternative is to search for them by their profile name (the name you see on screen). If a search does not work the first time, try it again."
     posts_and_posting:
       title: "Posts and posting"
       hide_posts_q: "How do I hide a post? / How do I stop getting notifications about a post that I commented on?"
@@ -606,10 +606,10 @@ en:
       view_all: "View all"
       recent_notifications: "Recent notifications"
     application:
-      powered_by: "POWERED BY groupify*"
+      powered_by: "POWERED BY lmnop*"
       whats_new: "what's new?"
       toggle: "toggle mobile"
-      public_feed: "Public Groupify Feed for %{name}"
+      public_feed: "Public lmnop Feed for %{name}"
       your_aspects: "your groups"
       back_to_top: "Back to top"
       source_package: "download the source code package"
@@ -1186,14 +1186,14 @@ en:
       character_minimum_expl: "must be at least six characters"
       download_xml: "download my xml"
       download_photos: "download my photos"
-      your_handle: "Your Lmnop ID"
+      your_handle: "Your LMNOP ID"
       your_email: "Your email"
       edit_account: "Edit account"
       receive_email_notifications: "Receive email notifications when..."
-      also_commented: "...someone also comments on your contact's post?"
+      also_commented: "...someone also comments on your group member's post?"
       comment_on_post: "...someone comments on your post?"
       mentioned: "...you are mentioned in a post?"
-      started_sharing: "...someone starts sharing with you?"
+      started_sharing: "...someone is added to your course group."
       private_message: "...you receive a private message?"
       liked: "...someone likes your post?"
       reshared: "...someone reshares your post?"
@@ -1211,7 +1211,7 @@ en:
         dont_go: "Hey, please don't go!"
         make_groupify_better: "We want you to help us make Groupify better, so you should help us out instead of leaving. If you do want to leave, we want you to know what happens next."
         mr_wiggles: 'Mr Wiggles will be sad to see you go'
-        what_we_delete: "We will delete all of your posts and profile data as soon as humanly possible. Your comments will hang around, but they would be associated with your Groupify ID instead of your name."
+        what_we_delete: "We will delete all of your posts and profile data. Your comments will hang around, but they would be associated with your LMNOP ID instead of your name."
         locked_out: "You will get signed out and locked out of your account."
         lock_username: "This will lock your username if you decided to sign back up."
         no_turning_back: "Currently, there is no turning back."

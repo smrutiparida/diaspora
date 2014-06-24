@@ -55,7 +55,7 @@ class Notifier < ActionMailer::Base
   end
 
   def started_sharing(recipient_id, sender_id)
-    send_notification(:started_sharing, recipient_id, sender_id)
+    #send_notification(:started_sharing, recipient_id, sender_id)
   end
 
   def liked(recipient_id, sender_id, like_id)
