@@ -94,7 +94,7 @@ class PostsController < ApplicationController
       @post.build_tags 
       @post.save
     end  
-    render :nothing => true, :status => 202
+    render :nothing => true, :status => 200
   end
 
   protected
