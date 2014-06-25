@@ -116,8 +116,8 @@ app.views.StreamPost = app.views.Post.extend({
 
   editPost : function(evt) {
     if(evt) { evt.preventDefault(); }
-    
-    jQuery.facebox('<form onsubmit="$(this).bind(\'ajax:failure\', function(){ $(this).prepend(\'<h5 style="color:red">Something went wrong!</h5>\')}); $(this).bind(\'ajax:complete\', function(){ $.facebox.close();});$(this).bind(\'ajax:success\', function(){ app.router.aspects_stream();});" accept-charset="UTF-8" action="/posts/' + this.model.id + '" method="POST" data-remote="true"><label><b>Edit Question</b></label><br><textarea cols="40" name="text" rows="4">' + this.model.get("text") +'</textarea><div><input class="button" name="cancel" type="button" value="Cancel" onclick="$.facebox.close();" style="float:right;"><input class="button creation" name="commit" type="submit" value="Submit" data-disable-with="Submitting..." style="float:right;"></div><input type="hidden" name="type" value="edit" /><input type="hidden" name="_method" value="put" /></form>');
+    var error_text = '<h5 style="color:red">Something went wrong!</h5>';
+    jQuery.facebox('<form onsubmit="$(this).bind(\'ajax:failure\', function(){ $(this).prepend(error_text);}); $(this).bind(\'ajax:complete\', function(){ $.facebox.close();}); $(this).bind(\'ajax:success\', function(){ app.router.aspects_stream();});" accept-charset="UTF-8" action="/posts/' + this.model.id + '" method="POST" data-remote="true"><label><b>Edit Question</b></label><br><textarea cols="40" name="text" rows="4">' + this.model.get("text") +'</textarea><div><input class="button" name="cancel" type="button" value="Cancel" onclick="$.facebox.close();" style="float:right;"><input class="button creation" name="commit" type="submit" value="Submit" data-disable-with="Submitting..." style="float:right;"></div><input type="hidden" name="type" value="edit" /><input type="hidden" name="_method" value="put" /></form>');
   },
 
 
