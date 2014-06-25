@@ -10,6 +10,7 @@ class Post < ActiveRecord::Base
   include Diaspora::Likeable
   include Diaspora::Commentable
   include Diaspora::Shareable
+  include Diaspora::Taggable
 
 
   has_many :participations, :dependent => :delete_all, :as => :target

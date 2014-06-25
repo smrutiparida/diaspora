@@ -88,6 +88,11 @@ class PostsController < ApplicationController
     #find_current_user_post(params[:id])
     #@post.favorite = !@post.favorite
       @post.save
+    elsif params[:type] = "edit"
+      find_post()
+      @post.text = params[:text]
+      @post.build_tags 
+      @post.save
     end  
     render :nothing => true, :status => 202
   end

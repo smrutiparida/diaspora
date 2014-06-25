@@ -302,6 +302,7 @@ app.views.Publisher = Backbone.View.extend({
     $('.collapsible',post).removeClass('collapsed').addClass('opened');
     $('a.delete.remove_post',post).hide();
     $('a.resolve.mark_resolved',post).hide();
+    $('a.edit.ecit_post',post).hide();
     $('a.like, a.focus_comment_textarea',post).removeAttr("href");
     $('a.like',post).addClass("like_preview");
     $('a.like',post).removeClass("like");

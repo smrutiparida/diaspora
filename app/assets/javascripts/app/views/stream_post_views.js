@@ -23,9 +23,10 @@ app.views.StreamPost = app.views.Post.extend({
     "click .hide_post": "hidePost",
     "click .block_user": "blockUser",
     "click .mark_resolved": "resolvePost",
+    "click .edit_post": "editPost",
   },
 
-  tooltipSelector : ".timeago, .post_scope, .block_user, .delete",
+  tooltipSelector : ".timeago, .post_scope, .block_user, .delete, .edit, .resolve",
 
   initialize : function(){
     this.model.bind('remove', this.remove, this);
@@ -111,6 +112,13 @@ app.views.StreamPost = app.views.Post.extend({
     })
 
     this.remove();
+  },
+
+  editPost : function(evt) {
+    if(evt) { evt.preventDefault(); }
+    
+    jQuery.facebox('<form accept-charset="UTF-8" action="/posts/' + this.model.id + '" method="POST" data-remote="true"><label><b>Edit Question</b></label><br><textarea cols="40" name="text" rows="4">' + this.model.text +'</textarea><div><input class="button" name="cancel" type="button" value="Cancel" onclick="$.facebox.close();" style="float:right;"><input class="button creation" name="commit" type="submit" value="Submit"  style="float:right;" onclick="$.facebox.close();"></div><input type="hidden" name="type" value="edit" /><input type="hidden" name="_method" value="put" /></form>');
+    app.router.aspects_stream();
   },
 
   resolvePost : function(evt) {
