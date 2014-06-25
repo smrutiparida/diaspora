@@ -117,7 +117,7 @@ app.views.StreamPost = app.views.Post.extend({
   editPost : function(evt) {
     if(evt) { evt.preventDefault(); }
     
-    jQuery.facebox('<form accept-charset="UTF-8" action="/posts/' + this.model.id + '" method="POST" data-remote="true"><label><b>Edit Question</b></label><br><textarea cols="40" name="text" rows="4">' + this.model.get("text") +'</textarea><div><input class="button" name="cancel" type="button" value="Cancel" onclick="$(this).bind(\'ajax:success\', function(){ $.facebox.close();alert(1);});" style="float:right;"><input class="button creation" name="commit" type="submit" value="Submit"  style="float:right;" onclick="$.facebox.close(); app.router.aspects_stream();"></div><input type="hidden" name="type" value="edit" /><input type="hidden" name="_method" value="put" /></form>');
+    jQuery.facebox('<form accept-charset="UTF-8" action="/posts/' + this.model.id + '" method="POST" data-remote="true"><label><b>Edit Question</b></label><br><textarea cols="40" name="text" rows="4">' + this.model.get("text") +'</textarea><div><input class="button" name="cancel" type="button" value="Cancel" onclick="$.facebox.close();" style="float:right;"><input class="button creation" name="commit" type="submit" value="Submit"  style="float:right;" onclick="$(this).bind(\'ajax:success\', function(){ $.facebox.close();alert(1);app.router.aspects_stream();});></div><input type="hidden" name="type" value="edit" /><input type="hidden" name="_method" value="put" /></form>');
   },
 
   resolvePost : function(evt) {
