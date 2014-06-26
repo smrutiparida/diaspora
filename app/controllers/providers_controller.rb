@@ -35,41 +35,49 @@ class ProvidersController < ApplicationController
 
   #this is for writing grade
   def grade
+    @consumer_key = 'lmnop-sandbox'
+    @consumer_secret = 'lmnop123'
 
-    report_data = Report.where(:aspect_id => params[:id])
-    unless report_data.nil?
-      report_data.each { |r| @data2.push([r.name, r.q_asked, r.q_answered, r.q_resolved, r.q_score])}
-    end 
-
-
+    respond_to do |format|
+      format.json { render :json => {"success" => true, "message" => "Grade published successfully!"} }
+    end
+    
     if session['launch_params']
       key = session['launch_params']['oauth_consumer_key']
     else
-      flash[:error] = "Please "
-      return erb :error
+      respond_to do |format|
+        format.json { render :json => {"success" => true, "message" => "Could not validate credentials. Please login to LMS."} }
+      end 
     end
 
-    @tp = IMS::LTI::ToolProvider.new(key, $oauth_creds[key], session['launch_params'])
+    @tp = IMS::LTI::ToolProvider.new(key, @consumer_secret, session['launch_params'])
 
     if !@tp.outcome_service?
-      show_error "This tool wasn't launched as an outcome service"
-      return erb :error
+      respond_to do |format|
+        format.json { render :json => {"success" => true, "message" => "LMNOP do not have necessary permission to publish grade!"} }
+      end 
     end
 
     # post the given score to the TC
-    res = @tp.post_replace_result!(params['score'])
+    report_data = Report.where(:aspect_id => params[:a_id])
+    unless report_data.nil?
+      report_data.each do |r|
+        { |r| @data2.push([r.name, r.q_asked, r.q_answered, r.q_resolved, r.q_score])}
+      end
+      res = @tp.post_replace_result!(params['score'])  
+    end 
 
+    message = ""
     if res.success?
-      @score = params['score']
-      @tp.lti_msg = "Message shown when arriving back at Tool Consumer."
-      erb :assessment_finished
+      message = "Grade published successfully!"
     #elsif response.processing?
-
     #elsif response.unsupported?  
     else
-      @tp.lti_errormsg = "The Tool Consumer failed to add the score."
-      show_error "Your score was not recorded: #{res.description}"
-      return erb :error
+      message = "Your score was not recorded: #{res.description}"
+    end
+
+    respond_to do |format|
+      format.json { render :json => {"success" => true, "message" => message} }
     end
   end	
 
@@ -102,7 +110,7 @@ class ProvidersController < ApplicationController
   	code = ""
   	all_words.each { |x| code += x.slice(0,1)}
   	code = course_name.slice(0,3) if code.length < 2
-  	code += "-" + id.to_s
+  	code += Time.now.year.to_s + "-" + id.to_s
   	code
   end
    	

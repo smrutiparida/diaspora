@@ -100,7 +100,7 @@ Diaspora::Application.routes.draw do
   resources :questions
 
   
-  post 'providers/grade' => 'providers#grade'
+  get 'providers/grade' => 'providers#grade'
   resources :providers
 
   get 'questions/clone/:id' => 'questions#clone'

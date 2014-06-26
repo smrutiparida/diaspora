@@ -36,6 +36,7 @@ class ReportsController < ApplicationController
 	      p.user_anonymity ? user_anonymity_info["Anonymous"] += 1 : user_anonymity_info["Public"] += 1  
 	    end
 	  end  
+	  @aspect_id = params[:id]
 	  report_data = Report.where(:aspect_id => params[:id])
 	  unless report_data.nil?
 	  	report_data.each { |r| @data2.push([r.name, r.q_asked, r.q_answered, r.q_resolved, r.q_score])}
