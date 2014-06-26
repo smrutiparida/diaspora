@@ -41,7 +41,7 @@ class ProvidersController < ApplicationController
     respond_to do |format|
       format.json { render :json => {"success" => true, "message" => "Grade published successfully!"} }
     end
-    
+
     if session['launch_params']
       key = session['launch_params']['oauth_consumer_key']
     else
@@ -62,7 +62,7 @@ class ProvidersController < ApplicationController
     report_data = Report.where(:aspect_id => params[:a_id])
     unless report_data.nil?
       report_data.each do |r|
-        { |r| @data2.push([r.name, r.q_asked, r.q_answered, r.q_resolved, r.q_score])}
+        @data2.push([r.name, r.q_asked, r.q_answered, r.q_resolved, r.q_score])
       end
       res = @tp.post_replace_result!(params['score'])  
     end 
