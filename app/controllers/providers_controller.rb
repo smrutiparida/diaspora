@@ -85,12 +85,12 @@ class ProvidersController < ApplicationController
     ## teachercreates the course, can not happen that it is already created by a student
     ## student joins the course mapped to the moodle course_id or create a course and joins it
     if provider.roles.include? 'instructor'
-	    self.aspects.create(:name => provider.context_title, :folder => "Classroom", :code => short_code, :admin_id => provider.context_id)
+	    user.aspects.create(:name => provider.context_title, :folder => "Classroom", :code => short_code, :admin_id => provider.context_id)
 	  elsif provider.roles.include? 'learner'
       teacher_aspect = Aspect.where(:code => short_code, :admin_id => provider.context_id)
       if teacher_aspect
       	teacher_user = User.find(teacher_aspect.user_id)
-        create_and_share_aspect(teacher_user, current_user, teacher_aspect)
+        create_and_share_aspect(teacher_user, user, teacher_aspect)
       else
         flash[:notice] = "The course has not been created by the Instructor!"  
       end  
