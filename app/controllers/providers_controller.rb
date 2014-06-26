@@ -38,31 +38,26 @@ class ProvidersController < ApplicationController
     @consumer_key = 'lmnop-sandbox'
     @consumer_secret = 'lmnop123'
 
-    respond_to do |format|
-      format.json { render :json => {"success" => true, "message" => "Grade published successfully!"} }
-    end
+    render :json => {"success" => true, "message" => "Grade published successfully!"}
+    
 
     if session['launch_params']
       key = session['launch_params']['oauth_consumer_key']
     else
-      respond_to do |format|
-        format.json { render :json => {"success" => true, "message" => "Could not validate credentials. Please login to LMS."} }
-      end 
+      render :json => {"success" => true, "message" => "Could not validate credentials. Please login to LMS."}
     end
 
     @tp = IMS::LTI::ToolProvider.new(key, @consumer_secret, session['launch_params'])
 
     if !@tp.outcome_service?
-      respond_to do |format|
-        format.json { render :json => {"success" => true, "message" => "LMNOP do not have necessary permission to publish grade!"} }
-      end 
+      render :json => {"success" => true, "message" => "LMNOP do not have necessary permission to publish grade!"} 
     end
 
     # post the given score to the TC
     report_data = Report.where(:aspect_id => params[:a_id])
     unless report_data.nil?
       report_data.each do |r|
-        @data2.push([r.name, r.q_asked, r.q_answered, r.q_resolved, r.q_score])
+        #@data2.push([r.name, r.q_asked, r.q_answered, r.q_resolved, r.q_score])
       end
       res = @tp.post_replace_result!(params['score'])  
     end 
