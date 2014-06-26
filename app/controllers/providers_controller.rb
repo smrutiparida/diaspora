@@ -16,11 +16,11 @@ class ProvidersController < ApplicationController
 
   	# Verify OAuth signature by passing the request object
   	if provider.valid_request?(request)
-  	  @user= User.find_by_email(provider.lis_person_contact_email_primary)
+  	  @user = User.find_by_email(provider.lis_person_contact_email_primary)
   	  unless @user.present?
   	    user_params = signup_params(provider)
   	  	@user = User.build(user_params)
-  	    @user.save
+  	    @user.save!
   	  end  
   	  create_or_join_course(provider, @user) 	    
   	  sign_in_and_redirect(:user, @user)
