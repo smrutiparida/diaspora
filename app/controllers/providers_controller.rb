@@ -82,8 +82,8 @@ class ProvidersController < ApplicationController
     short_code = create_short_code(provider.context_title, provider.context_id)
     #code for an aspect is unique
   	user_aspect = user.aspects.where(:name => provider.context_title, :code => short_code).first
-  	return if user_aspect.present?
-  	      
+  	return if user_aspect
+  	Rails.logger.info("came here")
   	## RULE: a teacher is the first member in the course and others then joins it  
     ## teachercreates the course, can not happen that it is already created by a student
     ## student joins the course mapped to the moodle course_id or create a course and joins it
