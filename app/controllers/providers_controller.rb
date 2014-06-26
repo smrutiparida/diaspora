@@ -38,19 +38,19 @@ class ProvidersController < ApplicationController
     @consumer_key = 'lmnop-sandbox'
     @consumer_secret = 'lmnop123'
 
-    render :json => {"success" => true, "message" => "Grade published successfully!"}
+    return render :json => {"success" => true, "message" => "Grade published successfully!"}
     
 
     if session['launch_params']
       key = session['launch_params']['oauth_consumer_key']
     else
-      render :json => {"success" => true, "message" => "Could not validate credentials. Please login to LMS."}
+      return render :json => {"success" => true, "message" => "Could not validate credentials. Please login to LMS."}
     end
 
     @tp = IMS::LTI::ToolProvider.new(key, @consumer_secret, session['launch_params'])
 
     if !@tp.outcome_service?
-      render :json => {"success" => true, "message" => "LMNOP do not have necessary permission to publish grade!"} 
+      return render :json => {"success" => true, "message" => "LMNOP do not have necessary permission to publish grade!"} 
     end
 
     # post the given score to the TC
