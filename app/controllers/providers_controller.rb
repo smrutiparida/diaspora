@@ -79,9 +79,9 @@ class ProvidersController < ApplicationController
   private
   
   def create_or_join_course(provider, user)
-    short_code = create_short_code(provider.context_title[0..50], provider.context_id)
+    short_code = create_short_code(provider.context_title[0..49], provider.context_id)
     #code for an aspect is unique
-  	user_aspect = user.aspects.where(:name => provider.context_title[0..50], :code => short_code).first
+  	user_aspect = user.aspects.where(:name => provider.context_title[0..49], :code => short_code).first
   	return if user_aspect
 
   	## RULE: a teacher is the first member in the course and others then joins it  
@@ -89,7 +89,7 @@ class ProvidersController < ApplicationController
     ## student joins the course mapped to the moodle course_id or create a course and joins it
     if provider.roles.include? 'instructor'
       Rails.logger.info(provider.roles)
-	    new_aspect = user.aspects.create!(:name => provider.context_title[0..50], :folder => "Classroom", :code => short_code, :admin_id => provider.context_id)
+	    new_aspect = user.aspects.create!(:name => provider.context_title[0..49], :folder => "Classroom", :code => short_code, :admin_id => provider.context_id)
       Rails.logger.info("code executed")
       Rails.logger.info(new_aspect.to_json)
 	  elsif provider.roles.include? 'learner'
