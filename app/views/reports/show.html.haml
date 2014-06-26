@@ -70,8 +70,8 @@
   var chart = new google.visualization.LineChart(document.getElementById('line_chart2_div'));
   chart.draw(data4, options);
 
-  $('#publish_moodle').click(funcation(){
-    $.getJSON('/providers/grade/a_id=#{@aspect_id}', function(data){
+  $('#publish_moodle').click(function(){
+    $.getJSON('/providers/grade?a_id=#{@aspect_id}', function(data){
       Diaspora.page.flashMessages.render({ 'success':'success', 'notice': data });
     });
   })
