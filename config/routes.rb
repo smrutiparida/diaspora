@@ -100,7 +100,7 @@ Diaspora::Application.routes.draw do
   resources :questions
 
   
-  post 'providers/create' => 'providers#create'
+  post 'providers/grade' => 'providers#grade'
   resources :providers
 
   get 'questions/clone/:id' => 'questions#clone'
@@ -282,6 +282,8 @@ Diaspora::Application.routes.draw do
   #Protocol Url
   get 'protocol' => redirect("http://wiki.diasporafoundation.org/Federation_Protocol_Overview")
   
+  post 'connect', :to => 'providers#create', :as => 'connect'
+
   get 'aboutus', :to => 'home#aboutus', :as => 'aboutus'
   # Startpage
   root :to => 'home#show'

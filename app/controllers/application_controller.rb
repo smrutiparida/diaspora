@@ -157,7 +157,7 @@ class ApplicationController < ActionController::Base
     @contacts_in_aspect = inviter_aspect.contacts.includes(:aspect_memberships, :person => :profile).all
     new_contact = inviter.share_with(present_user.person, inviter_aspect)
           
-    new_aspect = present_user.aspects.create(:name => inviter_aspect.name, :folder => "Classroom")
+    new_aspect = present_user.aspects.create(:name => inviter_aspect.name, :folder => "Classroom", :code => inviter_aspect.code)
     present_user.share_with(inviter.person, new_aspect)
     
     #contacts_in_aspect = @aspect.contacts.includes(:aspect_memberships).all
