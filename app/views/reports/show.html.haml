@@ -72,7 +72,7 @@
 
   $('#publish_moodle').click(function(){
     $.getJSON('/providers/grade?a_id=#{@aspect_id}', function(data){
-      Diaspora.page.flashMessages.render({ 'success':'success', 'notice': data });
+      Diaspora.page.flashMessages.render({ 'success':'success', 'notice': data.message });
     });
   })
 
