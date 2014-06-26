@@ -83,13 +83,13 @@ class ProvidersController < ApplicationController
     #code for an aspect is unique
   	user_aspect = user.aspects.where(:name => provider.context_title, :code => short_code).first
   	return if user_aspect
-  	Rails.logger.info("came here")
+  	Rails.logger.info(provider.roles)
   	## RULE: a teacher is the first member in the course and others then joins it  
     ## teachercreates the course, can not happen that it is already created by a student
     ## student joins the course mapped to the moodle course_id or create a course and joins it
-    if provider.roles.include? 'Instructor'
+    if provider.roles =='Instructor'
 	    user.aspects.create(:name => provider.context_title, :folder => "Classroom", :code => short_code, :admin_id => provider.context_id)
-	  elsif provider.roles.include? 'Learner'
+	  elsif provider.roles == 'Learner'
       teacher_aspect = Aspect.where(:code => short_code, :admin_id => provider.context_id)
       if teacher_aspect
       	teacher_user = User.find(teacher_aspect.user_id)
