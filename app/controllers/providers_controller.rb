@@ -89,7 +89,9 @@ class ProvidersController < ApplicationController
     ## student joins the course mapped to the moodle course_id or create a course and joins it
     if provider.roles.include? 'instructor'
       Rails.logger.info(provider.roles)
-	    user.aspects.create(:name => provider.context_title, :folder => "Classroom", :code => short_code, :admin_id => provider.context_id)
+	    new_aspect = user.aspects.create!(:name => provider.context_title, :folder => "Classroom", :code => short_code, :admin_id => provider.context_id)
+      Rails.logger.info("code executed")
+      Rails.logger.info(new_aspect.to_json)
 	  elsif provider.roles.include? 'learner'
       teacher_aspect = Aspect.where(:code => short_code, :admin_id => provider.context_id)
       if teacher_aspect
