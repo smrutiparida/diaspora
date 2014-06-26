@@ -22,7 +22,7 @@ class ProvidersController < ApplicationController
   	  	@user = User.build(user_params)
   	    @user.save
   	  end  
-  	  create_or_join_course() 	    
+  	  create_or_join_course(provider, @user) 	    
   	  sign_in_and_redirect(:user, @user)
   	  Rails.logger.info("event=registration or signin status=successful user=#{@user.diaspora_handle}")   
   	else
