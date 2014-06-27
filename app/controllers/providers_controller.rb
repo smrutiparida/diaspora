@@ -96,7 +96,7 @@ class ProvidersController < ApplicationController
     if provider.roles.include? 'instructor'
       begin
 	      new_aspect = user.aspects.create!(:name => group_name, :folder => "Classroom", :code => short_code, :admin_id => provider.context_id, :order_id => provider.resource_link_id)
-      raise ActiveRecord::RecordInvalid
+      rescue ActiveRecord::RecordInvalid
         flash[:notice] = "Discussion group name is not unique!"
       end
 	  elsif provider.roles.include? 'learner'
