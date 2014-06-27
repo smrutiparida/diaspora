@@ -8,7 +8,7 @@ app.views.Post = app.views.Base.extend({
       isPostForTheSession: this.isPostForTheSession(),
       isPostForTheType: this.isPostForTheType(),
       isPostResolved:this.model.interactions.isPostResolved(),
-      authorIsCurrentUserAndTeacher: this.authorIsCurrentUserAndTeacher(),
+      authorIsTeacherOrAdmin: this.authorIsTeacherOrAdmin(),
       text : app.helpers.textFormatter(this.model.get("text"), this.model),
       authorIsCurrentUserORauthorIsTeacherORAdmin: this.authorIsCurrentUserORauthorIsTeacherORAdmin()
     })
