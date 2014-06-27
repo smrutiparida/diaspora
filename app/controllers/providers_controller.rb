@@ -93,7 +93,7 @@ class ProvidersController < ApplicationController
       Rails.logger.info("code executed")
       Rails.logger.info(new_aspect.to_json)
 	  elsif provider.roles.include? 'learner'
-      teacher_aspect = Aspect.where(:code => short_code, :admin_id => provider.context_id)
+      teacher_aspect = Aspect.where(:code => short_code, :admin_id => provider.context_id).first
       if teacher_aspect
       	teacher_user = User.find(teacher_aspect.user_id)
         create_and_share_aspect(teacher_user, user, teacher_aspect)
