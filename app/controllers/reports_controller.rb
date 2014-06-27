@@ -26,7 +26,7 @@ class ReportsController < ApplicationController
 	resolve_info = Hash.new {|h,k| h[k] = 0}
 	opened_info = Hash.new {|h,k| h[k] = 0}
 	user_anonymity_info = h = Hash.new {|h,k| h[k] = 0}
-	if current_user.role == "teacher"
+	if current_user.role == "teacher" or current_user.role == "institute_admin"
 	  #all_posts = Post.joins(:aspect_visibilities).where(:aspect_visibilities => {:aspect_id => params[:id]})	
 	  all_posts = current_user.visible_shareables(Post,  {:by_members_of => params[:id], :limit => 50})  
 	  unless all_posts.nil?
