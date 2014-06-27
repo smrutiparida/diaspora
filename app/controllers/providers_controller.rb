@@ -79,9 +79,9 @@ class ProvidersController < ApplicationController
   private
   
   def create_or_join_course(provider, user)
-    short_code = create_short_code(provider.context_title[0..49], provider.context_id)
+    short_code = create_short_code(provider.context_id, provider.resource_link_id)
     #code for an aspect is unique
-  	user_aspect = user.aspects.where(:name => provider.context_title[0..49], :code => short_code).first
+  	user_aspect = user.aspects.where(:code => short_code).first
   	return if user_aspect
 
   	## RULE: a teacher is the first member in the course and others then joins it  
@@ -89,11 +89,11 @@ class ProvidersController < ApplicationController
     ## student joins the course mapped to the moodle course_id or create a course and joins it
     if provider.roles.include? 'instructor'
       Rails.logger.info(provider.roles)
-	    new_aspect = user.aspects.create!(:name => provider.context_title[0..49], :folder => "Classroom", :code => short_code, :admin_id => provider.context_id)
+	    new_aspect = user.aspects.create!(:name => provider.context_title[0..49], :folder => "Classroom", :code => short_code, :admin_id => provider.context_id, :order_id => provider.resource_link_id)
       Rails.logger.info("code executed")
       Rails.logger.info(new_aspect.to_json)
 	  elsif provider.roles.include? 'learner'
-      teacher_aspect = Aspect.where(:code => short_code, :admin_id => provider.context_id).first
+      teacher_aspect = Aspect.where(:order_id => provider.resource_link_id, :admin_id => provider.context_id).first
       if teacher_aspect
       	teacher_user = User.find(teacher_aspect.user_id)
         create_and_share_aspect(teacher_user, user, teacher_aspect)
@@ -103,13 +103,13 @@ class ProvidersController < ApplicationController
     end
   end
 
-  def create_short_code(course_name, id)
-  	all_words = course_name.split
-  	code = ""
-  	all_words.each { |x| code += x.slice(0,1)}
-  	code = course_name.slice(0,3) if code.length < 2
-  	code += Time.now.year.to_s + "-" + id.to_s
-  	code
+  def create_short_code(id, link_id)
+  	#all_words = course_name.split
+  	#code = ""
+  	#all_words.each { |x| code += x.slice(0,1)}
+  	#code = course_name.slice(0,3) if code.length < 2
+  	id.to_s + "-" + link_id.to_s
+  	#code
   end
    	
   def signup_params(provider)
