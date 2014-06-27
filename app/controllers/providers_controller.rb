@@ -87,11 +87,18 @@ class ProvidersController < ApplicationController
   	## RULE: a teacher is the first member in the course and others then joins it  
     ## teachercreates the course, can not happen that it is already created by a student
     ## student joins the course mapped to the moodle course_id or create a course and joins it
+    group_name = provider.resource_link_title
+    if group_name == ""
+      flash[:notice] = "Discussion group name cannot be empty!"
+      return
+    end  
+
     if provider.roles.include? 'instructor'
-      Rails.logger.info(provider.roles)
-	    new_aspect = user.aspects.create!(:name => provider.context_title[0..49], :folder => "Classroom", :code => short_code, :admin_id => provider.context_id, :order_id => provider.resource_link_id)
-      Rails.logger.info("code executed")
-      Rails.logger.info(new_aspect.to_json)
+      begin
+	      new_aspect = user.aspects.create!(:name => group_name, :folder => "Classroom", :code => short_code, :admin_id => provider.context_id, :order_id => provider.resource_link_id)
+      raise ActiveRecord::RecordInvalid
+        flash[:notice] = "Discussion group name is not unique!"
+      end
 	  elsif provider.roles.include? 'learner'
       teacher_aspect = Aspect.where(:order_id => provider.resource_link_id, :admin_id => provider.context_id).first
       if teacher_aspect
