@@ -11,14 +11,14 @@
       <div class="bd">
         {{#if loggedIn}}
           <div class="controls">
-            {{#if authorIsCurrentUser}}
+            {{#if authorIsCurrentUserORauthorIsTeacherORAdmin}}
               <a href="#" rel="nofollow" class="edit edit_post" title="Edit">
                 <div class="icons-pencil edit control_icon"/>
               </a>
               <a href="#" rel="nofollow" class="delete remove_post" title="{{t "delete"}}">
                 <div class="icons-deletelabel delete control_icon"/>
               </a>
-              {{#if authorIsCurrentUserAndTeacher}}
+              {{#if authorIsTeacherOrAdmin}}
                 {{#if isPostResolved}} 
                   <a href="#" rel="nofollow" class="resolve mark_resolved" title="Reopen for Discussion">
                     <div class="icons-circle resolve control_icon"/>

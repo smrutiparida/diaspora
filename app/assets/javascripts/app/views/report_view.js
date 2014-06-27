@@ -11,9 +11,7 @@ app.views.Report = app.views.Base.extend({
   },
 
   IsUserTeacher:function(){
-    return_val = app.currentUser.get('role') == "teacher";
-    console.log(return_val)
-    return return_val;
+    return app.currentUser.get('role') == "teacher" || app.currentUser.get('role') == "institute_admin";
   },
 
   getActiveAspect:function(){
