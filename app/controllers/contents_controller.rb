@@ -11,6 +11,7 @@ class ContentsController < ApplicationController
   
   def show
     my_aspect_id = current_user.role == "teacher" ? params[:id] : get_my_teacher_aspect_id(params[:id])
+    return render :json => "" if my_aspect_id.nil?
     @all_course_modules = Content.where(:aspect_id => my_aspect_id).order(:created_at)
     
     respond_to do |format|
@@ -53,6 +54,9 @@ class ContentsController < ApplicationController
     unless teacher_in_contact.blank?
       @user_aspect = teacher_in_contact.owner.aspects.where(:name => aspect.name).first
     end
+    
+    return nil unless @user_aspect
+
     @user_aspect.id
   end
   

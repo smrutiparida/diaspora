@@ -92,21 +92,23 @@ class ProvidersController < ApplicationController
       flash[:notice] = "Discussion group name cannot be empty!"
       return
     end  
-
-    if provider.roles.include? 'instructor'
+    
+    if provider.roles.include? 'instructor' and user.role == "teacher"
       begin
 	      new_aspect = user.aspects.create!(:name => group_name, :folder => "Classroom", :code => short_code, :admin_id => provider.context_id, :order_id => provider.resource_link_id)
       rescue ActiveRecord::RecordInvalid
         flash[:notice] = "Discussion group name is not unique!"
       end
-	  elsif provider.roles.include? 'learner'
+	  elsif provider.roles.include? 'learner' and user.role == "student"
       teacher_aspect = Aspect.where(:order_id => provider.resource_link_id, :admin_id => provider.context_id).first
       if teacher_aspect
       	teacher_user = User.find(teacher_aspect.user_id)
         create_and_share_aspect(teacher_user, user, teacher_aspect)
       else
         flash[:notice] = "The course has not been created by the Instructor!"  
-      end  
+      end
+    else
+      flash[:notice] = "Yous course is not created. Please check your role!"      
     end
   end
 
@@ -135,7 +137,7 @@ class ProvidersController < ApplicationController
     end  
     #if provider.lis_outcome_service_url == 'http://school.demo.moodle.net/mod/lti/service.php'
     #TODO: This is hard coded for the time being
-    user_params[:person][:profile][:location] = "ISB, Hyderabad"
+    user_params[:person][:profile][:location] = "TEP, ISB Hyderabad"
     #end  
     user_params[:person][:profile][:first_name] = provider.lis_person_name_given
     user_params[:person][:profile][:last_name] = provider.lis_person_name_family
