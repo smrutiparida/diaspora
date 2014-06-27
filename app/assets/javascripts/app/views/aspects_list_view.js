@@ -41,7 +41,7 @@ app.views.AspectsList = app.views.Base.extend({
   },
 
   IsUserTeacher:function(){
-    return app.currentUser.get('role') == "teacher"
+    return app.currentUser.get('role') == "teacher" || app.currentUser.get('role') == "institute_admin";
   },
 
   appendAspect: function(aspect) {

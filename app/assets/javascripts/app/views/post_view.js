@@ -9,7 +9,8 @@ app.views.Post = app.views.Base.extend({
       isPostForTheType: this.isPostForTheType(),
       isPostResolved:this.model.interactions.isPostResolved(),
       authorIsCurrentUserAndTeacher: this.authorIsCurrentUserAndTeacher(),
-      text : app.helpers.textFormatter(this.model.get("text"), this.model)
+      text : app.helpers.textFormatter(this.model.get("text"), this.model),
+      authorIsCurrentUserORauthorIsTeacherORAdmin: this.authorIsCurrentUserORauthorIsTeacherORAdmin()
     })
   },
 
@@ -65,10 +66,12 @@ app.views.Post = app.views.Base.extend({
 
   },
 
-  
+  authorIsCurrentUserORauthorIsTeacherORAdmin:function(){
+    return (app.currentUser.authenticated() && this.model.get("author").id == app.user().id ) || this.authorIsTeacherOrAdmin();
+  }, 
 
-  authorIsCurrentUserAndTeacher:function(){
-    return app.currentUser.authenticated() && app.currentUser.get('role') == "teacher"
+  authorIsTeacherOrAdmin:function(){
+    return app.currentUser.authenticated() && ( app.currentUser.get('role') == "teacher" || app.currentUser.get('role') == "institute_admin")
   }
 }, { //static methods below
 
