@@ -45,8 +45,8 @@ class AdminsController < ApplicationController
 
     teachers.each do |teacher|
       teacher.aspects.each do |teacher_aspect|
-        check_if_member = teacher_aspect.contacts.where(:person_id => institute_admin.person).first
-        create_and_share_aspect(teacher, institute_admin, teacher_aspect) unless check_if_member.nil?
+        membership = teacher_aspect.contacts.where(:person_id => institute_admin.person).first
+        create_and_share_aspect(teacher, institute_admin, teacher_aspect) if membership.nil?
       end  
     end  
 
