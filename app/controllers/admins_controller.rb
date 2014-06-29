@@ -39,19 +39,22 @@ class AdminsController < ApplicationController
     #for the institute find all aspects, make the admin member of each of it.
     
     institute_admin = User.find(params[:id])
+
+    institute_admin.person.profile.role = 'institute_admin'
+    institute_admin.save!
+
     teachers_in_institute = Person.joins(:profile).where('profiles.location' => institute_admin.person.profile.location, 'profiles.role' => 'teacher').all
 
     teachers = teachers_in_institute.map { |a| a.owner}
 
     teachers.each do |teacher|
       teacher.aspects.each do |teacher_aspect|
+        Rails.logger.info(teacher.to_json)
         membership = teacher_aspect.contacts.where(:person_id => institute_admin.person).first
+        Rails.logger.info(membership.nil?)
         create_and_share_aspect(teacher, institute_admin, teacher_aspect) if membership.nil?
       end  
     end  
-
-    institute_admin.person.profile.role = 'institute_admin'
-    institute_admin.save!
 
     redirect_to user_search_path, :notice => "Institute Admin added successfully!"
     
