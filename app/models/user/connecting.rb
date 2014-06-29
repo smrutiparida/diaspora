@@ -15,17 +15,22 @@ module User::Connecting
       contact.dispatch_request
       contact.receiving = true
     end
-
-    contact.aspects << aspect
-    contact.save
-
-    if notification = Notification.where(:target_id => person.id).first
-      notification.update_attributes(:unread=>false)
-    end
     
-    deliver_profile_update
-    register_share_visibilities(contact)
-    contact
+    begin
+      contact.aspects << aspect
+      contact.save
+
+      if notification = Notification.where(:target_id => person.id).first
+        notification.update_attributes(:unread=>false)
+      end
+      
+      deliver_profile_update
+      register_share_visibilities(contact)
+      contact
+    rescue ActiveRecord::RecordInvalid =>
+      Rails.logger.info(e)
+      return false
+    end  
   end
 
   # This puts the last 100 public posts by the passed in contact into the user's stream.
