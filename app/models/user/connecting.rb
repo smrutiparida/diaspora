@@ -27,7 +27,7 @@ module User::Connecting
       deliver_profile_update
       register_share_visibilities(contact)
       contact
-    rescue ActiveRecord::RecordInvalid =>
+    rescue ActiveRecord::RecordInvalid => e
       Rails.logger.info(e)
       return false
     end  
