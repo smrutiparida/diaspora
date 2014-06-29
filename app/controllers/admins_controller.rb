@@ -34,6 +34,28 @@ class AdminsController < ApplicationController
     redirect_to user_search_path
   end
 
+  def add_institute_admin
+    #profile settings, change the role to admin
+    #for the institute find all aspects, make the admin member of each of it.
+    
+    institute_admin = User.find(params[:id])
+    teachers_in_institute = Person.joins(:profile).where('profiles.location' => institute_admin.person.profile.location, 'profiles.role' => 'teacher').all
+
+    teachers = teachers_in_institute.map { |a| a.owner}
+
+    teachers.each do |teacher|
+      teacher.aspects.each do |teacher_aspect|
+        create_and_share_aspect(teacher, institute_admin, teacher_aspect)
+      end  
+    end  
+
+    institute_admin.person.profile.role = 'institute_admin'
+    institute_admin.save!
+    
+    redirect_to user_search_path, :notice => "Institute Admin added successfully!"
+    
+  end  
+
   def weekly_user_stats
     @created_users = User.where("username IS NOT NULL and created_at IS NOT NULL")
     @created_users_by_week =  Hash.new{ |h,k| h[k] = [] }
