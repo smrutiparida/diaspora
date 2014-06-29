@@ -46,10 +46,7 @@ class AdminsController < ApplicationController
     teachers.each do |teacher|
       teacher.aspects.each do |teacher_aspect|
         check_if_member = teacher_aspect.contacts.where(:person_id => institute_admin.person).first
-        Rails.logger.info(check_if_member.to_json)
-        Rails.logger.info(check_if_member)
-        Rails.logger.info(check_if_member.nil?)
-        create_and_share_aspect(teacher, institute_admin, teacher_aspect) unless check_if_member
+        create_and_share_aspect(teacher, institute_admin, teacher_aspect) unless check_if_member.nil?
       end  
     end  
 
