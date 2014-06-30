@@ -12,8 +12,13 @@ class CommentPresenter < BasePresenter
       :created_at => @comment.created_at,
       :is_endorsed => @comment.is_endorsed,
       :likes_count => @comment.likes_count,
-      :likes => @comment.user_like.as_api_response(:backbone),
+      :likes => @comment.get_link(),
     }
   end
+
+  def get_link
+    return nil if @comment.user_like.nil?
+    @comment.user_like.as_api_response(:backbone)
+  end  
 
 end
