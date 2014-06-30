@@ -17,7 +17,7 @@ class CommentPresenter < BasePresenter
   end
 
   def filter_like(user_like)
-    return if user_like.nil?
+    return [] if user_like.nil?
     user_like.as_api_response(:backbone)
   end   
 end
