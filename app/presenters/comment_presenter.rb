@@ -12,8 +12,12 @@ class CommentPresenter < BasePresenter
       :created_at => @comment.created_at,
       :is_endorsed => @comment.is_endorsed,
       :likes_count => @comment.likes_count,
-      :likes => @comment.user_like.as_api_response(:backbone),
+      :likes => filter_like(@comment.user_like),
     }
   end
 
+  def filter_like(user_like)
+    return nil if user_like.nil?
+    user_like.as_api_response(:backbone)
+  end   
 end

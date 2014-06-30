@@ -93,5 +93,6 @@ class CommentsController < ApplicationController
     comments.each do |comment|
       comment.user_like = if like_hash.has_key?(comment.id) ? like_hash[comment.id] : Like.new
     end
+    Rails.logger.info(comments.to_json)
   end
 end
