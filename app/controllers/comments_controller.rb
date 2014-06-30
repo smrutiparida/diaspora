@@ -63,7 +63,7 @@ class CommentsController < ApplicationController
     raise(ActiveRecord::RecordNotFound.new) unless @post
 
     @comments = @post.comments.for_a_stream
-    like_posts_for_stream(@comments)
+    like_posts_for_stream!(@comments)
 
     respond_with do |format|
       format.json  { render :json => CommentPresenter.as_collection(@comments), :status => 200 }
@@ -82,7 +82,6 @@ class CommentsController < ApplicationController
   end
 
   def like_posts_for_stream!(comments)
-    return comments unless current_user
 
     likes = Like.where(:author_id => current_user.person_id, :target_id => comments.map(&:id), :target_type => "Comment")
 

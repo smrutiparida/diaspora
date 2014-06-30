@@ -15,4 +15,9 @@ class CommentPresenter < BasePresenter
       :likes => [user_like].compact,
     }
   end
+
+  def user_like
+    @comment.like_for(@current_user).try(:as_api_response, :backbone)
+  end
+
 end
