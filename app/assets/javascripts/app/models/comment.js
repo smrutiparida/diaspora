@@ -2,9 +2,9 @@ app.models.Comment = Backbone.Model.extend({
   urlRoot: "/comments",
 
   initialize : function() {
-  	console.log(this.get("likes_count"))
+  	console.log(this.get("likes"))
   	console.log(this);
-  	console.log(this.get("likes_count") > 0)
+  	console.log(typeof this.get("likes") === 'undefined')
   	//if (this.get("likes_count") > 0){
         
     //    console.log(this.get('likes'))
