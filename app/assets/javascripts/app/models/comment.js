@@ -10,7 +10,7 @@ app.models.Comment = Backbone.Model.extend({
         console.log(this.get('likes'))
   		this.likes = new app.collections.LikeComments(this.get("likes"), {comment : this});  	
   	} else {
-  		this.likes = new app.collections.LikeComments([], {comment : this});  	
+  		this.likes = new app.collections.LikeComments(null, {comment : this});  	
   	}
 
     
