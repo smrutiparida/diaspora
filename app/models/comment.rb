@@ -19,6 +19,8 @@ class Comment < ActiveRecord::Base
   xml_attr :text
   xml_attr :diaspora_handle
 
+  attr_accessor :user_like
+
   belongs_to :commentable, :touch => true, :polymorphic => true
   alias_attribute :post, :commentable
   belongs_to :author, :class_name => 'Person'
@@ -77,7 +79,7 @@ class Comment < ActiveRecord::Base
     return unless user
     likes.where(:author_id => user.person.id).first
   end
-  
+
   def parent
     self.post
   end

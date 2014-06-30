@@ -63,6 +63,8 @@ class CommentsController < ApplicationController
     raise(ActiveRecord::RecordNotFound.new) unless @post
 
     @comments = @post.comments.for_a_stream
+    like_posts_for_stream(@comments)
+
     respond_with do |format|
       format.json  { render :json => CommentPresenter.as_collection(@comments), :status => 200 }
       format.mobile{render :layout => false}
@@ -76,6 +78,21 @@ class CommentsController < ApplicationController
       @post = current_user.find_visible_shareable_by_id(Post, params[:post_id])
     else
       @post = Post.find_by_id_and_public(params[:post_id], true)
+    end
+  end
+
+  def like_posts_for_stream!(comments)
+    return comments unless current_user
+
+    likes = Like.where(:author_id => current_user.person_id, :target_id => comments.map(&:id), :target_type => "Comment")
+
+    like_hash = likes.inject({}) do |hash, like|
+      hash[like.target_id] = like
+      hash
+    end
+
+    comments.each do |comment|
+      comment.user_like = like_hash[comment.id]
     end
   end
 end
