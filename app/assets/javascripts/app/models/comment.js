@@ -2,10 +2,12 @@ app.models.Comment = Backbone.Model.extend({
   urlRoot: "/comments",
 
   initialize : function() {
-  	if (typeof this.get("likes") === 'undefined'){
-  		this.likes = []
-  	} else {
+  	if (typeof this.get("likes_count") > 0){
+        console.log(this);
+        console.log(this.get('likes'))
   		this.likes = new app.collections.LikeComments(this.get("likes"), {comment : this});  	
+  	} else {
+  		this.likes = []
   	}
 
     
