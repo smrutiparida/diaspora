@@ -91,7 +91,7 @@ class CommentsController < ApplicationController
     end
 
     comments.each do |comment|
-      comment.user_like = like_hash[comment.id]
+      comment.user_like = if like_hash.has_key?(comment.id) ? like_hash[comment.id] : Like.new
     end
   end
 end
