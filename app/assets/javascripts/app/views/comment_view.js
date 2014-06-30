@@ -40,11 +40,16 @@ app.views.Comment = app.views.Content.extend({
       isEndorsedComment : this.isEndorsedComment(),
       text : app.helpers.textFormatter(this.model.get("text"), this.model),
       likesCount: this.likesCount(),
+      userLike: this.userLike(),
     })
   },
 
   likesCount: function(){
     return this.model.get("likes_count");
+  },
+
+  userLike:function(){
+    return this.model.userLike();
   },
 
   toggleLike: function(evt) {

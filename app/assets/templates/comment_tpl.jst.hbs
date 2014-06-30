@@ -40,9 +40,31 @@
       {{{text}}}
     </div>
 
-    <div class="likes"> </div>
-
     <div class="info">
       <time class="timeago" data-original-title="{{{localTime created_at}}}" datetime="{{created_at}}"/>
     </div>
   </div>
+  
+  <a href="#" class="like" rel='nofollow'>
+    {{#if userLike}}
+      Downvote
+    {{else}}
+      Upvote
+    {{/if}}
+  </a>
+  
+  {{#if likesCount}}
+    <div class="comment">
+      <div class="media">
+        <div alt="Heart" class=""></div>
+
+        <div class="bd">
+          {{#unless likes_fetched}}
+            <a href="#" class="expand_likes grey">
+              {{t "stream.likes" count=likesCount}}
+            </a>
+          {{/unless}}
+        </div>
+      </div>
+    </div>
+  {{/if}}
