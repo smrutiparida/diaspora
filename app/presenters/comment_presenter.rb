@@ -12,12 +12,8 @@ class CommentPresenter < BasePresenter
       :created_at => @comment.created_at,
       :is_endorsed => @comment.is_endorsed,
       :likes_count => @comment.likes_count,
-      :likes => [user_like].compact,
+      :likes => @comment.compact,
     }
-  end
-
-  def user_like
-    @comment.like_for(@current_user).try(:as_api_response, :backbone)
   end
 
 end
