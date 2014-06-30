@@ -6,7 +6,8 @@ app.views.Comment = app.views.Content.extend({
   events : function() {
     return _.extend({}, app.views.Content.prototype.events, {
       "click .comment_delete": "destroyModel",
-      "click .comment_best": "endorseComment"
+      "click .comment_best": "endorseComment",
+      "click .like" : "toggleLike",
     });
   },
 
@@ -37,8 +38,23 @@ app.views.Comment = app.views.Content.extend({
       canEndorse: this.canEndorse(),
       teacherCommentORendorsedComment : this.teacherCommentORendorsedComment(), 
       isEndorsedComment : this.isEndorsedComment(),
-      text : app.helpers.textFormatter(this.model.get("text"), this.model)
+      text : app.helpers.textFormatter(this.model.get("text"), this.model),
+      likesCount: this.likesCount(),
     })
+  },
+
+  likesCount: function(){
+    return this.model.get("likes_count");
+  },
+
+  toggleLike: function(evt) {
+    console.log("toggling like")
+    if(evt) { evt.preventDefault(); }
+    if(this.model.userLike()) {
+      this.model.unlike()
+    } else {
+      this.model.like()
+    }
   },
 
   endorseComment : function(evt) {
@@ -87,12 +103,27 @@ app.views.Comment = app.views.Content.extend({
     //console.log("came");
     return false;
   },
+  
   isEndorsedComment : function(){ 
     return this.model.get("is_endorsed")
+  },
+
+  likes_fetched : function(){
+    this.model.get("fetched")
   }
+
 });
 
 app.views.ExpandedComment = app.views.Comment.extend({
   postRenderTemplate : function(){
   }
 });
+
+
+
+
+  
+
+
+
+

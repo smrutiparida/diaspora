@@ -12,7 +12,7 @@ app.collections.Comments = Backbone.Collection.extend({
   make : function(text){
     var self = this
 
-    var comment = new app.models.Comment({text: text })
+    var comment = new app.models.Comment({text: text, likes_count:likesCount })
 
     var deferred = comment.save({}, {
       url : self.url(),

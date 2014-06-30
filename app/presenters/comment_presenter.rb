@@ -10,7 +10,9 @@ class CommentPresenter < BasePresenter
       :text  => @comment.text,
       :author => @comment.author.as_api_response(:backbone),
       :created_at => @comment.created_at,
-      :is_endorsed => @comment.is_endorsed
+      :is_endorsed => @comment.is_endorsed,
+      :likes_count => @comment.likes_count,
+      :likes => [user_like].compact,
     }
   end
 end

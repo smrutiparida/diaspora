@@ -49,7 +49,6 @@ class AdminsController < ApplicationController
 
     teachers.each do |teacher|
       teacher.aspects.each do |teacher_aspect|
-        Rails.logger.info(teacher.to_json)
         membership = teacher_aspect.contacts.where(:person_id => institute_admin.person).first
         Rails.logger.info(membership.nil?)
         create_and_share_aspect(teacher, institute_admin, teacher_aspect) if membership.nil?
