@@ -2,7 +2,6 @@ class CommentPresenter < BasePresenter
   def initialize(comment, current_user = nil)
     @comment = comment
     @current_user = current_user
-    Rails.logger.info(comment.user_like.to_json)
   end
 
   def as_json(opts={})
@@ -14,7 +13,7 @@ class CommentPresenter < BasePresenter
       :created_at => @comment.created_at,
       :is_endorsed => @comment.is_endorsed,
       :likes_count => @comment.likes_count,
-      :likes => @comment.user_like.try(:as_api_response, :backbone).compact
+      :likes => @comment.user_like.try(:as_api_response, :backbone)
     }
   end
 
