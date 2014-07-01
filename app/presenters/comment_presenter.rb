@@ -25,6 +25,7 @@ class CommentPresenter < BasePresenter
     end  
   end
 
+
   #def like_posts_for_stream!(comments)
 
   #  like = Like.where(:author_id => current_user.person_id, :target_id => comment.id, :target_type => "Comment").first

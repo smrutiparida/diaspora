@@ -83,6 +83,10 @@ class PostPresenter
     @post.reshare_for(@current_user)
   end
 
+  def user
+    @current_user
+  end  
+  
   protected
 
   def person
