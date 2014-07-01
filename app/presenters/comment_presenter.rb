@@ -13,19 +13,17 @@ class CommentPresenter < BasePresenter
       :created_at => @comment.created_at,
       :is_endorsed => @comment.is_endorsed,
       :likes_count => @comment.likes_count,
-      :likes => filter_like(@comment).as_api_response(:backbone),
+      :likes => @comment.user_like.as_api_response(:backbone),
     }
   end
-  
-  def self.collection_json(collection, current_user)
-    collection.map {|comment| CommentPresenter.new(comment, current_user)}
-  end
 
-  def filter_like(comment)
-    like = Like.where(:author_id => @current_user.person.id, :target_id => comment.id, :target_type => "Comment").first
-    #return [] if user_like.nil?
-    like
-  end   
+  def self.collection_json(collection, current_user)
+    collection.map |comment| do 
+      comment.user_like = comment.like_for(current_user)
+      CommentPresenter.new(comment, current_user)
+      Rails.logger.info(comment.to_json)
+    end  
+  end
 
   #def like_posts_for_stream!(comments)
 

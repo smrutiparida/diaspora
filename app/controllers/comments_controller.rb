@@ -17,10 +17,11 @@ class CommentsController < ApplicationController
   def create
     post = current_user.find_visible_shareable_by_id(Post, params[:post_id])
     @comment = current_user.comment!(post, params[:text]) if post
+    @comment.user_like = @comment.like_for(@current_user)
 
     if @comment
       respond_to do |format|
-        format.json{ render :json => CommentPresenter.new(@comment, current_user), :status => 201 }
+        format.json{ render :json => CommentPresenter.new(@comment), :status => 201 }
         format.html{ render :nothing => true, :status => 201 }
         format.mobile{ render :partial => 'comment', :locals => {:post => @comment.post, :comment => @comment} }
       end

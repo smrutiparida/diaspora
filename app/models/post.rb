@@ -115,7 +115,7 @@ class Post < ActiveRecord::Base
 
   def like_for(user)
     return unless user
-    likes.where(:author_id => user.person.id).first
+    likes.where(:author_id => user.person.id, :target_type => "Post").first
   end
 
   #############
