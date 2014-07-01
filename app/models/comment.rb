@@ -77,7 +77,7 @@ class Comment < ActiveRecord::Base
 
   def like_for(user)
     return unless user
-    likes.where(:author_id => user.person.id, :target_type => "Comment").first
+    Like.where(:target_id => self.id, :author_id => user.person.id, :target_type => "Comment").first
   end
 
   def parent
