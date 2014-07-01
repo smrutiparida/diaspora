@@ -42,29 +42,42 @@
 
     <div class="info">
       <time class="timeago" data-original-title="{{{localTime created_at}}}" datetime="{{created_at}}"/>
+      ·
+      <a href="#" class="like" rel='nofollow'>
+        {{#if userLike}}
+          Downvote
+        {{else}}
+          Upvote
+        {{/if}}
+      </a>
     </div>
-  </div>
-  
-  <a href="#" class="like" rel='nofollow'>
-    {{#if userLike}}
-      Downvote
-    {{else}}
-      Upvote
-    {{/if}}
-  </a>
-  
-  {{#if likesCount}}
-    <div class="comment">
-      <div class="media">
-        <div alt="Heart" class=""></div>
+    {{#if likesCount}}
+      <div class="comment">
+        <div class="media">
+          <div alt="Heart" class=""></div>
 
-        <div class="bd">
-          {{#unless likes_fetched}}
-            <a href="#" class="expand_likes grey">
-              {{t "stream.likes" count=likesCount}}
-            </a>
-          {{/unless}}
+          <div class="bd">
+            {{#unless likes_fetched}}
+              <a href="#" class="expand_likes grey">
+                {{t "stream.likes" count=likesCount}}
+              </a>
+
+            {{else}}
+
+              {{#each likes}}
+                {{#with author}}
+                  <a href="/people/{{guid}}" class="{{hovercardable this}}">
+                    <img src="{{avatar.small}}" class="avatar micro" title="{{name}}"/>
+                  </a>
+                {{/with}}
+              {{/each}}
+            {{/unless}}
+          </div>
         </div>
       </div>
-    </div>
-  {{/if}}
+    {{/if}}
+  </div>
+
+
+  
+  
