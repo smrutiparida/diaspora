@@ -2,7 +2,7 @@ class CommentPresenter < BasePresenter
   def initialize(comment, current_user = nil)
     @comment = comment
     @current_user = current_user
-    Rails.logger.json(comment.user_like.to_json)
+    Rails.logger.info(comment.user_like.to_json)
   end
 
   def as_json(opts={})
