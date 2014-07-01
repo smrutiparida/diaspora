@@ -65,7 +65,7 @@ class CommentsController < ApplicationController
     @comments = @post.comments.for_a_stream
 
     respond_with do |format|
-      format.json  { render :json => CommentPresenter.as_collection(@comments, current_user), :status => 200 }
+      format.json  { render :json => CommentPresenter.collection_json(@comments, current_user), :status => 200 }
       format.mobile{render :layout => false}
     end
   end

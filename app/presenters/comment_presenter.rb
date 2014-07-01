@@ -16,6 +16,10 @@ class CommentPresenter < BasePresenter
       :likes => filter_like(@comment).as_api_response(:backbone),
     }
   end
+  
+  def self.collection_json(collection, current_user)
+    collection.map {|comment| CommentPresenter.new(comment, current_user)}
+  end
 
   def filter_like(comment)
     like = Like.where(:author_id => @current_user.person_id, :target_id => comment.id, :target_type => "Comment").first
