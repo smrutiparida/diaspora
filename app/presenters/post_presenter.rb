@@ -86,12 +86,12 @@ class PostPresenter
   def user
     @current_user
   end  
-  
-  protected
 
   def person
     @current_user.person
   end
+
+  protected
 
   def user_signed_in?
     @current_user.present?
