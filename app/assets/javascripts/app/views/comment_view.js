@@ -53,7 +53,6 @@ app.views.Comment = app.views.Content.extend({
   },
 
   toggleLike: function(evt) {
-    console.log("toggling like")
     if(evt) { evt.preventDefault(); }
     if(this.model.userLike()) {
       this.model.unlike()

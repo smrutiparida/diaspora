@@ -58,19 +58,9 @@
 
           <div class="bd">
             {{#unless likes_fetched}}
-              <a href="#" class="expand_likes grey">
+              <span class="grey">
                 {{t "stream.likes" count=likesCount}}
-              </a>
-
-            {{else}}
-
-              {{#each likes}}
-                {{#with author}}
-                  <a href="/people/{{guid}}" class="{{hovercardable this}}">
-                    <img src="{{avatar.small}}" class="avatar micro" title="{{name}}"/>
-                  </a>
-                {{/with}}
-              {{/each}}
+              </span>
             {{/unless}}
           </div>
         </div>

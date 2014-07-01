@@ -17,7 +17,7 @@ app.views.Report = app.views.Base.extend({
   getActiveAspect:function(){
   	var ids = app.aspects.selectedAspects('id')
   	if(ids.length > 0){
-      console.log(ids[0])
+      //console.log(ids[0])
   		return ids[0]
   	}
   	return ""
