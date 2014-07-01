@@ -22,7 +22,7 @@ class CommentPresenter < BasePresenter
   end
 
   def filter_like(comment)
-    like = Like.where(:author_id => @current_user.person_id, :target_id => comment.id, :target_type => "Comment").first
+    like = Like.where(:author_id => @current_user.person.id, :target_id => comment.id, :target_type => "Comment").first
     #return [] if user_like.nil?
     like
   end   
