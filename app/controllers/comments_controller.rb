@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
 
     if @comment
       respond_to do |format|
-        format.json{ render :json => CommentPresenter.new(@comment), :status => 201 }
+        format.json{ render :json => CommentPresenter.new(@comment, current_user), :status => 201 }
         format.html{ render :nothing => true, :status => 201 }
         format.mobile{ render :partial => 'comment', :locals => {:post => @comment.post, :comment => @comment} }
       end
@@ -63,10 +63,9 @@ class CommentsController < ApplicationController
     raise(ActiveRecord::RecordNotFound.new) unless @post
 
     @comments = @post.comments.for_a_stream
-    like_posts_for_stream!(@comments)
 
     respond_with do |format|
-      format.json  { render :json => CommentPresenter.as_collection(@comments), :status => 200 }
+      format.json  { render :json => CommentPresenter.as_collection(@comments, current_user), :status => 200 }
       format.mobile{render :layout => false}
     end
   end
@@ -79,20 +78,5 @@ class CommentsController < ApplicationController
     else
       @post = Post.find_by_id_and_public(params[:post_id], true)
     end
-  end
-
-  def like_posts_for_stream!(comments)
-
-    likes = Like.where(:author_id => current_user.person_id, :target_id => comments.map(&:id), :target_type => "Comment")
-
-    like_hash = likes.inject({}) do |hash, like|
-      hash[like.target_id] = like
-      hash
-    end
-
-    comments.each do |comment|
-      comment.user_like = if like_hash.has_key?(comment.id) ? like_hash[comment.id] : Like.new
-    end
-    Rails.logger.info(comments.to_json)
   end
 end

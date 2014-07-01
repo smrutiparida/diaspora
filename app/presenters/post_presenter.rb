@@ -105,7 +105,7 @@ class PostInteractionPresenter
     {
         :likes => as_api(@post.likes),
         :reshares => PostPresenter.collection_json(@post.reshares, @current_user),
-        :comments => CommentPresenter.as_collection(@post.comments.order('created_at ASC')),
+        :comments => CommentPresenter.as_collection(@post.comments.order('created_at ASC'), @current_user),
         :participations => as_api(@post.participations)
     }
   end
