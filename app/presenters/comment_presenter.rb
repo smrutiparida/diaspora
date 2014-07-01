@@ -18,7 +18,7 @@ class CommentPresenter < BasePresenter
   end
 
   def self.collection_json(collection, current_user)
-    collection.map |comment| do 
+    collection.map do |comment|
       comment.user_like = comment.like_for(current_user)
       CommentPresenter.new(comment, current_user)
       Rails.logger.info(comment.to_json)
