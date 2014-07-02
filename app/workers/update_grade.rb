@@ -2,6 +2,12 @@
 #   licensed under the Affero General Public License version 3 or later.  See
 #   the COPYRIGHT file.
 
+#message = ""
+#if res.success?
+#  message = "Grade published successfully!"
+#elsif response.processing?
+#elsif response.unsupported?  
+
 module Workers
   class UpdateGrade < Base
     sidekiq_options queue: :update_grade
@@ -9,29 +15,19 @@ module Workers
     def perform(provider, aspect)
       report_data = Report.where(:aspect_id => aspect.id)
       unless report_data.nil?
-        max_score - report_data.maximum(:q_score)
+        max_score = report_data.maximum(:q_score)
         my_report = report_data.where(:person_id => aspect.user.person.id).first
 
-        
-        #report_data.each do |r|
-          #@data2.push([r.name, r.q_asked, r.q_answered, r.q_resolved, r.q_score])
-        
-        #end
-        if my_report
-          res = provider.post_replace_result!(my_report.q_score / max_score) 
-          Rails.logger.info(res)
-
-        end  
+        final_score = 0
+        final_score = (my_report.q_score.to_f / max_score).round(2) if my_report and max_score > 0
+        Rails.logger.info("final score is" + final_score.to_s)
+        res = provider.post_replace_result!(final_score) 
+        Rails.logger.info(res)  
       end 
-
-      #message = ""
-      #if res.success?
-      #  message = "Grade published successfully!"
-      #elsif response.processing?
-      #elsif response.unsupported?  
-      
-
-      
     end  
   end
 end
+
+
+      
+
