@@ -59,7 +59,7 @@ class ReportsController < ApplicationController
   end 
 
   def download
-    report_data = Report.where(:aspect_id => params[:a_id)
+    report_data = Report.where(:aspect_id => params[:a_id])
     @data = []
     @data.push(['user_email','LMNOP Score'])
     unless report_data.nil?
