@@ -19,9 +19,11 @@ app.models.Report = Backbone.Model.extend({
     //var respItems = this.parse(resp);
     
     //var reports = _.map(this.attributes, function(num, key){ return num; });
+    console.log(this.attributes)
     app.reportView = new app.views.Report({attributes:this.attributes});
     //app.reportView = new app.views.Report({});
-    //console.log(app.reportView)
+    console.log(app.reportView)
+    console.log(app.reportView.render().el)
     $('#report_snippet').html(app.reportView.render().el);
     
   }
