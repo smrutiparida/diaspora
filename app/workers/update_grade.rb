@@ -20,9 +20,9 @@ module Workers
 
         final_score = 0
         final_score = (my_report.q_score.to_f / max_score).round(2) if my_report and max_score > 0
-        Rails.logger.info("final score is" + final_score.to_s)
+        #Rails.logger.info("final score is" + final_score.to_s)
         res = provider.post_replace_result!(final_score) 
-        Rails.logger.info(res)  
+        #Rails.logger.info(res)  
       end 
     end  
   end
