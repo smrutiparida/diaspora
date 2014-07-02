@@ -124,7 +124,8 @@ Diaspora::Application.routes.draw do
   resources :assignment_assessments
 
   resources :reports
-  get  'reports/snippet/:id' => 'reports#snippet'
+  get  'reports/snippet' => 'reports#snippet'
+  get  'reports/download' => 'reports#download'
 
   resources :quizzes
   
