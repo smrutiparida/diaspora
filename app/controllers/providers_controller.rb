@@ -46,10 +46,12 @@ class ProvidersController < ApplicationController
 
       final_score = 0
       final_score = (my_report.q_score.to_f / max_score).round(2) if my_report and max_score > 0
-      Rails.logger.info("final score is" + final_score.to_s)
+      Rails.logger.info("final score is " + final_score.to_s)
       res = provider.post_replace_result!(final_score) 
-      Rails.logger.info(res.success?)
-      Rails.logger.info(res.to_json)  
+      if res.success?
+        Raills.logger.info(provider.lti_msg)
+      else
+        Rails.logger.info(provider.lti_errormsg)
     end 
   end  
 
