@@ -68,7 +68,7 @@ class ReportsController < ApplicationController
 
       #final_score = 0
       #final_score = (my_report.q_score.to_f / max_score).round(2) if my_report and max_score > 0
-      all_persons = Person.where(id => report_data.map(&:person_id))
+      all_persons = Person.where(:id => report_data.map(&:person_id))
       hash_key = all_persons.inject({}) do |hash, person|
       hash[person.id] = person
       hash
