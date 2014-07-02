@@ -23,19 +23,20 @@
   .title
     .icons-bookmark
     %h5.title-header
-      = "Contributors"
+      = "Top Contributors"
+  %ul.content#report_snippet    
   
 .section
   .title
-    .icons-marker
+    .icons-coffee
     %h5.title-header
-      = "Tools"
+      = "Quick Links"
   %div
     %ul.content
       %li= link_to "Download Digest", '#', :id => 'download_link'
       - if current_user.role == "teacher" or current_user.role == "institute_admin"
         %li= link_to "Download Grades", '#', :id => 'download_grade_link'
-      %li#report_snippet
+      
     
 
 -#
