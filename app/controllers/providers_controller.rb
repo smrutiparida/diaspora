@@ -24,7 +24,7 @@ class ProvidersController < ApplicationController
   	  end  
   	  aspect_data = create_or_join_course(provider, @user) 	    
       #Workers::UpdateGrade.perform_async(provider, aspect_data) if provider.outcome_service? and aspect_data and @user.role == "student"
-      perform_grade_post(provider, aspect_data) if provider.outcome_service? and aspect_data and @user.role == "student"
+      #perform_grade_post(provider, aspect_data) if provider.outcome_service? and aspect_data and @user.role == "student"
   	  sign_in_and_redirect(:user, @user)
   	  Rails.logger.info("event=registration or signin status=successful user=#{@user.diaspora_handle}")   
   	else
@@ -49,9 +49,9 @@ class ProvidersController < ApplicationController
       Rails.logger.info("final score is " + final_score.to_s)
       res = provider.post_replace_result!(final_score) 
       if res.success?
-        Raills.logger.info(provider.lti_msg)
+        Raills.logger.info(res.description)
       else
-        Rails.logger.info(provider.lti_errormsg)
+        Rails.logger.info(res.description)
       end  
     end 
   end  

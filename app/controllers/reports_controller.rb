@@ -56,7 +56,31 @@ class ReportsController < ApplicationController
 	respond_to do |format|
 	  format.html { render :layout => true, :status => 200 }
 	end
-  end  
+  end 
+
+  def download
+  	report_data = Report.where(:aspect_id => params[:a_id)
+  	@data = []
+  	@data.push(['user_email','LMNOP Score'])
+    unless report_data.nil?
+      #max_score = report_data.maximum(:q_score)
+      #my_report = report_data.where(:person_id => aspect.user.person.id).first
+
+      #final_score = 0
+      #final_score = (my_report.q_score.to_f / max_score).round(2) if my_report and max_score > 0
+      all_persons = Person.where(id => report_data.map(&:person_id))
+      hash_key = all_persons.inject({}) do |hash, person|
+	    hash[person.id] = person
+	    hash
+	  end
+      report_data.each do |r|
+        @data.push([hash_key[r.person_id].owner.email, r.q_score])
+      end
+    end  
+      send_data @data.string.force_encoding('binary'), :type=>"application/excel", :disposition=>'attachment', :filename => "#{current_user.username}_#{aspect}_faq.xls"
+
+  end
+
   def snippet
   	reports = Report.where(:aspect_id => params[:id]).order('q_asked DESC').limit(5)
   	report_data = []
