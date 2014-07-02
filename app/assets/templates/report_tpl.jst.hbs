@@ -1,12 +1,11 @@
-<ul>
-	{{#each reports}}
-	    <li>
-	        <label><i class='icon-ok'/><span>{{name}}</span></label>
-	        -
-	        <label><span>{{score}}</span></label>
-	    </li>
-	{{/each}}
-</ul>
+{{#each reports}}
+    <li>
+        <label><i class='icon-ok'/><span>{{name}}</span></label>
+        -
+        <label><span>{{score}}</span></label>
+    </li>
+{{/each}}
+
 {{#if IsUserTeacher}}
-  <a href="/reports/{{getActiveAspect}}">Deatiled Leaderboard..</a>
+  <li><a href="/reports/{{getActiveAspect}}">Deatiled Leaderboard...</a></li>
 {{/if}}  
