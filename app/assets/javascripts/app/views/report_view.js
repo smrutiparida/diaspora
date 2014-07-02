@@ -3,11 +3,14 @@ app.views.Report = app.views.Base.extend({
   //tagName: "a",
 
   presenter : function() {
-    return _.extend(this.defaultPresenter(), {
-      reports: this.attributes,
+    return {
+      reports: _.map(this.attributes, function(report){
+        return _.extend({}, report)
+      }),
+      
       IsUserTeacher: this.IsUserTeacher(),
       getActiveAspect: this.getActiveAspect()
-    })
+    }
   },
 
   IsUserTeacher:function(){
