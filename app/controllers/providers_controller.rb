@@ -169,7 +169,7 @@ class ProvidersController < ApplicationController
   def get_user_name(email)
     potential_name = email.split('@')[0]
     existing_username_count = User.where("username LIKE '#{potential_name}%'").count
-    return potential_name if existing_username_count == 0
+    return potential_name if existing_username_count == 0 and potential_name.downcase != 'admin'
     
     begin
       potential_name = potential_name + "_" + existing_username_count.to_s
