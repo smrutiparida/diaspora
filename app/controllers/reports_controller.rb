@@ -80,7 +80,7 @@ class ReportsController < ApplicationController
     new_string = ""
     @data.each { |ele| new_string += ele[0] + "," + ele[1].to_s + "\n"}
     Rails.logger.info(new_string)
-    send_data new_string.force_encoding('binary'), :type=>"application/excel", :disposition=>'attachment', :filename => "#{current_user.username}_#{params[:a_id]}_grade.xls"
+    send_data new_string.force_encoding('binary'), :type=>"application/excel", :disposition=>'attachment', :filename => "#{current_user.username}_#{params[:a_id]}_grade.csv"
   end
 
   def snippet
