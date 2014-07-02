@@ -23,7 +23,8 @@ class ProvidersController < ApplicationController
   	    @user.save!
   	  end  
   	  aspect_data = create_or_join_course(provider, @user) 	    
-      Workers::UpdateGrade.perform_async(provider, aspect_data) if provider.outcome_service? and aspect_data and @user.role == "student"
+      #Workers::UpdateGrade.perform_async(provider, aspect_data) if provider.outcome_service? and aspect_data and @user.role == "student"
+      perform_grade_post(provider, aspect_data) if provider.outcome_service? and aspect_data and @user.role == "student"
   	  sign_in_and_redirect(:user, @user)
   	  Rails.logger.info("event=registration or signin status=successful user=#{@user.diaspora_handle}")   
   	else
@@ -35,6 +36,21 @@ class ProvidersController < ApplicationController
   end
   
   private
+
+  def perform_grade_post(provider, aspect)
+    Rails.logger.info("posting grade")
+    report_data = Report.where(:aspect_id => aspect.id)
+    unless report_data.nil?
+      max_score = report_data.maximum(:q_score)
+      my_report = report_data.where(:person_id => aspect.user.person.id).first
+
+      final_score = 0
+      final_score = (my_report.q_score.to_f / max_score).round(2) if my_report and max_score > 0
+      Rails.logger.info("final score is" + final_score.to_s)
+      res = provider.post_replace_result!(final_score) 
+      Rails.logger.info(res)  
+    end 
+  end  
 
   #this is for writing grade
   #def grade
