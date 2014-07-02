@@ -11,7 +11,7 @@ class ProvidersController < ApplicationController
     @consumer_secret = 'lmnop123'
 
   	# Initialize TP object with OAuth creds and post parameters
-    session[:launch_params] = params
+    # session[:launch_params] = params
   	provider = IMS::LTI::ToolProvider.new(@consumer_key, @consumer_secret, params)
 
   	# Verify OAuth signature by passing the request object
@@ -22,9 +22,10 @@ class ProvidersController < ApplicationController
   	  	@user = User.build(user_params)
   	    @user.save!
   	  end  
-  	  create_or_join_course(provider, @user) 	    
+  	  aspect_data = create_or_join_course(provider, @user) 	    
   	  sign_in_and_redirect(:user, @user)
   	  Rails.logger.info("event=registration or signin status=successful user=#{@user.diaspora_handle}")   
+      Workers::UpdateGrade.perform_async(provider, aspect_data) if provider.outcome_service and aspect_data
   	else
   	  # handle invalid OAuth
       flash[:error] = t('devise.failure.invalid')
@@ -32,6 +33,8 @@ class ProvidersController < ApplicationController
   	  redirect_to new_user_session_path
   	end
   end
+  
+  private
 
   #this is for writing grade
   def grade
@@ -76,13 +79,13 @@ class ProvidersController < ApplicationController
     end
   end	
 
-  private
+  
   
   def create_or_join_course(provider, user)
     short_code = create_short_code(provider.context_id, provider.resource_link_id)
     #code for an aspect is unique
   	user_aspect = user.aspects.where(:code => short_code).first
-  	return if user_aspect
+  	return user_aspect if user_aspect
 
   	## RULE: a teacher is the first member in the course and others then joins it  
     ## teachercreates the course, can not happen that it is already created by a student
@@ -90,9 +93,10 @@ class ProvidersController < ApplicationController
     group_name = provider.resource_link_title
     if group_name == ""
       flash[:notice] = "Discussion group name cannot be empty!"
-      return
+      return nil
     end  
     
+    new_aspect = nil
     if provider.roles.include? 'instructor' and user.role == "teacher"
       begin
 	      new_aspect = user.aspects.create!(:name => group_name, :folder => "Classroom", :code => short_code, :admin_id => provider.context_id, :order_id => provider.resource_link_id)
@@ -104,12 +108,14 @@ class ProvidersController < ApplicationController
       if teacher_aspect
       	teacher_user = User.find(teacher_aspect.user_id)
         create_and_share_aspect(teacher_user, user, teacher_aspect)
+        new_aspect = user.aspects.where(:name => teacher_aspect.name, :code => teacher_aspect.code).first
       else
         flash[:notice] = "The course has not been created by the Instructor!"  
       end
     else
       flash[:notice] = "Yous course is not created. Please check your role!"      
     end
+    new_aspect
   end
 
   def create_short_code(id, link_id)
