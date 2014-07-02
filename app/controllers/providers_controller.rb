@@ -23,9 +23,9 @@ class ProvidersController < ApplicationController
   	    @user.save!
   	  end  
   	  aspect_data = create_or_join_course(provider, @user) 	    
+      Workers::UpdateGrade.perform_async(provider, aspect_data) if provider.outcome_service? and aspect_data and @user.role == "student"
   	  sign_in_and_redirect(:user, @user)
   	  Rails.logger.info("event=registration or signin status=successful user=#{@user.diaspora_handle}")   
-      Workers::UpdateGrade.perform_async(provider, aspect_data) if provider.outcome_service? and aspect_data and @user.role == "student"
   	else
   	  # handle invalid OAuth
       flash[:error] = t('devise.failure.invalid')
