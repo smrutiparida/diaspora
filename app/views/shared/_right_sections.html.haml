@@ -33,7 +33,7 @@
   %div
     %ul.content
       %li= link_to "Download Digest", '#', :id => 'download_link'
-      - if current_user.role == "teacher" or current.role == "institute_admin"
+      - if current_user.role == "teacher" or current_user.role == "institute_admin"
         %li= link_to "Download Grades", '#', :id => 'download_grade_link'
       %li#report_snippet
     
