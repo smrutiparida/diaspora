@@ -1,5 +1,5 @@
 app.models.Report = Backbone.Model.extend({
-  urlRoot : "/reports/snippet/",
+  urlRoot : "/reports/snippet?id=",
 
   get_report : function(ids) {
     //var teacher = new app.models.Teacher();
@@ -19,8 +19,8 @@ app.models.Report = Backbone.Model.extend({
     //var respItems = this.parse(resp);
     
     //var reports = _.map(this.attributes, function(num, key){ return num; });
-    //app.reportView = new app.views.Report({attributes:this.attributes});
-    app.reportView = new app.views.Report({});
+    app.reportView = new app.views.Report({attributes:this.attributes});
+    //app.reportView = new app.views.Report({});
     //console.log(app.reportView)
     $('#report_snippet').html(app.reportView.render().el);
     
