@@ -4,7 +4,7 @@ app.views.Report = app.views.Base.extend({
 
   presenter : function() {
     return _.extend(this.defaultPresenter(), {
-    
+      reports: this.attributes,
       IsUserTeacher: this.IsUserTeacher(),
       getActiveAspect: this.getActiveAspect()
     })
