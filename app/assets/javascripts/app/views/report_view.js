@@ -4,7 +4,7 @@ app.views.Report = app.views.Base.extend({
   
   initialize : function(){
     // init shortcut references to the various elements
-    this.reports = this.attributes;
+    this.reports = this.attributes.reports;
   },
 
   presenter : function() {

@@ -89,7 +89,7 @@ class ReportsController < ApplicationController
     reports.each {|report| report_data.push({:name => report.name, :score => report.q_score})}
   respond_to do |format|
       format.json do
-        render :json => report_data.to_json
+        render :json => { :reports => report_data}.to_json
       end
     end
   end
