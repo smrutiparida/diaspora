@@ -54,7 +54,7 @@ class ReportsController < ApplicationController
 	#Rails.logger.info(@data3.to_json)
 	#Rails.logger.info(@data4.to_json)
 	respond_to do |format|
-	  format.html
+	  format.html { render :layout => true, :status => 200 }
 	end
   end  
   def snippet

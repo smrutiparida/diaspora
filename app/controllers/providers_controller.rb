@@ -25,7 +25,7 @@ class ProvidersController < ApplicationController
   	  aspect_data = create_or_join_course(provider, @user) 	    
   	  sign_in_and_redirect(:user, @user)
   	  Rails.logger.info("event=registration or signin status=successful user=#{@user.diaspora_handle}")   
-      Workers::UpdateGrade.perform_async(provider, aspect_data) if provider.outcome_service and aspect_data
+      Workers::UpdateGrade.perform_async(provider, aspect_data) if provider.outcome_service and aspect_data and user.role == "student"
   	else
   	  # handle invalid OAuth
       flash[:error] = t('devise.failure.invalid')
@@ -37,49 +37,47 @@ class ProvidersController < ApplicationController
   private
 
   #this is for writing grade
-  def grade
-    @consumer_key = 'lmnop-sandbox'
-    @consumer_secret = 'lmnop123'
+  #def grade
+  #  @consumer_key = 'lmnop-sandbox'
+  #  @consumer_secret = 'lmnop123'
 
-    return render :json => {"success" => true, "message" => "Grade published successfully!"}
+  #  return render :json => {"success" => true, "message" => "Grade published successfully!"}
     
 
-    if session['launch_params']
-      key = session['launch_params']['oauth_consumer_key']
-    else
-      return render :json => {"success" => true, "message" => "Could not validate credentials. Please login to LMS."}
-    end
+  #  if session['launch_params']
+  #    key = session['launch_params']['oauth_consumer_key']
+  #  else
+  #    return render :json => {"success" => true, "message" => "Could not validate credentials. Please login to LMS."}
+  #  end
 
-    @tp = IMS::LTI::ToolProvider.new(key, @consumer_secret, session['launch_params'])
+  #  @tp = IMS::LTI::ToolProvider.new(key, @consumer_secret, session['launch_params'])
 
-    if !@tp.outcome_service?
-      return render :json => {"success" => true, "message" => "LMNOP do not have necessary permission to publish grade!"} 
-    end
+  #  if !@tp.outcome_service?
+  #    return render :json => {"success" => true, "message" => "LMNOP do not have necessary permission to publish grade!"} 
+  #  end
 
-    # post the given score to the TC
-    report_data = Report.where(:aspect_id => params[:a_id])
-    unless report_data.nil?
-      report_data.each do |r|
-        #@data2.push([r.name, r.q_asked, r.q_answered, r.q_resolved, r.q_score])
-      end
-      res = @tp.post_replace_result!(params['score'])  
-    end 
+  #  # post the given score to the TC
+  #  report_data = Report.where(:aspect_id => params[:a_id])
+  #  unless report_data.nil?
+  #    report_data.each do |r|
+  #      #@data2.push([r.name, r.q_asked, r.q_answered, r.q_resolved, r.q_score])
+  #    end
+  #    res = @tp.post_replace_result!(params['score'])  
+  #  end 
 
-    message = ""
-    if res.success?
-      message = "Grade published successfully!"
-    #elsif response.processing?
-    #elsif response.unsupported?  
-    else
-      message = "Your score was not recorded: #{res.description}"
-    end
+  #  message = ""
+  #  if res.success?
+  #    message = "Grade published successfully!"
+  #  #elsif response.processing?
+  #  #elsif response.unsupported?  
+  #  else
+  #    message = "Your score was not recorded: #{res.description}"
+  #  end
 
-    respond_to do |format|
-      format.json { render :json => {"success" => true, "message" => message} }
-    end
-  end	
-
-  
+  #  respond_to do |format|
+  #    format.json { render :json => {"success" => true, "message" => message} }
+  #  end
+  #end	
   
   def create_or_join_course(provider, user)
     short_code = create_short_code(provider.context_id, provider.resource_link_id)
