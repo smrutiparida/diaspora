@@ -1,5 +1,11 @@
 <ul>
-  <li></li>
+	{{#each reports}}
+	    <li>
+	        <label><i class='icon-ok'/><span>{{name}}</span></label>
+	        -
+	        <label><span>{{score}}</span></label>
+	    </li>
+	{{/each}}
 </ul>
 {{#if IsUserTeacher}}
   <a href="/reports/{{getActiveAspect}}">Student Leaderboard</a>
