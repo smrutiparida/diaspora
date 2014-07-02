@@ -52,6 +52,7 @@ class ProvidersController < ApplicationController
         Raills.logger.info(provider.lti_msg)
       else
         Rails.logger.info(provider.lti_errormsg)
+      end  
     end 
   end  
 
