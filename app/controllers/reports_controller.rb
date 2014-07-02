@@ -77,7 +77,10 @@ class ReportsController < ApplicationController
         @data.push([hash_key[r.person_id].owner.email, r.q_score])
       end
     end  
-    send_data @data.string.force_encoding('binary'), :type=>"application/excel", :disposition=>'attachment', :filename => "#{current_user.username}_#{aspect}_faq.xls"
+    new_string = ""
+    @data.each { |ele| new_string += ele[0] + ',' + ele[1] + '\n'}
+    Rails.logger.info(new_string)
+    send_data new_string.force_encoding('binary'), :type=>"application/excel", :disposition=>'attachment', :filename => "#{current_user.username}_#{aspect}_faq.xls"
   end
 
   def snippet
