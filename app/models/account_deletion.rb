@@ -16,7 +16,7 @@ class AccountDeletion < ActiveRecord::Base
   def person=(person)
     self[:diaspora_handle] = person.diaspora_handle
     self[:person_id] = person.id
-  end 
+  end
 
   def diaspora_handle=(diaspora_handle)
     self[:diaspora_handle] = diaspora_handle
