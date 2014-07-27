@@ -154,12 +154,6 @@ class User < ActiveRecord::Base
     Workers::ResetPassword.perform_async(self.id)
   end
 
-  def send_confirmation_instructions
-    #generate_confirmation_token! if self.confirmation_token.blank?
-    #UserMailer.confirmation_instructions(self.id).deliver
-    Rails.logger.info("Ready to send email")
-  end
-
   def update_user_preferences(pref_hash)
     if self.disable_mail
       UserPreference::VALID_EMAIL_TYPES.each{|x| self.user_preferences.find_or_create_by_email_type(x)}
