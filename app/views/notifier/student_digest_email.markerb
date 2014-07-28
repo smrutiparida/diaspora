@@ -1,4 +1,4 @@
-Dear <%= @user.first_name %> 
+Dear <%= @user_name %> 
 
 <h3><%= @subject_string %></h3>
 
