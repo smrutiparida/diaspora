@@ -1,6 +1,6 @@
 class Report < ActiveRecord::Base
 
-  def update_report_score
+  def self.update_report_score
     @users = User.joins(person: :profile).where(["profiles.role == ?", "teacher"])
     @users.each do |user|
       #get all posts, all comments from a certain time and analyze each of them  
