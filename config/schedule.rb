@@ -3,13 +3,17 @@
 # It's helpful, but not entirely necessary to understand cron before proceeding.
 # http://en.wikipedia.org/wiki/Cron
 
-# set :environment, "production"
+set :environment, "development"
 
 # Example:
 set :output, File.join( File.dirname( __FILE__ ), '..', 'logs', 'scheduled_tasks.log' )
 
-every 1.day, :at => '3:00 am' do
-  rake 'maintenance:clear_carrierwave_temp_uploads'
+#every 1.day, :at => '9:00 am' do
+#  runner "MyModel.some_method"
+#end
+
+every 1.day, :at => '12:10 pm' do
+  Workers::UpdateReportScore.perform()
 end
 
 # every 2.hours do
