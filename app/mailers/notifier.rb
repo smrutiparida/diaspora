@@ -96,7 +96,7 @@ class Notifier < ActionMailer::Base
     @subject_string = "Daily Digest for course " + aspect.name.capitalize + "as on " + Time.now.strftime("%d/%m/%Y").to_s
 
     mail_opts = {:to => user.email, :from => AppConfig.mail.sender_address,
-                 :subject => @subject_string, :name => "LMNOP Team"),
+                 :subject => @subject_string, :name => "LMNOP Team",
                  :host => AppConfig.pod_uri.host}
 
     I18n.with_locale(locale) do
