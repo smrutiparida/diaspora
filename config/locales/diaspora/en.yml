@@ -717,6 +717,8 @@ en:
     reshared:
         reshared: "%{name} reshared your question"
         view_post: "View question >"
+    welcome_email:
+      subject: "Welcome to LMNOP- The Q&A tool for your classroom discussion!‏"
     confirm_email:
         subject: "Please activate your new email address %{unconfirmed_email}"
         click_link: "To activate your new email address %{unconfirmed_email}, please follow this link:"

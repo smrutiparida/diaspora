@@ -1,0 +1,17 @@
+Hi <%= @notification.recipient_first_name %>,
+
+Greetings from LMNOP! You have taken the first step by signing up on our unique learning platform. Here's how LMNOP can enhance your learning experience - 
+
+1. Collaborative Learning- LMNOP allows you to ask and answer questions that have not normally been covered in class, clear doubts and get clarifications on all the necessary concepts. What's more, students could ask questions anonymously and even ask questions directly to the teacher. The entire class participates leading to a much better learning experience.
+  
+2. Share documents- In LMNOP, you can share all the relevant documents, PPTs, and PDF files for the course. It helps in collating all your study materials at one place online. 
+
+3. Identify right answers for a question - LMNOP ensures that through group learning the correct answers for contentious questions are brought out. We enable the teacher to mark an answer correct, also to close a discussion when done. Whats more, our LMNOP digest ensures that you have the collection of all questions with their right answers, to act as a ready reckoner at the end of the course and before your exams!
+
+Should you have any problems, feel free to reach out to us at feedback@lmnop.in
+
+So what are you waiting for? Login and get started!
+
+Warm Regards  
+Smruti Parida, CEO
+LMNOP EduLabs!
