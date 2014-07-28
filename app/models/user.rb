@@ -307,7 +307,7 @@ class User < ActiveRecord::Base
           all_posts.push({:post_author => post.author_name, :date => post.updated_at.strftime("%d/%m/%Y").to_s, :post => post.text})
         end
         Rails.logger.info("Sending email to " + user.first_name.to_s + " and aspect is " + aspect.name.to_s)
-        Workers::Mail::StudentDigestEmail.perform_async(all_posts, user, aspect)
+        Workers::Mail::StudentDigestEmail.perform_async(all_posts, user, aspect.name)
       end
     end    
   end  
