@@ -2,9 +2,9 @@ module Workers
   module Mail
     class StudentDigestEmail < Base
       sidekiq_options queue: :digest_email
-      def perform(all_posts, user, aspect)
+      def perform(all_posts, user_email, aspect, user_name)
       	Rails.logger.info("came here")
-        Notifier.student_digest_email(all_posts, user.email, aspect, user.first_name).deliver
+        Notifier.student_digest_email(all_posts, user_email, aspect, user_name).deliver
       end
     end
   end
