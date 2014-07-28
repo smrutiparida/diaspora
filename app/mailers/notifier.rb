@@ -92,10 +92,11 @@ class Notifier < ActionMailer::Base
 
   def student_digest_email(all_posts, user, aspect)
     @all_posts = all_posts
+    Rails.logger.info("before subject string")
     @subject_string = "Daily Digest for course " + aspect.name.capitalize + "as on " + Time.now.strftime("%d/%m/%Y").to_s
     Rails.logger.info(@subject_string)
     @user_name = user.first_name
-    
+
     mail_opts = {:to => user.email, 
                  :from => AppConfig.mail.sender_address,
                  :subject => @subject_string,
