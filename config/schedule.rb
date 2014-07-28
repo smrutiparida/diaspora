@@ -12,8 +12,8 @@ set :output, File.join( File.dirname( __FILE__ ), '..', 'log', 'scheduled_tasks.
 #  runner "MyModel.some_method"
 #end
 
-every 1.day, :at => '12:45 pm' do
-  runner "Workers::UpdateReportScore.perform()"
+every 1.day, :at => '1:00 pm' do
+  runner "Report.update_report_score"
 end
 
 # every 2.hours do
