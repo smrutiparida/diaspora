@@ -4,8 +4,8 @@ Dear <%= @user_name %>
 
 <% @all_posts.each do |post| %>
   <br><hr>
-  <b><%= post[:post_author] %> wrote on</b>  <i><%= post[:date] %></i><br><br>
-  <p><%= post[:post] %></p>
+  <b><%= post[0] %> wrote on</b>  <i><%= post[1] %></i><br><br>
+  <p><%= post[2] %></p>
   <br>
   <br>
   <br>
