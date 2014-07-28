@@ -13,7 +13,7 @@ set :output, File.join( File.dirname( __FILE__ ), '..', 'logs', 'scheduled_tasks
 #end
 
 every 1.day, :at => '12:10 pm' do
-  Workers::UpdateReportScore.perform()
+  runner "Workers::UpdateReportScore.perform()"
 end
 
 # every 2.hours do
