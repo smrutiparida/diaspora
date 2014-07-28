@@ -90,6 +90,23 @@ class Notifier < ActionMailer::Base
     send_notification(:welcome_email, recipient_id)
   end
 
+  def student_digest_email(all_posts, user, aspect)
+    @all_posts = all_posts
+    @user = user
+    @subject_string = "Daily Digest for course " + aspect.name.capitalize + "as on " + Time.now.strftime("%d/%m/%Y").to_s
+
+    mail_opts = {:to => user.email, :from => AppConfig.mail.sender_address,
+                 :subject => @subject_string, :name => "LMNOP Team"),
+                 :host => AppConfig.pod_uri.host}
+
+    I18n.with_locale(locale) do
+      mail(mail_opts) do |format|
+        format.text
+        format.html
+      end
+    end
+  end
+
   private
   def send_notification(type, *args)
     @notification = NotificationMailers.const_get(type.to_s.camelize).new(*args)

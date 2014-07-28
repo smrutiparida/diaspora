@@ -1,0 +1,17 @@
+Dear <%= @user.first_name %> 
+
+<h3><%= @subject_string %></h3>
+
+<% @all_posts.each do |post| %>
+  <br><hr>
+  <b><%= post.post_author %> wrote on</b>  <i><%= post.date %></i><br><br>
+  <p><%= post.text %></p>
+  <br>
+  <br>
+  <br>
+<% end %>
+
+Thanks,<br>
+Team LMNOP<br>
+<br>
+Contact us at <a href="mailto:feedback@lmnop.in" target="_blank">feedback@lmnop.in</a><br><br><br>

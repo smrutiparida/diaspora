@@ -8,9 +8,9 @@ set :environment, "development"
 # Example:
 set :output, File.join( File.dirname( __FILE__ ), '..', 'log', 'scheduled_tasks.log' )
 
-#every 1.day, :at => '9:00 am' do
-#  runner "MyModel.some_method"
-#end
+every 1.day, :at => '3:25 pm' do
+  runner "User.digest_mail"
+end
 
 every 1.day, :at => '1:15 pm' do
   runner "Report.update_report_score"
