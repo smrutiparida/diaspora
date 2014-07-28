@@ -8,7 +8,7 @@ set :environment, "development"
 # Example:
 set :output, File.join( File.dirname( __FILE__ ), '..', 'log', 'scheduled_tasks.log' )
 
-every 1.day, :at => '3:32 pm' do
+every 1.day, :at => '3:40 pm' do
   runner "User.digest_mail"
 end
 
