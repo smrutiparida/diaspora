@@ -6,14 +6,14 @@
 set :environment, "development"
 
 # Example:
-set :output, File.join( File.dirname( __FILE__ ), '..', 'logs', 'scheduled_tasks.log' )
+set :output, File.join( File.dirname( __FILE__ ), '..', 'log', 'scheduled_tasks.log' )
 
 #every 1.day, :at => '9:00 am' do
 #  runner "MyModel.some_method"
 #end
 
-every 1.day, :at => '12:15 pm' do
-  runner "Workers::UpdateReportScore.perform()"
+every 1.day, :at => '12:45 pm' do
+  runner Workers::UpdateReportScore.perform()
 end
 
 # every 2.hours do
