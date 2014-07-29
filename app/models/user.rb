@@ -305,12 +305,12 @@ class User < ActiveRecord::Base
         all_posts = []
         user.visible_shareables(Post,  {:by_members_of => aspect.id, :limit => 10}).each do |post|
           if post.user_anonymity
-            all_posts.push(["Anonymous", post.updated_at.strftime("%d/%m/%Y").to_s, post.text])            
+            all_posts.push(["Anonymous", post.updated_at.strftime("%d/%m/%Y").to_s, post.text, post.id.to_s])            
           else  
-            all_posts.push([post.author_name, post.updated_at.strftime("%d/%m/%Y").to_s, post.text])
+            all_posts.push([post.author_name, post.updated_at.strftime("%d/%m/%Y").to_s, post.text, post.id.to_s])
           end  
         end
-        Rails.logger.info("Sending email to " + user.first_name.to_s + " and aspect is " + aspect.name.to_s)
+        
         Workers::Mail::StudentDigestEmail.perform_async(all_posts, user.email, aspect.name, user.first_name) if all_posts.length > 0
       end
     end    

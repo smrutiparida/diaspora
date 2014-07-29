@@ -8,10 +8,9 @@ Dear <%= @user_name %>
   <p><%= post[2] %></p>
   <br>
   <br>
-  <br>
+  <a target="_blank" href="http://www.lmnop.in/posts/<%= post[3] %>">Click here</a> to view the answers.
 <% end %>
 
 Thanks,<br>
 Team LMNOP<br>
-<br>
 Contact us at <a href="mailto:feedback@lmnop.in" target="_blank">feedback@lmnop.in</a><br><br><br>
