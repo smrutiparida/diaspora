@@ -64,9 +64,9 @@ $(document).ready(function() {
   });
 
   $('#teacher_select').live('change',function(){
-    $('.course_per_teacher').hide();
+    $('.course_per_teacher').attr('disabled', true).hide();
     $('#teacher-label').show();
-    $('#teacher_select_' + $(this).val()).show();
+    $('#teacher_select_' + $(this).val()).attr('disabled', false).show();
   });
 });
 
