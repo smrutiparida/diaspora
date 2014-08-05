@@ -61,8 +61,13 @@ module User::Querying
     query = opts[:klass].joins(:contacts).where(conditions)
 
     if opts[:by_members_of]
-      query = query.joins(:contacts => :aspect_memberships).where(
-        :aspect_memberships => {:aspect_id => opts[:by_members_of]})
+      if opts.has_key?(:by_member_name) and opts[:by_member_name] and opts[:by_member_name].length > 0
+        query = query.joins(:contacts => :aspect_memberships => :aspects).where(
+          :aspect_memberships => {:aspect_id => opts[:by_members_of]}, :aspects => {:name => opts[:by_member_name]})
+      else  
+        query = query.joins(:contacts => :aspect_memberships).where(
+          :aspect_memberships => {:aspect_id => opts[:by_members_of]})
+      end  
     end
 
     ugly_select_clause(query, opts)

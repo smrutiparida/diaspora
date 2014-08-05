@@ -35,6 +35,10 @@ class Stream::Aspect < Stream::Base
     @aspect_ids ||= aspects.map { |a| a.id }
   end
 
+  def aspect_names
+    @aspect_names ||= aspects.map { |a| a.name }
+  end
+
   # @return [ActiveRecord::Association<Post>] AR association of posts
   def posts
     # NOTE(this should be something like Post.all_for_stream(@user, aspect_ids, {}) that calls visible_shareables
@@ -42,7 +46,8 @@ class Stream::Aspect < Stream::Base
                                              :by_members_of => aspect_ids,
                                              :type => TYPES_OF_POST_IN_STREAM,
                                              :order => "#{order} DESC",
-                                             :max_time => max_time
+                                             :max_time => max_time,
+                                             :by_member_name => aspect_names
                    )
   end
 
