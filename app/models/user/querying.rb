@@ -11,7 +11,9 @@ module User::Querying
   end
 
   def visible_shareables(klass, opts={})
+    Rails.logger.info("inside visible_shareables" + opts.to_json)
     opts = prep_opts(klass, opts)
+    Rails.logger.info("after visible_shareables" + opts.to_json)
     shareable_ids = visible_shareable_ids(klass, opts)
     klass.where(:id => shareable_ids).select('DISTINCT '+klass.to_s.tableize+'.*').limit(opts[:limit]).order(opts[:order_with_table]).order(klass.table_name+".id DESC")
   end
@@ -24,6 +26,7 @@ module User::Querying
   # @return [Array<Integer>]
   def visible_ids_from_sql(klass, opts={})
     opts = prep_opts(klass, opts)
+    Rails.logger.info("inside visible_ids_from sql" + opts.to_json)
     opts[:klass] = klass
     opts[:by_members_of] ||= self.aspect_ids
 
@@ -61,6 +64,9 @@ module User::Querying
     query = opts[:klass].joins(:contacts).where(conditions)
 
     if opts[:by_members_of]
+      Rails.logger.info("inside visible_shareables" + opts.has_key?(:by_member_name))
+      Rails.logger.info(opts[:by_member_name])
+      Rails.logger.info(opts[:by_member_name].length)
       if opts.has_key?(:by_member_name) and opts[:by_member_name] and opts[:by_member_name].length > 0
         query = query.joins(:contacts => :aspect_memberships).where(
           :aspect_memberships => {:aspect_id => opts[:by_members_of]}).joins(
