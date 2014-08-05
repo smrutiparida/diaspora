@@ -69,8 +69,7 @@ module User::Querying
       Rails.logger.info(opts[:by_member_name].length)
       if opts.has_key?(:by_member_name) and opts[:by_member_name] and opts[:by_member_name].length > 0
         query = query.joins(:contacts => :aspect_memberships).where(
-          :aspect_memberships => {:aspect_id => opts[:by_members_of]}).joins(
-          :aspect_memberships => :aspects).where(
+          :aspect_memberships => {:aspect_id => opts[:by_members_of]}).joins(:aspects).where(
           :aspects => {:name => opts[:by_member_name]})
       else  
         query = query.joins(:contacts => :aspect_memberships).where(
