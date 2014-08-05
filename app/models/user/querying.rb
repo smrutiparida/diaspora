@@ -64,7 +64,7 @@ module User::Querying
     query = opts[:klass].joins(:contacts).where(conditions)
 
     if opts[:by_members_of]
-      Rails.logger.info("inside visible_shareables" + opts.has_key?(:by_member_name))
+     
       Rails.logger.info(opts[:by_member_name])
       Rails.logger.info(opts[:by_member_name].length)
       if opts.has_key?(:by_member_name) and opts[:by_member_name] and opts[:by_member_name].length > 0
