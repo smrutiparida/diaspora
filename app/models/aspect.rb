@@ -47,5 +47,20 @@ class Aspect < ActiveRecord::Base
   def to_beautify
     name.to_s + ' (' + code.to_s + ')'
   end
+
+  def patching_up
+    inviter = User.find(4)#236)
+    inviter_aspect = Aspect.find(25)#202)
+
+    contacts_in_aspect = inviter_aspect.contacts.includes(:aspect_memberships, :person => :profile).all     
+    all_person_guid = @contacts_in_aspect.map{|a| a.person_id}   
+    person_in_contacts = Person.where(:id => all_person_guid)
+    person_in_contacts.each do |present_user|
+      person_in_contacts.each do |existing_member|
+        contact = present_user.contacts.find_or_initialize_by_person_id(existing_member.id)
+        register_share_visibilities(contact, inviter_aspect)
+      end 
+    end  
+  end  
 end
 
