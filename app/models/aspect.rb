@@ -74,6 +74,8 @@ class Aspect < ActiveRecord::Base
           Rails.logger.info(p.to_json)
           ShareVisibility.import(p.compact) unless p.compact.empty?
           Rails.logger.info(p.compact.to_json)
+        else
+          Rails.logger.info("contact not valid")  
         end  
       end 
     end  
