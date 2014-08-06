@@ -55,9 +55,9 @@ class Aspect < ActiveRecord::Base
     contacts_in_aspect = inviter_aspect.contacts.includes(:aspect_memberships, :person => :profile).all     
     all_person_guid = contacts_in_aspect.map{|a| a.person_id}   
     person_in_contacts = Person.where(:id => all_person_guid)
-    person_in_contacts.each do |present_user|
+    person_in_contacts.each do |present_person|
       person_in_contacts.each do |existing_member|
-        contact = present_user.contacts.find_or_initialize_by_person_id(existing_member.id)
+        contact = present_person.owner.contacts.find_or_initialize_by_person_id(existing_member.id)
         if contact.valid?
           Rails.logger.info(contact.to_json)
           posts = Post.where(:author_id => contact.person_id).joins(:aspects).where(:aspects => {:name => inviter_aspect.name}).limit(100)
