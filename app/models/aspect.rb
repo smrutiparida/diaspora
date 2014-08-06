@@ -50,38 +50,38 @@ class Aspect < ActiveRecord::Base
 
   #THIS IS A BUGFIX where an user joining later were not able to see the earlier posts in teh same group
   def self.patching_up
-    inviter = User.find(236)
-    inviter_aspect = Aspect.find(202)
+    inviter = User.find(220)
+    inviter_aspect = Aspect.find(165)
     #inviter = User.find(4)
     #inviter_aspect = Aspect.find(25)
 
     contacts_in_aspect = inviter_aspect.contacts.includes(:aspect_memberships, :person => :profile).all     
     all_person_guid = contacts_in_aspect.map{|a| a.person_id}   
     person_in_contacts = Person.where(:id => all_person_guid)
-    ##person_in_contacts.each do |present_person|
-    ##  person_in_contacts.each do |existing_member|
-    ##    contact = present_person.owner.contacts.find_or_initialize_by_person_id(existing_member.id)
-    ##    if contact.valid?
-    ##      Rails.logger.info(contact.to_json)
-    ##      posts = Post.where(:author_id => contact.person_id).joins(:aspects).where(:aspects => {:name => inviter_aspect.name}).limit(100)
-    ##      p = posts.map do |post|
-    ##        s = ShareVisibility.where(:contact_id => contact.id, :shareable_id => post.id, :shareable_type => 'Post')
-    ##        l = nil
-    ##        if s.empty?
-    ##          l = ShareVisibility.new(:contact_id => contact.id, :shareable_id => post.id, :shareable_type => 'Post') 
-    ##          #ShareVisibility.import([:contact_id, :shareable_id, :shareable_type], [contact.id, post.id, 'Post'])
-    ##        end
-    ##        Rails.logger.info(l.to_json)
-    ##        l
-    ##      end
-    ##      Rails.logger.info(p.to_json)
-    ##      ShareVisibility.import(p.compact) unless p.compact.empty?
-    ##      Rails.logger.info(p.compact.to_json)
-    ##    else
-    ##      Rails.logger.info("contact not valid")  
-    ##    end  
-    ##  end 
-    ##end  
+    person_in_contacts.each do |present_person|
+      person_in_contacts.each do |existing_member|
+        contact = present_person.owner.contacts.find_or_initialize_by_person_id(existing_member.id)
+        if contact.present? and contact.valid? and not contact.id.nil?
+          Rails.logger.info(contact.to_json)
+          posts = Post.where(:author_id => contact.person_id).joins(:aspects).where(:aspects => {:name => inviter_aspect.name}).limit(100)
+          p = posts.map do |post|
+            s = ShareVisibility.where(:contact_id => contact.id, :shareable_id => post.id, :shareable_type => 'Post')
+            l = nil
+            if s.empty?
+              l = ShareVisibility.new(:contact_id => contact.id, :shareable_id => post.id, :shareable_type => 'Post') 
+              #ShareVisibility.import([:contact_id, :shareable_id, :shareable_type], [contact.id, post.id, 'Post'])
+            end
+            Rails.logger.info(l.to_json)
+            l
+          end
+          Rails.logger.info(p.to_json)
+          ShareVisibility.import(p.compact) unless p.compact.empty?
+          Rails.logger.info(p.compact.to_json)
+        else
+          Rails.logger.info("contact not valid")  
+        end  
+      end 
+    end  
 
     person_in_contacts.each do |present_person|
       contact = present_person.owner.contacts.find_or_initialize_by_person_id(inviter.person.id)
