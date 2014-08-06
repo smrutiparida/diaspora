@@ -33,8 +33,8 @@ module User::Connecting
   # @return [void]
   def register_share_visibilities(contact, aspect)
     #should have select here, but proven hard to test
-    #posts = Post.where(:author_id => contact.person_id, :public => true).limit(100)
-    posts = Post.where(:author_id => contact.person_id).joins(:aspects).where(:aspects => {:name => aspect.name}).limit(100)
+    posts = Post.where(:author_id => contact.person_id, :public => true).limit(100)
+    #posts = Post.where(:author_id => contact.person_id).joins(:aspects).where(:aspects => {:name => aspect.name}).limit(100)
     p = posts.map do |post|
       ShareVisibility.new(:contact_id => contact.id, :shareable_id => post.id, :shareable_type => 'Post')
     end
