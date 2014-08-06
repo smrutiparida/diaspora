@@ -85,7 +85,7 @@ class Aspect < ActiveRecord::Base
 
     person_in_contacts.each do |present_person|
       contact = present_person.owner.contacts.find_or_initialize_by_person_id(inviter.person.id)
-      if contact.present? and contact.valid?
+      if contact.present? and contact.valid? and not contact.id.nil?
         posts = Post.where(:author_id => inviter.person.id).joins(:aspects).where(:aspects => {:name => inviter_aspect.name}).limit(100)
         p = posts.map do |post|
           s = ShareVisibility.where(:contact_id => contact.id, :shareable_id => post.id, :shareable_type => 'Post')
