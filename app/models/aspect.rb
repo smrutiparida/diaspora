@@ -48,6 +48,7 @@ class Aspect < ActiveRecord::Base
     name.to_s + ' (' + code.to_s + ')'
   end
 
+  #THIS IS A BUGFIX where an user joining later were not able to see the earlier posts in teh same group
   def self.patching_up
     inviter = User.find(236)
     inviter_aspect = Aspect.find(202)
@@ -81,6 +82,29 @@ class Aspect < ActiveRecord::Base
         end  
       end 
     end  
+
+    person_in_contacts.each do |existing_member|
+      contact = inviter.contacts.find_or_initialize_by_person_id(existing_member.id)
+      if contact.valid?
+        posts = Post.where(:author_id => inviter.person.id).joins(:aspects).where(:aspects => {:name => inviter_aspect.name}).limit(100)
+        p = posts.map do |post|
+          s = ShareVisibility.where(:contact_id => contact.id, :shareable_id => post.id, :shareable_type => 'Post')
+          l = nil
+          if s.empty?
+            l = ShareVisibility.new(:contact_id => contact.id, :shareable_id => post.id, :shareable_type => 'Post') 
+            #ShareVisibility.import([:contact_id, :shareable_id, :shareable_type], [contact.id, post.id, 'Post'])
+          end
+          Rails.logger.info(l.to_json)
+          l
+        end
+        Rails.logger.info(p.to_json)
+        ShareVisibility.import(p.compact) unless p.compact.empty?
+        Rails.logger.info(p.compact.to_json)
+      end  
+    end
+
   end  
+
+
 end
 
