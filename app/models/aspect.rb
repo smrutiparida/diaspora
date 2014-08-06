@@ -50,10 +50,10 @@ class Aspect < ActiveRecord::Base
 
   #THIS IS A BUGFIX where an user joining later were not able to see the earlier posts in teh same group
   def self.patching_up
-    inviter = User.find(236)
-    inviter_aspect = Aspect.find(202)
-    #inviter = User.find(4)
-    #inviter_aspect = Aspect.find(25)
+    #inviter = User.find(236)
+    #inviter_aspect = Aspect.find(202)
+    inviter = User.find(4)
+    inviter_aspect = Aspect.find(25)
 
     contacts_in_aspect = inviter_aspect.contacts.includes(:aspect_memberships, :person => :profile).all     
     all_person_guid = contacts_in_aspect.map{|a| a.person_id}   
