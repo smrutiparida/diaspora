@@ -49,8 +49,8 @@ class Aspect < ActiveRecord::Base
   end
 
   def self.patching_up
-    inviter = User.find(4)#236)
-    inviter_aspect = Aspect.find(25)#202)
+    inviter = User.find(236)
+    inviter_aspect = Aspect.find(202)
 
     contacts_in_aspect = inviter_aspect.contacts.includes(:aspect_memberships, :person => :profile).all     
     all_person_guid = contacts_in_aspect.map{|a| a.person_id}   
