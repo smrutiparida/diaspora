@@ -53,7 +53,7 @@ class Aspect < ActiveRecord::Base
     inviter_aspect = Aspect.find(25)#202)
     Rails.logger.info("inside")
     contacts_in_aspect = inviter_aspect.contacts.includes(:aspect_memberships, :person => :profile).all     
-    all_person_guid = @contacts_in_aspect.map{|a| a.person_id}   
+    all_person_guid = contacts_in_aspect.map{|a| a.person_id}   
     person_in_contacts = Person.where(:id => all_person_guid)
     person_in_contacts.each do |present_user|
       person_in_contacts.each do |existing_member|
