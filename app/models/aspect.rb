@@ -83,8 +83,8 @@ class Aspect < ActiveRecord::Base
     ##  end 
     ##end  
 
-    person_in_contacts.each do |existing_member|
-      contact = inviter.contacts.find_or_initialize_by_person_id(existing_member.id)
+    person_in_contacts.each do |present_person|
+      contact = present_person.owner.contacts.find_or_initialize_by_person_id(inviter.person.id)
       if contact.valid?
         posts = Post.where(:author_id => inviter.person.id).joins(:aspects).where(:aspects => {:name => inviter_aspect.name}).limit(100)
         p = posts.map do |post|
