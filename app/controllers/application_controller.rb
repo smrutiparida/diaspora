@@ -163,14 +163,14 @@ class ApplicationController < ActionController::Base
     all_person_guid = @contacts_in_aspect.map{|a| a.person_id}   
     person_in_contacts = Person.where(:id => all_person_guid)
     person_in_contacts.each do |existing_member|
-      present_user.share_with(existing_member, new_aspect)
+      present_user.share_with(existing_member, new_aspect) unless inviter.person.id == existing_member.id
     end 
 
     user_id_in_contact = person_in_contacts.map {|a| a.owner_id}
     user_in_contacts = User.where(:id => user_id_in_contact)
     user_in_contacts.each do |existing_user|
       user_aspect = existing_user.aspects.where(:name => inviter_aspect.name).first
-      existing_user.share_with(present_user.person, user_aspect) unless user_aspect.blank?
+      existing_user.share_with(present_user.person, user_aspect) unless user_aspect.blank? or existing_user.id == inviter.id
     end
     new_contact  
   end
