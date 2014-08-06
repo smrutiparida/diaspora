@@ -62,12 +62,16 @@ class Aspect < ActiveRecord::Base
         posts = Post.where(:author_id => contact.person_id).joins(:aspects).where(:aspects => {:name => inviter_aspect.name}).limit(100)
         p = posts.map do |post|
           s = ShareVisibility.where(:contact_id => contact.id, :shareable_id => post.id, :shareable_type => 'Post')
+          l = nil
           if s.empty?
-            #ShareVisibility.new(:contact_id => contact.id, :shareable_id => post.id, :shareable_type => 'Post') 
-            ShareVisibility.import([:contact_id, :shareable_id, :shareable_type], [contact.id, post.id, 'Post'])
-          end  
+            l = ShareVisibility.new(:contact_id => contact.id, :shareable_id => post.id, :shareable_type => 'Post') 
+            #ShareVisibility.import([:contact_id, :shareable_id, :shareable_type], [contact.id, post.id, 'Post'])
+          end
+          Rails.logger.info(l.to_json)
+          l
         end
-        #ShareVisibility.import(p) unless p.empty?
+        Rails.logger.info(p.to_json)
+        ShareVisibility.import(p.compact) unless p.compact.empty?
       end 
     end  
   end  
