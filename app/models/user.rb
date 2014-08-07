@@ -303,14 +303,13 @@ class User < ActiveRecord::Base
     @users.each do |user|
       user.aspects.each do |aspect|    
         all_posts = []
-        user.visible_shareables(Post,  {:by_members_of => aspect.id, :limit => 10}).each do |post|
+        user.visible_shareables(Post,  {:by_members_of => aspect.id, :limit => 10, :by_member_name => aspect.name}).each do |post|
           if post.user_anonymity
             all_posts.push(["Anonymous", post.updated_at.strftime("%d/%m/%Y").to_s, post.text, post.id.to_s])            
           else  
             all_posts.push([post.author_name, post.updated_at.strftime("%d/%m/%Y").to_s, post.text, post.id.to_s])
           end  
         end
-        
         Workers::Mail::StudentDigestEmail.perform_async(all_posts, user.email, aspect.name, user.first_name) if all_posts.length > 0
       end
     end    
