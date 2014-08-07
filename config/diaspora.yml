@@ -68,7 +68,7 @@ configuration: ## Section
     ## thin by default, running, however this makes it quite slow as
     ## all the time intensive jobs must be run inside the request cycle.
     ## So this is higly unrecommended for production setups.
-    single_process_mode: false
+    single_process_mode: true
 
     ## Sidekiq - background processing
     sidekiq: ## Section
