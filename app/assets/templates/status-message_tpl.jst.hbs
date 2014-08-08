@@ -15,12 +15,12 @@
 {{/if}}
 
 {{#if documents}}
-  <div class="photo_attachments">
-    {{#each documents}}
+  {{#each documents}}
+    <div class="photo_attachments">    
       <img src="{{icon}}" class="stream-photo" rel="lightbox" style="height:40px;width:40px;">
       <a href="{{url}}" target="_blank">{{name}}</a>
-    {{/each}}
-  </div>
+    </div>  
+  {{/each}}
 {{/if}}
 
 {{#if assignment}}  
