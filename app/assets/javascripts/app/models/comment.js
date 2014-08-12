@@ -6,6 +6,7 @@ app.models.Comment = Backbone.Model.extend({
     console.log(this.get("likes"))
     this.likes = new app.collections.LikeComments(this.get("likes"), {comment : this}); 
     console.log(this.likes) 	
+    console.log(this)
   },
 
   parse : function(resp){
