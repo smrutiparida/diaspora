@@ -2,11 +2,7 @@ app.models.Comment = Backbone.Model.extend({
   urlRoot: "/comments",
 
   initialize : function() {
-    console.log("came to initialize")
-    console.log(this.get("likes"))
     this.likes = new app.collections.LikeComments(this.get("likes"), {comment : this}); 
-    console.log(this.likes) 	
-    console.log(this)
   },
 
 /*  parse : function(resp){
