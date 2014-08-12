@@ -4,7 +4,8 @@ app.models.Comment = Backbone.Model.extend({
   initialize : function() {
     console.log("came to initialize")
     console.log(this.get("likes"))
-    this.likes = new app.collections.LikeComments(this.get("likes"), {comment : this});  	
+    this.likes = new app.collections.LikeComments(this.get("likes"), {comment : this}); 
+    console.log(this.likes) 	
   },
 
   parse : function(resp){
