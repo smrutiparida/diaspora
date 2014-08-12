@@ -10,6 +10,8 @@ app.models.Comment = Backbone.Model.extend({
   parse : function(resp){
     console.log("came to parse")
     console.log(resp)
+    console.log(this)
+    console.log(this.likes)
     this.likes.reset(resp.likes)
    
     var likes = this.likes
