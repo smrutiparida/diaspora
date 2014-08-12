@@ -9,7 +9,7 @@ app.models.Comment = Backbone.Model.extend({
     console.log(this)
   },
 
-  parse : function(resp){
+/*  parse : function(resp){
     console.log("came to parse")
     console.log(resp)
     console.log(this)
@@ -17,14 +17,15 @@ app.models.Comment = Backbone.Model.extend({
     //this.likes.reset(resp.likes)
    
     //var likes = this.likes
-    var likes = new app.collections.LikeComments(null, {comment : resp});
+    //var likes = new app.collections.LikeComments(null, {comment : resp});
+    var likes = new app.collections.Likes(null, {post : this.post});
     console.log(likes)  
     return {
-      likes : null,
+      likes : likes,
       fetched : true
     }
   },
-
+*/
   userLike : function(){
     return this.likes.select(function(like){ return like.get("author").guid == app.currentUser.get("guid")})[0]
   },
