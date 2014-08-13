@@ -15,7 +15,7 @@ class Aspect < ActiveRecord::Base
   has_many :assignments, :through => :aspect_visibilities, :source => :shareable, :source_type => 'Assignment'
   has_many :quiz_assignments, :through => :aspect_visibilities, :source => :shareable, :source_type => 'QuizAssignment'
 
-  validates :name, :presence => true, :length => { :maximum => 50 }
+  validates :name, :presence => true, :length => { :maximum => 100 }
 
   validates_uniqueness_of :name, :scope => :user_id, :case_sensitive => false
 
