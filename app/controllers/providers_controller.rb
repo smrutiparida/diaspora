@@ -16,7 +16,7 @@ class ProvidersController < ApplicationController
 
   	# Verify OAuth signature by passing the request object
   	if provider.valid_request?(request)
-  	  @user = User.find_by_email(provider.lis_person_contact_email_primary)
+  	  @user = User.find_by_email(provider.lis_person_contact_email_primary.downcase)
   	  unless @user.present?
   	    user_params = signup_params(provider)
   	  	@user = User.build(user_params)
