@@ -116,11 +116,18 @@ class ProvidersController < ApplicationController
     
     new_aspect = nil
     if provider.roles.include? 'instructor' and user.role == "teacher"
-      begin
-	      new_aspect = user.aspects.create!(:name => group_name, :folder => "Classroom", :code => short_code, :admin_id => provider.context_id, :order_id => provider.resource_link_id)
-      rescue ActiveRecord::RecordInvalid
-        flash[:notice] = "Discussion group name is not unique!"
-      end
+      teacher_aspect = Aspect.where(:order_id => provider.resource_link_id, :admin_id => provider.context_id).first
+      if teacher_aspect
+        teacher_user = User.find(teacher_aspect.user_id)
+        create_and_share_aspect(teacher_user, user, teacher_aspect)
+        new_aspect = user.aspects.where(:name => teacher_aspect.name, :code => teacher_aspect.code).first
+      else
+        begin
+  	      new_aspect = user.aspects.create!(:name => group_name, :folder => "Classroom", :code => short_code, :admin_id => provider.context_id, :order_id => provider.resource_link_id)
+        rescue ActiveRecord::RecordInvalid
+          flash[:notice] = "Discussion group name is not unique!"
+        end
+      end  
 	  elsif provider.roles.include? 'learner' and user.role == "student"
       teacher_aspect = Aspect.where(:order_id => provider.resource_link_id, :admin_id => provider.context_id).first
       if teacher_aspect
