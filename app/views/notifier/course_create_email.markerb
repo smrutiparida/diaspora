@@ -2,12 +2,12 @@ Hi <%= @notification.recipient_first_name %>,
 
 You have successfully created your course.
 
-Course Name - <%= @notification.aspect_name %>
+Course Name - <%= @notification.aspect_name %><br>
 Course ID - <%= @notification.aspect_code %>
 
 You can share your course id over email or in class with your students to ensure they join your course. 
 
 Thanks a lot for using our platform to enhance the learning of your students! 
 
-Warm Regards 
+Warm Regards<br>
 Team LMNOP
