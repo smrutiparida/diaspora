@@ -4,14 +4,17 @@
 
   .span-12.last
     %h2
-      = t('.invite_someone_to_join')
+      = "Course Invitation"
       %br
   .span-7.append-1.last
-    %b= t('.paste_link')
-    %br
-    %br
-    = invite_link(@invite_code)
-    = t('.codes_left', :count => @invite_code.count)
+    -#
+      %b= t('.paste_link')
+      %br
+      %br
+      = invite_link(@invite_code)
+      = t('.codes_left', :count => @invite_code.count)
+    = "Course Name - "
+    = "Course Code - "  
     %br
     %br
     #email_invitation

@@ -1,4 +1,4 @@
-#   Copyright (c) 2010-2011, Diaspora Inc.  This file is
+  #   Copyright (c) 2010-2011, Diaspora Inc.  This file is
 #   licensed under the Affero General Public License version 3 or later.  See
 #   the COPYRIGHT file.
 
@@ -7,7 +7,7 @@ class InvitationsController < ApplicationController
   before_filter :authenticate_user!, :only => [:new, :create]
 
   def new
-    @invite_code = current_user.invitation_code
+    #@invite_code = current_user.invitation_code
 
     @invalid_emails = html_safe_string_from_session_array(:invalid_email_invites)
     @valid_emails   = html_safe_string_from_session_array(:valid_email_invites)
