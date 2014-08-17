@@ -90,6 +90,10 @@ class Notifier < ActionMailer::Base
     send_notification(:welcome_email, recipient_id)
   end
 
+  def course_create_email(recipient_id, aspect_id)
+    send_notification(:course_create_email, recipient_id, nil, aspect_id)
+  end
+
   def student_digest_email(all_posts, user_email, aspect, user_name)
     @all_posts = all_posts
     
