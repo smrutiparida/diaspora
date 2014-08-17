@@ -107,6 +107,7 @@ app.Router = Backbone.Router.extend({
     if(ids.length > 0){
       $('#download_link').attr("href", "/user/faq?a_id=" + ids[0])
       $('#download_grade_link').attr("href", "/reports/download?a_id=" + ids[0])
+      $('#course_invite_link').attr("href", "/users/invitations?aspect=" + ids[0])
     }
     
     app.stream = new app.models.StreamAspects([], { aspects_ids: ids});

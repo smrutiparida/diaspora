@@ -8,6 +8,7 @@ class InvitationsController < ApplicationController
 
   def new
     #@invite_code = current_user.invitation_code
+    @aspect = Aspect.find(params[:aspect]) if params[:aspect]
 
     @invalid_emails = html_safe_string_from_session_array(:invalid_email_invites)
     @valid_emails   = html_safe_string_from_session_array(:valid_email_invites)

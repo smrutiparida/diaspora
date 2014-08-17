@@ -13,8 +13,9 @@
       %br
       = invite_link(@invite_code)
       = t('.codes_left', :count => @invite_code.count)
-    = "Course Name - "
-    = "Course Code - "  
+    = "Course Name - <%= @aspect.name %>"  
+    %br
+    = "Course Code - <%= @aspect.code %>"  
     %br
     %br
     #email_invitation

@@ -43,9 +43,10 @@
     .title
       .icons-mail
       %h5.title-header
-        = t('shared.invitations.invite_your_friends')
+        = "Invite Students"
     .content
-      = render "shared/invitations"
+      = "Share the course code via email to let your students join LMNOP"
+      = link_to t('.by_email'), '#', :title => "invite student", :rel => 'facebox', :id => 'course_invite_link'
 
 -#
   .section
