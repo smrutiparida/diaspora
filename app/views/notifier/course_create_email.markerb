@@ -1,6 +1,10 @@
 Hi <%= @notification.recipient_first_name %>,
 
-You have successfully created your course <%= @notification.aspect_name %> and your course ID is <%= @notification.aspect_code %>. 
+You have successfully created your course.
+
+Course Name - <%= @notification.aspect_name %>
+Course ID - <%= @notification.aspect_code %>
+
 You can share your course id over email or in class with your students to ensure they join your course. 
 
 Thanks a lot for using our platform to enhance the learning of your students! 
