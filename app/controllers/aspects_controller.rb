@@ -16,6 +16,7 @@ class AspectsController < ApplicationController
     
     if @aspect.save
       flash[:notice] = I18n.t('aspects.create.success', :name => @aspect.name)
+      Rails.logger.info(current_user.role)
       Workers::SendCourseCreateEmail.perform_async(current_user.id, @aspect.id) if current_user.role == "teacher"
       if current_user.getting_started || request.referer.include?("contacts")
         redirect_to :back
