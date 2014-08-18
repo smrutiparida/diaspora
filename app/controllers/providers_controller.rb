@@ -138,7 +138,7 @@ class ProvidersController < ApplicationController
         flash[:notice] = "The course has not been created by the Instructor!"  
       end
     else
-      flash[:notice] = "Yous course is not created. Please check your role!"      
+      flash[:notice] = "Your course is not created. Please check your role!"      
     end
     new_aspect
   end
