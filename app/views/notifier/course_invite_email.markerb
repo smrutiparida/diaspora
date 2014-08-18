@@ -1,0 +1,11 @@
+Hi
+
+I created the below course on LMNOP!
+
+Course Name - <%= @aspect.name %><br>
+Course ID - <%= @aspect.code %>
+
+Use the course id to join the course. In case you are new to LMNOP signup at <a href="http://www.lmnop.in">www.lmnop.in</a>
+
+Warm Regards<br>
+Team LMNOP

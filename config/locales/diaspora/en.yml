@@ -582,7 +582,7 @@ en:
         zero:  "No invites left on this code"
         one:  "One invite left on this code"
         other:  "%{count} invites left on this code"
-      aspect: "Group"
+      aspect: "Course Group"
       already_invited: "The following people have not accepted your invitation:"
       resend: "Resend"
       check_out_diaspora: "Check out lmnop!"

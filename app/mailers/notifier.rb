@@ -36,6 +36,26 @@ class Notifier < ActionMailer::Base
     end
   end
 
+  def course_invite_email(recipient_email, sender_id, aspect_id)
+    @aspect = Aspect.find(aspect_id) if aspect_id.present?
+    @sender = Person.find_by_id(sender_id) if sender_id.present
+    subject_string = @sender.name + " invited you to join a course on LMNOP"
+    
+    mail_opts = {:to => recipient_email, 
+                 :from => AppConfig.mail.sender_address,
+                 :subject => subject_string,
+                 :host => AppConfig.pod_uri.host}
+    
+    mail_opts[:from] = "\"#{@sender.name} (lmnop)\" <#{AppConfig.mail.sender_address}>" if @sender.present?
+
+    I18n.with_locale(locale) do
+      mail(mail_opts) do |format|
+        format.text
+        format.html
+      end
+    end
+  end
+
   def invite(email, message, inviter, invitation_code, locale)
     @inviter = inviter
     @message = message
@@ -98,7 +118,7 @@ class Notifier < ActionMailer::Base
     @all_posts = all_posts
     
     @subject_string = "Daily Digest for course " + aspect + " as on " + Time.now.strftime("%d/%m/%Y").to_s
-    Rails.logger.info(@subject_string)
+    #Rails.logger.info(@subject_string)
     @user_name = user_name
 
     mail_opts = {:to => user_email, 
@@ -129,4 +149,5 @@ class Notifier < ActionMailer::Base
   def with_recipient_locale(&block)
     I18n.with_locale(@notification.recipient.language, &block)
   end
+
 end

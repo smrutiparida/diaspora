@@ -62,24 +62,25 @@ class InvitationsController < ApplicationController
     
     unless valid_emails.empty?      
       unless inviter_params[:aspect].blank?
-        opts = {}
-        opts[:sender] = current_user
-        opts[:aspect] = Aspect.find(inviter_params[:aspect])
+        #opts = {}
+        #opts[:sender] = current_user.person
+        #aspect = Aspect.find(inviter_params[:aspect])
 
-        users_on_pod = User.where(:email => emails, :invitation_token => nil)
+        #users_on_pod = User.where(:email => emails, :invitation_token => nil)
 
         #share with anyone whose email you entered who is on the pod
         #opts[:sender].share_with(u.person, opts[:aspect])
-        users_on_pod.each{|u| create_and_share_aspect(current_user, u, opts[:aspect]) unless current_user.email == u.email}
+        #users_on_pod.each{|u| create_and_share_aspect(current_user, u, opts[:aspect]) unless current_user.email == u.email}
 
-        emails.each do |e|
-          user = users_on_pod.find{|u| u.email == e}
-          Invitation.create(opts.merge(:identifier => e, :recipient => user))
-        end
+        #emails.each do |e|
+        #  user = users_on_pod.find{|u| u.email == e}
+        #  Invitation.create(opts.merge(:identifier => e, :recipient => user))
+        #end
+        #Workers::SendCourseInviteEmail.perform_async(current_user.id, @aspect.id)
+        valid_emails.each { |x| Workers::SendCourseInviteEmail.perform_async(x, current_user.person.id, inviter_params[:aspect]) }
+       
       end  
-      Workers::Mail::InviteEmail.perform_async(valid_emails.join(','),
-                                               current_user.id,
-                                               inviter_params)
+      #Workers::Mail::InviteEmail.perform_async(valid_emails.join(','), current_user.id, inviter_params)
         
     end
 
