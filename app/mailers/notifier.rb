@@ -38,7 +38,7 @@ class Notifier < ActionMailer::Base
 
   def course_invite_email(recipient_email, sender_id, aspect_id)
     @aspect = Aspect.find(aspect_id) if aspect_id.present?
-    @sender = Person.find_by_id(sender_id) if sender_id.present
+    @sender = Person.find_by_id(sender_id) if sender_id.present?
     subject_string = @sender.name + " invited you to join a course on LMNOP"
     
     mail_opts = {:to => recipient_email, 
