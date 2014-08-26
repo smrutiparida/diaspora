@@ -57,6 +57,8 @@ module InterimStreamHackinessHelper
 
   def publisher_explain
     if defined?(@stream)
+      Rails.logger.info("print stream")
+      Rails.logger.info(@stream.to_json)
       @stream.publisher.public?
     else
       false
