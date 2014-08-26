@@ -36,6 +36,7 @@
       %li= link_to "Download Digest", '#', :id => 'download_link'
       - if current_user.role == "teacher" or current_user.role == "institute_admin"
         %li= link_to "Download Grades", '#', :id => 'download_grade_link'
+      %li= link_to "Product Tour", '#', :id => 'download_link', :onClick => 'return productTour();'
       
     
 - if current_user.role == "teacher"

@@ -25,9 +25,10 @@
 
 
   
-    $(document).ready(function() {
-        if( app.publisher ) app.publisher.triggerGettingStarted();
-      });
+  function productTour(){
+    if( app.publisher ) app.publisher.triggerGettingStarted();
+    return false;
+  };
 
   
 -#
