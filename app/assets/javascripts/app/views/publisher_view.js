@@ -88,9 +88,12 @@ app.views.Publisher = Backbone.View.extend({
 
     this.view_getting_started = new app.views.PublisherGettingStarted({
       el_welcome_msg: $('#welcome-shim'),
-      el_first_msg:  this.el_input,
-      el_visibility: this.$('.public_toggle > .dropdown'),
-      el_stream:     $('#gs-shim')
+      el_first_msg:  $('#aspects_list'),
+      el_stream:     $('#gs-shim'),
+      el_second_msg:  this.$('#publisher_service_icons'),
+      el_third_msg:  $('#aspect_teacher'),
+      el_fourth_msg:  $('#filters_list'),
+      el_fifth_msg:  $('#download_link')
     });
 
     this.view_uploader = new app.views.PublisherUploader({

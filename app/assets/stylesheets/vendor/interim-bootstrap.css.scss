@@ -7,6 +7,10 @@
 @import "bootstrap/component-animations";
 
 /* hacks */
+.popover{
+  width:450px;
+}
+
 .popover h3 {
   margin-bottom: 0;
   font-weight: bold;

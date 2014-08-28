@@ -8,7 +8,7 @@
       .icons-question
       %h5.title-header
         = "My Instructor"
-    .content#aspect_teacher
+    .content#aspect_teacher{:title => 'popover_with_close_html("Types of Questions")', :'data-content' => 'To help ask questions freely to your instructor, there is provision to ask question privately to your instructor. Also you can ask a question to the whole class without ever revealing your identity.'}
   
 .section
   .title
@@ -16,7 +16,7 @@
     %h5.title-header
       = "Filters"
   %div 
-    %ul.content#filters_list
+    %ul.content#filters_list{:title => popover_with_close_html("Filtering Answers"), 'data-content' => 'Teachers mark a question resolved when an or multiple answers is given students seems to be correct. Click here to see all the correct answers. The correct answers are color coded for your convinience.'}
       = render "shared/links"  
 
 .section
@@ -33,7 +33,7 @@
       = "Quick Links"
   %div
     %ul.content
-      %li= link_to "Download Digest", '#', :id => 'download_link'
+      %li= link_to "Download Digest", '#', :id => 'download_link', :title => popover_with_close_html("Discussion Digest"), 'data-content' => 'Discussion Digest is a downloadable PDF file with all questions and its correct answers. Click this link to access the digest for a specific course.'
       - if current_user.role == "teacher" or current_user.role == "institute_admin"
         %li= link_to "Download Grades", '#', :id => 'download_grade_link'
       %li= link_to "Product Tour", '#', :id => 'download_link', :onClick => 'return productTour();'

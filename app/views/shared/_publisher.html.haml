@@ -131,7 +131,7 @@
 
       .options_and_submit
         .public_toggle
-          %span#publisher_service_icons
+          %span#publisher_service_icons{:title => popover_with_close_html("Ask a Question"), 'data-content' => 'Use this text box to ask questions in the class. As part of a question, you can also upload photos and documents. To help find a question, #hashtag a question with topics and keywords.'}
             - if current_user.services
               - for service in current_user.services
                 = content_tag :div, nil,

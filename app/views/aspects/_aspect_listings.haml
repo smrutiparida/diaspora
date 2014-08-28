@@ -3,7 +3,8 @@
 -#   the COPYRIGHT file.
 
 = link_to "Courses", aspects_path, :class => 'hoverable', :rel => 'backbone', :data => {:stream => 'aspects'}, :id => 'mandatory_groups'
-%ul#aspects_list
+%ul#aspects_list{:title => popover_with_close_html("Join a Course"), 'data-content' => 'Join a new course by selecting the instructor and then the appropriate course name.'}
+
   %li.hoverable
     = link_to  '+ Create a Group', 'aspects/new?type=', :rel => 'facebox', :class => 'selectable new_aspect'
 
