@@ -87,6 +87,7 @@ app.views.Publisher = Backbone.View.extend({
     });
 
     this.view_getting_started = new app.views.PublisherGettingStarted({
+      el_welcome_msg: $('#welcome-shim'),
       el_first_msg:  this.el_input,
       el_visibility: this.$('.public_toggle > .dropdown'),
       el_stream:     $('#gs-shim')

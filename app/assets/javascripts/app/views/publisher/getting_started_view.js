@@ -10,6 +10,13 @@ app.views.PublisherGettingStarted = Backbone.View.extend({
 
   // initiate all the popover message boxes
   show: function() {
+    this._addPopover(this.options.el_welcome_msg, {
+      trigger: 'manual',
+      offset: 300,
+      id: 'welcome_message_explain',
+      placement: 'top',
+      html: true
+    }, 600);
     this._addPopover(this.options.el_first_msg, {
       trigger: 'manual',
       offset: 30,
@@ -33,10 +40,10 @@ app.views.PublisherGettingStarted = Backbone.View.extend({
     }, 1400);
 
     // hide some popovers when a post is created
-    this.$('.button.creation').click(function() {
-      this.options.el_visibility.popover('hide');
-      this.options.el_first_msg.popover('hide');
-    });
+    //this.$('.button.creation').click(function() {
+    //  this.options.el_visibility.popover('hide');
+    //  this.options.el_first_msg.popover('hide');
+    //});
   },
 
   _addPopover: function(el, opts, timeout) {
@@ -54,9 +61,9 @@ app.views.PublisherGettingStarted = Backbone.View.extend({
       var close = $(popup).find('.close');
 
       close.click(function() {
-        if( $('.popover').length==1 ) {
-          $.get('/getting_started_completed');
-        }
+        //if( $('.popover').length==1 ) {
+        //  $.get('/getting_started_completed');
+        //}
         el.popover('hide');
         return false;
       });
