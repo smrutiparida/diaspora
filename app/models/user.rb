@@ -367,9 +367,9 @@ class User < ActiveRecord::Base
 
   ###Helpers############
   def self.build(opts = {})
-    Rails.logger.info(opts)
-    Rails.logger.info(opts[:person])
-    Rails.logger.info(opts.except(:person))
+    #Rails.logger.info(opts)
+    #Rails.logger.info(opts[:person])
+    #Rails.logger.info(opts.except(:person))
     u = User.new(opts.except(:person))
     u.setup(opts)
     u
@@ -384,7 +384,7 @@ class User < ActiveRecord::Base
     errors = self.errors
     errors.delete :person
     return if errors.size > 0
-    Rails.logger.info(opts[:person])
+    #Rails.logger.info(opts[:person])
     self.set_person(Person.new(opts[:person] || {} ))
     self.generate_keys
     self

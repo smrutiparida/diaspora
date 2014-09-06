@@ -8,7 +8,7 @@ Dear <%= @user_name %>
   <p><%= post[2] %></p>
   <br>
   <br>
-  <a target="_blank" href="http://www.lmnop.in/posts/<%= post[3] %>">Click here</a> to view the answers.
+  <a target="_blank" href="http://www.lmnop.in/">Click here</a> to view the answers.
 <% end %>
 
 Thanks,<br>
