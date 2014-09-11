@@ -263,22 +263,12 @@ Diaspora::Application.routes.draw do
   get 'mobile/toggle', :to => 'home#toggle_mobile', :as => 'toggle_mobile'
 
   # Help
-  get 'help' => 'help#getting_help', :as => 'faq_getting_help'
+  get 'help' => 'help#enrollment', :as => 'lmnop_enrollment'
   
   scope path: "/help/faq", :controller => :help, :as => 'faq' do
-    get :account_and_data_management
-    get :aspects
-    get :mentions
-    get :miscellaneous
-    get :pods
-    get :posts_and_posting
-    get :private_posts
-    get :private_profiles
-    get :public_posts
-    get :public_profiles
-    get :resharing_posts
-    get :sharing
-    get :tags
+    get :course_creation
+    get :discussion_forum
+    get :conversation
   end
 
   #Protocol Url

@@ -1,0 +1,26 @@
+-#   Copyright (c) 2010-2011, Diaspora Inc.  This file is
+-#   licensed under the Affero General Public License version 3 or later.  See
+-#   the COPYRIGHT file.
+
+- content_for :page_title do
+  = t('_help')
+
+#section_header
+  %h2
+    = t('_help')
+  //= render('help_nav')
+.span-5
+  = render('faq_nav')
+
+.span-19.last#faq
+  .question.opened.collapsible
+    %a.toggle{ :href => '#' }
+      %h4 How can a teacher/ TA edit a question? 
+    .answer Answers can be edited only by teachers or TAs.  They can do so by hovering their mouse over any thread and clicking the first icon on the left.
+    %a.toggle{ :href => '#' }
+      %h4 How can a teacher/TA delete a question?
+    .answer Answers can be deleted only by teachers or TA. Teachers or TA can do that by hovering their mouse over any thread and clicking the  icon.
+  .question.opened.collapsible
+    %a.toggle{ :href => '#' }
+      %h4 What is the LMNOP Student Leaderbaord? 
+    .answer The LMNOP student leader board is an advanced analytics dashboard that we provide to help teachers understand the extent of participation of students. It also helps the teacher understand the extent to which any concept has been absorbed in class thus, building a great feedback loop for the teacher to improve the teaching methodology.

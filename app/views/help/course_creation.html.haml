@@ -1,0 +1,22 @@
+-#   Copyright (c) 2010-2011, Diaspora Inc.  This file is
+-#   licensed under the Affero General Public License version 3 or later.  See
+-#   the COPYRIGHT file.
+
+- content_for :page_title do
+  = t('_help')
+
+#section_header
+  %h2
+    = t('_help')
+  //= render('help_nav')
+.span-5
+  = render('faq_nav')
+
+.span-19.last#faq
+  .question.opened
+    %h4  How can a course be created in LMNOP? 
+    .answer Only teachers/TAs can create a course in LMNOP.  To create a course, sign up as a teacher or a TA. Click on “Create a course” link. As you start naming the course, a course ID would be created. A teacher can share this course ID with his/her students.
+  .question.opened
+    %h4 How can a teacher/ TA retrieve the course ID? 
+    .answer The course ID can be retrieved by hovering your mouse  on top of the course and clicking the “pen” icon that appears subsequently. Attached is a screenshot of the same. Additionally the course ID is also sent to the Teacher/TA over email once the course is created.
+  
