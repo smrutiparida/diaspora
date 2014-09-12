@@ -266,9 +266,9 @@ Diaspora::Application.routes.draw do
   get 'help' => 'help#enrollment', :as => 'lmnop_enrollment'
   
   scope path: "/help/faq", :controller => :help, :as => 'faq' do
-    get :course_creation
-    get :discussion_forum
-    get :conversation
+    get :course_creation, :as => 'course_creation'
+    get :discussion_forum, :as => 'discussion_forum'
+    get :conversation, :as => 'conversation'
   end
 
   #Protocol Url
