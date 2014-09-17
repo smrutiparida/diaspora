@@ -36,7 +36,7 @@
       %li= link_to "Download Digest", '#', :id => 'download_link', :title => popover_with_close_html("Discussion Digest"), 'data-content' => 'Discussion Digest is a downloadable PDF file with all questions and its correct answers. Click this link to access the digest for a specific course.'
       - if current_user.role == "teacher" or current_user.role == "institute_admin"
         %li= link_to "Download Grades", '#', :id => 'download_grade_link'
-      %li= link_to "Product Tour", '#', :id => 'download_link', :onClick => 'return productTour();'
+      
       
     
 - if current_user.role == "teacher"
@@ -51,6 +51,7 @@
       = link_to t('.by_email'), '#', :title => "invite student", :rel => 'facebox', :id => 'course_invite_link'
 
 -#
+  %li= link_to "Product Tour", '#', :id => 'download_link', :onClick => 'return productTour();'
   .section
     .title
       .icons-question
