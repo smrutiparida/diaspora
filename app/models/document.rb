@@ -42,7 +42,7 @@ class Document < ActiveRecord::Base
 
   validate :ownership_of_status_message
 
-  before_destroy :ensure_user_document
+  #before_destroy :ensure_user_document
   after_destroy :clear_empty_status_message
 
   #Not required for documents at this point.
