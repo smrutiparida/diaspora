@@ -52,7 +52,7 @@ class Assignment < ActiveRecord::Base
   end  
 
   def clear_empty_status_message
-    if self.status_message_guid && text_and_photos_and_documents_blank_and_assignments_blank_and_quiz_assignments_blank?
+    if self.status_message_guid && self.status_message.text_and_photos_and_documents_blank_and_assignments_blank_and_quiz_assignments_blank?
       self.status_message.destroy
     else
       true
