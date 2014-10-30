@@ -19,8 +19,8 @@ class HomeController < ApplicationController
     #  render :show
     else
       @css_framework = :bootstrap # Hack, port site to one framework
-      render file: Rails.root.join("public", "default.html")
-      #,             layout: 'application'
+      render file: Rails.root.join("public", "default.html"),
+             layout: false
     end
   end
 
