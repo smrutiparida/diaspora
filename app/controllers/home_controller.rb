@@ -38,6 +38,6 @@ class HomeController < ApplicationController
 
   def aboutus
     @css_framework = :bootstrap # Hack, port site to one framework
-    render file: Rails.root.join("public", "aboutus.html"), layout: 'application'
+    render file: Rails.root.join("public", "aboutus.html"), layout: false #'application'
   end  
 end
