@@ -1,800 +1,385 @@
-
-
-<!DOCTYPE html>
-<html lang="en-US">
-<head>
-    <title>LMNOP</title>
-    <meta charset='utf-8'>
-    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
-    <meta content='Ask questions after classes to your instructors online.' name='description'>
-    <meta content='Smruti Parida' name='author'>
-    <meta content='lmnop' property='og:site_name'>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-
-    <link rel="shortcut icon" href="<%= asset_path 'favicon.png' %>">
-
-<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-
-
-<link href='http://fonts.googleapis.com/css?family=Roboto:100,300,400' rel='stylesheet' type='text/css'>
-
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <style type="text/css">
-
-
-/*--------------------------------------------------------
-Resets
---------------------------------------------------------*/
-html, body {
-    height: 100%;
-}
-
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-}
-
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
-    display: block;
-}
-
-body {
-    line-height: 1.5;
-}
-
-ol, ul {
-    list-style: none;
-}
-
-blockquote, q {
-    quotes: none;
-}
-
-blockquote:before, blockquote:after, q:before, q:after {
-    content: '';
-    content: none;
-}
-
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
-/*--------------------------------------------------------
-Resets
---------------------------------------------------------*/
-
-/*--------------------------------------------------------
-common
---------------------------------------------------------*/
-
-body {
-    font: normal 12px Arial, Helvetica, sans-serif;
-    color: #656565;
-    overflow-x: hidden;
-    line-height: 20px !important;
-    background-color: #fff;
-}
-
-.clr {
-    clear: both;
-}
-
-.flLt {
-    float: left;
-}
-
-.flRt {
-    float: right !important;
-}
-
-.vM {
-    vertical-align: middle;
-}
-
-.vMt {
-    vertical-align: text-top;
-}
-
-.dispNone {
-    display: none;
-}
-
-a, button {
-    background: transparent;
-    outline: none !important;
-    border: 0 !important;
-    -webkit-transition: all ease 0.3s;
-    -moz-transition: all ease 0.3s;
-    -o-transition: all ease 0.3s;
-    -ms-transition: all ease 0.3s;
-    transition: all ease 0.3s;
-    -webkit-transform-style: preserve-3d; /*for Prevent flickering*/
-}
-
-button img {
-    outline: none !important;
-    border: 0 !important;
-}
-
-input[type="checkbox"],input[type="radio"] {
-    box-sizing: border-box;
-    padding: 0;
-}
-
-input[type="search"] {
-    -webkit-appearance: textfield;
-    -moz-box-sizing: content-box;
-    -webkit-box-sizing: content-box;
-    box-sizing: content-box;
-}
-
-input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration {
-    -webkit-appearance: none;
-}
-
-::selection {
-    background: #ffb7b7;
- /* Safari */;
-}
-
-::-moz-selection {
-    background: #ffb7b7;
- /* Firefox */;
-}
-
-::-webkit-scrollbar {
-    width: 10px;
-    height: 5px;
-}
-
-::-webkit-scrollbar-button {
-    background-color: #666;
-}
-
-::-webkit-scrollbar-track {
-    background-color: #999;
-}
-
-::-webkit-scrollbar-track-piece {
-    background-color: #ffffff;
-}
-
-::-webkit-scrollbar-thumb {
-    height: 50px;
-    background-color: #666;
-    border-radius: 3px;
-}
-
-::-webkit-scrollbar-corner {
-    background-color: #999;
-}}
-
-::-webkit-resizer {
-    background-color: #666;
-}
-
-
-/*--------------------------------------------------------
-common
---------------------------------------------------------*/
-
-/*--------------------------------------------------------
-heading
---------------------------------------------------------*/
-
-h1 {
-    font-family: 'Roboto',sans-serif;
-    color: #000;
-    font-weight: 300;
-    font-size: 36px;
-    margin: 35px 0;
-    text-align: center;
-    line-height: 35px;
-    position: relative;
-    z-index: 1;
-}
-
-h2 {
-    font-family: 'Roboto',sans-serif;
-    color: #000;
-    font-weight: 400;
-    font-size: 20px;
-    margin-bottom: 2px;
-    margin-top: 0;
-    text-align: left;
-    line-height: 27px;
-    position: relative;
-}
-
-h3 {
-    font-family: 'Roboto',sans-serif;
-    font-weight: 300;
-    font-size: 28px;
-    text-align: center;
-    line-height: 25px;
-    color: #949292;
-    padding: 0;
-    margin: 0;
-    margin-bottom: 20px;
-    margin-top: 10px;
-}
-
-/*--------------------------------------------------------
-heading
---------------------------------------------------------*/
-
-hr {
-    margin: 20px 0;
-    border: 0;
-    border-bottom: 1px solid #fff;
-    border-top: 1px solid rgba(0,0,0,.1);
-    clear: both;
-}
-
-.fullWidth {
-    width: 100% !important;
-}
-
-.marginTB {
-    margin: 20px 0 !important;
-}
-
-.alignCenter {
-    text-align: center;
-}
-
-.alignRight {
-    text-align: right;
-}
-
-.alignLeft {
-    text-align: left;
-    margin-bottom:31px;
-    color: #000;
-}
-
-
-footer {
-    padding: 8px 0;
-    border-top: 1px solid rgba(0,0,0,.1);
-    margin-top: 10px;
-}
-
-footer p{
-    margin: 0 !important;
-    text-align: right !important;
-}
-
-/*GLOBEL GRID [START]*/
-*,*:after,*:before {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-}
-
-[class*='col-'] {
-    float: left;
-    padding-right: 20px;
-}
-
-[class*='col-']:last-of-type {
-    padding-right: 0;
-}
-
-.grid {
-    width: 100%;
-    max-width: 1045px;
-    margin: 0 auto;
-    padding: 0 15px;
-    position: relative;
-}
-
-.grid:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-.grid-pad {
-    padding: 30px 0 35px 20px;
-}
-
-.grid-pad>[class*='col-']:last-of-type {
-    padding-right: 20px;
-}
-
-.push-right {
-    float: right;
-}
-
-.col-1-1 {
-    width: 100%;
-}
-
-.col-2-3,.col-8-12 {
-    width: 66.66%;
-}
-
-.col-1-2,.col-6-12 {
-    width: 50%;
-}
-
-.col-1-3,.col-4-12 {
-    width: 33.33%;
-}
-
-.col-1-4,.col-3-12 {
-    width: 25%;
-}
-
-.col-1-5 {
-    width: 20%;
-}
-
-.col-1-6,.col-2-12 {
-    width: 16.667%;
-}
-
-.col-1-7 {
-    width: 14.28%;
-}
-
-.col-1-8 {
-    width: 12.5%;
-}
-
-.col-1-9 {
-    width: 11.1%;
-}
-
-.col-1-10 {
-    width: 10%;
-}
-
-.col-1-11 {
-    width: 9.09%;
-}
-
-.col-1-12 {
-    width: 8.33%;
-}
-
-.col-11-12 {
-    width: 91.66%;
-}
-
-.col-10-12 {
-    width: 83.333%;
-}
-
-.col-9-12 {
-    width: 75%;
-}
-
-.col-5-12 {
-    width: 41.66%;
-}
-
-.col-7-12 {
-    width: 58.33%;
-}
-
-@media handheld,only screen and (max-width:767px) {
-    .grid {
+    body {
+            margin-top: 0px;
+            margin-left: 0px;
+            margin-right: 0px;
+            background-color: #efefef;
+           
+            background-size: cover;
+            background-position: center center;
+            background-size: cover;
+            -webkit-background-size: cover;
+            padding: 0px;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            background-repeat: no-repeat;
+    }
+
+    #navbar-top{
+
+            background: #39424e;
+            opacity: 0.8;
+            border-bottom: 1px solid #39424e;
+
+    }
+
+    #homepage-header {
+            /* Hack to hide the header */
+            -webkit-box-shadow:none;
+            -moz-box-shadow:none;
+            box-shadow:none;
+            border:none;
+            background:none;
+            -webkit-font-smoothing: antialiased;
+            margin: 0px auto;
+            left: 0px;
+            padding: 15px 0px;
+    }
+
+    .btn{
+            margin-top: 50px;
+    }
+
+    .top-navbar-list{
+            list-style: none;
+            float: left;
+    }
+
+    footer h3 {
+            margin-bottom: 25px;
+            text-align: center;
+    }
+
+    footer {
+        background-color: #39424e;
+    }
+
+    .banner h2 {
+            font-size: 24 px;
+            line-height: 110%;
+            font-weight: normal;
+    }
+
+
+    #name-logo {
+            font-size: 40px;
+            font-weight: bold;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+            margin-left: 10px;
+            color: white;
+            text-decoration: none;
+    }
+
+
+
+
+
+
+    #banner {
+        background: black;
+        width:60%;
+        height:300px;
+        position: relative;
+        margin-top: 75px;
+        left: 20%;
+        border-radius: 6px;
+    }
+
+    #top-bar{
+        margin-top: 7px;
+        list-style: none;
+        text-align: right;
+        float: right;
+    }
+
+    #blog-link{
+        font-size: 15px;
+        color: white;
+        text-decoration: underline;
+        vertical-align: middle;
+        margin-left: 20px;
+    }
+
+    .container{
+        background-image: url('<%= asset_path 'home.jpg' %>');
         width: 100%;
-        min-width: 0;
-        margin-left: 0;
-        margin-right: 0;
+        height:350px;
+        opacity: 1;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+
+    #page {
+            width: 900px;
+            max-width: 1200px;
+            margin: 0 auto;
+            
+    }
+
+    #links {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+    }
+
+    #links .section {
+            margin: 0;
+            padding: 0;
+            display: inline-block;
+            vertical-align: top;
+            width: 24%;
+            max-width: 24%;
+    }
+
+    #change-page {
+            color: #999;
+            text-align: center;
+            font-style: italic;
+    }
+
+    .helpful {
+            cursor: help;
+    }
+
+    .top-navbar-list > a {
+            color: #ffffff;
+            margin: 0;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+            float: none;
+            padding: 7px 15px 7px;
+            text-decoration: none;
+            background: #2a9ceb;
+            border-radius: 6px;
+            margin-right: 12px;
+    }
+
+
+
+
+    .static-text{
+            float: left;
+    }
+
+    #video-player {
+            display: none;
+            float: right;
+            margin: 50px auto;
+            position: relative;
+            top: 125px;
+            z-index: 1;
+            display: inline;
+            border: 5px solid #fff;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+            -moz-box-shadow: 1px 1px 3px #000;
+            -webkit-box-shadow: 1px 1px 3px #000;
+            box-shadow: 1px 1px 3px #000;
+
+
+    }
+
+    #left-content{
+            color: white;
+            line-height: 1.1em;
+            text-shadow: 0 0 24px rgba(0,0,0,0.5),0 0 64px rgba(0,0,0,0.25),0 2px rgba(0,0,0,0.75);
+            width: 84%;
+            margin-top: 180px;
+            height: 190px;
+    }
+
+    #left-content h2 {
+            font-size: 35px;
+    }
+
+
+
+    .empower {
+        padding-top: 27px;
+        display: inline-block;
+        float: left;
+        list-style: none;
+        margin: 0 0 0 10px;
+    }
+
+    li {
+        list-style: none;
+        display: inline;
+        line-height: 20px;
+    }
+    .feature-list{
+        line-height: 38px;
+        font-size: 18px;
+    }
+    .row{
+        margin-left: 0px;
+        margin-right: -12.5px;
+    }
+
+    .col-4 {
+        width: 33.33333%;
+        float: left;
+        position: relative;
+        min-height: 1px;
+    }
+
+    .text-copy {
+        font-size: 15px;
+    }
+    .text-special {
+        font-family: Shift,"Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 18px;
+    }
+    .list-layout {
         padding-left: 0;
-        padding-right: 0;
+        list-style: none;
+        margin-left: 10px;
+    }
+    .list-layout > li {
+        display: block;
     }
 
-    [class*='col-'] {
-        width: auto;
-        float: none;
-        margin-left: 0;
-        margin-right: 0;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        padding-left: 20px;
-        padding-right: 20px !important;
+    footer > .row {
+        width: 78%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 12px;
+        margin-top: 20px;
+        padding-top: 20px;
     }
-
-    .search_main .col-8-12 {
-        padding-right: 0 !important;
+    .col-4 > h5 {
+        color: white;
+        margin-bottom: 5px;
     }
-
-    .search_main .col-2-12 {
-        padding-right: 0 !important;
-    }
-}
-
-a,:hover {
-    text-decoration: none;
-}
-/*GLOBEL GRID [END]*/
-
-.mainContainer {
-    width: 100%;
-    margin: 0 auto;
-}
-
-header {
-    width: 100%;
-    background-color: #000;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 299;
-    padding: 8px 0;
-}
-
-header nav {
-    float: right;
-    margin-top: 6px;
-    position: relative;
-}
-
-header nav li a {
-    font-family: 'Roboto',sans-serif;
-    font-weight: 300;
-    font-size: 12px;
-    color: #d0d0d0;
-    text-decoration: none;
-    margin-right: 10px;
-}
-
-header nav li a:hover {
-    color: #c2e678;
-}
-
-.logo {
-    float: left;
-}
-
-.logo img {
-    width: 173px;
-}
-
-
-header nav ul>li {
-    display: inline-block;
-    padding-right: 2px;
-}
-
-.banner {
-    width: 100%;
-    height: 400px;
-    margin: 0 auto;
-    overflow: hidden;
-    position: relative;
-    background: url(<%= asset_path 'home.jpg' %>) top center no-repeat;
-    background-size: 100%;
-}
-
-
-.btn {
-    background-color: #84CAB2;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    border-radius: 2px;
-    display: inline-block;
-    cursor: pointer;
-    color: #000;
-    font-family: arial;
-    font-size: 12px;
-    padding: 2px 10px;
-    text-decoration: none;
-}
-
-.btn-large{
-    padding:4px 15px;
-}
-
-.btn:hover{
-    position: relative;
-    color: #fff;
-}
-
-.banner h1{
-    line-height: 38px;
-    color: #fff;
-    font-size: 35px;
-    margin-bottom: 17px;
-    text-align: left;
-    text-shadow: 0 0 24px rgba(0,0,0,0.5),0 0 64px rgba(0,0,0,0.25),0 2px rgba(0,0,0,0.75);
-}
-
-.banner h2{
-    color: #E0ECAC;
-    margin-bottom: 10px;
-}
-
-.banner figcaption {
-    width: 88%;
-    vertical-align: middle;
-    height: 200px;
-    color: #fff;
-    margin: auto;
-    font-family: 'Roboto',sans-serif;
-    font-weight: 300;
-    font-size: 30px;
-    text-align: left;
-    position: relative;
-    top: 20px;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1;
-}
-
-.grid-card{
-    background: #fff;
-    box-shadow: 0 1px 1px rgba(0,0,0,0.15),-1px 0 0 rgba(0,0,0,0.03),1px 0 0 rgba(0,0,0,0.03),0 1px 0 rgba(0,0,0,0.12);
-    border-radius: 2px;
-    transition: width 1s;
-    -moz-transition: width 1s; /* Firefox 4 */
-    -webkit-transition: width 1s; /* Safari and Chrome */
-    -o-transition: width 1s; /* Opera */
-    -ms-transition: width 1s; /* IE9 (maybe) */
-    padding: 15px;
-    position: relative;
-}
-
-.mid-first-grid{
-    position: relative;
-}
-
-.mid-first-grid .grid-card{
-    min-height: 180px;
-}
-
-.mid-first-grid .grid-card:hover .fa{
-    color: #84CAB2;
-    -webkit-transition: all ease 0.3s;
-    -moz-transition: all ease 0.3s;
-    -o-transition: all ease 0.3s;
-    -ms-transition: all ease 0.3s;
-    transition: all ease 0.3s;
-    -webkit-transform-style: preserve-3d; /*for Prevent flickering*/
-}
-
-.mid-first-grid .col-1-3, .mid-first-grid .col-1-3 h2{
-    text-align: center !important;
-}
-
-
-.mid-first-grid h2{
-    margin: 6px 0;
-}
-
-.mid-first-grid .fa{
-    font-size: 35px;
-}
-
-footer {
-    background:#000;
-    padding: 8px 0;
-    border-top: 1px solid rgba(0,0,0,.1);
-    margin-top: 10px;
-}
-
-footer p{
-    margin: 0 !important;
-    text-align: right !important;
-}
-
-
-#social {
-    text-align: left !important;
-}
-
-section #social li {
-    width: 30px;
-    height: 30px;
-    display: inline-block;
-    margin: 3px;
-    list-style: none;
-}
-
-section #social li span {
-    width: 30px;
-    height: 30px;
-    color: #74d4b3;
-    font-size: 15px;
-    text-align: center;
-    line-height: 30px;
-    background-color: rgb(92, 84, 84);
-    transition: all 0.5s ease;
-}
-
-section #social li span:hover {
-    border-radius: 100px;
-}
-
-section #social .fa-facebook:hover {
-    color: #fff;
-    background: #395f9e;
-}
-
-section #social .fa-twitter:hover {
-    color: #fff;
-    background: #00adf1;
-}
-
-section #social .fa-google-plus:hover {
-    color: #fff;
-    background: #d01820;
-}
-
-section #social .fa-linkedin:hover {
-    color: #fff;
-    background: #08557f;
-}
-
-
-.copy_right {
-    text-align: right;
-}
-
-.copy_right a {
-    font: normal 13px Arial, Helvetica, sans-serif;
-    text-decoration: none;
-    color: #656565;
-    margin-right: 18px;
-}
-
-.copy_right a:hover {
-    color: #c2e678;
-}
-
-.copy_right a:last-child {
-    margin-right: 0;
-}
 </style>
 
-</head>
+<script type="text/javascript">
+    min_width = 800;
+    max_width = 1200;
+    function adjust_content_size(min_width, max_width, aspect_ratio, net_width, net_height) {
+        debug.log(net_width, net_height, min_width, max_width);
+        net_width = net_width > min_width ? net_width : min_width;
+        net_width = net_width < max_width ? net_width : max_width;
+        debug.log(net_width, net_height);
+        var desired_height = (net_width * aspect_ratio[1]) / aspect_ratio[0];
+        var desired_width = (net_height * aspect_ratio[0]) / aspect_ratio[1];
+        debug.log(desired_width, desired_height);
+                                                       if (desired_height <= net_height) {
+            desired_width = net_width;
+        }
+        else if (desired_width < min_width) {
+            desired_width = min_width;
+            desired_height = (min_width * aspect_ratio[1])/ aspect_ratio[0];
+        }
+        else if (desired_width > max_width) {
+            desired_width = max_width;
+            desired_height = (max_width * aspect_ratio[1])/ aspect_ratio[0];
+        }
+        else {
+            desired_height = net_height;
+        }
 
-<body>
-<div class="mainContainer">
-    <!--====headng ====-->
-    <header>
-        <div class="grid">
-            <div class="col-1-1">
-               <div class="content">
-                   <div class="logo"><a href="/"><img src="<%= asset_path 'lmnop_logo.png' %>"></a></div>
-                   <nav>
-                        <ul>
-                            
-                            <li><a href="/aboutus">About Us</a></li>
-                            <li><a href="/users/sign_in" class="btn">Login</a></li>
-                            <li><a href="/users/sign_up" class="btn">Sign Up</a></li>
-                        </ul>
-                   </nav>
-               </div>
-            </div>
-        </div>
+        return [desired_width, desired_height];
+    }
+
+    function set_width_height() {
+        
+        var desired = adjust_content_size(min_width, max_width, aspect_ratio, $(window).width() * 0.80, $(window).height() - 125);
+        var desired_width = desired[0];
+        var desired_height = desired[1];
+
+        if (desired_width != $('#page').width()) {
+            $('#page').width(desired_width);
+        }
+        $('#homepage-header').width(desired_width);
+        //$('#banner').height(desired_height * 0.60);
+    }
+
+aspect_ratio = [1.932, 1];
+
+    $(document).ready(function() {
+            $(window).resize(set_width_height);
+            set_width_height();
+            //$('#empower1').jSlots({time:10000, loops:3});
+
+    });                            
+</script>
+
+<div id="navbar-top">
+    <header id="homepage-header">
+        <ul id="top-bar">
+            <li class="top-navbar-list">
+              <a href="/users/sign_in">Login</a>
+            </li>                                   
+            <li class="top-navbar-list">
+              <a href="/users/sign_up">Sign Up</a>
+            </li>
+        </ul>
+        <a id="name-logo" href="/">lmnop</a>
     </header>
-    <!--====headng ====-->
-    <!--==== banner ====-->
-    <div class="banner">
-        <div class="grid grid-pad">
-             <div class="col-1-2">&nbsp;</div>
-            <div class="col-1-2">
-               <div class="content">
-                   <figcaption>
-                        <h1>
-                            Ask questions after classes<br/>to your instructors online
-                        </h1>
-                        <h2>sometimes anonymously.</h2>
-                        <a href="http://blog.lmnop.in/" class="btn btn-large">know more</a>
-                    </figcaption>
-               </div>
-            </div>
-        </div>
-    </div>
-    <!--====banner ====-->
-    <!--==== middile ====-->
-    <div class="grid grid-pad mid-first-grid">
-        <h1>Why LMNOP?</h1>
-        <div class="col-1-3">
-           <div class="content grid-card">
-                <i class="fa fa-angellist"></i>
-                <h2>Clear Doubts</h2>
-                <p>Students can ask questions to teachers after classes.</p>
-           </div>
-        </div>
-        <div class="col-1-3">
-           <div class="content grid-card">
-                <i class="fa fa-users"></i>
-                <h2>Student Participation</h2>
-                <p>
-                    The entire class can participate in a Q and A session. Students can answer for  others.
-                </p>
-           </div>
-        </div>
-        <div class="col-1-3">
-           <div class="content grid-card">
-                <i class="fa fa-thumbs-o-up"></i>
-                <h2>Stay Anonymous</h2>
-                <p>
-                    Students can choose to remain anonymous with their doubts. No question is stupid, you can just ask it.
-                </p>
-           </div>
-        </div>
-    </div>
-    <div class="grid grid-pad mid-first-grid">
-        <div class="col-1-3">
-           <div class="content grid-card">
-                <i class="fa fa-paper-plane"></i>
-                <h2>Answer Once</h2>
-                <p>
-                    An Instructor or a fellow classmates can now answer once for whole class which is recorded digitally.
-                </p>
-           </div>
-        </div>
-        <div class="col-1-3">
-           <div class="content grid-card">
-                <i class="fa fa-comments-o"></i>
-                <h2>Course Revision</h2>
-                <p>
-                    An one stop source to revise all your concepts before exam.
-                </p>
-           </div>
-        </div>
-        <div class="col-1-3">
-           <div class="content grid-card">
-                <i class="fa fa-coffee"></i>
-                <h2>Class Analytics</h2>
-                <p>All student collboration is graded with an LMNOP score that can be used for class assessment.</p>
-           </div>
-        </div>
-    </div>
-    <!--==== middile ====-->
-    <!--==== footer ====-->
-    <footer>
-        <div class="grid">
-             <div class="col-1-2">
-               <div class="content social_icon">
-                  <section>
-                      <ul id="social">
-                        <li>
-                          <a href="https://www.facebook.com/lmnop.in"><span class='fa fa-facebook'></span></a>
-                        </li>
-                        <li>
-                          <a href="https://twitter.com/lmnopIndia"><span class='fa fa-twitter'></span></a>
-                        </li>
-                        <li>
-                          <a href="mailto:welcome@lmnop.in"><span class='fa fa-envelope'></span></a>
-
-                        </li>
-                      </ul>
-                </section>
-               </div>
-            </div>
-            <div class="col-1-2">
-               <div class="content copy_right">
-                    <p>
-                        <a href="http://blog.lmnop.in/">Blog</a>
-                        <a href="/aboutus"> About Us</a>
-                    </p>
-                        © 2014 LMNOP
-                    </p>
-               </div>
-            </div>
-        </div>
-    </footer>
-    <!--==== footer ====--> 
 </div>
-</body>
-</html>
+<div class="container">
+    <div id="page">
+        <div id="left-content">
+            <h2 style="">Ask questions after classes to your instructors online,</h2>
+            <h3>sometimes anonymously. <a id="blog-link" href="http://blog.lmnop.in" target="_blank">Know More »</a></h3>
+        </div>         
+        <div class="row">
+            <h2 style="text-align: center;">Why LMNOP ?</h2>
+            <div class="col-4 text-copy">
+              <h3 class="text-special">Clear Doubts</h3>
+              <p>Students can ask questions to teachers after classes.</p>
+            </div>
+            <div class="col-4 text-copy">
+              <h3 class="text-special">Student Participation</h3>
+              <p>The entire class can participate in a Q and A session. Students can answer for others.</p>
+            </div>
+            <div class="col-4 text-copy">
+              <h3 class="text-special">Stay Anonymous</h3>
+              <p>Students can choose to remain anonymous with their doubts. No question is stupid, you can just ask it.</p>
+            </div>
+            <div class="col-4 text-copy">
+              <h3 class="text-special">Answer Once</h3>
+              <p>Answer once for whole class.</p>
+            </div>
+            <div class="col-4 text-copy">
+              <h3 class="text-special">Course Revision</h3>
+              <p>A one stop source to revise all your concepts before exam.</p>
+            </div>
+        </div>                                                                                               
+    </div> 
+    <footer>
+        <div class="row">
+            <div class="col-4">
+              <h5>Connect with Us</h5>
+              <ul class="list-layout">
+                <li><a href="https://twitter.com/lmnopIndia">Twitter</a></li>
+                <li><a href="https://www.facebook.com/lmnop.in">Facebook</a></li>
+                <li><a href="mailto:welcome@lmnop.in" target="_top">Email Us</a></li>
+              </ul>
+            </div>
+            <div class="col-4">
+              <h5>Company</h5>
+              <ul class="list-layout">
+                <li><a href="http://blog.lmnop.in">Blog</a></li>        
+                <li><a href="/aboutus">About Us</a></li>        
+              </ul>
+            </div>
+            <div class="col-4">
+              <ul class="list-layout">
+                <li style="margin-top:20px;">LMNOP EduLabs Pvt Ltd</li>
+                <li>© 2014 LMNOP</li>
+              </ul>
+            </div>
+        </div>
+    </footer>    
+</div>    
+
+
+                                                    
+
+
+
+
+
