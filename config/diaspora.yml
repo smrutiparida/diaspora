@@ -292,8 +292,14 @@ configuration: ## Section
       
       ## Credentials to log in to the SMTP server - may be necessary if
       ## authentication is not 'none'
-      username: 'azure_1b50bb61b342fd1d3e7f5ed655cd7e54@azure.com'
-      password: '8OSqEd27X7wdKsK'
+
+      ### This is a valid username password which will be changed on 02 Dec 2014 when the sendgrid credit is restored###
+      ######username: 'azure_1b50bb61b342fd1d3e7f5ed655cd7e54@azure.com'
+      ####password: '8OSqEd27X7wdKsK'
+
+      ###Using this as a temporary arrangement
+      username: 'azure_2eaf7cfd4532301853851fc4a7b2d282@azure.com'
+      password: 'DJHsF1GNYg8OkPJ'
       
       ## Automatically enable TLS? Ignored if authentication is set to none
       starttls_auto: false
